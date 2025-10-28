@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eduardo Mejia | Music Industry Professional</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #FF006E;
+            --secondary: #00D9FF;
+            --dark: #0a0a0a;
+            --light: #f5f5f5;
+            --accent: #FFD60A;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--dark) 0%, #1a0033 50%, var(--dark) 100%);
+            color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.1;
+        }
+
+        .waveform {
+            position: absolute;
+            bottom: 20%;
+            left: 0;
+            width: 100%;
+            height: 200px;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 200"><path d="M0,100 Q50,80 100,100 T200,100 T300,100 T400,100 T500,100 T600,100 T700,100 T800,100 T900,100 T1000,100 T1100,100 T1200,100" stroke="%23FF006E" stroke-width="2" fill="none"/><path d="M0,110 Q50,90 100,110 T200,110 T300,110 T400,110 T500,110 T600,110 T700,110 T800,110 T900,110 T1000,110 T1100,110 T1200,110" stroke="%2300D9FF" stroke-width="2" fill="none"/></svg>') repeat-x;
+            animation: wave 15s linear infinite;
+        }
+
+        @keyframes wave {
+            0% { background-position: 0 0; }
+            100% { background-position: 1200px 0; }
+        }
+
+        /* Header */
+        header {
+            padding: 60px 20px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .vinyl-spinner {
+            display: inline-block;
+            width: 120px;
+            height: 120px;
+            margin-bottom: 30px;
+            animation: spin 20s linear infinite;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        h1 {
+            font-size: 4rem;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .tagline {
+            font-size: 1.5rem;
+            color: var(--secondary);
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+
+        .intro {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            color: var(--light);
+            line-height: 1.8;
+            margin-bottom: 40px;
+        }
+
+        /* Contact Bar */
+        .contact-bar {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 60px;
+        }
+
+        .contact-btn {
+            padding: 12px 25px;
+            border: 2px solid var(--primary);
+            background: transparent;
+            color: var(--primary);
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .contact-btn:hover {
+            background: var(--primary);
+            color: var(--dark);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 0, 110, 0.3);
+        }
+
+        /* Videos Section */
+        .videos-section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            text-align: center;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .videos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-bottom: 80px;
+        }
+
+        .video-card {
+            background: rgba(255, 0, 110, 0.1);
+            border: 2px solid var(--primary);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .video-card:hover {
+            transform: scale(1.05);
+            border-color: var(--secondary);
+            box-shadow: 0 20px 40px rgba(0, 217, 255, 0.2);
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            background: #000;
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .video-title {
+            padding: 20px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--light);
+        }
+
+        /* About Section */
+        .about-section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--secondary);
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            line-height: 1.8;
+            color: var(--light);
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .stat {
+            background: rgba(255, 0, 110, 0.1);
+            padding: 30px;
+            border-radius: 10px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        .stat-label {
+            color: var(--light);
+            margin-top: 10px;
+        }
+
+        /* Services */
+        .services-section {
+            padding: 80px 20px;
+            background: rgba(255, 0, 110, 0.05);
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .service-card {
+            background: rgba(0, 217, 255, 0.1);
+            padding: 40px;
+            border-radius: 10px;
+            border: 2px solid var(--secondary);
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 217, 255, 0.2);
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--accent);
+        }
+
+        .service-card p {
+            color: var(--light);
+            line-height: 1.8;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 100px 20px;
+            text-align: center;
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-section h2 {
+            font-size: 3rem;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .cta-text {
+            font-size: 1.2rem;
+            color: var(--light);
+            margin-bottom: 40px;
+            line-height: 1.8;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .cta-btn {
+            padding: 15px 40px;
+            font-size: 1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .cta-btn-primary {
+            background: var(--primary);
+            color: var(--dark);
+        }
+
+        .cta-btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 0, 110, 0.4);
+        }
+
+        .cta-btn-secondary {
+            background: transparent;
+            color: var(--secondary);
+            border: 2px solid var(--secondary);
+        }
+
+        .cta-btn-secondary:hover {
+            background: var(--secondary);
+            color: var(--dark);
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        footer {
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 2px solid var(--primary);
+            color: var(--light);
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .footer-links a {
+            color: var(--secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .tagline {
+                font-size: 1.2rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .cta-section h2 {
+                font-size: 2rem;
+            }
+
+            .contact-bar {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .contact-btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="animated-bg">
+        <div class="waveform"></div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <svg class="vinyl-spinner" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="50" cy="50" r="48" fill="none" stroke="#FF006E" stroke-width="2"/>
+            <circle cx="50" cy="50" r="40" fill="none" stroke="#00D9FF" stroke-width="1" opacity="0.5"/>
+            <circle cx="50" cy="50" r="32" fill="none" stroke="#FFD60A" stroke-width="1" opacity="0.3"/>
+            <circle cx="50" cy="50" r="10" fill="#FF006E"/>
+        </svg>
+
+        <h1>EDUARDO MEJIA</h1>
+        <p class="tagline">Music Industry Professional | Booking Agent | Digital Strategist</p>
+
+        <div class="intro">
+            <p>5+ años construyendo la red más sólida de booking musical entre México y España. 500+ eventos ejecutados. 239 venues verificados. 86 contactos clave. No vendehúmos—solo <strong>resultados reales</strong> y estrategia de datos.</p>
+        </div>
+
+        <div class="contact-bar">
+            <a href="https://wa.me/525512478139" class="contact-btn">💬 WhatsApp +52 5512478139</a>
+            <a href="tel:+34678497361" class="contact-btn">📞 +34 678 497361</a>
+            <a href="mailto:emc121091@me.com" class="contact-btn">📧 emc121091@me.com</a>
+            <a href="https://github.com/edumecar/Book" class="contact-btn">📊 Dashboard Venues</a>
+        </div>
+    </header>
+
+    <!-- Videos Section -->
+    <section class="videos-section">
+        <h2 class="section-title">🎵 Mi Trabajo en Acción</h2>
+
+        <div class="videos-grid">
+            <div class="video-card">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/ZGxSXchZNfo?start=0" allowfullscreen="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" loading="lazy"></iframe>
+                </div>
+                <div class="video-title">Production Sessions</div>
+            </div>
+
+            <div class="video-card">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/SD3T_Or_mvk?start=3" allowfullscreen="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" loading="lazy"></iframe>
+                </div>
+                <div class="video-title">Live Performance</div>
+            </div>
+
+            <div class="video-card">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/XCW95zjBUK4" allowfullscreen="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" loading="lazy"></iframe>
+                </div>
+                <div class="video-title">Music Industry Insights</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section">
+        <h2 class="section-title">📊 La Red</h2>
+
+        <div class="about-content">
+            <div class="about-text">
+                <h2>239 Venues + 86 Contactos = Oportunidades Infinitas</h2>
+                <p>He pasado 5 años construyendo relaciones reales con promotores, productores y venues en Mexico y España. No es solo un directorio—es un sistema operativo para hacer que la música suceda.</p>
+                <p>Cada venue está verificado. Cada contacto es activo. Cada deal está documentado con modalidades claras: desde Fecha Comprada (bajo riesgo) hasta Door Deal (máximo upside).</p>
+                <p><strong>Lo que hace diferencia:</strong> Conozco el mercado. Conozco a la gente. Y sé exactamente qué artista encaja dónde.</p>
+            </div>
+
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">Eventos Ejecutados</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">239</div>
+                    <div class="stat-label">Venues Verificados</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">86</div>
+                    <div class="stat-label">Contactos Clave</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">5+</div>
+                    <div class="stat-label">Años en Industria</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services-section">
+        <h2 class="section-title">🎯 Qué Hago</h2>
+
+        <div class="services-grid">
+            <div class="service-card">
+                <h3>🎸 Booking & Tour Management</h3>
+                <p>Planificación de giras estratégicas, negociación con venues, gestión de contratos, producción técnica. Acceso directo a promotores verificados.</p>
+            </div>
+
+            <div class="service-card">
+                <h3>📈 Consultoría Estratégica</h3>
+                <p>Análisis de mercado, evaluación de viabilidad, roadmap de crecimiento 6-12 meses, optimización de modalidades según tu nivel de tracción.</p>
+            </div>
+
+            <div class="service-card">
+                <h3>💿 Distribución & Publishing</h3>
+                <p>Lanzamientos digitales, coordinación con distribuidoras (Onerpm, Symphonic, Virgin Music), registro de obras, sincronización.</p>
+            </div>
+
+            <div class="service-card">
+                <h3>🌐 Marketing & Desarrollo</h3>
+                <p>Campañas 360°, redes sociales, conecta con productores, fotógrafos, videógrafos, DJs. Networking que abre puertas.</p>
+            </div>
+
+            <div class="service-card">
+                <h3>📊 Data & Intelligence</h3>
+                <p>Análisis Spotify/Instagram/YouTube. Identifico dónde tu artista es viable. Números + intuición = decisiones inteligentes.</p>
+            </div>
+
+            <div class="service-card">
+                <h3>🤝 Relaciones</h3>
+                <p>He pasado 5 años construyendo confianza. Eso vale más que dinero. Las puertas se abren porque mi palabra vale.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <h2>Construyamos Algo Grande</h2>
+
+        <p class="cta-text">
+            No busco trabajo. Busco colaboraciones reales. Artistas con visión. Venues con ambición. Proyectos que merezcan la pena.
+        </p>
+
+        <p class="cta-text">
+            Si tienes música que merece ser escuchada, o un venue que necesita talento verificado, hablemos. Sin BS, sin promesas vacías—solo estrategia y ejecución.
+        </p>
+
+        <div class="cta-buttons">
+            <a href="https://wa.me/525512478139?text=Hola%20Eduardo%2C%20me%20interesa%20conversar%20sobre%20colaboraci%C3%B3n" class="cta-btn cta-btn-primary">💬 Contáctame por WhatsApp</a>
+            <a href="https://github.com/edumecar/Book" class="cta-btn cta-btn-secondary">📊 Ver Mi Base de Datos</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-links">
+            <a href="https://www.linkedin.com/in/edumecar/">LinkedIn</a>
+            <a href="https://github.com/edumecar">GitHub</a>
+            <a href="mailto:emc121091@me.com">Email</a>
+            <a href="https://wa.me/525512478139">WhatsApp</a>
+        </div>
+        <p>© 2025 Eduardo Mejia | Music Industry Professional | Making Independent Music Happen</p>
+    </footer>
+</body>
+</html>
