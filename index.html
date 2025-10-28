@@ -13,15 +13,13 @@
             --accent-green: #1db954;
             --accent-cyan: #19b5d1;
             --card: #23233a;
-            --vinyl: #18181b;
         }
         html, body {
             background: var(--main-bg);
             color: var(--main-text);
             font-family: 'Inter', Arial, sans-serif;
             height: 100vh;
-            padding: 0;
-            margin: 0;
+            padding: 0; margin: 0;
         }
         body {
             min-height: 100vh;
@@ -33,32 +31,32 @@
         }
         .main-wrap {
             width: 100%;
-            max-width: 1050px;
-            min-height: 93vh;
+            max-width: 970px;
+            min-height: 94vh;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-start;
             gap: 1.2rem;
+            padding: 0 2vw;
+            margin: 0 auto;
         }
         header {
             text-align: center;
-            margin-bottom: 0.2rem;
-            position: relative;
+            margin-bottom: .33rem;
         }
-        /* --- LOGO CARACOL --- */
         .snail-wrap {
-            width: 120px;
-            max-width: 42vw;
+            width: 142px;
+            max-width: 96vw;
             height: auto;
             display: flex;
-            margin: 0 auto 2px auto;
+            margin: 0 auto 6px auto;
             position: relative;
-            transform: translateX(-17vw);
-            animation: snail-in-c 5.8s cubic-bezier(.6,.05,.33,1) forwards;
+            transform: translateX(-18vw);
+            animation: snail-in-c 1.9s cubic-bezier(.6,.07,.31,1.1) forwards;
         }
         @keyframes snail-in-c {
-            0%   { transform: translateX(-17vw); }
+            0%   { transform: translateX(-18vw);}
             100% { transform: translateX(0vw);}
         }
         .snail-logo {
@@ -68,137 +66,107 @@
             pointer-events: none;
             display: block;
         }
-        @media (max-width: 750px) {
-            .snail-wrap { width: 60vw; max-width: 145px;}
+        .headline {
+            font-size:1.38rem;
+            font-weight:900;
+            color:#fff;
+            max-width:740px;
+            text-align:center;
+            margin:0 auto 31px auto;
+            letter-spacing:.01em;
+            line-height:1.367;
         }
-        @media (max-width: 550px) {
-            .snail-wrap { width: 71vw; max-width: 110px;}
-            h1 { font-size: 1.13rem; margin-top: -7px; }
-            .main-wrap { padding-top:8px; }
-        }
-
-        h1 {
-            font-family: 'Inter', Arial, sans-serif;
-            font-weight: 800;
-            font-size: 2.1rem;
-            color: var(--main-text);
-            margin-bottom: .15rem;
-            letter-spacing: .08em;
-            margin-top: 0px;
-        }
-        .accent-i { color: var(--accent-green); font-style: normal; }
-        .subtitle {
-            font-size: 1.053rem;
-            color: var(--softer);
-            font-weight: 500;
-            letter-spacing: .07em;
-            margin-bottom: 1.09rem;
-        }
+        .headline strong,.headline b {color: var(--accent-green);}
         .cards-row {
             display: flex;
             flex-wrap: wrap;
-            gap: 18px;
+            gap: 17px;
             margin-bottom: .33rem;
             justify-content: center;
         }
         .infocard {
             background: var(--card);
-            border-radius: 10px;
-            box-shadow: 0 2px 20px rgba(20,50,60,0.13);
-            padding: 18px 15px;
-            min-width: 90px;
+            border-radius: 12px;
+            box-shadow: 0 2px 20px rgba(20,50,60,0.11);
+            padding: 20px 15px;
+            min-width: 110px;
             text-align: center;
-            transition: box-shadow .12s, transform .14s;
+            transition: box-shadow .14s, transform .16s;
         }
         .infocard:hover {
-            box-shadow: 0 4px 22px #1db95430;
+            box-shadow: 0 4px 28px #1db95430;
             transform: translateY(-2px) scale(1.07);
         }
         .infocard strong {
-            font-size: 1.2rem;
+            font-size: 1.24rem;
             color: var(--accent-green);
             font-weight: 800;
         }
         .infocard p {
-            margin: 8px 0 0 0;
-            font-size: .87rem;
+            margin: 9px 0 0 0;
+            font-size: .91rem;
             color: var(--softer);
             letter-spacing: .01em;
         }
+        /* BOOK — Card tipo botón destacado */
         .infocard.link {
             cursor:pointer;
-            border: 1px solid var(--accent-green);
-            box-shadow: 0 2px 20px #1db95416, 0 1px 18px #23233a20;
+            border: 1.8px solid var(--accent-green);
+            box-shadow: 0 2px 20px #1db95418, 0 1px 14px #23233a26;
             text-decoration: none;
+            background: #111814;
+            font-weight:900;
         }
         .infocard.link:hover {
-            background: #212834;
-            box-shadow: 0 6px 33px #1db95441;
+            background: #232e28;
+            box-shadow: 0 6px 33px #1db95445;
+            color:#fff;
         }
-
         .section-label {
             font-family: 'Inter', Arial, sans-serif;
             color: var(--softer);
-            font-size: .95rem;
-            font-weight: 600;
+            font-size: .94rem;
+            font-weight: 700;
             letter-spacing: .18em;
             text-align: left;
             margin: .3rem 0 .45rem .5rem;
-            opacity: .67;
+            opacity: .65;
+            text-shadow: 0 1px 3px #18181b28;
         }
         .gallery {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 12px;
             justify-content: center;
-            margin-bottom: 1px;
+            margin-bottom: 3px;
         }
         .galleryvid {
             background: #1a1a22;
             border-radius: 8px;
             overflow: hidden;
-            width: 170px;
-            box-shadow: 0 2px 13px rgba(20,50,60,.08);
+            width: 188px;
+            box-shadow: 0 2px 13px rgba(20,50,60,.09);
             display: flex; flex-direction: column;
         }
-        .galleryvid iframe { width: 100%; height: 90px; }
-        .player-section {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: .5rem;
-            flex-wrap: wrap;
+        .galleryvid iframe { width: 100%; height: 99px; border:0;}
+        /* Audio player estilizado */
+        .audio-section {
+            margin: 28px 0 0 0;
+            width: 100%;
+            text-align: center;
         }
-        .player-label {
-            font-family: 'Inter', Arial, sans-serif;
-            color: var(--softer);
-            font-size: .97rem;
-            font-weight: 600;
-            letter-spacing: .13em;
-            opacity: .69;
-        }
-        .player-console {
+        .my-audio {
+            width:92%; max-width:335px; margin:0 auto 18px auto; display:block;
             background: #23233a;
-            border-radius: 11px;
-            padding: 10px 14px 10px 15px;
-            box-shadow: 0 2px 16px rgba(50,100,120,0.05);
-            display: inline-flex;
-            align-items: center;
-            gap: 9px;
+            border-radius:9px;
+            box-shadow: 0 2px 11px #19181b24;
         }
-        .player-title {
-            font-size: .98rem;
-            font-weight: 400;
-            color: #cae8d5;
-            margin-left: 3px;
-            letter-spacing: .04em;
-        }
-        .hidden-player { display: none; }
+        /* Contacto */
         .contact-icons {
             display: flex;
             gap: 19px;
-            margin-top: 7px;
-            margin-bottom: 0;
+            margin-top: 13px;
+            margin-bottom: 8px;
             justify-content: center;
             align-items: center;
             flex-wrap: wrap;
@@ -207,7 +175,7 @@
             width: 28px; height: 28px;
             display: flex; align-items: center; justify-content: center;
             color: var(--accent-green);
-            background: rgba(29,185,84,0.11);
+            background: rgba(29,185,84,0.14);
             border-radius: 50%;
             text-decoration: none;
             transition: background .14s;
@@ -216,7 +184,7 @@
             background: var(--accent-green);
             color: var(--main-bg);
         }
-        .contact-icn svg { width: 16px; height: 16px; }
+        .contact-icn svg { width: 16px; height: 16px;}
         .contact-icn.phone svg { width: 16px;}
         footer {
             margin-top: 1.1rem;
@@ -225,66 +193,74 @@
             letter-spacing: .03em;
             opacity: .78;
             text-align: center;
-            padding-bottom: .1em;
+            padding-bottom: .11em;
         }
         @media (max-width: 950px) {
             .main-wrap { max-width: 99vw; }
             .cards-row { gap: 8px; }
             .galleryvid { width: 123px;}
-            .galleryvid iframe {height: 65px; }
-            .player-section { flex-direction: column; align-items: flex-start;}
+            .galleryvid iframe {height: 60px; }
         }
         @media (max-width: 600px) {
-            h1 { font-size: 1.13rem; margin-top: -7px; }
-            .galleryvid,.infocard { min-width:60px; }
-            .cards-row { gap: 4px; }
-            .main-wrap { padding-top:8px; }
-            .snail-wrap { margin-bottom: 5px; }
+            .galleryvid,.infocard { min-width:72px; }
+            .galleryvid { width: 95vw; max-width:312px;}
+            .main-wrap {padding-top:12px;}
+            .snail-wrap {width: 65vw; max-width: 145px;}
+            .headline {font-size:1.01rem;}
+            h1 { font-size: 1.11rem; margin-top: -7px; }
+            .infocard p {font-size:.84rem;}
         }
     </style>
 </head>
 <body>
 <div class="main-wrap">
+    <!-- LOGO animado grande -->
     <header>
         <div class="snail-wrap">
-            <!-- Pon aquí tu SVG, ejemplo: -->
-            <img class="snail-logo" src="logo.svg" alt="Logo TURBOBOYZ (caracol DJ)" draggable="false" />
+            <img class="snail-logo" src="logo.svg" alt="Logo Booking/Caracol" draggable="false"/>
         </div>
-        <h1>EDUARDO MEJ<span class="accent-i">Í</span>A</h1>
-        <div class="subtitle">Music Industry Architect &middot; Publishing &amp; Sync &middot; Booking &amp; Distribution</div>
+        <div class="headline">
+            <strong>Song architecture. Data intuition. Industry music intelligence.</strong>
+        </div>
+        <h1>
+            EDUARDO MEJ<span class="accent-i">Í</span>A
+        </h1>
+        <div class="subtitle">
+            Music Industry Architect &middot; Publishing & Sync &middot; Booking & Distribution
+        </div>
     </header>
-
-    <!-- Cards row con el primer botón enlazando al Book -->
+    <!-- Cards row, Book como call-to-action real-->
     <div class="cards-row">
         <a href="https://edumecar.github.io/Book/" target="_blank" class="infocard link">
-            <strong>+200</strong><p>VENUES<br>MÉXICO & ESPAÑA</p>
+            <strong>Book Database</strong>
+            <p>+200 Venues<br>México & España</p>
         </a>
-        <div class="infocard"><strong>+100</strong><p>CONTACTOS<br>MUSIC INDUSTRY</p></div>
-        <div class="infocard"><strong>+100</strong><p>RELEASES<br>& SYNC</p></div>
-        <div class="infocard"><strong>+400</strong><p>EVENTOS<br>CURADOS</p></div>
+        <div class="infocard"><strong>+100</strong><p>Contactos<br>Music Industry</p></div>
+        <div class="infocard"><strong>+100</strong><p>Releases<br>& Sync</p></div>
+        <div class="infocard"><strong>+400</strong><p>Eventos<br>Curados</p></div>
     </div>
-
-    <div class="section-label">PRODUCCIONES:</div>
+    <!-- VIDEOS -->
+    <div class="section-label">PRODUCCIONES</div>
     <div class="gallery">
         <div class="galleryvid">
-            <iframe src="https://www.youtube.com/embed/ZGxSXchZNfo?start=0" title="Boiler Room Show"></iframe>
+            <iframe src="https://www.youtube.com/embed/ZGxSXchZNfo?start=0" title="Boiler Room Show" allowfullscreen></iframe>
         </div>
         <div class="galleryvid">
-            <iframe src="https://www.youtube.com/embed/SD3T_Or_mvk?start=3" title="Professional Video"></iframe>
+            <iframe src="https://www.youtube.com/embed/SD3T_Or_mvk?start=3" title="Professional Video" allowfullscreen></iframe>
         </div>
         <div class="galleryvid">
-            <iframe src="https://www.youtube.com/embed/XCW95zjBUK4" title="Homemade Music"></iframe>
+            <iframe src="https://www.youtube.com/embed/XCW95zjBUK4" title="Homemade Music" allowfullscreen></iframe>
         </div>
     </div>
-
-    <!-- Audio local, pon tu mp3 si tienes uno -->
-    <div class="section-label" style="margin-top:.7rem;">MÚSICA PARA ESCUCHAR</div>
-    <audio controls style="width:90%; max-width:360px; margin: 0 auto; margin-bottom:16px; display:block; background:#23233a; border-radius:9px; box-shadow: 0 2px 18px #19181b12;">
-        <source src="micancion.mp3" type="audio/mpeg">
-        Tu navegador no soporta audio HTML5.
-    </audio>
-
-    <div class="section-label" style="margin-top:.7rem;">CONTACTO</div>
+    <div class="audio-section">
+        <div class="section-label">MÚSICA PARA ESCUCHAR</div>
+        <audio controls class="my-audio">
+            <source src="micancion.mp3" type="audio/mpeg">
+            Tu navegador no soporta audio HTML5.
+        </audio>
+    </div>
+    <!-- CONTACTO -->
+    <div class="section-label" style="margin-top:.8rem;">CONTACTO</div>
     <div class="contact-icons">
         <a class="contact-icn" href="https://wa.me/525512478139" title="WhatsApp" target="_blank" rel="noopener">
             <svg viewBox="0 0 32 32"><path d="M16 3C9.4 3 4 8.5 4 15.2c0 2.4.8 4.7 2.1 6.7l-1.3 5.2c-.3 1.1.7 2.1 1.9 1.7l5.4-1.7c2 .8 4.1 1.3 6.3 1.3 6.6 0 12-5.4 12-12S22.6 3 16 3zm0 21.8c-2.1 0-4.1-.5-5.9-1.3l-.4-.2-3.5 1.1 1-3.9-.2-.4c-1.3-2-2.1-4.2-2.1-6.7 0-5.1 4.4-9.2 9.8-9.2S25.8 8.3 25.8 15.2c0 5-4.4 9-9.8 9zm5.4-7.6c-.3 0-1.9-.9-2.2-1-1-.4-1.3-.9-2.1-1.7s-.7-1.3-.3-1.9c.3-.4.7-1 .1-1.7-.2-.3-1.3-2-1.8-2.3-.5-.5-1.1-.3-1.5-.2-.4.1-1.1.3-1.7.8-.5.4-.8 1-1.2 1.6s-.3 1.3-.4 2c0 .6 0 1.2.3 1.8.4.6.5.8 1.1 1.4.7.8 1.6 1.7 3 2.1.4.1.7.1 1.1.1.3 0 .4 0 .7-.1.2-.1 1.2-.5 1.4-1 .2-.4.8-1.9 1-2.5 0-.1.1-.2.1-.2z"/></svg>
@@ -299,9 +275,9 @@
             <svg viewBox="0 0 24 24"><path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></svg>
         </a>
     </div>
+    <footer>
+        &copy; 2025 Eduardo Mejía &middot; Portfolio
+    </footer>
 </div>
-<script>
-    document.body.style.overflowY = 'hidden';
-</script>
 </body>
 </html>
