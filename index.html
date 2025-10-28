@@ -45,27 +45,24 @@
             text-align: center;
             margin-bottom: 0.2rem;
         }
-
-        /* --- LOGO CARACOL ANIMADO --- */
+        /* --- LOGO CARACOL ANIMADO SVG --- */
         .snail-wrap {
-            width: 160px;                 /* Tamaño responsivo */
+            width: 160px; 
             max-width: 55vw;
             height: auto;
             display: flex;
             align-items: flex-end;
             justify-content: center;
-            margin: 0 auto 12px auto;
+            margin: 0 auto 14px auto;
             position: relative;
-            /* Animación move izquierda-derecha tipo arrastre lento */
-            animation: snail-move 16s cubic-bezier(.44,.16,.33,1) infinite alternate;
+            /* Animación movimiento solo de izquierda a derecha, lento */
+            animation: snail-move-x 13s cubic-bezier(.6,0,.38,1) infinite alternate;
             will-change: transform;
-            /* sombra para resaltar el caracol */
-            filter: drop-shadow(0 8px 30px #191c3b90);
+            filter: drop-shadow(0 10px 32px #19182c99);
         }
-        @keyframes snail-move {
-            0%   { transform: translateX(-19vw) scaleX(1); }
-            80%  { transform: translateX(19vw) scaleX(-1); }
-            100% { transform: translateX(19vw) scaleX(-1);}
+        @keyframes snail-move-x {
+            0%   { transform: translateX(-16vw); }
+            100% { transform: translateX(18vw);}
         }
         .snail-logo {
             width: 100%;
@@ -75,10 +72,9 @@
             display: block;
         }
         @media (max-width: 650px) {
-            .snail-wrap { width: 69vw; max-width: 320px; }
+            .snail-wrap { width: 65vw; max-width: 310px; }
         }
 
-        /* ---- Resto del layout adaptado a móvil ---- */
         h1 {
             font-family: 'Inter', Arial, sans-serif;
             font-weight: 800;
@@ -239,10 +235,10 @@
 <body>
 <div class="main-wrap">
     <header>
-        <!-- Logo animado como video -->
-<div class="snail-wrap">
-  <img src="logo.svg" autoplay loop muted playsinline class="snail-logo"></video>
-</div>
+        <div class="snail-wrap">
+            <!-- Pon aquí tu SVG, ejemplo: -->
+            <img class="snail-logo" src="logo.svg" alt="Logo TURBOBOYZ (caracol DJ)" draggable="false" />
+            <!-- O pon el contenido SVG directamente en vez del <img> si prefieres -->
         </div>
         <h1>EDUARDO MEJ<span class="accent-i">Í</span>A</h1>
         <div class="subtitle">Music Industry Architect &middot; Publishing &amp; Sync &middot; Booking &amp; Distribution</div>
@@ -294,7 +290,6 @@
     </div>
 </div>
 <script>
-    // Evita el scroll vertical: ajusta al alto de pantalla
     document.body.style.overflowY = 'hidden';
 </script>
 </body>
