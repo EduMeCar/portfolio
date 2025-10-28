@@ -44,25 +44,23 @@
         header {
             text-align: center;
             margin-bottom: 0.2rem;
+            position: relative;
         }
-        /* --- LOGO CARACOL ANIMADO SVG --- */
+        /* --- LOGO CARACOL --- */
         .snail-wrap {
-            width: 160px; 
-            max-width: 55vw;
+            width: 120px;
+            max-width: 42vw;
             height: auto;
             display: flex;
-            align-items: flex-end;
-            justify-content: center;
-            margin: 0 auto 14px auto;
+            margin: 0 auto 2px auto;
             position: relative;
-            /* Animación movimiento solo de izquierda a derecha, lento */
-            animation: snail-move-x 13s cubic-bezier(.6,0,.38,1) infinite alternate;
-            will-change: transform;
-            filter: drop-shadow(0 10px 32px #19182c99);
+            /* Animación: va de la izquierda al centro, llega y se queda */
+            transform: translateX(-17vw);
+            animation: snail-in-c 5.8s cubic-bezier(.6,.05,.33,1) forwards;
         }
-        @keyframes snail-move-x {
-            0%   { transform: translateX(-16vw); }
-            100% { transform: translateX(18vw);}
+        @keyframes snail-in-c {
+            0%   { transform: translateX(-17vw); }
+            100% { transform: translateX(0vw);}
         }
         .snail-logo {
             width: 100%;
@@ -71,8 +69,14 @@
             pointer-events: none;
             display: block;
         }
-        @media (max-width: 650px) {
-            .snail-wrap { width: 65vw; max-width: 310px; }
+
+        @media (max-width: 750px) {
+            .snail-wrap { width: 60vw; max-width: 145px;}
+        }
+        @media (max-width: 550px) {
+            .snail-wrap { width: 71vw; max-width: 110px;}
+            h1 { font-size: 1.13rem; margin-top: -7px; }
+            .main-wrap { padding-top:8px; }
         }
 
         h1 {
@@ -80,12 +84,13 @@
             font-weight: 800;
             font-size: 2.1rem;
             color: var(--main-text);
-            margin-bottom: .23rem;
+            margin-bottom: .15rem;
             letter-spacing: .08em;
+            margin-top: 0px;
         }
         .accent-i { color: var(--accent-green); font-style: normal; }
         .subtitle {
-            font-size: 1.06rem;
+            font-size: 1.053rem;
             color: var(--softer);
             font-weight: 500;
             letter-spacing: .07em;
@@ -167,14 +172,6 @@
             align-items: center;
             gap: 9px;
         }
-        .playbtn {
-            border: none; background: none;
-            outline: none;
-            cursor: pointer;
-            display: flex; align-items: center; justify-content: center;
-            margin: 0 5px 0 0;
-        }
-        .playbtn svg { width: 27px; height: 27px; fill: var(--accent-green);}
         .player-title {
             font-size: .98rem;
             font-weight: 400;
@@ -224,10 +221,10 @@
             .player-section { flex-direction: column; align-items: flex-start;}
         }
         @media (max-width: 600px) {
-            h1 { font-size: 1.13rem; }
+            h1 { font-size: 1.13rem; margin-top: -7px; }
             .galleryvid,.infocard { min-width:60px; }
             .cards-row { gap: 4px; }
-            .main-wrap { padding: 3vw 2vw 0 2vw }
+            .main-wrap { padding-top:8px; }
             .snail-wrap { margin-bottom: 5px; }
         }
     </style>
@@ -238,7 +235,6 @@
         <div class="snail-wrap">
             <!-- Pon aquí tu SVG, ejemplo: -->
             <img class="snail-logo" src="logo.svg" alt="Logo TURBOBOYZ (caracol DJ)" draggable="false" />
-            <!-- O pon el contenido SVG directamente en vez del <img> si prefieres -->
         </div>
         <h1>EDUARDO MEJ<span class="accent-i">Í</span>A</h1>
         <div class="subtitle">Music Industry Architect &middot; Publishing &amp; Sync &middot; Booking &amp; Distribution</div>
@@ -261,18 +257,15 @@
             <iframe src="https://www.youtube.com/embed/XCW95zjBUK4" title="Homemade Music"></iframe>
         </div>
     </div>
-    <div class="player-section">
-        <span class="player-label">TE RECOMIENDO:</span>
-        <div class="player-console">
-            <button class="playbtn" onclick="document.getElementById('fplayer').classList.toggle('hidden-player');this.style.display='none';">
-                <svg viewBox="0 0 32 32"><polygon points="6,4 26,16 6,28"></polygon></svg>
-            </button>
-            <span class="player-title">Fishmans - Long Season</span>
-            <div id="fplayer" class="hidden-player" style="margin-left:6px;">
-                <iframe width="180" height="35" src="https://www.youtube.com/embed/GwWv-T4rM0k?autoplay=1" allow="autoplay; encrypted-media" allowfullscreen title="FISHMANS - LONG SEASON"></iframe>
-            </div>
-        </div>
-    </div>
+
+    <!-- NUEVO PLAYER DE MÚSICA (solo si tienes un MP3 local!) -->
+    <div class="section-label" style="margin-top:.7rem;">MÚSICA PARA ESCUCHAR</div>
+    <audio controls style="width:90%; max-width:360px; margin: 0 auto; margin-bottom:16px; display:block; background:#23233a; border-radius:9px; box-shadow: 0 2px 18px #19181b12;">
+        <source src="micancion.mp3" type="audio/mpeg">
+        Tu navegador no soporta audio HTML5.
+    </audio>
+    <!-- Si no tienes MP3 para web, deja solo esto o reemplaza el label por un link bonito a Spotify, Soundcloud, etc -->
+
     <div class="section-label" style="margin-top:.7rem;">CONTACTO</div>
     <div class="contact-icons">
         <a class="contact-icn" href="https://wa.me/525512478139" title="WhatsApp" target="_blank" rel="noopener">
