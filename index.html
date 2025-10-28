@@ -5,231 +5,208 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eduardo Mejía | Music Industry Architect</title>
     <style>
-        :root {
-            --dark: #15151a;
-            --primary: #1db954;
-            --accent: #F2CB05;
-            --text-main: #eeeeee;
-            --text-soft: #a6a6b3;
-            --border: #23233a;
-            --highlight: #9e43ff;
-        }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;800&display=swap');
         body {
-            background: linear-gradient(135deg, var(--dark) 70%, #20204f 100%);
-            font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
-            color: var(--text-main);
-            margin: 0; padding: 0;
+            background: #15151a;
+            font-family: 'Inter', Arial, sans-serif;
+            color: #f1f1f4;
+            margin: 0;
+            padding: 0;
+            letter-spacing: 0.022em;
         }
         header {
             text-align: center;
-            padding: 62px 24px 48px 24px;
+            padding: 70px 24px 25px 24px;
         }
         .vinyl {
             margin-bottom: 30px;
-            animation: spin 12s linear infinite;
+            animation: spin 16s linear infinite;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
         }
         @keyframes spin {
             from { transform: rotate(0deg); }
             to { transform: rotate(360deg); }
         }
         h1 {
-            font-family: 'Georgia', serif;
-            letter-spacing: 1px;
-            font-weight: 700;
-            font-size: 3.4rem;
-            color: var(--accent);
-            margin-bottom: 5px;
+            font-family: 'Inter', Arial, sans-serif;
+            font-weight: 800;
+            font-size: 2.95rem;
+            color: #fff;
+            letter-spacing: .06em;
+            margin-bottom: 0.7rem;
+        }
+        .accent-i {
+            color: #14d192;
+            font-style: normal;
         }
         .subtitle {
-            font-size: 1.4rem;
-            font-weight: 400;
-            color: var(--text-soft);
-            margin-bottom: 19px;
-            letter-spacing: .01em;
-            font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+            font-size: 1.13rem;
+            color: #cacad4;
+            font-weight: 500;
+            letter-spacing: .045em;
+            margin-bottom: 2.1rem;
         }
-        .marleyquote {
-            color: var(--primary);
-            font-style: italic;
-            font-size: 1.1rem;
-            margin-bottom: 34px;
-        }
-        .about-grid {
-            max-width: 1140px;
-            margin: 56px auto 36px auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 66px;
-            align-items: center;
-        }
-        .about-text {
-            font-size: 1.20rem;
-            line-height: 1.8;
-            color: var(--text-main);
-        }
-        .info-cards {
+        .cards-row {
             display: flex;
-            flex-direction: column;
-            gap: 26px;
+            justify-content: center;
+            gap: 32px;
+            margin-bottom: 20px;
         }
         .infocard {
-            background: rgba(44,45,99,0.11);
-            border-left: 5px solid var(--primary);
-            border-radius: 11px;
-            padding: 26px 36px;
-            box-shadow: 0 4px 32px rgba(31,31,61,0.09);
+            min-width: 120px;
+            background: #23233a;
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 2px 28px 0 rgba(20,50,60,0.09);
+            padding: 34px 35px;
+            text-align: center;
+            transition: box-shadow 0.25s;
+        }
+        .infocard:hover {
+            box-shadow: 0 6px 38px 0 rgba(20,100,120,0.18);
+            background: #232346;
         }
         .infocard strong {
-            font-size: 2.0rem;
-            color: var(--accent);
+            font-size: 2.1rem;
+            font-weight: 800;
+            color: #1db954;
+            letter-spacing: .04em;
         }
         .infocard p {
-            color: var(--text-soft);
-            margin: 5px 0 0 0;
-            font-size: 1.08rem;
+            margin: 13px 0 0 0;
+            color: #b5bbc9;
+            font-size: 1.01rem;
+            letter-spacing: .04em;
         }
         .gallery-section {
-            padding: 0 24px 84px 24px;
-            max-width: 1200px;
+            padding: 0 24px 48px 24px;
+            max-width: 1170px;
             margin: 0 auto;
         }
         .gallery-title {
-            font-family: 'Inter', 'Arial', sans-serif;
-            font-size: 1.3rem;
-            color: var(--highlight);
-            margin-bottom: 12px;
-            letter-spacing: .15em;
+            font-size: 1.15rem;
+            color: #19b5d1;
+            letter-spacing: .14em;
+            margin-bottom: 13px;
             text-transform: uppercase;
+            text-align: center;
         }
         .gallery-videos {
             display: flex;
             flex-wrap: wrap;
-            gap: 42px;
+            gap: 32px;
             justify-content: center;
         }
-        .gallery-videos .galleryvid {
-            background: #13132b;
-            border-radius: 13px;
+        .galleryvid {
+            background: #1a1a22;
+            border-radius: 10px;
             overflow: hidden;
-            width: 352px;
-            box-shadow: 0 4px 32px rgba(38,38,41,0.10);
+            width: 324px;
+            box-shadow: 0 2px 19px rgba(20,50,60,0.07);
+            display: flex;
+            flex-direction: column;
         }
         .gallery-videos iframe {
             width: 100%;
-            height: 199px;
-        }
-        .gallery-caption {
-            padding: 22px;
-            font-size: 1.1rem;
-            color: var(--text-soft);
-            text-align: center;
-            font-style: italic;
+            height: 188px;
         }
         .audio-section {
-            padding: 60px 0 28px 0;
+            padding: 28px 0 35px 0;
             text-align: center;
         }
         .audio-section h2 {
-            color: var(--highlight);
-            font-family: 'Georgia', serif;
-            font-weight: 400;
-            margin-bottom: 23px;
+            color: #c7deff;
+            font-family: 'Inter', Arial, sans-serif;
+            font-weight: 500;
+            margin-bottom: 13px;
         }
         .audioplayer {
-            margin-top: 18px;
-            background:#222244;
-            padding: 22px 44px 24px 44px;
-            border-radius: 13px;
+            background:#202223;
+            padding: 22px 34px 24px 34px;
+            border-radius: 11px;
             display: inline-block;
         }
         .audioplayer iframe {
-            border-radius: 7px;
-        }
-        footer {
-            text-align: center;
-            color: var(--text-soft);
-            font-size: 1.06rem;
-            margin: 66px 0 26px 0;
-            letter-spacing: .07em;
+            border-radius: 5px;
         }
         .dashboard-link {
             margin: 37px auto 0 auto;
             text-align: center;
         }
         .dashboard-link a {
-            color: var(--primary);
-            background: rgba(24,24,34,0.10);
+            color: #20e48d;
+            background: rgba(24,24,34,0.07);
             text-decoration: none;
-            padding: 13px 36px;
-            border-radius: 27px;
-            font-size: 1.16rem;
-            border: 2px solid var(--primary);
-            transition: background 0.2s, color 0.2s;
-            font-weight: 500;
+            padding: 13px 32px;
+            border-radius: 18px;
+            font-size: 1.06rem;
+            border: none;
+            transition: background 0.17s, color 0.18s;
+            font-weight: 600;
+            letter-spacing: .02em;
         }
         .dashboard-link a:hover {
-            color: var(--dark);
-            background: var(--primary);
+            color: #15151a;
+            background: #20e48d;
+        }
+        footer {
+            text-align: center;
+            color: #7fa898;
+            font-size: 1.00rem;
+            margin: 54px 0 20px 0;
+            font-weight: 400;
+            letter-spacing: .03em;
         }
         @media(max-width: 990px) {
-            .about-grid {
-                grid-template-columns: 1fr;
-                gap: 34px;
-            }
-            .gallery-videos {
-                gap:20px;
-            }
-            .gallery-videos .galleryvid {
-                width: 100%;
-                max-width: 376px;
-            }
+            .cards-row { flex-direction: column; gap:24px; align-items: center; }
+            .gallery-videos { gap:20px; }
         }
         @media(max-width: 600px) {
-            h1 { font-size: 2rem; }
-            .subtitle { font-size: 1.04rem; }
-            .about-text { font-size: .99rem;}
-            .dashboard-link a { font-size: .9rem; padding: 9px 15px;}
+            h1 { font-size: 1.6rem; }
+            .subtitle { font-size: .88rem; }
+            .infocard strong { font-size: 1.4rem; }
+            .galleryvid { width: 100%; max-width: 370px;}
         }
     </style>
 </head>
 <body>
     <header>
-        <svg class="vinyl" width="92" height="92" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="50" cy="50" r="47" fill="none" stroke="#F2CB05" stroke-width="3"/>
-            <circle cx="50" cy="50" r="34" fill="none" stroke="#1db954" stroke-width="2" opacity="0.52"/>
-            <circle cx="50" cy="50" r="25" fill="none" stroke="#9e43ff" stroke-width="2" opacity="0.25"/>
-            <circle cx="50" cy="50" r="10" fill="#1db954"/>
+        <svg class="vinyl" width="94" height="94" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="50" cy="50" r="47" fill="#18181b" stroke="#b5bbc9" stroke-width="2.8"/>
+            <circle cx="50" cy="50" r="38" fill="none" stroke="#1db954" stroke-width="2" opacity="0.44"/>
+            <circle cx="50" cy="50" r="26" fill="none" stroke="#20e48d" stroke-width="1.8" opacity="0.28"/>
+            <circle cx="50" cy="50" r="7.5" fill="#1db954"/>
+            <circle cx="50" cy="50" r="2.2" fill="#fff"/>
         </svg>
-        <h1>EDUARDO MEJÍA</h1>
+        <h1>EDUARDO MEJ<span class="accent-i">Í</span>A</h1>
         <div class="subtitle">Music Industry Architect &middot; Publishing &amp; Sync &middot; Booking &amp; Distribution</div>
-        </div>
-        <div class="info-cards">
-            <div class="infocard"><strong>239</strong><p>venues verificados<br>MX y España</p></div>
-            <div class="infocard"><strong>86</strong><p>contactos activos<br>promotores, agentes, editores</p></div>
-            <div class="infocard"><strong>500+</strong><p>eventos, lanzamientos & colaboraciones</p></div>
-        </div>
+    </header>
+    <div class="cards-row">
+        <div class="infocard"><strong>+200</strong><p>venues<br>México & España</p></div>
+        <div class="infocard"><strong>+100</strong><p>contactos activos<br>promotores y editores</p></div>
+        <div class="infocard"><strong>+50</strong><p>releases & synch</p></div>
+        <div class="infocard"><strong>400+</strong><p>eventos<br>curados/gestionados</p></div>
     </div>
     <div class="gallery-section">
-        <div class="gallery-title">Live & Studio Moments</div>
+        <div class="gallery-title">PRODUCCIONES</div>
         <div class="gallery-videos">
             <div class="galleryvid">
                 <iframe src="https://www.youtube.com/embed/ZGxSXchZNfo?start=0" title="Boiler Room Show"></iframe>
-                <div class="gallery-caption">Boiler Room CDMX</div>
             </div>
             <div class="galleryvid">
                 <iframe src="https://www.youtube.com/embed/SD3T_Or_mvk?start=3" title="Professional Video"></iframe>
-                <div class="gallery-caption">Sesión con colegas y amigos</div>
             </div>
             <div class="galleryvid">
                 <iframe src="https://www.youtube.com/embed/XCW95zjBUK4" title="Homemade Music"></iframe>
-                <div class="gallery-caption">Video hecho con amor (home/viajero)</div>
             </div>
         </div>
     </div>
     <div class="audio-section">
-        <h2>Habitando Hábitos</h2>
+        <h2>Te recomiendo:</h2>
         <div class="audioplayer">
-            <iframe width="320" height="60" src="https://www.youtube.com/embed/LaVl8n9wGUg?autoplay=0" allow="autoplay; encrypted-media" allowfullscreen title="Gast.B - Hábitos"></iframe>
+            <iframe width="320" height="60" src="https://www.youtube.com/embed/GwWv-T4rM0k" allow="autoplay; encrypted-media" allowfullscreen title="FISHMANS - LONG SEASON"></iframe>
         </div>
     </div>
     <div class="dashboard-link">
@@ -237,7 +214,7 @@
     </div>
     <footer>
         &copy; 2025 Eduardo Mejía — Music Industry Architect<br>
-        <span style="font-size:.98em; color:var(--text-soft);">Contacto: emc121091@me.com &middot; WhatsApp +52 5512478139 &middot; Llamadas +34 678 497361</span>
+        <span>Contacto: emc121091@me.com &middot; WhatsApp +52 5512478139 &middot; Llamadas +34 678 497361</span>
     </footer>
 </body>
 </html>
