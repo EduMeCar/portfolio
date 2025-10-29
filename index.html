@@ -32,18 +32,18 @@
         }
         .header-main {
             width: 100%;
-            margin-top: 15px;   /* <--- REDUCE este valor si quieres aún menos espacio arriba */
-            margin-bottom: 0px; /* <--- 0px reduce el GAP entre logo y el texto verde */
+            margin-top: 8px;
+            margin-bottom: 0px;
             display: flex;
-            justify-content:center;
-            align-items:center;
+            justify-content: center;
+            align-items: center;
         }
         .snail-wrap {
-            width: 180px;
-            max-width: 90vw;
+            width: 235px; /* logo 30% más grande */
+            max-width: 98vw;
             min-height: 102px;
             display: block;
-            margin: 0 auto 0px auto; /* <--- Aquí también cero margen debajo del logo */
+            margin: 0 auto 0px auto;
             position: relative;
             animation: snail-in-c 3.2s cubic-bezier(.64,-0.05,.36,1.03) forwards;
         }
@@ -64,7 +64,7 @@
             color:#1db954;
             max-width:780px;
             text-align:center;
-            margin:18px auto 38px auto; /* <--- Esto baja el espacio entre logo y texto verde */
+            margin:15px auto 38px auto;
             letter-spacing:.012em;
             line-height:1.37;
         }
@@ -75,6 +75,7 @@
             color: #23242a;
             margin-top: 8px;
             margin-bottom: .17rem;
+            text-align: center;
             letter-spacing: .07em;
         }
         .accent-i { color: var(--accent-green);}
@@ -84,6 +85,7 @@
             font-weight: 600;
             letter-spacing: .065em;
             margin-bottom: 1.21rem;
+            text-align: center;
         }
         .cards-row {
             display: flex;
@@ -117,7 +119,6 @@
             color: #6E747A;
             letter-spacing: .008em;
         }
-        /* BOOK — Card tipo botón destacado */
         .infocard.link {
             cursor:pointer;
             border: 2px solid var(--accent-green);
@@ -137,9 +138,10 @@
             font-size: .97rem;
             font-weight: 700;
             letter-spacing: .16em;
-            text-align: left;
-            margin: 1.1rem 0 .56rem .8rem;
+            text-align: center;
+            margin: 1.1rem 0 .56rem 0;
             opacity: .67;
+            width: 100%;
         }
         .gallery {
             display: flex;
@@ -160,7 +162,9 @@
         .audio-section {
             margin: 34px 0 0 0;
             width: 100%;
-            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
         .audio-section .section-label {
             text-align: center;
@@ -210,12 +214,13 @@
             .cards-row { gap: 8px; }
             .galleryvid { width: 125px;}
             .galleryvid iframe {height: 61px; }
+            .snail-wrap { width: 40vw; min-width: 120px;}
         }
         @media (max-width: 600px) {
             .galleryvid,.infocard { min-width:62px; }
             .galleryvid { width: 97vw; max-width:278px;}
             .main-wrap {padding-top:15px;}
-            .snail-wrap {width: 69vw; max-width: 142px;}
+            .snail-wrap {width: 69vw; max-width: 196px;}
             .headline {font-size:.99rem;}
             h1 { font-size: 1.17rem; margin-top: -3px; }
             .infocard p {font-size:.82rem;}
@@ -250,7 +255,7 @@
         <div class="infocard"><strong>+400</strong><p>Eventos<br>Curados</p></div>
     </div>
     <!-- VIDEOS -->
-    <div class="section-label">PRODUCCIONES:</div>
+    <div class="section-label">PRODUCCIONES</div>
     <div class="gallery">
         <div class="galleryvid">
             <iframe src="https://www.youtube.com/embed/ZGxSXchZNfo?start=0" title="Boiler Room Show" allowfullscreen></iframe>
@@ -263,7 +268,7 @@
         </div>
     </div>
     <div class="audio-section">
-        <div class="section-label" style="margin-top:1.1;>AQUI UN TEMAZO:</div>
+        <div class="section-label">ESCUCHA UN TEMAZO</div>
         <audio controls class="my-audio">
             <source src="micancion.mp3" type="audio/mpeg">
             Tu navegador no soporta audio HTML5.
