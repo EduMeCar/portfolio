@@ -3,295 +3,577 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eduardo Mejía | Portfolio</title>
+    <title>Eduardo Mejía | Arquitectura Musical Inteligente</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+        
         :root {
-            --main-bg: #fff;
-            --main-text: #17191b;
-            --softer: #6E747A;
-            --accent-green: #1db954;
-            --card: #f6f7f9;
+            --neural-bg: #0a0a0a;
+            --neural-surface: #111112;
+            --neural-card: #1a1a1c;
+            --neural-border: #2a2a2e;
+            --neural-text: #f8f9fa;
+            --neural-subtle: #a0a0a7;
+            --quantum-green: #1db954;
+            --quantum-cyan: #00d4ff;
+            --quantum-purple: #8b5cf6;
+            --glow-primary: 0 0 30px rgba(29, 185, 84, 0.3);
+            --glow-secondary: 0 0 30px rgba(0, 212, 255, 0.2);
         }
-        body, html {
-            background: var(--main-bg);
-            color: var(--main-text);
-            font-family: 'Inter', Arial, sans-serif;
-            height: 100%;
+        
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
-        .main-wrap {
-            width: 100%;
-            max-width: 980px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 0 2vw 22px 2vw;
-            margin: 0 auto;
+        
+        body {
+            background: var(--neural-bg);
+            color: var(--neural-text);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
         }
-        .header-main {
-            width: 100%;
-            margin-top: 8px;
-            margin-bottom: 0px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .snail-wrap {
-            width: 235px; /* logo 30% más grande */
-            max-width: 98vw;
-            min-height: 102px;
-            display: block;
-            margin: 0 auto 0px auto;
+        
+        .neural-interface {
+            min-height: 100vh;
             position: relative;
-            animation: snail-in-c 3.2s cubic-bezier(.64,-0.05,.36,1.03) forwards;
         }
-        @keyframes snail-in-c {
-            0%   { transform: translateX(-22vw);}
-            100% { transform: translateX(0vw);}
-        }
-        .snail-logo {
+        
+        /* NEURAL GRID BACKGROUND */
+        .neural-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
-            height: auto;
-            display: block;
-            user-select: none;
-            pointer-events: none;
+            height: 100%;
+            background: 
+                linear-gradient(90deg, var(--neural-bg) 21px, transparent 1%) center,
+                linear-gradient(var(--neural-bg) 21px, transparent 1%) center,
+                var(--neural-border);
+            background-size: 22px 22px;
+            opacity: 0.1;
+            z-index: -1;
         }
-        .headline {
-            font-size:1.24rem;
-            font-weight:900;
-            color:#1db954;
-            max-width:780px;
-            text-align:center;
-            margin:15px auto 38px auto;
-            letter-spacing:.012em;
-            line-height:1.37;
+        
+        .quantum-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
         }
-        h1 {
-            font-family: 'Inter', Arial, sans-serif;
-            font-weight: 800;
-            font-size: 2.08rem;
-            color: #23242a;
-            margin-top: 8px;
-            margin-bottom: .17rem;
+        
+        /* HERO NEURO-SECTION */
+        .neuro-hero {
+            padding: 8rem 0 4rem;
             text-align: center;
-            letter-spacing: .07em;
+            position: relative;
         }
-        .accent-i { color: var(--accent-green);}
-        .subtitle {
-            font-size: 1.03rem;
-            color: var(--softer);
+        
+        .neural-logo {
+            width: 180px;
+            height: 180px;
+            margin: 0 auto 3rem;
+            position: relative;
+            filter: drop-shadow(var(--glow-primary));
+            animation: quantum-float 6s ease-in-out infinite;
+        }
+        
+        @keyframes quantum-float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(1deg); }
+        }
+        
+        .neural-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        
+        .quantum-tagline {
+            font-size: 1.1rem;
             font-weight: 600;
-            letter-spacing: .065em;
-            margin-bottom: 1.21rem;
+            color: var(--quantum-cyan);
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .quantum-tagline::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 2px;
+            background: var(--quantum-cyan);
+        }
+        
+        .neuro-title {
+            font-size: 4rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--neural-text) 0%, var(--quantum-green) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+        
+        .neuro-subtitle {
+            font-size: 1.4rem;
+            color: var(--neural-subtle);
+            font-weight: 500;
+            max-width: 600px;
+            margin: 0 auto 3rem;
+        }
+        
+        /* QUANTUM METRICS */
+        .quantum-metrics {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+        
+        .metric-node {
+            background: var(--neural-card);
+            border: 1px solid var(--neural-border);
+            border-radius: 16px;
+            padding: 2.5rem 2rem;
             text-align: center;
-        }
-        .cards-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 17px;
-            margin-bottom: 10px;
-            justify-content: center;
-        }
-        .infocard {
-            background: var(--card);
-            border-radius: 14px;
-            box-shadow: 0 2px 15px rgba(50,80,120,0.06);
-            padding: 20px 17px 20px 17px;
-            min-width: 110px;
-            max-width: 180px;
-            text-align: center;
-            transition: box-shadow .14s, transform .17s;
-        }
-        .infocard:hover {
-            box-shadow: 0 7px 22px #1db95423;
-            transform: translateY(-2px) scale(1.07);
-        }
-        .infocard strong {
-            font-size: 1.23rem;
-            color: var(--accent-green);
-            font-weight: 800;
-        }
-        .infocard p {
-            margin: 8px 0 0 0;
-            font-size: .92rem;
-            color: #6E747A;
-            letter-spacing: .008em;
-        }
-        .infocard.link {
-            cursor:pointer;
-            border: 2px solid var(--accent-green);
-            box-shadow: 0 1px 19px #1db95416, 0 2px 17px #9dd7af10;
-            text-decoration: none;
-            background: #fff;
-            font-weight:900;
-        }
-        .infocard.link:hover {
-            background: #e6fbee;
-            box-shadow: 0 10px 33px #1db95435;
-            color:#18181a;
-        }
-        .section-label {
-            font-family: 'Inter', Arial, sans-serif;
-            color: #7c7d89;
-            font-size: .97rem;
-            font-weight: 700;
-            letter-spacing: .16em;
-            text-align: center;
-            margin: 1.1rem 0 .56rem 0;
-            opacity: .67;
-            width: 100%;
-        }
-        .gallery {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 13px;
-            justify-content: center;
-            margin-bottom: 12px;
-        }
-        .galleryvid {
-            background: #f9fbfa;
-            border-radius: 10px;
+            position: relative;
             overflow: hidden;
-            width: 188px;
-            box-shadow: 0 2px 13px rgba(50,60,60,.08);
-            display: flex; flex-direction: column;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
-        .galleryvid iframe { width: 100%; height: 99px; border:0;}
-        .audio-section {
-            margin: 34px 0 0 0;
+        
+        .metric-node::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
             width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(29, 185, 84, 0.1), transparent);
+            transition: left 0.6s ease;
         }
-        .audio-section .section-label {
+        
+        .metric-node:hover::before {
+            left: 100%;
+        }
+        
+        .metric-node:hover {
+            transform: translateY(-8px);
+            border-color: var(--quantum-green);
+            box-shadow: var(--glow-primary);
+        }
+        
+        .metric-value {
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--quantum-green);
+            display: block;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+        
+        .metric-label {
+            font-size: 1rem;
+            color: var(--neural-subtle);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        /* NEURAL PROCESS */
+        .neural-process {
+            margin: 6rem 0;
+        }
+        
+        .process-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--quantum-purple);
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
             text-align: center;
-            margin-left: 0;
-            margin-right: 0;
+            margin-bottom: 4rem;
         }
-        .my-audio {
-            width:94%; max-width:370px; margin:0 auto 24px auto; display:block;
-            background: #f4f8f7;
-            border-radius:10px;
-            box-shadow: 0 2px 13px #d3ece723;
+        
+        .process-flow {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            position: relative;
         }
-        .contact-icons {
-            display: flex;
-            gap: 19px;
-            margin: 27px 0 11px 0;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
+        
+        .process-flow::before {
+            content: '';
+            position: absolute;
+            top: 60px;
+            left: 25%;
+            right: 25%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--quantum-cyan), transparent);
+            z-index: 1;
         }
-        .contact-icn {
-            width: 31px; height: 31px;
-            display: flex; align-items: center; justify-content: center;
-            color: var(--accent-green);
-            background: rgba(29,185,84,0.18);
+        
+        .process-node {
+            background: var(--neural-card);
+            border: 1px solid var(--neural-border);
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            transition: all 0.4s ease;
+        }
+        
+        .process-node:hover {
+            transform: translateY(-5px);
+            border-color: var(--quantum-cyan);
+            box-shadow: var(--glow-secondary);
+        }
+        
+        .node-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            background: rgba(0, 212, 255, 0.1);
             border-radius: 50%;
-            text-decoration: none;
-            transition: background .14s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: var(--quantum-cyan);
         }
-        .contact-icn:hover {
-            background: var(--accent-green);
-            color: var(--main-bg);
+        
+        .node-title {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--neural-text);
+            margin-bottom: 1rem;
         }
-        .contact-icn svg { width: 18px; height: 18px;}
-        .contact-icn.phone svg { width: 16px;}
-        footer {
-            margin-top: 1.1rem;
-            color: #6a7c7b;
-            font-size: .99rem;
-            letter-spacing: .03em;
-            opacity: .78;
+        
+        .node-desc {
+            font-size: 1rem;
+            color: var(--neural-subtle);
+            line-height: 1.6;
+        }
+        
+        /* QUANTUM MEDIA */
+        .quantum-media {
+            margin: 6rem 0;
+        }
+        
+        .media-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .media-node {
+            background: var(--neural-card);
+            border: 1px solid var(--neural-border);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+        
+        .media-node:hover {
+            transform: translateY(-5px);
+            border-color: var(--quantum-purple);
+            box-shadow: 0 0 30px rgba(139, 92, 246, 0.2);
+        }
+        
+        .media-frame {
+            width: 100%;
+            height: 200px;
+            border: none;
+            background: var(--neural-surface);
+        }
+        
+        .media-info {
+            padding: 1.5rem;
+        }
+        
+        .media-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--neural-text);
+            margin-bottom: 0.5rem;
+        }
+        
+        .media-desc {
+            font-size: 0.9rem;
+            color: var(--neural-subtle);
+        }
+        
+        /* NEURAL AUDIO */
+        .neural-audio {
+            margin: 4rem 0;
             text-align: center;
-            padding-bottom: .13em;
         }
-        @media (max-width: 990px) {
-            .main-wrap { max-width: 99vw; }
-            .cards-row { gap: 8px; }
-            .galleryvid { width: 125px;}
-            .galleryvid iframe {height: 61px; }
-            .snail-wrap { width: 40vw; min-width: 120px;}
+        
+        .audio-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--quantum-green);
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            margin-bottom: 2rem;
         }
-        @media (max-width: 600px) {
-            .galleryvid,.infocard { min-width:62px; }
-            .galleryvid { width: 97vw; max-width:278px;}
-            .main-wrap {padding-top:15px;}
-            .snail-wrap {width: 69vw; max-width: 196px;}
-            .headline {font-size:.99rem;}
-            h1 { font-size: 1.17rem; margin-top: -3px; }
-            .infocard p {font-size:.82rem;}
+        
+        .quantum-player {
+            background: var(--neural-card);
+            border: 1px solid var(--neural-border);
+            border-radius: 16px;
+            padding: 2rem;
+            max-width: 500px;
+            margin: 0 auto;
+            transition: all 0.4s ease;
+        }
+        
+        .quantum-player:hover {
+            border-color: var(--quantum-green);
+            box-shadow: var(--glow-primary);
+        }
+        
+        /* QUANTUM CONTACT */
+        .quantum-contact {
+            margin: 6rem 0 4rem;
+            text-align: center;
+        }
+        
+        .contact-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--quantum-cyan);
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            margin-bottom: 3rem;
+        }
+        
+        .neural-network {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+        
+        .network-node {
+            width: 60px;
+            height: 60px;
+            background: var(--neural-card);
+            border: 1px solid var(--neural-border);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--quantum-cyan);
+            text-decoration: none;
+            transition: all 0.4s ease;
+            position: relative;
+        }
+        
+        .network-node::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--quantum-cyan), var(--quantum-green));
+            border-radius: 14px;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        
+        .network-node:hover::before {
+            opacity: 1;
+        }
+        
+        .network-node:hover {
+            transform: translateY(-5px) scale(1.1);
+            color: var(--neural-bg);
+            background: transparent;
+        }
+        
+        .network-node svg {
+            width: 24px;
+            height: 24px;
+        }
+        
+        .quantum-footer {
+            margin-top: 4rem;
+            padding: 2rem 0;
+            border-top: 1px solid var(--neural-border);
+            text-align: center;
+            color: var(--neural-subtle);
+            font-size: 0.9rem;
+        }
+        
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 768px) {
+            .neuro-title {
+                font-size: 2.5rem;
+            }
+            
+            .quantum-metrics {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .process-flow {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .process-flow::before {
+                display: none;
+            }
+            
+            .media-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
-<div class="main-wrap">
-    <!-- LOGO -->
-    <div class="header-main">
-        <div class="snail-wrap">
-            <img class="snail-logo" src="logo.svg" alt="Logo Booking/Caracol" draggable="false"/>
+    <div class="neural-interface">
+        <div class="neural-grid"></div>
+        
+        <div class="quantum-container">
+            <!-- HERO SECTION -->
+            <section class="neuro-hero">
+                <div class="neural-logo">
+                    <img src="logo.svg" alt="Neural Music Architecture">
+                </div>
+                
+                <div class="quantum-tagline">Arquitectura Neural Musical</div>
+                <h1 class="neuro-title">EDUARDO MEJÍA</h1>
+                <p class="neuro-subtitle">Donde la inteligencia artificial encuentra el alma del sonido</p>
+            </section>
+            
+            <!-- QUANTUM METRICS -->
+            <section class="quantum-metrics">
+                <div class="metric-node">
+                    <span class="metric-value">+200</span>
+                    <span class="metric-label">Venues Conectados</span>
+                </div>
+                <div class="metric-node">
+                    <span class="metric-value">+100</span>
+                    <span class="metric-label">Lanzamientos & Sync</span>
+                </div>
+                <div class="metric-node">
+                    <span class="metric-value">+400</span>
+                    <span class="metric-label">Eventos Curados</span>
+                </div>
+            </section>
+            
+            <!-- NEURAL PROCESS -->
+            <section class="neural-process">
+                <div class="process-title">Proceso de Arquitectura Musical</div>
+                
+                <div class="process-flow">
+                    <div class="process-node">
+                        <div class="node-icon">🎯</div>
+                        <div class="node-title">Inteligencia Musical</div>
+                        <div class="node-desc">Análisis de datos para selección estratégica de escenarios y audiencias</div>
+                    </div>
+                    
+                    <div class="process-node">
+                        <div class="node-icon">🧠</div>
+                        <div class="node-title">Conciencia Sonora</div>
+                        <div class="node-desc">Comprensión profunda de cada proyecto como entidad única y orgánica</div>
+                    </div>
+                    
+                    <div class="process-node">
+                        <div class="node-icon">⚡</div>
+                        <div class="node-title">Ejecución Neural</div>
+                        <div class="node-desc">Coordinación precisa entre artistas, venues y estrategia de mercado</div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- QUANTUM MEDIA -->
+            <section class="quantum-media">
+                <div class="process-title">Producciones Cuánticas</div>
+                
+                <div class="media-grid">
+                    <div class="media-node">
+                        <iframe class="media-frame" src="https://www.youtube.com/embed/ZGxSXchZNfo?start=0" 
+                                title="Boiler Room Show" allowfullscreen></iframe>
+                        <div class="media-info">
+                            <div class="media-title">Boiler Room Experience</div>
+                            <div class="media-desc">Set curado para audiencia global</div>
+                        </div>
+                    </div>
+                    
+                    <div class="media-node">
+                        <iframe class="media-frame" src="https://www.youtube.com/embed/SD3T_Or_mvk?start=3" 
+                                title="Professional Video" allowfullscreen></iframe>
+                        <div class="media-info">
+                            <div class="media-title">Producción Profesional</div>
+                            <div class="media-desc">Dirección artística y musical</div>
+                        </div>
+                    </div>
+                    
+                    <div class="media-node">
+                        <iframe class="media-frame" src="https://www.youtube.com/embed/XCW95zjBUK4" 
+                                title="Homemade Music" allowfullscreen></iframe>
+                        <div class="media-info">
+                            <div class="media-title">Esencia Orgánica</div>
+                            <div class="media-desc">Creación desde el núcleo sonoro</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- NEURAL AUDIO -->
+            <section class="neural-audio">
+                <div class="audio-title">Firma Sonora Neural</div>
+                
+                <div class="quantum-player">
+                    <audio controls style="width: 100%;">
+                        <source src="micancion.mp3" type="audio/mpeg">
+                        Tu navegador no soporta audio cuántico.
+                    </audio>
+                </div>
+            </section>
+            
+            <!-- QUANTUM CONTACT -->
+            <section class="quantum-contact">
+                <div class="contact-title">Conexión Neural</div>
+                
+                <div class="neural-network">
+                    <a class="network-node" href="https://wa.me/525512478139" title="WhatsApp Neural" target="_blank">
+                        <svg viewBox="0 0 32 32"><path fill="currentColor" d="M16 3C9.4 3 4 8.5 4 15.2c0 2.4.8 4.7 2.1 6.7l-1.3 5.2c-.3 1.1.7 2.1 1.9 1.7l5.4-1.7c2 .8 4.1 1.3 6.3 1.3 6.6 0 12-5.4 12-12S22.6 3 16 3z"/></svg>
+                    </a>
+                    
+                    <a class="network-node" href="tel:+34678497361" title="Llamada Cuántica">
+                        <svg viewBox="0 0 24 24"><path fill="currentColor" d="M21.72 16.7c-1.19-1.04-2.44-2.02-3.7-2.95-.96-.71-2.41-.5-3.2.22l-1.02.91c-1.13-.6-2.18-1.35-3.13-2.22-.99-.91-1.78-1.94-2.33-3.11l.93-.98c.71-.78.95-2.2.22-3.17-1-1.35-2-2.66-3.07-3.89-.53-.59-1.47-.58-2.03 0l-1.03 1.05c-.67.7-.96 1.62-.78 2.6C3.64 10.36 6.82 17.47 15 20.49c.93.34 1.9.13 2.56-.56l1-1.04c.6-.63.59-1.53.16-2.19z"/></svg>
+                    </a>
+                    
+                    <a class="network-node" href="mailto:emc121091@me.com" title="Email Cuántico" target="_blank">
+                        <svg viewBox="0 0 24 24"><path fill="currentColor" d="M3.99 4A2 2 0 0 0 2 6v12c0 1.1.89 2 1.99 2h16.02c1.1 0 1.99-.9 1.99-2V6a2 2 0 0 0-1.99-2H3.99zm8.01 7.66L4.42 6h15.17l-7.59 5.66zm-6.17 7.1c-.48 0-.89-.38-.89-.86V7.54l7.82 5.84c.22.16.48.24.72.24.25 0 .51-.08.73-.25l7.8-5.83v10.36c0 .48-.4.86-.89.86H5.83z"/></svg>
+                    </a>
+                    
+                    <a class="network-node" href="https://edumecar.github.io/Book/" title="Dashboard Neural" target="_blank">
+                        <svg viewBox="0 0 24 24"><path fill="currentColor" d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></svg>
+                    </a>
+                </div>
+            </section>
+            
+            <footer class="quantum-footer">
+                &copy; 2025 Eduardo Mejía · Arquitectura Neural Musical
+            </footer>
         </div>
     </div>
-    <div class="headline">
-        Inteligencia Musical. Conciencia Sonora.
-    </div>
-    <h1>
-        EDUARDO MEJ<span class="accent-i">Í</span>A
-    </h1>
-    <div class="subtitle">
-        Arquitectura Musical &middot; Booking & Distribución
-    </div>
-    <!-- Cards row -->
-    <div class="cards-row">
-        <a href="https://edumecar.github.io/Book/" target="_blank" class="infocard link">
-            <strong>BOOKING PLANS</strong>
-            <p>+200 Venues<br>México & España</p>
-        </a>
-        <div class="infocard"><strong>+100</strong><p>Lanzamientos<br>& Sync</p></div>
-        <div class="infocard"><strong>+400</strong><p>Eventos<br>Curados</p></div>
-    </div>
-    <!-- VIDEOS -->
-    <div class="section-label">PRODUCCIONES</div>
-    <div class="gallery">
-        <div class="galleryvid">
-            <iframe src="https://www.youtube.com/embed/ZGxSXchZNfo?start=0" title="Boiler Room Show" allowfullscreen></iframe>
-        </div>
-        <div class="galleryvid">
-            <iframe src="https://www.youtube.com/embed/SD3T_Or_mvk?start=3" title="Professional Video" allowfullscreen></iframe>
-        </div>
-        <div class="galleryvid">
-            <iframe src="https://www.youtube.com/embed/XCW95zjBUK4" title="Homemade Music" allowfullscreen></iframe>
-        </div>
-    </div>
-    <div class="audio-section">
-        <div class="section-label">ESCUCHA UN TEMAZO:</div>
-        <audio controls class="my-audio">
-            <source src="micancion.mp3" type="audio/mpeg">
-            Tu navegador no soporta audio HTML5.
-        </audio>
-    </div>
-    <!-- CONTACTO -->
-    <div class="section-label" style="margin-top:1.1rem;">CONTACTO</div>
-    <div class="contact-icons">
-        <a class="contact-icn" href="https://wa.me/525512478139" title="WhatsApp" target="_blank" rel="noopener">
-            <svg viewBox="0 0 32 32"><path d="M16 3C9.4 3 4 8.5 4 15.2c0 2.4.8 4.7 2.1 6.7l-1.3 5.2c-.3 1.1.7 2.1 1.9 1.7l5.4-1.7c2 .8 4.1 1.3 6.3 1.3 6.6 0 12-5.4 12-12S22.6 3 16 3zm0 21.8c-2.1 0-4.1-.5-5.9-1.3l-.4-.2-3.5 1.1 1-3.9-.2-.4c-1.3-2-2.1-4.2-2.1-6.7 0-5.1 4.4-9.2 9.8-9.2S25.8 8.3 25.8 15.2c0 5-4.4 9-9.8 9zm5.4-7.6c-.3 0-1.9-.9-2.2-1-1-.4-1.3-.9-2.1-1.7s-.7-1.3-.3-1.9c.3-.4.7-1 .1-1.7-.2-.3-1.3-2-1.8-2.3-.5-.5-1.1-.3-1.5-.2-.4.1-1.1.3-1.7.8-.5.4-.8 1-1.2 1.6s-.3 1.3-.4 2c0 .6 0 1.2.3 1.8.4.6.5.8 1.1 1.4.7.8 1.6 1.7 3 2.1.4.1.7.1 1.1.1.3 0 .4 0 .7-.1.2-.1 1.2-.5 1.4-1 .2-.4.8-1.9 1-2.5 0-.1.1-.2.1-.2z"/></svg>
-        </a>
-        <a class="contact-icn phone" href="tel:+34678497361" title="Llamada directa">
-            <svg viewBox="0 0 24 24"><path d="M21.72 16.7c-1.19-1.04-2.44-2.02-3.7-2.95-.96-.71-2.41-.5-3.2.22l-1.02.91c-1.13-.6-2.18-1.35-3.13-2.22-.99-.91-1.78-1.94-2.33-3.11l.93-.98c.71-.78.95-2.2.22-3.17-1-1.35-2-2.66-3.07-3.89-.53-.59-1.47-.58-2.03 0l-1.03 1.05c-.67.7-.96 1.62-.78 2.6C3.64 10.36 6.82 17.47 15 20.49c.93.34 1.9.13 2.56-.56l1-1.04c.6-.63.59-1.53.16-2.19z"/></svg>
-        </a>
-        <a class="contact-icn" href="mailto:emc121091@me.com" title="Email" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24"><path d="M3.99 4A2 2 0 0 0 2 6v12c0 1.1.89 2 1.99 2h16.02c1.1 0 1.99-.9 1.99-2V6a2 2 0 0 0-1.99-2H3.99zm8.01 7.66L4.42 6h15.17l-7.59 5.66zm-6.17 7.1c-.48 0-.89-.38-.89-.86V7.54l7.82 5.84c.22.16.48.24.72.24.25 0 .51-.08.73-.25l7.8-5.83v10.36c0 .48-.4.86-.89.86H5.83z"/></svg>
-        </a>
-        <a class="contact-icn" href="https://edumecar.github.io/Book/" title="Dashboard" target="_blank">
-            <svg viewBox="0 0 24 24"><path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></svg>
-        </a>
-    </div>
-    <footer>
-        &copy; 2025 Eduardo Mejía &middot; Portfolio
-    </footer>
-</div>
 </body>
 </html>
