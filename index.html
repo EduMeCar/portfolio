@@ -62,7 +62,7 @@
             padding: 0 2rem;
         }
         
-        /* HERO SECTION - ANIMACIÓN GUAY */
+        /* HERO SECTION - ANIMACIÓN MUSICAL */
         .neuro-hero {
             padding: 8rem 0 4rem;
             text-align: center;
@@ -80,32 +80,36 @@
             width: 100%;
             height: 100%;
             filter: drop-shadow(var(--glow-primary));
-            animation: logoSpin 20s linear infinite;
+            animation: soundWave 3s ease-in-out infinite;
         }
         
-        @keyframes logoSpin {
-            0% { 
-                transform: rotate(0deg) scale(1);
-                filter: drop-shadow(0 0 25px rgba(29, 185, 84, 0.6));
+        @keyframes soundWave {
+            0%, 100% { 
+                transform: scale(1);
+                filter: drop-shadow(0 0 20px rgba(29, 185, 84, 0.4));
+            }
+            25% { 
+                transform: scale(1.08);
+                filter: drop-shadow(0 0 30px rgba(29, 185, 84, 0.6));
             }
             50% { 
-                transform: rotate(180deg) scale(1.1);
-                filter: drop-shadow(0 0 35px rgba(29, 185, 84, 0.8));
+                transform: scale(1.05);
+                filter: drop-shadow(0 0 25px rgba(29, 185, 84, 0.5));
             }
-            100% { 
-                transform: rotate(360deg) scale(1);
-                filter: drop-shadow(0 0 25px rgba(29, 185, 84, 0.6));
+            75% { 
+                transform: scale(1.12);
+                filter: drop-shadow(0 0 35px rgba(29, 185, 84, 0.7));
             }
         }
         
         .neural-logo:hover {
-            animation: logoPulseSpin 0.8s ease-in-out;
+            animation: soundPulse 0.6s ease-in-out;
         }
         
-        @keyframes logoPulseSpin {
-            0% { transform: scale(1) rotate(0deg); }
-            50% { transform: scale(1.3) rotate(180deg); }
-            100% { transform: scale(1.2) rotate(360deg); }
+        @keyframes soundPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1.15); }
         }
         
         .quantum-tagline {
@@ -150,39 +154,32 @@
             margin: 0 auto 3rem;
         }
         
-        /* REAL METRICS - SIN TARJETAS DE EXPERIENCIA */
-        .real-metrics {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 0;
-            margin: 4rem 0;
+        /* MÉTRICAS ELEGANTES */
+        .elegant-metrics {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            margin: 5rem 0;
             text-align: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
         
-        .real-metric {
-            padding: 3rem 2rem;
+        .metric-elegant {
             position: relative;
-            transition: all 0.3s ease;
         }
         
-        .real-metric:first-child::after {
+        .metric-elegant:not(:last-child)::after {
             content: '';
             position: absolute;
-            right: 0;
-            top: 20%;
-            height: 60%;
+            right: -2rem;
+            top: 50%;
+            transform: translateY(-50%);
             width: 1px;
+            height: 60px;
             background: rgba(255, 255, 255, 0.1);
         }
         
-        .real-metric:hover {
-            background: rgba(255, 255, 255, 0.03);
-        }
-        
-        .metric-number {
-            font-size: 3rem;
+        .elegant-number {
+            font-size: 3.5rem;
             font-weight: 900;
             color: var(--quantum-green);
             display: block;
@@ -190,16 +187,16 @@
             margin-bottom: 0.5rem;
         }
         
-        .metric-label {
-            font-size: 1rem;
+        .elegant-label {
+            font-size: 0.9rem;
             color: var(--neural-subtle);
             font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.1em;
         }
         
-        /* SERVICIOS REALES - SIN MARCAS */
-        .real-services {
+        /* SERVICIOS PROFESIONALES */
+        .professional-services {
             margin: 6rem 0;
         }
         
@@ -213,65 +210,61 @@
             margin-bottom: 4rem;
         }
         
-        .services-grid {
+        .services-elegant {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 2rem;
+            max-width: 900px;
+            margin: 0 auto;
         }
         
-        .service-card {
+        .service-elegant {
             background: var(--neural-card);
             border: 1px solid var(--neural-border);
-            border-radius: 16px;
-            padding: 3rem 2rem;
+            border-radius: 12px;
+            padding: 2.5rem 2rem;
             text-align: center;
             transition: all 0.4s ease;
             position: relative;
             overflow: hidden;
         }
         
-        .service-card::before {
+        .service-elegant::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
-            height: 4px;
+            height: 3px;
             background: var(--quantum-purple);
             transform: scaleX(0);
             transition: transform 0.4s ease;
         }
         
-        .service-card:hover::before {
+        .service-elegant:hover::before {
             transform: scaleX(1);
         }
         
-        .service-card:hover {
-            transform: translateY(-5px);
+        .service-elegant:hover {
+            transform: translateY(-8px);
             border-color: var(--quantum-purple);
             box-shadow: 0 0 30px rgba(139, 92, 246, 0.2);
         }
         
-        .service-icon {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-            display: block;
-        }
-        
-        .service-name {
-            font-size: 1.4rem;
+        .service-heading {
+            font-size: 1.3rem;
             font-weight: 800;
             color: var(--neural-text);
             margin-bottom: 1rem;
         }
         
-        .service-desc {
+        .service-description {
             font-size: 1rem;
             color: var(--neural-subtle);
             line-height: 1.6;
         }
         
-        /* PRODUCCIONES REALES */
+        /* PROYECTOS REALES */
         .real-productions {
             margin: 6rem 0;
         }
@@ -295,13 +288,13 @@
         .production-item {
             background: var(--neural-card);
             border: 1px solid var(--neural-border);
-            border-radius: 16px;
+            border-radius: 12px;
             overflow: hidden;
             transition: all 0.4s ease;
         }
         
         .production-item:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px);
             border-color: var(--quantum-cyan);
             box-shadow: var(--glow-secondary);
         }
@@ -351,7 +344,7 @@
         .sound-player {
             background: var(--neural-card);
             border: 1px solid var(--neural-border);
-            border-radius: 16px;
+            border-radius: 12px;
             padding: 2.5rem;
             max-width: 500px;
             margin: 0 auto;
@@ -363,8 +356,8 @@
             box-shadow: var(--glow-primary);
         }
         
-        /* CONEXIÓN REAL */
-        .real-connection {
+        /* CONEXIÓN ELEGANTE */
+        .elegant-connection {
             margin: 6rem 0 4rem;
             text-align: center;
         }
@@ -442,15 +435,16 @@
                 font-size: 2.5rem;
             }
             
-            .real-metrics {
-                grid-template-columns: 1fr;
+            .elegant-metrics {
+                flex-direction: column;
+                gap: 2rem;
             }
             
-            .real-metric::after {
-                display: none !important;
+            .metric-elegant::after {
+                display: none;
             }
             
-            .services-grid {
+            .services-elegant {
                 grid-template-columns: 1fr;
                 gap: 1.5rem;
             }
@@ -487,52 +481,49 @@
                 <p class="neuro-subtitle">Donde cada proyecto encuentra su camino perfecto</p>
             </section>
             
-            <!-- MÉTRICAS REALES -->
-            <section class="real-metrics">
-                <div class="real-metric">
-                    <span class="metric-number">400+</span>
-                    <span class="metric-label">Deals Cerrados</span>
+            <!-- MÉTRICAS ELEGANTES -->
+            <section class="elegant-metrics">
+                <div class="metric-elegant">
+                    <span class="elegant-number">400+</span>
+                    <span class="elegant-label">Eventos Realizados</span>
                 </div>
-                <div class="real-metric">
-                    <span class="metric-number">5+</span>
-                    <span class="metric-label">Años de Experiencia</span>
+                <div class="metric-elegant">
+                    <span class="elegant-number">5+</span>
+                    <span class="elegant-label">Años de Experiencia</span>
                 </div>
             </section>
             
-            <!-- SERVICIOS REALES -->
-            <section class="real-services">
-                <div class="services-title">Lo Que Hago</div>
+            <!-- SERVICIOS PROFESIONALES -->
+            <section class="professional-services">
+                <div class="services-title">Áreas de Especialización</div>
                 
-                <div class="services-grid">
-                    <div class="service-card">
-                        <div class="service-icon">🎵</div>
-                        <div class="service-name">Booking & Giras</div>
-                        <div class="service-desc">
-                            Conecto artistas con venues estratégicos para fechas y giras
+                <div class="services-elegant">
+                    <div class="service-elegant">
+                        <div class="service-heading">Booking & Giras</div>
+                        <div class="service-description">
+                            Conexión estratégica de artistas con venues para presentaciones en vivo y giras nacionales e internacionales
                         </div>
                     </div>
                     
-                    <div class="service-card">
-                        <div class="service-icon">📄</div>
-                        <div class="service-name">Editorial</div>
-                        <div class="service-desc">
-                            Registro de obras y gestión de derechos para artistas
+                    <div class="service-elegant">
+                        <div class="service-heading">Gestión Editorial</div>
+                        <div class="service-description">
+                            Registro profesional de obras musicales y administración de derechos para maximizar el potencial de cada creación
                         </div>
                     </div>
                     
-                    <div class="service-card">
-                        <div class="service-icon">🌍</div>
-                        <div class="service-name">Distribución</div>
-                        <div class="service-desc">
-                            Lanzamiento de música en todas las plataformas digitales
+                    <div class="service-elegant">
+                        <div class="service-heading">Distribución Digital</div>
+                        <div class="service-description">
+                            Estrategias de lanzamiento y distribución en plataformas globales para amplificar el alcance de tu música
                         </div>
                     </div>
                 </div>
             </section>
             
-            <!-- PRODUCCIONES REALES -->
+            <!-- PROYECTOS REALES -->
             <section class="real-productions">
-                <div class="productions-title">Proyectos Reales</div>
+                <div class="productions-title">Proyectos Destacados</div>
                 
                 <div class="productions-grid">
                     <div class="production-item">
@@ -566,7 +557,7 @@
             
             <!-- SONIDO QUE ME GUSTA -->
             <section class="sound-i-love">
-                <div class="sound-title">Un Sonido Que Me Encanta</div>
+                <div class="sound-title">Un Sonido Que Vale la Pena Escuchar</div>
                 
                 <div class="sound-player">
                     <audio controls style="width: 100%;">
@@ -576,19 +567,19 @@
                 </div>
             </section>
             
-            <!-- CONEXIÓN REAL -->
-            <section class="real-connection">
-                <div class="connection-title">Hablemos de Tu Proyecto</div>
+            <!-- CONEXIÓN ELEGANTE -->
+            <section class="elegant-connection">
+                <div class="connection-title">Iniciemos una Conversación</div>
                 <p class="connection-subtitle">
-                    ¿Tienes música que necesita llegar más lejos? Conversemos
+                    ¿Tienes un proyecto musical que necesita dirección estratégica? Hablemos sobre cómo podemos llevarlo al siguiente nivel
                 </p>
                 
                 <div class="connection-actions">
-                    <a class="action-btn primary" href="mailto:emc121091@me.com?subject=Hablemos%20de%20mi%20proyecto%20musical&body=Hola,%20me%20gustaría%20conversar%20sobre%20mi%20proyecto%20musical%20y%20cómo%20podemos%20trabajar%20juntos.">
-                        Email Directo
+                    <a class="action-btn primary" href="mailto:emc121091@me.com?subject=Colaboración%20Musical&body=Hola,%20me%20gustaría%20explorar%20posibilidades%20de%20trabajo%20conjunto%20para%20mi%20proyecto%20musical.">
+                        Correo Electrónico
                     </a>
-                    <a class="action-btn" href="https://wa.me/525512478139?text=Hola,%20vi%20tu%20portfolio%20y%20me%20gustaría%20hablar%20de%20mi%20proyecto%20musical." target="_blank">
-                        WhatsApp
+                    <a class="action-btn" href="https://wa.me/525512478139?text=Hola,%20vi%20tu%20portafolio%20y%20me%20interesa%20conversar%20sobre%20mi%20proyecto%20musical." target="_blank">
+                        Mensaje Directo
                     </a>
                 </div>
             </section>
