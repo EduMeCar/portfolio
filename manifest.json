@@ -1,20 +1,22 @@
 {
-  "name": "Conciencia Sonora",
+  "name": "Conciencia Sonora - Eduardo Mejía",
   "short_name": "ConcienciaSonora",
-  "description": "Conecta tu música con el mundo",
+  "description": "Servicios profesionales de booking, gestión editorial y distribución digital",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#0a0a0a",
   "theme_color": "#1db954",
-  "orientation": "portrait",
+  "orientation": "portrait-primary",
+  "lang": "es",
+  "categories": ["music", "business"],
   "icons": [
     {
-      "src": "icon-192.png",
+      "src": "icon-192x192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "icon-512.png",
+      "src": "icon-512x512.png",
       "sizes": "512x512",
       "type": "image/png"
     }
