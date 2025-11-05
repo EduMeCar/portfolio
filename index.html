@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eduardo Mejía | Arquitectura Musical Inteligente</title>
+    <title>Eduardo Mejía - Estrategias Musicales Internacionales</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
         
@@ -62,31 +62,50 @@
             padding: 0 2rem;
         }
         
-        /* HERO NEURO-SECTION */
+        /* HERO SECTION - CONFIANZA ORGÁNICA */
         .neuro-hero {
             padding: 8rem 0 4rem;
             text-align: center;
             position: relative;
         }
         
-        .neural-logo {
-            width: 180px;
-            height: 180px;
-            margin: 0 auto 3rem;
+        .logo-container {
             position: relative;
-            filter: drop-shadow(var(--glow-primary));
-            animation: quantum-float 6s ease-in-out infinite;
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 3rem;
         }
         
-        @keyframes quantum-float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-10px) rotate(1deg); }
-        }
-        
-        .neural-logo img {
+        .neural-logo {
             width: 100%;
             height: 100%;
-            object-fit: contain;
+            filter: drop-shadow(var(--glow-primary));
+            animation: logoFloat 6s ease-in-out infinite;
+        }
+        
+        @keyframes logoFloat {
+            0%, 100% { 
+                transform: translateY(0px) scale(1) rotate(0deg);
+                filter: drop-shadow(0 0 20px rgba(29, 185, 84, 0.4));
+            }
+            33% { 
+                transform: translateY(-10px) scale(1.05) rotate(2deg);
+                filter: drop-shadow(0 0 30px rgba(29, 185, 84, 0.6));
+            }
+            66% { 
+                transform: translateY(5px) scale(1.02) rotate(-1deg);
+                filter: drop-shadow(0 0 25px rgba(29, 185, 84, 0.5));
+            }
+        }
+        
+        .neural-logo:hover {
+            animation: logoPulse 0.8s ease-in-out;
+        }
+        
+        @keyframes logoPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+            100% { transform: scale(1.1); }
         }
         
         .quantum-tagline {
@@ -112,7 +131,7 @@
         }
         
         .neuro-title {
-            font-size: 4rem;
+            font-size: 3.5rem;
             font-weight: 900;
             background: linear-gradient(135deg, var(--neural-text) 0%, var(--quantum-green) 100%);
             -webkit-background-clip: text;
@@ -131,15 +150,15 @@
             margin: 0 auto 3rem;
         }
         
-        /* QUANTUM METRICS */
-        .quantum-metrics {
+        /* CONFIDENCE METRICS */
+        .confidence-metrics {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 2rem;
             margin: 4rem 0;
         }
         
-        .metric-node {
+        .confidence-node {
             background: var(--neural-card);
             border: 1px solid var(--neural-border);
             border-radius: 16px;
@@ -150,7 +169,7 @@
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
         
-        .metric-node::before {
+        .confidence-node::before {
             content: '';
             position: absolute;
             top: 0;
@@ -161,18 +180,18 @@
             transition: left 0.6s ease;
         }
         
-        .metric-node:hover::before {
+        .confidence-node:hover::before {
             left: 100%;
         }
         
-        .metric-node:hover {
+        .confidence-node:hover {
             transform: translateY(-8px);
             border-color: var(--quantum-green);
             box-shadow: var(--glow-primary);
         }
         
-        .metric-value {
-            font-size: 3rem;
+        .confidence-value {
+            font-size: 2.5rem;
             font-weight: 900;
             color: var(--quantum-green);
             display: block;
@@ -180,7 +199,7 @@
             margin-bottom: 0.5rem;
         }
         
-        .metric-label {
+        .confidence-label {
             font-size: 1rem;
             color: var(--neural-subtle);
             font-weight: 600;
@@ -188,12 +207,12 @@
             letter-spacing: 0.05em;
         }
         
-        /* NEURAL PROCESS */
-        .neural-process {
+        /* ORGANIC SERVICES */
+        .organic-services {
             margin: 6rem 0;
         }
         
-        .process-title {
+        .services-title {
             font-size: 1.1rem;
             font-weight: 600;
             color: var(--quantum-purple);
@@ -203,79 +222,107 @@
             margin-bottom: 4rem;
         }
         
-        .process-flow {
+        .services-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 2rem;
-            position: relative;
         }
         
-        .process-flow::before {
-            content: '';
-            position: absolute;
-            top: 60px;
-            left: 25%;
-            right: 25%;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--quantum-cyan), transparent);
-            z-index: 1;
-        }
-        
-        .process-node {
+        .service-card {
             background: var(--neural-card);
             border: 1px solid var(--neural-border);
-            border-radius: 20px;
+            border-radius: 16px;
             padding: 3rem 2rem;
             text-align: center;
-            position: relative;
-            z-index: 2;
             transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
         }
         
-        .process-node:hover {
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--quantum-purple);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+        
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .service-card:hover {
             transform: translateY(-5px);
-            border-color: var(--quantum-cyan);
-            box-shadow: var(--glow-secondary);
+            border-color: var(--quantum-purple);
+            box-shadow: 0 0 30px rgba(139, 92, 246, 0.2);
         }
         
-        .node-icon {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 1.5rem;
-            background: rgba(0, 212, 255, 0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            color: var(--quantum-cyan);
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            display: block;
         }
         
-        .node-title {
-            font-size: 1.3rem;
+        .service-name {
+            font-size: 1.4rem;
             font-weight: 800;
             color: var(--neural-text);
             margin-bottom: 1rem;
         }
         
-        .node-desc {
+        .service-desc {
             font-size: 1rem;
             color: var(--neural-subtle);
             line-height: 1.6;
+            margin-bottom: 1.5rem;
         }
         
-        /* QUANTUM MEDIA */
-        .quantum-media {
+        .service-features {
+            list-style: none;
+            text-align: left;
+        }
+        
+        .service-features li {
+            padding: 0.5rem 0;
+            color: var(--neural-subtle);
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        
+        .service-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--quantum-green);
+            font-weight: bold;
+        }
+        
+        /* EXPERIENCE VISUAL */
+        .experience-visual {
             margin: 6rem 0;
         }
         
-        .media-grid {
+        .experience-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--quantum-cyan);
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .media-showcase {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 2rem;
         }
         
-        .media-node {
+        .media-item {
             background: var(--neural-card);
             border: 1px solid var(--neural-border);
             border-radius: 16px;
@@ -283,13 +330,13 @@
             transition: all 0.4s ease;
         }
         
-        .media-node:hover {
+        .media-item:hover {
             transform: translateY(-5px);
-            border-color: var(--quantum-purple);
-            box-shadow: 0 0 30px rgba(139, 92, 246, 0.2);
+            border-color: var(--quantum-cyan);
+            box-shadow: var(--glow-secondary);
         }
         
-        .media-frame {
+        .media-player {
             width: 100%;
             height: 200px;
             border: none;
@@ -300,20 +347,20 @@
             padding: 1.5rem;
         }
         
-        .media-title {
-            font-size: 1.1rem;
+        .media-name {
+            font-size: 1.2rem;
             font-weight: 700;
             color: var(--neural-text);
             margin-bottom: 0.5rem;
         }
         
-        .media-desc {
+        .media-context {
             font-size: 0.9rem;
             color: var(--neural-subtle);
         }
         
-        /* NEURAL AUDIO */
-        .neural-audio {
+        /* IMMERSIVE AUDIO */
+        .immersive-audio {
             margin: 4rem 0;
             text-align: center;
         }
@@ -327,28 +374,28 @@
             margin-bottom: 2rem;
         }
         
-        .quantum-player {
+        .audio-experience {
             background: var(--neural-card);
             border: 1px solid var(--neural-border);
             border-radius: 16px;
-            padding: 2rem;
+            padding: 2.5rem;
             max-width: 500px;
             margin: 0 auto;
             transition: all 0.4s ease;
         }
         
-        .quantum-player:hover {
+        .audio-experience:hover {
             border-color: var(--quantum-green);
             box-shadow: var(--glow-primary);
         }
         
-        /* QUANTUM CONTACT */
-        .quantum-contact {
+        /* ORGANIC CONNECTION */
+        .organic-connection {
             margin: 6rem 0 4rem;
             text-align: center;
         }
         
-        .contact-title {
+        .connection-title {
             font-size: 1.1rem;
             font-weight: 600;
             color: var(--quantum-cyan);
@@ -357,61 +404,90 @@
             margin-bottom: 3rem;
         }
         
-        .neural-network {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            flex-wrap: wrap;
+        .connection-subtitle {
+            font-size: 1.2rem;
+            color: var(--neural-subtle);
             margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
         
-        .network-node {
-            width: 60px;
-            height: 60px;
+        .connection-actions {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+        
+        .action-btn {
+            padding: 1.2rem 2.5rem;
+            border: 2px solid var(--quantum-green);
+            color: var(--quantum-green);
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 700;
+            transition: all 0.4s ease;
+            min-width: 180px;
+            text-align: center;
+        }
+        
+        .action-btn.primary {
+            background: var(--quantum-green);
+            color: var(--neural-bg);
+        }
+        
+        .action-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--glow-primary);
+        }
+        
+        .action-btn.primary:hover {
+            background: transparent;
+            color: var(--quantum-green);
+        }
+        
+        .action-btn:not(.primary):hover {
+            background: var(--quantum-green);
+            color: var(--neural-bg);
+        }
+        
+        .social-network {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .social-node {
+            width: 50px;
+            height: 50px;
             background: var(--neural-card);
             border: 1px solid var(--neural-border);
-            border-radius: 12px;
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--quantum-cyan);
             text-decoration: none;
             transition: all 0.4s ease;
-            position: relative;
         }
         
-        .network-node::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(45deg, var(--quantum-cyan), var(--quantum-green));
-            border-radius: 14px;
-            z-index: -1;
-            opacity: 0;
-            transition: opacity 0.4s ease;
+        .social-node:hover {
+            transform: translateY(-3px) scale(1.1);
+            border-color: var(--quantum-cyan);
+            background: rgba(0, 212, 255, 0.1);
         }
         
-        .network-node:hover::before {
-            opacity: 1;
+        .social-node svg {
+            width: 20px;
+            height: 20px;
         }
         
-        .network-node:hover {
-            transform: translateY(-5px) scale(1.1);
-            color: var(--neural-bg);
-            background: transparent;
-        }
-        
-        .network-node svg {
-            width: 24px;
-            height: 24px;
-        }
-        
-        .quantum-footer {
+        .portfolio-footer {
             margin-top: 4rem;
-            padding: 2rem 0;
+            padding: 3rem 0;
             border-top: 1px solid var(--neural-border);
             text-align: center;
             color: var(--neural-subtle);
@@ -424,22 +500,28 @@
                 font-size: 2.5rem;
             }
             
-            .quantum-metrics {
+            .confidence-metrics {
                 grid-template-columns: 1fr;
                 gap: 1rem;
             }
             
-            .process-flow {
+            .services-grid {
                 grid-template-columns: 1fr;
-                gap: 2rem;
+                gap: 1.5rem;
             }
             
-            .process-flow::before {
-                display: none;
+            .media-showcase {
+                grid-template-columns: 1fr;
             }
             
-            .media-grid {
-                grid-template-columns: 1fr;
+            .connection-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .action-btn {
+                width: 100%;
+                max-width: 300px;
             }
         }
     </style>
@@ -451,127 +533,141 @@
         <div class="quantum-container">
             <!-- HERO SECTION -->
             <section class="neuro-hero">
-                <div class="neural-logo">
-                    <img src="logo.svg" alt="Neural Music Architecture">
+                <div class="logo-container">
+                    <img src="logo.svg" alt="Eduardo Mejía" class="neural-logo">
                 </div>
                 
-                <div class="quantum-tagline">Arquitectura Neural Musical</div>
+                <div class="quantum-tagline">Conexión Musical Internacional</div>
                 <h1 class="neuro-title">EDUARDO MEJÍA</h1>
-                <p class="neuro-subtitle">Donde la inteligencia artificial encuentra el alma del sonido</p>
+                <p class="neuro-subtitle">Estrategias que conectan tu música con el mundo</p>
             </section>
             
-            <!-- QUANTUM METRICS -->
-            <section class="quantum-metrics">
-                <div class="metric-node">
-                    <span class="metric-value">+200</span>
-                    <span class="metric-label">Venues Conectados</span>
+            <!-- CONFIDENCE METRICS -->
+            <section class="confidence-metrics">
+                <div class="confidence-node">
+                    <span class="confidence-value">5+</span>
+                    <span class="confidence-label">Países de Experiencia</span>
                 </div>
-                <div class="metric-node">
-                    <span class="metric-value">+100</span>
-                    <span class="metric-label">Lanzamientos & Sync</span>
+                <div class="confidence-node">
+                    <span class="confidence-value">3+</span>
+                    <span class="confidence-label">Syncs Globales</span>
                 </div>
-                <div class="metric-node">
-                    <span class="metric-value">+400</span>
-                    <span class="metric-label">Eventos Curados</span>
+                <div class="confidence-node">
+                    <span class="confidence-value">2</span>
+                    <span class="confidence-label">Distribuidoras Directas</span>
                 </div>
             </section>
             
-            <!-- NEURAL PROCESS -->
-            <section class="neural-process">
-                <div class="process-title">Proceso de Arquitectura Musical</div>
+            <!-- ORGANIC SERVICES -->
+            <section class="organic-services">
+                <div class="services-title">Servicios Especializados</div>
                 
-                <div class="process-flow">
-                    <div class="process-node">
-                        <div class="node-icon">🎯</div>
-                        <div class="node-title">Inteligencia Musical</div>
-                        <div class="node-desc">Análisis de datos para selección estratégica de escenarios y audiencias</div>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">🌎</div>
+                        <div class="service-name">Booking Internacional</div>
+                        <div class="service-desc">
+                            Conexión estratégica entre España y México para artistas
+                        </div>
+                        <ul class="service-features">
+                            <li>Fechas en mercados clave</li>
+                            <li>Giras cortas y eventos</li>
+                            <li>Enfoque reggaetón y electrónica</li>
+                        </ul>
                     </div>
                     
-                    <div class="process-node">
-                        <div class="node-icon">🧠</div>
-                        <div class="node-title">Conciencia Sonora</div>
-                        <div class="node-desc">Comprensión profunda de cada proyecto como entidad única y orgánica</div>
+                    <div class="service-card">
+                        <div class="service-icon">📝</div>
+                        <div class="service-name">Editorial & Publishing</div>
+                        <div class="service-desc">
+                            Gestión profesional de derechos y administración
+                        </div>
+                        <ul class="service-features">
+                            <li>Registro Indautor</li>
+                            <li>Onerpm Publishing</li>
+                            <li>Afiliación SACM</li>
+                        </ul>
                     </div>
                     
-                    <div class="process-node">
-                        <div class="node-icon">⚡</div>
-                        <div class="node-title">Ejecución Neural</div>
-                        <div class="node-desc">Coordinación precisa entre artistas, venues y estrategia de mercado</div>
+                    <div class="service-card">
+                        <div class="service-icon">🚀</div>
+                        <div class="service-name">Distribución Global</div>
+                        <div class="service-desc">
+                            Lanzamientos en todas las plataformas digitales
+                        </div>
+                        <ul class="service-features">
+                            <li>Onerpm directo</li>
+                            <li>Symphonic Distribution</li>
+                            <li>Estrategias de lanzamiento</li>
+                        </ul>
                     </div>
                 </div>
             </section>
             
-            <!-- QUANTUM MEDIA -->
-            <section class="quantum-media">
-                <div class="process-title">Producciones Cuánticas</div>
+            <!-- EXPERIENCE VISUAL -->
+            <section class="experience-visual">
+                <div class="experience-title">Experiencia en Acción</div>
                 
-                <div class="media-grid">
-                    <div class="media-node">
-                        <iframe class="media-frame" src="https://www.youtube.com/embed/ZGxSXchZNfo?start=0" 
-                                title="Boiler Room Show" allowfullscreen></iframe>
+                <div class="media-showcase">
+                    <div class="media-item">
+                        <iframe class="media-player" src="https://www.youtube.com/embed/ZGxSXchZNfo?start=0" 
+                                title="Boiler Room Experience" allowfullscreen></iframe>
                         <div class="media-info">
-                            <div class="media-title">Boiler Room Experience</div>
-                            <div class="media-desc">Set curado para audiencia global</div>
+                            <div class="media-name">Boiler Room</div>
+                            <div class="media-context">Experiencia en eventos globales</div>
                         </div>
                     </div>
                     
-                    <div class="media-node">
-                        <iframe class="media-frame" src="https://www.youtube.com/embed/SD3T_Or_mvk?start=3" 
-                                title="Professional Video" allowfullscreen></iframe>
+                    <div class="media-item">
+                        <iframe class="media-player" src="https://www.youtube.com/embed/SD3T_Or_mvk?start=3" 
+                                title="Producción Profesional" allowfullscreen></iframe>
                         <div class="media-info">
-                            <div class="media-title">Producción Profesional</div>
-                            <div class="media-desc">Dirección artística y musical</div>
-                        </div>
-                    </div>
-                    
-                    <div class="media-node">
-                        <iframe class="media-frame" src="https://www.youtube.com/embed/XCW95zjBUK4" 
-                                title="Homemade Music" allowfullscreen></iframe>
-                        <div class="media-info">
-                            <div class="media-title">Esencia Orgánica</div>
-                            <div class="media-desc">Creación desde el núcleo sonoro</div>
+                            <div class="media-name">Producción Musical</div>
+                            <div class="media-context">Dirección y estrategia</div>
                         </div>
                     </div>
                 </div>
             </section>
             
-            <!-- NEURAL AUDIO -->
-            <section class="neural-audio">
-                <div class="audio-title">Firma Sonora Neural</div>
+            <!-- IMMERSIVE AUDIO -->
+            <section class="immersive-audio">
+                <div class="audio-title">Mi Sonido</div>
                 
-                <div class="quantum-player">
+                <div class="audio-experience">
                     <audio controls style="width: 100%;">
                         <source src="micancion.mp3" type="audio/mpeg">
-                        Tu navegador no soporta audio cuántico.
+                        Tu navegador no soporta el elemento de audio.
                     </audio>
                 </div>
             </section>
             
-            <!-- QUANTUM CONTACT -->
-            <section class="quantum-contact">
-                <div class="contact-title">Conexión Neural</div>
+            <!-- ORGANIC CONNECTION -->
+            <section class="organic-connection">
+                <div class="connection-title">Conectemos</div>
+                <p class="connection-subtitle">
+                    Hablemos de tu proyecto musical y encontremos la mejor estrategia juntos
+                </p>
                 
-                <div class="neural-network">
-                    <a class="network-node" href="https://wa.me/525512478139" title="WhatsApp Neural" target="_blank">
-                        <svg viewBox="0 0 32 32"><path fill="currentColor" d="M16 3C9.4 3 4 8.5 4 15.2c0 2.4.8 4.7 2.1 6.7l-1.3 5.2c-.3 1.1.7 2.1 1.9 1.7l5.4-1.7c2 .8 4.1 1.3 6.3 1.3 6.6 0 12-5.4 12-12S22.6 3 16 3z"/></svg>
+                <div class="connection-actions">
+                    <a class="action-btn primary" href="mailto:emc121091@me.com?subject=Colaboración%20Musical&body=Hola%20Eduardo,%20me%20interesa%20conocer%20más%20sobre%20tus%20servicios%20musicales.">
+                        Email Directo
                     </a>
-                    
-                    <a class="network-node" href="tel:+34678497361" title="Llamada Cuántica">
-                        <svg viewBox="0 0 24 24"><path fill="currentColor" d="M21.72 16.7c-1.19-1.04-2.44-2.02-3.7-2.95-.96-.71-2.41-.5-3.2.22l-1.02.91c-1.13-.6-2.18-1.35-3.13-2.22-.99-.91-1.78-1.94-2.33-3.11l.93-.98c.71-.78.95-2.2.22-3.17-1-1.35-2-2.66-3.07-3.89-.53-.59-1.47-.58-2.03 0l-1.03 1.05c-.67.7-.96 1.62-.78 2.6C3.64 10.36 6.82 17.47 15 20.49c.93.34 1.9.13 2.56-.56l1-1.04c.6-.63.59-1.53.16-2.19z"/></svg>
+                    <a class="action-btn" href="https://wa.me/525512478139?text=Hola%20Eduardo,%20vi%20tu%20portfolio%20y%20me%20interesa%20conversar%20sobre%20mis%20proyectos%20musicales." target="_blank">
+                        WhatsApp
                     </a>
-                    
-                    <a class="network-node" href="mailto:emc121091@me.com" title="Email Cuántico" target="_blank">
-                        <svg viewBox="0 0 24 24"><path fill="currentColor" d="M3.99 4A2 2 0 0 0 2 6v12c0 1.1.89 2 1.99 2h16.02c1.1 0 1.99-.9 1.99-2V6a2 2 0 0 0-1.99-2H3.99zm8.01 7.66L4.42 6h15.17l-7.59 5.66zm-6.17 7.1c-.48 0-.89-.38-.89-.86V7.54l7.82 5.84c.22.16.48.24.72.24.25 0 .51-.08.73-.25l7.8-5.83v10.36c0 .48-.4.86-.89.86H5.83z"/></svg>
-                    </a>
-                    
-                    <a class="network-node" href="https://edumecar.github.io/Book/" title="Dashboard Neural" target="_blank">
-                        <svg viewBox="0 0 24 24"><path fill="currentColor" d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></svg>
+                </div>
+                
+                <div class="social-network">
+                    <a class="social-node" href="https://edumecar.github.io/Book/" title="Dashboard" target="_blank">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/>
+                        </svg>
                     </a>
                 </div>
             </section>
             
-            <footer class="quantum-footer">
-                &copy; 2025 Eduardo Mejía · Arquitectura Neural Musical
+            <footer class="portfolio-footer">
+                &copy; 2024 Eduardo Mejía · Estrategias Musicales Internacionales
             </footer>
         </div>
     </div>
