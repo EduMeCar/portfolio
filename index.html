@@ -4,38 +4,13 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Conciencia Sonora - Conecta Tu Música</title>
-  <meta name="description" content="Conciencia Sonora — Dirección estratégica y producción musical.">
-  <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://TU_LANDING_URL.com/" />
-  <!-- Open Graph & Twitter Card -->
-  <meta property="og:title" content="Conciencia Sonora - Conecta Tu Música">
-  <meta property="og:description" content="Dirección estratégica, booking, producción musical y eventos ejecutivos.">
-  <meta property="og:image" content="https://TU_LANDING_URL.com/cover.jpg">
-  <meta property="og:type" content="website">
-  <meta name="twitter:card" content="summary_large_image">
-  <!-- Favicons & Preconnect -->
+  <meta name="description" content="Conciencia Sonora — Dirección estratégica y producción musical." />
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="manifest" href="manifest.json" />
-  <!-- Microdata: Organization -->
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "Conciencia Sonora",
-      "url": "https://TU_LANDING_URL.com/",
-      "logo": "https://TU_LANDING_URL.com/logo.svg",
-      "contactPoint": [{
-        "@type": "ContactPoint",
-        "email": "emc121091@me.com",
-        "contactType": "customer support"
-      }]
-    }
-  </script>
+  <meta name="theme-color" content="#0a0a0a">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
-    :root{
+    :root {
       --neural-bg:#0a0a0a;
       --neural-text:#f8f9fa;
       --neural-subtle:#a0a0a7;
@@ -47,7 +22,7 @@
       --glow-primary:0 0 30px rgba(29,185,84,0.28);
       --glow-secondary:0 0 30px rgba(0,212,255,0.16);
       --light-bg:#f8f9fa;
-      --light-text:#242424;
+      --light-text:#1a1a1c;
       --light-card:#e8eaf0;
       --light-border:#adb5bd;
     }
@@ -58,7 +33,7 @@
       font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
       -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
       line-height:1.5;overflow-x:hidden;
-      transition:background .35s,color .35s;
+      transition:background .4s, color .4s;
     }
     body.light{
       background:var(--light-bg);
@@ -69,49 +44,102 @@
       color:var(--light-text) !important;
       border-color:var(--light-border) !important;
     }
-    *{box-sizing:border-box; margin:0; padding:0}
+    *{box-sizing:border-box;margin:0;padding:0}
     .container{max-width:1200px;margin:0 auto;padding:0 1.5rem;display:flex;flex-direction:column;align-items:center;}
-    main:focus{outline:2px solid var(--quantum-cyan);}
-    .lang-toggle{position:absolute;top:10px;right:20px;z-index:99;}
-    .lang-toggle button,
-    .toggle-theme{background:var(--quantum-cyan);color:var(--neural-bg);font-size:1.1rem;font-weight:700;border:none;padding:.5em 1em;border-radius:6px;margin:0 .12em;cursor:pointer;transition:background .24s;}
-    .toggle-theme{position:absolute;top:10px;left:20px;z-index:99;}
-    .toggle-theme.light{background:var(--quantum-purple);}
-    /* Resto del CSS igual que antes (servicios, metrics, hero, etc.)… recorta aquí para el ejemplo; copia lo de la versión anterior */
-    /* RESPONSIVE */
-    @media (max-width:900px){.services-grid{grid-template-columns:repeat(2,1fr)}.productions-grid{grid-template-columns:repeat(2,1fr)}}
-    @media (max-width:640px){.title{font-size:2rem}.metrics{gap:1.25rem}.services-grid{grid-template-columns:1fr}.productions-grid{grid-template-columns:1fr}.logo-container{width:140px;height:140px}.container{padding:0 1rem}}
+    .toggle-theme, .lang-toggle {
+      position:fixed;top:16px;z-index:99;padding:.5em 1em;border-radius:6px;margin-right:8px;font-weight:700;cursor:pointer;font-family:inherit;border:none;background:#00d4ff;color:#1a1a1c;box-shadow:0 2px 12px rgba(0,0,0,.12);}
+    .lang-toggle{right:18px;}
+    .toggle-theme{right:105px;}
+    /* Hero y resto igual a tu diseño original:*/
+    .hero{width:100%;padding:6.5rem 0 3.5rem;text-align:center;display:flex;flex-direction:column;align-items:center;gap:1rem;}
+    .logo-container{width:200px;height:200px;display:flex;align-items:center;justify-content:center;margin-bottom:0.75rem;}
+    .logo-container img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(var(--glow-primary));animation:soundWave 3s ease-in-out infinite;}
+    @keyframes soundWave{0%,100%{transform:scale(1);filter:drop-shadow(0 0 20px rgba(29,185,84,0.36))}25%{transform:scale(1.06);filter:drop-shadow(0 0 28px rgba(29,185,84,0.6))}50%{transform:scale(1.03);filter:drop-shadow(0 0 24px rgba(29,185,84,0.5))}75%{transform:scale(1.09);filter:drop-shadow(0 0 32px rgba(29,185,84,0.68))}}
+    .tagline{font-size:0.98rem;font-weight:600;color:var(--quantum-cyan);text-transform:uppercase;letter-spacing:0.28em;display:inline-block;position:relative;}
+    .tagline::after{content:'';position:absolute;left:50%;transform:translateX(-50%);bottom:-8px;width:56px;height:2px;background:var(--quantum-cyan);border-radius:2px;}
+    .title{font-size:3rem;line-height:1.05;font-weight:900;background:linear-gradient(135deg,var(--neural-text) 0%,var(--quantum-green) 100%);
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-top:0.25rem;text-align:center;}
+    .subtitle{font-size:1.05rem;color:var(--neural-subtle);max-width:720px;text-align:center;margin-top:0.5rem;font-weight:500;}
+    .metrics{display:flex;gap:3.25rem;justify-content:center;align-items:center;margin:3.25rem 0;width:100%;flex-wrap:wrap;}
+    .metric{display:flex;flex-direction:column;align-items:center;text-align:center;min-width:140px;}
+    .metric-divider{width:1px;height:64px;background:rgba(255,255,255,0.06);}
+    .number{font-size:2.6rem;font-weight:900;color:var(--quantum-green);line-height:1;}
+    .label{font-size:0.88rem;color:var(--neural-subtle);font-weight:600;text-transform:uppercase;letter-spacing:0.08em;margin-top:0.4rem;}
+    .services{width:100%;margin:4.5rem 0;}
+    .services-title{text-align:center;font-size:0.98rem;font-weight:600;color:var(--quantum-purple);text-transform:uppercase;letter-spacing:0.18em;margin-bottom:1.25rem;}
+    .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;max-width:980px;margin:0 auto;}
+    .service{background:var(--neural-card);border:1px solid var(--neural-border);border-radius:12px;padding:1.75rem 1.25rem;text-align:center;transition:transform .36s ease, box-shadow .36s ease, border-color .36s ease;position:relative;overflow:hidden;}
+    .service::before{content:'';position:absolute;left:0;right:0;top:0;height:3px;background:var(--quantum-purple);transform:scaleX(0);transform-origin:left;transition:transform .36s ease;}
+    .service:hover::before{transform:scaleX(1)}
+    .service:hover{transform:translateY(-8px);box-shadow:0 0 30px rgba(139,92,246,0.12);border-color:var(--quantum-purple)}
+    .service h3{font-size:1.12rem;font-weight:800;margin-bottom:0.6rem}
+    .service p{color:var(--neural-subtle);font-size:0.98rem;line-height:1.5;}
+    .productions{width:100%;margin:4.5rem 0;}
+    .productions-title{text-align:center;font-size:0.98rem;font-weight:600;color:var(--quantum-cyan);text-transform:uppercase;letter-spacing:0.18em;margin-bottom:1.25rem;}
+    .productions-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;max-width:980px;margin:0 auto;}
+    .production{background:var(--neural-card);border:1px solid var(--neural-border);border-radius:10px;overflow:hidden;transition:transform .32s ease, box-shadow .32s ease, border-color .32s ease;}
+    .production iframe{width:100%;height:200px;border:0;background:var(--neural-surface)}
+    .production .production-info{padding:1rem;text-align:center}
+    .production .production-role{font-size:0.82rem;color:var(--quantum-green);font-weight:600;text-transform:uppercase;margin-bottom:0.35rem}
+    .production .production-name{font-size:1rem;font-weight:700;color:var(--neural-text)}
+    .production:hover{transform:translateY(-6px);box-shadow:var(--glow-secondary);border-color:var(--quantum-cyan)}
+    .sound{width:100%;margin:3.5rem 0;text-align:center;}
+    .sound h4{font-size:1rem;font-weight:600;color:var(--quantum-green);text-transform:uppercase;letter-spacing:0.14em;margin-bottom:0.9rem;}
+    .audio-player{max-width:560px;margin:0 auto;background:var(--neural-card);border-radius:10px;padding:1.2rem;border:1px solid var(--neural-border);transition:box-shadow .28s ease, border-color .28s ease;}
+    .audio-player:hover{box-shadow:var(--glow-primary);border-color:var(--quantum-green)}
+    .connection{width:100%;margin:4.25rem 0 2.25rem;text-align:center;}
+    .connection h4{font-size:1rem;font-weight:600;color:var(--quantum-cyan);text-transform:uppercase;letter-spacing:0.14em;margin-bottom:0.6rem;}
+    .connection p{max-width:720px;margin:0 auto 1.25rem;color:var(--neural-subtle);font-size:1.02rem}
+    .buttons{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
+    .action-link{display:inline-flex;align-items:center;justify-content:center;padding:.9rem 1.6rem;border-radius:8px;font-weight:700;border:2px solid var(--quantum-green);color:var(--quantum-green);background:transparent;min-width:160px;text-decoration:none;transition:transform .24s ease, box-shadow .24s ease, background .24s ease, color .24s ease;}
+    .action-link.primary{background:var(--quantum-green);color:var(--neural-bg);}
+    .action-link:hover{transform:translateY(-3px);box-shadow:var(--glow-primary);}
+    .action-link.primary:hover{background:transparent;color:var(--quantum-green);}
+    .footer{width:100%;text-align:center;padding:2rem 0;border-top:1px solid var(--neural-border);color:var(--neural-subtle);font-size:0.95rem;margin-top:2rem;}
+    @media (max-width:900px){
+      .services-grid{grid-template-columns:repeat(2,1fr)}
+      .productions-grid{grid-template-columns:repeat(2,1fr)}
+    }
+    @media (max-width:640px){
+      .title{font-size:2rem}
+      .metrics{gap:1.25rem}
+      .services-grid{grid-template-columns:1fr}
+      .productions-grid{grid-template-columns:1fr}
+      .logo-container{width:140px;height:140px}
+      .container{padding:0 1rem}
+    }
     a:focus,button:focus,.action-link:focus{outline:2px solid var(--quantum-cyan);}
   </style>
 </head>
 <body>
+  <!-- Botón modo dark/light -->
   <button class="toggle-theme" aria-label="Cambiar tema">🌙</button>
-  <div class="lang-toggle" role="region" aria-label="Idioma">
-    <button data-lang="es">ES</button>
-    <button data-lang="en">EN</button>
-  </div>
-  <main class="container" role="main" tabindex="-1">
+  <!-- Botón multilenguaje -->
+  <button class="lang-toggle" aria-label="Cambiar idioma">EN</button>
+  <main class="container" role="main">
+    <!-- HERO -->
     <header class="hero" aria-labelledby="hero-title">
       <div class="logo-container" aria-hidden="false">
-        <img src="logo.svg" alt="Logotipo Conciencia Sonora — Dirección y Producción Musical" loading="lazy" />
+        <img src="logo.svg" alt="Logotipo Conciencia Sonora" />
       </div>
       <div class="tagline" data-txt="Conecta Tu Música">Conecta Tu Música</div>
       <h1 id="hero-title" class="title" data-txt="Conciencia Sonora">Conciencia Sonora</h1>
       <p class="subtitle" data-txt="Donde cada proyecto encuentra su camino perfecto">Donde cada proyecto encuentra su camino perfecto</p>
     </header>
+    <!-- METRICS -->
     <section class="metrics" aria-label="Métricas">
       <div class="metric">
-        <div class="number animated" id="eventos">400+</div>
+        <div class="number">400+</div>
         <div class="label" data-txt="Eventos Realizados">Eventos Realizados</div>
       </div>
       <div class="metric-divider" aria-hidden="true"></div>
       <div class="metric">
-        <div class="number animated" id="experiencia">5+</div>
+        <div class="number">5+</div>
         <div class="label" data-txt="Años de Experiencia">Años de Experiencia</div>
       </div>
     </section>
     <!-- SERVICES -->
-    <section class="services" aria-labelledby="services-title" role="region">
+    <section class="services" aria-labelledby="services-title">
       <div id="services-title" class="services-title" data-txt="Áreas de Especialización">Áreas de Especialización</div>
       <div class="services-grid">
         <article class="service" aria-label="Booking y giras">
@@ -135,14 +163,34 @@
       </div>
     </section>
     <!-- PRODUCTIONS -->
-    <section class="productions" aria-labelledby="productions-title" role="region">
+    <section class="productions" aria-labelledby="productions-title">
       <div id="productions-title" class="productions-title" data-txt="Proyectos Destacados">Proyectos Destacados</div>
       <div class="productions-grid">
-        <!-- igual, con data-txt en los títulos, nombres y roles -->
-        <!-- ... -->
+        <div class="production" role="group" aria-label="Boiler Room">
+          <iframe loading="lazy" src="https://www.youtube.com/embed/ZGxSXchZNfo?start=0" title="Boiler Room"></iframe>
+          <div class="production-info">
+            <div class="production-role">Logística &amp; Producción</div>
+            <div class="production-name">Boiler Room</div>
+          </div>
+        </div>
+        <div class="production" role="group" aria-label="Tra Tra">
+          <iframe loading="lazy" src="https://www.youtube.com/embed/SD3T_Or_mvk?start=3" title="Tra Tra"></iframe>
+          <div class="production-info">
+            <div class="production-role">Coordinación</div>
+            <div class="production-name">Tra Tra</div>
+          </div>
+        </div>
+        <div class="production" role="group" aria-label="Gats">
+          <iframe loading="lazy" src="https://www.youtube.com/embed/XCW95zjBUK4" title="Gats"></iframe>
+          <div class="production-info">
+            <div class="production-role">Producción Ejecutiva</div>
+            <div class="production-name">Gats</div>
+          </div>
+        </div>
       </div>
     </section>
-    <section class="sound" aria-labelledby="sound-title" role="region">
+    <!-- SOUND -->
+    <section class="sound" aria-labelledby="sound-title">
       <h4 id="sound-title" data-txt="Un Sonido Que Vale la Pena Escuchar">Un Sonido Que Vale la Pena Escuchar</h4>
       <div class="audio-player" role="region" aria-label="Reproductor de audio">
         <audio controls style="width:100%">
@@ -151,81 +199,93 @@
         </audio>
       </div>
     </section>
-    <section class="connection" aria-labelledby="contact-title" role="region">
+    <!-- CONNECTION -->
+    <section class="connection" aria-labelledby="contact-title">
       <h4 id="contact-title" data-txt="Iniciemos una Conversación">Iniciemos una Conversación</h4>
-      <p data-txt="¿Tienes un proyecto musical que necesita dirección estratégica? Hablemos sobre cómo podemos llevarlo al siguiente nivel.<br>¡Respondemos en menos de 12h!">
-         ¿Tienes un proyecto musical que necesita dirección estratégica? Hablemos sobre cómo podemos llevarlo al siguiente nivel.<br>
-         <span style="color:var(--quantum-green);font-weight:600;">¡Respondemos en menos de 12h!</span>
+      <p data-txt="¿Tienes un proyecto musical que necesita dirección estratégica? Hablemos sobre cómo podemos llevarlo al siguiente nivel.">
+        ¿Tienes un proyecto musical que necesita dirección estratégica? Hablemos sobre cómo podemos llevarlo al siguiente nivel.
       </p>
       <div class="buttons">
         <a class="action-link primary" href="mailto:emc121091@me.com?subject=Colaboración%20Musical" aria-label="Contactar por correo" data-txt="Correo Electrónico">Correo Electrónico</a>
         <a class="action-link" href="https://wa.me/525512478139?text=Hola,%20vi%20tu%20portafolio%20y%20me%20interesa%20conversar" target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp" data-txt="Mensaje Directo">Mensaje Directo</a>
-        <!-- Lead magnet -->
-        <a class="action-link" href="lead-magnet.pdf" download data-txt="Descarga EPK gratis (PDF)">Descarga EPK gratis (PDF)</a>
       </div>
     </section>
+    <!-- FOOTER -->
     <footer class="footer" role="contentinfo" data-txt="© 2024 Conciencia Sonora - Conecta Tu Música por Eduardo Mejía">
       © 2024 Conciencia Sonora - Conecta Tu Música por Eduardo Mejía
     </footer>
-    <button id="scrollToTop" style="position:fixed;bottom:24px;right:24px;display:none;font-size:1.6rem;padding:0.6em 0.8em;background:var(--quantum-green);color:var(--neural-bg);border-radius:50%;border:none;cursor:pointer;z-index:99;" aria-label="Volver arriba">
-      ↑
-    </button>
   </main>
   <script>
-    // PWA registration (manifest already linked)
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('sw.js').catch(()=>{});
-    }
-    // Dark/Light toggle
-    function setTheme(light){document.body.classList.toggle('light',light);document.querySelector('.toggle-theme').textContent=light?'🌞':'🌙';}
-    document.querySelector('.toggle-theme').onclick=()=>{setTheme(!document.body.classList.contains('light'));};
-    // Auto theme by system
-    if(window.matchMedia('(prefers-color-scheme:light)').matches){setTheme(true);}
-    // Lang toggle (simple client-side dict)
-    const dict={
-      en:{
+    // DARK/LIGHT TOGGLE
+    const themeBtn = document.querySelector('.toggle-theme');
+    themeBtn.onclick = () => {
+      document.body.classList.toggle("light");
+      themeBtn.textContent = document.body.classList.contains("light") ? "🌞" : "🌙";
+    };
+    // MULTILENGUAJE
+    const dict = {
+      es: {
+        "Conecta Tu Música": "Conecta Tu Música",
+        "Conciencia Sonora": "Conciencia Sonora",
+        "Donde cada proyecto encuentra su camino perfecto": "Donde cada proyecto encuentra su camino perfecto",
+        "Eventos Realizados":"Eventos Realizados",
+        "Años de Experiencia":"Años de Experiencia",
+        "Áreas de Especialización":"Áreas de Especialización",
+        "Booking & Giras":"Booking & Giras",
+        "Conexión estratégica de artistas con venues para presentaciones en vivo y giras nacionales e internacionales":
+          "Conexión estratégica de artistas con venues para presentaciones en vivo y giras nacionales e internacionales",
+        "Gestión Editorial":"Gestión Editorial",
+        "Registro profesional de obras musicales y administración de derechos para maximizar el potencial de cada creación":
+          "Registro profesional de obras musicales y administración de derechos para maximizar el potencial de cada creación",
+        "Distribución Digital":"Distribución Digital",
+        "Estrategias de lanzamiento y distribución en plataformas globales para amplificar el alcance de tu música":
+          "Estrategias de lanzamiento y distribución en plataformas globales para amplificar el alcance de tu música",
+        "Proyectos Destacados":"Proyectos Destacados",
+        "Un Sonido Que Vale la Pena Escuchar":"Un Sonido Que Vale la Pena Escuchar",
+        "Iniciemos una Conversación":"Iniciemos una Conversación",
+        "¿Tienes un proyecto musical que necesita dirección estratégica? Hablemos sobre cómo podemos llevarlo al siguiente nivel.":
+          "¿Tienes un proyecto musical que necesita dirección estratégica? Hablemos sobre cómo podemos llevarlo al siguiente nivel.",
+        "Correo Electrónico":"Correo Electrónico",
+        "Mensaje Directo":"Mensaje Directo",
+        "© 2024 Conciencia Sonora - Conecta Tu Música por Eduardo Mejía": "© 2024 Conciencia Sonora - Conecta Tu Música por Eduardo Mejía"
+      },
+      en: {
         "Conecta Tu Música": "Connect Your Music",
         "Conciencia Sonora": "Sonora Awareness",
         "Donde cada proyecto encuentra su camino perfecto": "Where every project finds its perfect path",
         "Eventos Realizados":"Events Delivered",
         "Años de Experiencia":"Years of Experience",
         "Áreas de Especialización":"Expertise Areas",
-        "Booking &amp; Giras":"Tour Booking",
-        "Conexión estratégica de artistas con venues para presentaciones en vivo y giras nacionales e internacionales":"Strategic connection of artists with venues for live shows and national/international tours",
+        "Booking & Giras":"Tour Booking",
+        "Conexión estratégica de artistas con venues para presentaciones en vivo y giras nacionales e internacionales":
+          "Strategic connection of artists with venues for live shows and national/international tours",
         "Gestión Editorial":"Editorial Management",
-        "Registro profesional de obras musicales y administración de derechos para maximizar el potencial de cada creación":"Professional registration and rights management to maximize every creation",
+        "Registro profesional de obras musicales y administración de derechos para maximizar el potencial de cada creación":
+          "Professional registration and rights management to maximize every creation",
         "Distribución Digital":"Digital Distribution",
-        "Estrategias de lanzamiento y distribución en plataformas globales para amplificar el alcance de tu música":"Launch and distribution strategies on global platforms to amplify your music",
+        "Estrategias de lanzamiento y distribución en plataformas globales para amplificar el alcance de tu música":
+          "Launch and distribution strategies on global platforms to amplify your music",
         "Proyectos Destacados":"Featured Projects",
         "Un Sonido Que Vale la Pena Escuchar":"A Sound Worth Listening To",
         "Iniciemos una Conversación":"Let's Start a Conversation",
-        "¿Tienes un proyecto musical que necesita dirección estratégica? Hablemos sobre cómo podemos llevarlo al siguiente nivel.<br>¡Respondemos en menos de 12h!":"Do you have a music project that needs strategic direction? Let's talk about how we can take it to the next level.<br><span style='color:#1db954;font-weight:600;'>We reply in less than 12h!</span>",
+        "¿Tienes un proyecto musical que necesita dirección estratégica? Hablemos sobre cómo podemos llevarlo al siguiente nivel.":
+          "Do you have a music project that needs strategic direction? Let's talk about how we can take it to the next level.",
         "Correo Electrónico":"Email",
         "Mensaje Directo":"Direct Message",
-        "Descarga EPK gratis (PDF)":"Download Free EPK (PDF)",
-        "© 2024 Conciencia Sonora - Conecta Tu Música por Eduardo Mejía":"© 2024 Conciencia Sonora by Eduardo Mejía"
-      },es:{}
+        "© 2024 Conciencia Sonora - Conecta Tu Música por Eduardo Mejía": "© 2024 Conciencia Sonora by Eduardo Mejía"
+      }
     };
-    document.querySelectorAll('.lang-toggle button').forEach(btn=>{
-      btn.onclick=()=>{
-        const lang=btn.dataset.lang;
-        document.documentElement.lang=lang;
-        document.querySelectorAll('[data-txt]').forEach(el=>{
-          el.innerHTML=dict[lang][el.getAttribute('data-txt')]||el.getAttribute('data-txt');
-        });
-      };
-    });
-    // Scroll to Top Button
-    const scrollBtn=document.getElementById('scrollToTop');
-    window.addEventListener('scroll',()=>{scrollBtn.style.display=window.scrollY>240?'block':'none';});
-    scrollBtn.onclick=()=>{window.scrollTo({top:0,behavior:'smooth'});};
-    // Metric animated counter
-    function animateCounter(id, end, duration=900){
-      const el=document.getElementById(id);let start=0;const step=end/30;
-      let cnt=0;const interval=setInterval(()=>{cnt+=step;el.textContent=Math.floor(cnt)+'+';(cnt>=end)&&(el.textContent=end+'+',clearInterval(interval));},duration/30);
-    }
-    animateCounter('eventos',400);
-    animateCounter('experiencia',5);
+    const langBtn = document.querySelector('.lang-toggle');
+    let lang = "es";
+    langBtn.onclick = () => {
+      lang = (lang === "es") ? "en" : "es";
+      langBtn.textContent = lang.toUpperCase() === "EN" ? "ES" : "EN";
+      document.documentElement.lang = lang;
+      document.querySelectorAll('[data-txt]').forEach(el=>{
+        let txt=el.getAttribute('data-txt');
+        if(dict[lang][txt]) el.textContent=dict[lang][txt];
+      });
+    };
   </script>
 </body>
 </html>
