@@ -1,593 +1,180 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Conciencia Sonora - Conecta Tu Música</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
-        
-        :root {
-            --neural-bg: #0a0a0a;
-            --neural-surface: #111112;
-            --neural-card: #1a1a1c;
-            --neural-border: #2a2a2e;
-            --neural-text: #f8f9fa;
-            --neural-subtle: #a0a0a7;
-            --quantum-green: #1db954;
-            --quantum-cyan: #00d4ff;
-            --quantum-purple: #8b5cf6;
-            --glow-primary: 0 0 30px rgba(29, 185, 84, 0.3);
-            --glow-secondary: 0 0 30px rgba(0, 212, 255, 0.2);
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            background: var(--neural-bg);
-            color: var(--neural-text);
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-        
-        .neural-interface {
-            min-height: 100vh;
-            position: relative;
-        }
-        
-        /* NEURAL GRID BACKGROUND */
-        .neural-grid {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                linear-gradient(90deg, var(--neural-bg) 21px, transparent 1%) center,
-                linear-gradient(var(--neural-bg) 21px, transparent 1%) center,
-                var(--neural-border);
-            background-size: 22px 22px;
-            opacity: 0.1;
-            z-index: -1;
-        }
-        
-        .quantum-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-        
-        /* HERO SECTION - ANIMACIÓN MUSICAL */
-        .neuro-hero {
-            padding: 8rem 0 4rem;
-            text-align: center;
-            position: relative;
-        }
-        
-        .logo-container {
-            position: relative;
-            width: 200px;
-            height: 200px;
-            margin: 0 auto 3rem;
-        }
-        
-        .neural-logo {
-            width: 100%;
-            height: 100%;
-            filter: drop-shadow(var(--glow-primary));
-            animation: soundWave 3s ease-in-out infinite;
-        }
-        
-        @keyframes soundWave {
-            0%, 100% { 
-                transform: scale(1);
-                filter: drop-shadow(0 0 20px rgba(29, 185, 84, 0.4));
-            }
-            25% { 
-                transform: scale(1.08);
-                filter: drop-shadow(0 0 30px rgba(29, 185, 84, 0.6));
-            }
-            50% { 
-                transform: scale(1.05);
-                filter: drop-shadow(0 0 25px rgba(29, 185, 84, 0.5));
-            }
-            75% { 
-                transform: scale(1.12);
-                filter: drop-shadow(0 0 35px rgba(29, 185, 84, 0.7));
-            }
-        }
-        
-        .neural-logo:hover {
-            animation: soundPulse 0.6s ease-in-out;
-        }
-        
-        @keyframes soundPulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.2); }
-            100% { transform: scale(1.15); }
-        }
-        
-        .quantum-tagline {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--quantum-cyan);
-            text-transform: uppercase;
-            letter-spacing: 0.3em;
-            margin-bottom: 1rem;
-            position: relative;
-            display: inline-block;
-        }
-        
-        .quantum-tagline::after {
-            content: '';
-            position: absolute;
-            bottom: -8px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 2px;
-            background: var(--quantum-cyan);
-        }
-        
-        .neuro-title {
-            font-size: 3.5rem;
-            font-weight: 900;
-            background: linear-gradient(135deg, var(--neural-text) 0%, var(--quantum-green) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            line-height: 1.1;
-            margin-bottom: 1rem;
-            letter-spacing: -0.02em;
-        }
-        
-        .neuro-subtitle {
-            font-size: 1.4rem;
-            color: var(--neural-subtle);
-            font-weight: 500;
-            max-width: 600px;
-            margin: 0 auto 3rem;
-        }
-        
-        /* MÉTRICAS ELEGANTES */
-        .elegant-metrics {
-            display: flex;
-            justify-content: center;
-            gap: 4rem;
-            margin: 5rem 0;
-            text-align: center;
-        }
-        
-        .metric-elegant {
-            position: relative;
-        }
-        
-        .metric-elegant:not(:last-child)::after {
-            content: '';
-            position: absolute;
-            right: -2rem;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 1px;
-            height: 60px;
-            background: rgba(255, 255, 255, 0.1);
-        }
-        
-        .elegant-number {
-            font-size: 3.5rem;
-            font-weight: 900;
-            color: var(--quantum-green);
-            display: block;
-            line-height: 1;
-            margin-bottom: 0.5rem;
-        }
-        
-        .elegant-label {
-            font-size: 0.9rem;
-            color: var(--neural-subtle);
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-        }
-        
-        /* SERVICIOS PROFESIONALES */
-        .professional-services {
-            margin: 6rem 0;
-        }
-        
-        .services-title {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--quantum-purple);
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-        
-        .services-elegant {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-        
-        .service-elegant {
-            background: var(--neural-card);
-            border: 1px solid var(--neural-border);
-            border-radius: 12px;
-            padding: 2.5rem 2rem;
-            text-align: center;
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .service-elegant::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: var(--quantum-purple);
-            transform: scaleX(0);
-            transition: transform 0.4s ease;
-        }
-        
-        .service-elegant:hover::before {
-            transform: scaleX(1);
-        }
-        
-        .service-elegant:hover {
-            transform: translateY(-8px);
-            border-color: var(--quantum-purple);
-            box-shadow: 0 0 30px rgba(139, 92, 246, 0.2);
-        }
-        
-        .service-heading {
-            font-size: 1.3rem;
-            font-weight: 800;
-            color: var(--neural-text);
-            margin-bottom: 1rem;
-        }
-        
-        .service-description {
-            font-size: 1rem;
-            color: var(--neural-subtle);
-            line-height: 1.6;
-        }
-        
-        /* PROYECTOS REALES */
-        .real-productions {
-            margin: 6rem 0;
-        }
-        
-        .productions-title {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--quantum-cyan);
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-        
-        .productions-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-        }
-        
-        .production-item {
-            background: var(--neural-card);
-            border: 1px solid var(--neural-border);
-            border-radius: 12px;
-            overflow: hidden;
-            transition: all 0.4s ease;
-        }
-        
-        .production-item:hover {
-            transform: translateY(-8px);
-            border-color: var(--quantum-cyan);
-            box-shadow: var(--glow-secondary);
-        }
-        
-        .production-player {
-            width: 100%;
-            height: 200px;
-            border: none;
-            background: var(--neural-surface);
-        }
-        
-        .production-info {
-            padding: 1.5rem;
-            text-align: center;
-        }
-        
-        .production-role {
-            font-size: 0.9rem;
-            color: var(--quantum-green);
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 0.5rem;
-        }
-        
-        .production-name {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: var(--neural-text);
-        }
-        
-        /* SONIDO QUE ME GUSTA */
-        .sound-i-love {
-            margin: 4rem 0;
-            text-align: center;
-        }
-        
-        .sound-title {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--quantum-green);
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            margin-bottom: 2rem;
-        }
-        
-        .sound-player {
-            background: var(--neural-card);
-            border: 1px solid var(--neural-border);
-            border-radius: 12px;
-            padding: 2.5rem;
-            max-width: 500px;
-            margin: 0 auto;
-            transition: all 0.4s ease;
-        }
-        
-        .sound-player:hover {
-            border-color: var(--quantum-green);
-            box-shadow: var(--glow-primary);
-        }
-        
-        /* CONEXIÓN ELEGANTE */
-        .elegant-connection {
-            margin: 6rem 0 4rem;
-            text-align: center;
-        }
-        
-        .connection-title {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--quantum-cyan);
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            margin-bottom: 3rem;
-        }
-        
-        .connection-subtitle {
-            font-size: 1.2rem;
-            color: var(--neural-subtle);
-            margin-bottom: 3rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        .connection-actions {
-            display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-            margin-bottom: 3rem;
-            flex-wrap: wrap;
-        }
-        
-        .action-btn {
-            padding: 1.2rem 2.5rem;
-            border: 2px solid var(--quantum-green);
-            color: var(--quantum-green);
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: 700;
-            transition: all 0.4s ease;
-            min-width: 180px;
-            text-align: center;
-        }
-        
-        .action-btn.primary {
-            background: var(--quantum-green);
-            color: var(--neural-bg);
-        }
-        
-        .action-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--glow-primary);
-        }
-        
-        .action-btn.primary:hover {
-            background: transparent;
-            color: var(--quantum-green);
-        }
-        
-        .action-btn:not(.primary):hover {
-            background: var(--quantum-green);
-            color: var(--neural-bg);
-        }
-        
-        .portfolio-footer {
-            margin-top: 4rem;
-            padding: 3rem 0;
-            border-top: 1px solid var(--neural-border);
-            text-align: center;
-            color: var(--neural-subtle);
-            font-size: 0.9rem;
-        }
-        
-        /* RESPONSIVE DESIGN */
-        @media (max-width: 768px) {
-            .neuro-title {
-                font-size: 2.5rem;
-            }
-            
-            .elegant-metrics {
-                flex-direction: column;
-                gap: 2rem;
-            }
-            
-            .metric-elegant::after {
-                display: none;
-            }
-            
-            .services-elegant {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-            
-            .productions-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .connection-actions {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .action-btn {
-                width: 100%;
-                max-width: 300px;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Conciencia Sonora - Conecta Tu Música</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+:root {
+  --neural-bg: #0a0a0a;
+  --neural-text: #f8f9fa;
+  --neural-subtle: #a0a0a7;
+  --neural-card: #1a1a1c;
+  --neural-border: #2a2a2e;
+  --quantum-green: #1db954;
+  --quantum-cyan: #00d4ff;
+  --quantum-purple: #8b5cf6;
+  --glow-primary: 0 0 30px rgba(29,185,84,0.3);
+  --glow-secondary: 0 0 30px rgba(0,212,255,0.2);
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--neural-bg);color:var(--neural-text);font-family:'Inter',sans-serif;line-height:1.6;overflow-x:hidden;}
+a{text-decoration:none;}
+
+.container{max-width:1200px;margin:0 auto;padding:0 2rem;}
+
+.hero{padding:8rem 0 4rem;text-align:center;}
+.logo-container{width:200px;height:200px;margin:0 auto 3rem;}
+.logo-container img{width:100%;height:100%;filter:drop-shadow(var(--glow-primary));animation:soundWave 3s ease-in-out infinite;}
+@keyframes soundWave{
+0%,100%{transform:scale(1);filter:drop-shadow(0 0 20px rgba(29,185,84,0.4));}
+25%{transform:scale(1.08);filter:drop-shadow(0 0 30px rgba(29,185,84,0.6));}
+50%{transform:scale(1.05);filter:drop-shadow(0 0 25px rgba(29,185,84,0.5));}
+75%{transform:scale(1.12);filter:drop-shadow(0 0 35px rgba(29,185,84,0.7));}}
+.logo-container img:hover{animation:soundPulse 0.6s ease-in-out;}
+@keyframes soundPulse{0%{transform:scale(1);}50%{transform:scale(1.2);}100%{transform:scale(1.15);}}
+
+.tagline{font-size:1.1rem;font-weight:600;color:var(--quantum-cyan);text-transform:uppercase;letter-spacing:0.3em;margin-bottom:1rem;display:inline-block;position:relative;}
+.tagline::after{content:'';position:absolute;bottom:-8px;left:50%;transform:translateX(-50%);width:60px;height:2px;background:var(--quantum-cyan);}
+.title{font-size:3.5rem;font-weight:900;background:linear-gradient(135deg,var(--neural-text) 0%,var(--quantum-green) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:1rem;}
+.subtitle{font-size:1.4rem;color:var(--neural-subtle);font-weight:500;max-width:600px;margin:0 auto 3rem;}
+
+.metrics{display:flex;justify-content:center;gap:4rem;margin:5rem 0;text-align:center;}
+.metric{position:relative;}
+.metric:not(:last-child)::after{content:'';position:absolute;right:-2rem;top:50%;transform:translateY(-50%);width:1px;height:60px;background:rgba(255,255,255,0.1);}
+.number{font-size:3.5rem;font-weight:900;color:var(--quantum-green);}
+.label{font-size:0.9rem;color:var(--neural-subtle);font-weight:600;text-transform:uppercase;letter-spacing:0.1em;}
+
+.services{margin:6rem 0;}
+.services-title{font-size:1.1rem;font-weight:600;color:var(--quantum-purple);text-transform:uppercase;letter-spacing:0.2em;text-align:center;margin-bottom:4rem;}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;max-width:900px;margin:0 auto;}
+.service{background:var(--neural-card);border:1px solid var(--neural-border);border-radius:12px;padding:2.5rem 2rem;text-align:center;transition:all 0.4s ease;position:relative;overflow:hidden;}
+.service::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--quantum-purple);transform:scaleX(0);transition:transform 0.4s ease;}
+.service:hover::before{transform:scaleX(1);}
+.service:hover{transform:translateY(-8px);border-color:var(--quantum-purple);box-shadow:0 0 30px rgba(139,92,246,0.2);}
+.service h3{font-size:1.3rem;font-weight:800;margin-bottom:1rem;}
+.service p{font-size:1rem;color:var(--neural-subtle);line-height:1.6;}
+
+.productions{margin:6rem 0;}
+.productions-title{font-size:1.1rem;font-weight:600;color:var(--quantum-cyan);text-transform:uppercase;letter-spacing:0.2em;text-align:center;margin-bottom:4rem;}
+.productions-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;}
+.production{background:var(--neural-card);border:1px solid var(--neural-border);border-radius:12px;overflow:hidden;transition:all 0.4s ease;}
+.production iframe{width:100%;height:200px;border:none;background:var(--neural-bg);}
+.production:hover{transform:translateY(-8px);border-color:var(--quantum-cyan);box-shadow:var(--glow-secondary);}
+.production-info{padding:1.5rem;text-align:center;}
+.production-role{font-size:0.9rem;color:var(--quantum-green);font-weight:600;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:0.5rem;}
+.production-name{font-size:1.1rem;font-weight:700;color:var(--neural-text);}
+
+.sound{margin:4rem 0;text-align:center;}
+.sound h4{font-size:1.1rem;font-weight:600;color:var(--quantum-green);text-transform:uppercase;letter-spacing:0.2em;margin-bottom:2rem;}
+.audio-player{background:var(--neural-card);border:1px solid var(--neural-border);border-radius:12px;padding:2.5rem;max-width:500px;margin:0 auto;transition:all 0.4s ease;}
+.audio-player:hover{border-color:var(--quantum-green);box-shadow:var(--glow-primary);}
+
+.connection{margin:6rem 0 4rem;text-align:center;}
+.connection h4{font-size:1.1rem;font-weight:600;color:var(--quantum-cyan);text-transform:uppercase;letter-spacing:0.2em;margin-bottom:3rem;}
+.connection p{font-size:1.2rem;color:var(--neural-subtle);margin-bottom:3rem;max-width:600px;margin-left:auto;margin-right:auto;}
+.buttons{display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;}
+button, .action-link{padding:1.2rem 2.5rem;border:2px solid var(--quantum-green);color:var(--quantum-green);border-radius:8px;font-weight:700;transition:all 0.4s ease;min-width:180px;cursor:pointer;}
+.action-link.primary{background:var(--quantum-green);color:var(--neural-bg);}
+button:hover, .action-link:hover{transform:translateY(-3px);box-shadow:var(--glow-primary);}
+.action-link.primary:hover{background:transparent;color:var(--quantum-green);}
+@media(max-width:768px){.hero h1{font-size:2.5rem;}.metrics{flex-direction:column;gap:2rem;}.metric::after{display:none;}.services-grid{grid-template-columns:1fr;gap:1.5rem;}.productions-grid{grid-template-columns:1fr;}.buttons{flex-direction:column;align-items:center;}}
+</style>
 </head>
 <body>
-    <div class="neural-interface">
-        <div class="neural-grid"></div>
-        
-        <div class="quantum-container">
-            <!-- HERO SECTION -->
-            <section class="neuro-hero">
-                <div class="logo-container">
-                    <img src="logo.svg" alt="Conciencia Sonora" class="neural-logo">
-                </div>
-                
-                <div class="quantum-tagline">Conecta Tu Música</div>
-                <h1 class="neuro-title">CONCIENCIA SONORA</h1>
-                <p class="neuro-subtitle">Donde cada proyecto encuentra su camino perfecto</p>
-            </section>
-            
-            <!-- MÉTRICAS ELEGANTES -->
-            <section class="elegant-metrics">
-                <div class="metric-elegant">
-                    <span class="elegant-number">400+</span>
-                    <span class="elegant-label">Eventos Realizados</span>
-                </div>
-                <div class="metric-elegant">
-                    <span class="elegant-number">5+</span>
-                    <span class="elegant-label">Años de Experiencia</span>
-                </div>
-            </section>
-            
-            <!-- SERVICIOS PROFESIONALES -->
-            <section class="professional-services">
-                <div class="services-title">Áreas de Especialización</div>
-                
-                <div class="services-elegant">
-                    <div class="service-elegant">
-                        <div class="service-heading">Booking & Giras</div>
-                        <div class="service-description">
-                            Conexión estratégica de artistas con venues para presentaciones en vivo y giras nacionales e internacionales
-                        </div>
-                    </div>
-                    
-                    <div class="service-elegant">
-                        <div class="service-heading">Gestión Editorial</div>
-                        <div class="service-description">
-                            Registro profesional de obras musicales y administración de derechos para maximizar el potencial de cada creación
-                        </div>
-                    </div>
-                    
-                    <div class="service-elegant">
-                        <div class="service-heading">Distribución Digital</div>
-                        <div class="service-description">
-                            Estrategias de lanzamiento y distribución en plataformas globales para amplificar el alcance de tu música
-                        </div>
-                    </div>
-                </div>
-            </section>
-            
-            <!-- PROYECTOS REALES -->
-            <section class="real-productions">
-                <div class="productions-title">Proyectos Destacados</div>
-                
-                <div class="productions-grid">
-                    <div class="production-item">
-                        <iframe class="production-player" src="https://www.youtube.com/embed/ZGxSXchZNfo?start=0" 
-                                title="Boiler Room" allowfullscreen></iframe>
-                        <div class="production-info">
-                            <div class="production-role">Logística & Producción</div>
-                            <div class="production-name">Boiler Room</div>
-                        </div>
-                    </div>
-                    
-                    <div class="production-item">
-                        <iframe class="production-player" src="https://www.youtube.com/embed/SD3T_Or_mvk?start=3" 
-                                title="Tra Tra" allowfullscreen></iframe>
-                        <div class="production-info">
-                            <div class="production-role">Coordinación</div>
-                            <div class="production-name">Tra Tra</div>
-                        </div>
-                    </div>
-                    
-                    <div class="production-item">
-                        <iframe class="production-player" src="https://www.youtube.com/embed/XCW95zjBUK4" 
-                                title="Gats" allowfullscreen></iframe>
-                        <div class="production-info">
-                            <div class="production-role">Producción Ejecutiva</div>
-                            <div class="production-name">Gats</div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            
-            <!-- SONIDO QUE ME GUSTA -->
-            <section class="sound-i-love">
-                <div class="sound-title">Un Sonido Que Vale la Pena Escuchar</div>
-                
-                <div class="sound-player">
-                    <audio controls style="width: 100%;">
-                        <source src="micancion.mp3" type="audio/mpeg">
-                        Tu navegador no soporta el elemento de audio.
-                    </audio>
-                </div>
-            </section>
-            
-            <!-- CONEXIÓN ELEGANTE -->
-            <section class="elegant-connection">
-                <div class="connection-title">Iniciemos una Conversación</div>
-                <p class="connection-subtitle">
-                    ¿Tienes un proyecto musical que necesita dirección estratégica? Hablemos sobre cómo podemos llevarlo al siguiente nivel
-                </p>
-                
-                <div class="connection-actions">
-                    <a class="action-btn primary" href="mailto:emc121091@me.com?subject=Colaboración%20Musical&body=Hola,%20me%20gustaría%20explorar%20posibilidades%20de%20trabajo%20conjunto%20para%20mi%20proyecto%20musical.">
-                        Correo Electrónico
-                    </a>
-                    <a class="action-btn" href="https://wa.me/525512478139?text=Hola,%20vi%20tu%20portafolio%20y%20me%20interesa%20conversar%20sobre%20mi%20proyecto%20musical." target="_blank">
-                        Mensaje Directo
-                    </a>
-                </div>
-            </section>
-            
-            <footer class="portfolio-footer">
-                &copy; 2024 Conciencia Sonora - Conecta Tu Música
-            </footer>
-        </div>
+<div class="container">
+
+  <section class="hero">
+    <div class="logo-container">
+      <img src="logo.svg" alt="Conciencia Sonora">
     </div>
+    <div class="tagline">Conecta Tu Música</div>
+    <h1 class="title">Conciencia Sonora</h1>
+    <p class="subtitle">Donde cada proyecto encuentra su camino perfecto</p>
+  </section>
+
+  <section class="metrics">
+    <div class="metric">
+      <span class="number">400+</span>
+      <span class="label">Eventos Realizados</span>
+    </div>
+    <div class="metric">
+      <span class="number">5+</span>
+      <span class="label">Años de Experiencia</span>
+    </div>
+  </section>
+
+  <section class="services">
+    <div class="services-title">Áreas de Especialización</div>
+    <div class="services-grid">
+      <div class="service">
+        <h3>Booking & Giras</h3>
+        <p>Conexión estratégica de artistas con venues para presentaciones en vivo y giras nacionales e internacionales</p>
+      </div>
+      <div class="service">
+        <h3>Gestión Editorial</h3>
+        <p>Registro profesional de obras musicales y administración de derechos para maximizar el potencial de cada creación</p>
+      </div>
+      <div class="service">
+        <h3>Distribución Digital</h3>
+        <p>Estrategias de lanzamiento y distribución en plataformas globales para amplificar el alcance de tu música</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="productions">
+    <div class="productions-title">Proyectos Destacados</div>
+    <div class="productions-grid">
+      <div class="production">
+        <iframe src="https://www.youtube.com/embed/ZGxSXchZNfo?start=0" allowfullscreen></iframe>
+        <div class="production-info">
+          <div class="production-role">Logística & Producción</div>
+          <div class="production-name">Boiler Room</div>
+        </div>
+      </div>
+      <div class="production">
+        <iframe src="https://www.youtube.com/embed/SD3T_Or_mvk?start=3" allowfullscreen></iframe>
+        <div class="production-info">
+          <div class="production-role">Coordinación</div>
+          <div class="production-name">Tra Tra</div>
+        </div>
+      </div>
+      <div class="production">
+        <iframe src="https://www.youtube.com/embed/XCW95zjBUK4" allowfullscreen></iframe>
+        <div class="production-info">
+          <div class="production-role">Producción Ejecutiva</div>
+          <div class="production-name">Gats</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sound">
+    <h4>Un Sonido Que Vale la Pena Escuchar</h4>
+    <div class="audio-player">
+      <audio controls style="width:100%">
+        <source src="micancion.mp3" type="audio/mpeg">
+        Tu navegador no soporta el elemento de audio.
+      </audio>
+    </div>
+  </section>
+
+  <section class="connection">
+    <h4>Iniciemos una Conversación</h4>
+    <p>¿Tienes un proyecto musical que necesita dirección estratégica? Hablemos sobre cómo podemos llevarlo al siguiente nivel</p>
+    <div class="buttons">
+      <a class="action-link primary" href="mailto:emc121091@me.com?subject=Colaboración%20Musical">Correo Electrónico</a>
+      <a class="action-link" href="https://wa.me/525512478139?text=Hola,%20vi%20tu%20portafolio%20y%20me%20interesa%20conversar">Mensaje Directo</a>
+    </div>
+  </section>
+
+  <footer class="text-center py-8 text-neural-subtle border-t border-neural-border">
+    &copy; 2024 Conciencia Sonora - Conecta Tu Música
+  </footer>
+
+</div>
 </body>
 </html>
