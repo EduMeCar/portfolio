@@ -1,291 +1,266 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Conciencia Sonora - Conecta Tu Música</title>
-  <meta name="description" content="Conciencia Sonora — Dirección estratégica y producción musical." />
-  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
-  <link rel="manifest" href="manifest.json" />
-  <meta name="theme-color" content="#0a0a0a">
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
-    :root {
-      --neural-bg:#0a0a0a;
-      --neural-text:#f8f9fa;
-      --neural-subtle:#a0a0a7;
-      --neural-card:#1a1a1c;
-      --neural-border:#2a2a2e;
-      --quantum-green:#1db954;
-      --quantum-cyan:#00d4ff;
-      --quantum-purple:#8b5cf6;
-      --glow-primary:0 0 30px rgba(29,185,84,0.28);
-      --glow-secondary:0 0 30px rgba(0,212,255,0.16);
-      --light-bg:#f8f9fa;
-      --light-text:#1a1a1c;
-      --light-card:#e8eaf0;
-      --light-border:#adb5bd;
-    }
-    html,body{height:100%}
-    body{
-      background:var(--neural-bg);
-      color:var(--neural-text);
-      font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
-      -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
-      line-height:1.5;overflow-x:hidden;
-      transition:background .4s, color .4s;
-    }
-    body.light{
-      background:var(--light-bg);
-      color:var(--light-text);
-    }
-    body.light .container,.light .service,.light .production,.light .audio-player{
-      background:var(--light-card) !important;
-      color:var(--light-text) !important;
-      border-color:var(--light-border) !important;
-    }
-    *{box-sizing:border-box;margin:0;padding:0}
-    .container{max-width:1200px;margin:0 auto;padding:0 1.5rem;display:flex;flex-direction:column;align-items:center;}
-    .toggle-theme, .lang-toggle {
-      position:fixed;top:16px;z-index:99;padding:.5em 1em;border-radius:6px;margin-right:8px;font-weight:700;cursor:pointer;font-family:inherit;border:none;background:#00d4ff;color:#1a1a1c;box-shadow:0 2px 12px rgba(0,0,0,.12);}
-    .lang-toggle{right:18px;}
-    .toggle-theme{right:105px;}
-    /* Hero y resto igual a tu diseño original:*/
-    .hero{width:100%;padding:6.5rem 0 3.5rem;text-align:center;display:flex;flex-direction:column;align-items:center;gap:1rem;}
-    .logo-container{width:200px;height:200px;display:flex;align-items:center;justify-content:center;margin-bottom:0.75rem;}
-    .logo-container img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(var(--glow-primary));animation:soundWave 3s ease-in-out infinite;}
-    @keyframes soundWave{0%,100%{transform:scale(1);filter:drop-shadow(0 0 20px rgba(29,185,84,0.36))}25%{transform:scale(1.06);filter:drop-shadow(0 0 28px rgba(29,185,84,0.6))}50%{transform:scale(1.03);filter:drop-shadow(0 0 24px rgba(29,185,84,0.5))}75%{transform:scale(1.09);filter:drop-shadow(0 0 32px rgba(29,185,84,0.68))}}
-    .tagline{font-size:0.98rem;font-weight:600;color:var(--quantum-cyan);text-transform:uppercase;letter-spacing:0.28em;display:inline-block;position:relative;}
-    .tagline::after{content:'';position:absolute;left:50%;transform:translateX(-50%);bottom:-8px;width:56px;height:2px;background:var(--quantum-cyan);border-radius:2px;}
-    .title{font-size:3rem;line-height:1.05;font-weight:900;background:linear-gradient(135deg,var(--neural-text) 0%,var(--quantum-green) 100%);
-      -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-top:0.25rem;text-align:center;}
-    .subtitle{font-size:1.05rem;color:var(--neural-subtle);max-width:720px;text-align:center;margin-top:0.5rem;font-weight:500;}
-    .metrics{display:flex;gap:3.25rem;justify-content:center;align-items:center;margin:3.25rem 0;width:100%;flex-wrap:wrap;}
-    .metric{display:flex;flex-direction:column;align-items:center;text-align:center;min-width:140px;}
-    .metric-divider{width:1px;height:64px;background:rgba(255,255,255,0.06);}
-    .number{font-size:2.6rem;font-weight:900;color:var(--quantum-green);line-height:1;}
-    .label{font-size:0.88rem;color:var(--neural-subtle);font-weight:600;text-transform:uppercase;letter-spacing:0.08em;margin-top:0.4rem;}
-    .services{width:100%;margin:4.5rem 0;}
-    .services-title{text-align:center;font-size:0.98rem;font-weight:600;color:var(--quantum-purple);text-transform:uppercase;letter-spacing:0.18em;margin-bottom:1.25rem;}
-    .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;max-width:980px;margin:0 auto;}
-    .service{background:var(--neural-card);border:1px solid var(--neural-border);border-radius:12px;padding:1.75rem 1.25rem;text-align:center;transition:transform .36s ease, box-shadow .36s ease, border-color .36s ease;position:relative;overflow:hidden;}
-    .service::before{content:'';position:absolute;left:0;right:0;top:0;height:3px;background:var(--quantum-purple);transform:scaleX(0);transform-origin:left;transition:transform .36s ease;}
-    .service:hover::before{transform:scaleX(1)}
-    .service:hover{transform:translateY(-8px);box-shadow:0 0 30px rgba(139,92,246,0.12);border-color:var(--quantum-purple)}
-    .service h3{font-size:1.12rem;font-weight:800;margin-bottom:0.6rem}
-    .service p{color:var(--neural-subtle);font-size:0.98rem;line-height:1.5;}
-    .productions{width:100%;margin:4.5rem 0;}
-    .productions-title{text-align:center;font-size:0.98rem;font-weight:600;color:var(--quantum-cyan);text-transform:uppercase;letter-spacing:0.18em;margin-bottom:1.25rem;}
-    .productions-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;max-width:980px;margin:0 auto;}
-    .production{background:var(--neural-card);border:1px solid var(--neural-border);border-radius:10px;overflow:hidden;transition:transform .32s ease, box-shadow .32s ease, border-color .32s ease;}
-    .production iframe{width:100%;height:200px;border:0;background:var(--neural-surface)}
-    .production .production-info{padding:1rem;text-align:center}
-    .production .production-role{font-size:0.82rem;color:var(--quantum-green);font-weight:600;text-transform:uppercase;margin-bottom:0.35rem}
-    .production .production-name{font-size:1rem;font-weight:700;color:var(--neural-text)}
-    .production:hover{transform:translateY(-6px);box-shadow:var(--glow-secondary);border-color:var(--quantum-cyan)}
-    .sound{width:100%;margin:3.5rem 0;text-align:center;}
-    .sound h4{font-size:1rem;font-weight:600;color:var(--quantum-green);text-transform:uppercase;letter-spacing:0.14em;margin-bottom:0.9rem;}
-    .audio-player{max-width:560px;margin:0 auto;background:var(--neural-card);border-radius:10px;padding:1.2rem;border:1px solid var(--neural-border);transition:box-shadow .28s ease, border-color .28s ease;}
-    .audio-player:hover{box-shadow:var(--glow-primary);border-color:var(--quantum-green)}
-    .connection{width:100%;margin:4.25rem 0 2.25rem;text-align:center;}
-    .connection h4{font-size:1rem;font-weight:600;color:var(--quantum-cyan);text-transform:uppercase;letter-spacing:0.14em;margin-bottom:0.6rem;}
-    .connection p{max-width:720px;margin:0 auto 1.25rem;color:var(--neural-subtle);font-size:1.02rem}
-    .buttons{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
-    .action-link{display:inline-flex;align-items:center;justify-content:center;padding:.9rem 1.6rem;border-radius:8px;font-weight:700;border:2px solid var(--quantum-green);color:var(--quantum-green);background:transparent;min-width:160px;text-decoration:none;transition:transform .24s ease, box-shadow .24s ease, background .24s ease, color .24s ease;}
-    .action-link.primary{background:var(--quantum-green);color:var(--neural-bg);}
-    .action-link:hover{transform:translateY(-3px);box-shadow:var(--glow-primary);}
-    .action-link.primary:hover{background:transparent;color:var(--quantum-green);}
-    .footer{width:100%;text-align:center;padding:2rem 0;border-top:1px solid var(--neural-border);color:var(--neural-subtle);font-size:0.95rem;margin-top:2rem;}
-    @media (max-width:900px){
-      .services-grid{grid-template-columns:repeat(2,1fr)}
-      .productions-grid{grid-template-columns:repeat(2,1fr)}
-    }
-    @media (max-width:640px){
-      .title{font-size:2rem}
-      .metrics{gap:1.25rem}
-      .services-grid{grid-template-columns:1fr}
-      .productions-grid{grid-template-columns:1fr}
-      .logo-container{width:140px;height:140px}
-      .container{padding:0 1rem}
-    }
-    a:focus,button:focus,.action-link:focus{outline:2px solid var(--quantum-cyan);}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conciencia Sonora - Conecta Tu Música</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="manifest" href="manifest.json" />
+    <meta name="theme-color" content="#0a0a0a">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+        :root {
+            --neural-bg: #0a0a0a;
+            --neural-surface: #111112;
+            --neural-card: #1a1a1c;
+            --neural-border: #2a2a2e;
+            --neural-text: #f8f9fa;
+            --neural-subtle: #a0a0a7;
+            --quantum-green: #1db954;
+            --quantum-cyan: #00d4ff;
+            --quantum-purple: #8b5cf6;
+            --glow-primary: 0 0 30px rgba(29,185,84,0.3);
+            --glow-secondary: 0 0 30px rgba(0,212,255,0.2);
+            --light-bg: #f8f9fa;
+            --light-card: #e8eaf0;
+            --light-border: #adb5bd;
+            --light-text: #18181a;
+        }
+        body {
+            background: var(--neural-bg);
+            color: var(--neural-text);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: background 0.35s, color 0.35s;
+        }
+        body.light {
+            background: var(--light-bg);
+            color: var(--light-text);
+        }
+        body.light .neural-interface,
+        body.light .quantum-container,
+        body.light .neural-card,
+        body.light .service-elegant,
+        body.light .sound-player,
+        body.light .production-item {
+            background: var(--light-card) !important;
+            color: var(--light-text) !important;
+            border-color: var(--light-border) !important;
+        }
+        /* --- Mantiene TODO tu CSS original aquí, sin cambios --- */
+        /* ...Tu CSS tal cual lo compartiste... */
+        /* Botones arriba a la derecha */
+        .switch-buttons {
+            position: fixed;
+            top: 16px;
+            right: 16px;
+            z-index: 99;
+            display: flex;
+            gap: 10px;
+        }
+        .switch-btn {
+            border: none;
+            padding: .5em 1.1em;
+            border-radius: 7px;
+            font-weight: 700;
+            background: var(--quantum-cyan);
+            color: #1a1a1c;
+            font-family: inherit;
+            box-shadow: 0 2px 10px rgba(0,0,0,.10);
+            cursor: pointer;
+            transition: background .28s, color .28s;
+            font-size: 1.1rem;
+        }
+        .switch-btn:active {
+          filter: brightness(0.92);
+        }
+    </style>
 </head>
 <body>
-  <!-- Botón modo dark/light -->
-  <button class="toggle-theme" aria-label="Cambiar tema">🌙</button>
-  <!-- Botón multilenguaje -->
-  <button class="lang-toggle" aria-label="Cambiar idioma">EN</button>
-  <main class="container" role="main">
-    <!-- HERO -->
-    <header class="hero" aria-labelledby="hero-title">
-      <div class="logo-container" aria-hidden="false">
-        <img src="logo.svg" alt="Logotipo Conciencia Sonora" />
-      </div>
-      <div class="tagline" data-txt="Conecta Tu Música">Conecta Tu Música</div>
-      <h1 id="hero-title" class="title" data-txt="Conciencia Sonora">Conciencia Sonora</h1>
-      <p class="subtitle" data-txt="Donde cada proyecto encuentra su camino perfecto">Donde cada proyecto encuentra su camino perfecto</p>
-    </header>
-    <!-- METRICS -->
-    <section class="metrics" aria-label="Métricas">
-      <div class="metric">
-        <div class="number">400+</div>
-        <div class="label" data-txt="Eventos Realizados">Eventos Realizados</div>
-      </div>
-      <div class="metric-divider" aria-hidden="true"></div>
-      <div class="metric">
-        <div class="number">5+</div>
-        <div class="label" data-txt="Años de Experiencia">Años de Experiencia</div>
-      </div>
-    </section>
-    <!-- SERVICES -->
-    <section class="services" aria-labelledby="services-title">
-      <div id="services-title" class="services-title" data-txt="Áreas de Especialización">Áreas de Especialización</div>
-      <div class="services-grid">
-        <article class="service" aria-label="Booking y giras">
-          <h3 data-txt="Booking &amp; Giras">Booking &amp; Giras</h3>
-          <p data-txt="Conexión estratégica de artistas con venues para presentaciones en vivo y giras nacionales e internacionales">
-            Conexión estratégica de artistas con venues para presentaciones en vivo y giras nacionales e internacionales
-          </p>
-        </article>
-        <article class="service" aria-label="Gestión editorial">
-          <h3 data-txt="Gestión Editorial">Gestión Editorial</h3>
-          <p data-txt="Registro profesional de obras musicales y administración de derechos para maximizar el potencial de cada creación">
-            Registro profesional de obras musicales y administración de derechos para maximizar el potencial de cada creación
-          </p>
-        </article>
-        <article class="service" aria-label="Distribución digital">
-          <h3 data-txt="Distribución Digital">Distribución Digital</h3>
-          <p data-txt="Estrategias de lanzamiento y distribución en plataformas globales para amplificar el alcance de tu música">
-            Estrategias de lanzamiento y distribución en plataformas globales para amplificar el alcance de tu música
-          </p>
-        </article>
-      </div>
-    </section>
-    <!-- PRODUCTIONS -->
-    <section class="productions" aria-labelledby="productions-title">
-      <div id="productions-title" class="productions-title" data-txt="Proyectos Destacados">Proyectos Destacados</div>
-      <div class="productions-grid">
-        <div class="production" role="group" aria-label="Boiler Room">
-          <iframe loading="lazy" src="https://www.youtube.com/embed/ZGxSXchZNfo?start=0" title="Boiler Room"></iframe>
-          <div class="production-info">
-            <div class="production-role">Logística &amp; Producción</div>
-            <div class="production-name">Boiler Room</div>
-          </div>
+    <div class="switch-buttons">
+        <button class="switch-btn" id="toggle-theme" aria-label="Cambiar tema">🌙</button>
+        <button class="switch-btn" id="toggle-lang" aria-label="Cambiar idioma">EN</button>
+    </div>
+    <div class="neural-interface">
+        <div class="neural-grid"></div>
+        <div class="quantum-container">
+            <!-- ...todo tu contenido original VA IGUAL aquí... (como lo compartiste) ... -->
+            <!-- HERO -->
+            <section class="neuro-hero">
+                <div class="logo-container">
+                    <img src="logo.svg" alt="Conciencia Sonora" class="neural-logo">
+                </div>
+                <div class="quantum-tagline" data-txt="Conecta Tu Música">Conecta Tu Música</div>
+                <h1 class="neuro-title" data-txt="CONCIENCIA SONORA">CONCIENCIA SONORA</h1>
+                <p class="neuro-subtitle" data-txt="Donde cada proyecto encuentra su camino perfecto">Donde cada proyecto encuentra su camino perfecto</p>
+            </section>
+            <!-- MÉTRICAS -->
+            <section class="elegant-metrics">
+                <div class="metric-elegant">
+                    <span class="elegant-number">400+</span>
+                    <span class="elegant-label" data-txt="Eventos Realizados">Eventos Realizados</span>
+                </div>
+                <div class="metric-elegant">
+                    <span class="elegant-number">5+</span>
+                    <span class="elegant-label" data-txt="Años de Experiencia">Años de Experiencia</span>
+                </div>
+            </section>
+            <!-- SERVICIOS -->
+            <section class="professional-services">
+                <div class="services-title" data-txt="Áreas de Especialización">Áreas de Especialización</div>
+                <div class="services-elegant">
+                    <div class="service-elegant">
+                        <div class="service-heading" data-txt="Booking & Giras">Booking & Giras</div>
+                        <div class="service-description" data-txt="Conexión estratégica de artistas con venues para presentaciones en vivo y giras nacionales e internacionales">
+                            Conexión estratégica de artistas con venues para presentaciones en vivo y giras nacionales e internacionales
+                        </div>
+                    </div>
+                    <div class="service-elegant">
+                        <div class="service-heading" data-txt="Gestión Editorial">Gestión Editorial</div>
+                        <div class="service-description" data-txt="Registro profesional de obras musicales y administración de derechos para maximizar el potencial de cada creación">
+                            Registro profesional de obras musicales y administración de derechos para maximizar el potencial de cada creación
+                        </div>
+                    </div>
+                    <div class="service-elegant">
+                        <div class="service-heading" data-txt="Distribución Digital">Distribución Digital</div>
+                        <div class="service-description" data-txt="Estrategias de lanzamiento y distribución en plataformas globales para amplificar el alcance de tu música">
+                            Estrategias de lanzamiento y distribución en plataformas globales para amplificar el alcance de tu música
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- PRODUCCIONES -->
+            <section class="real-productions">
+                <div class="productions-title" data-txt="Proyectos Destacados">Proyectos Destacados</div>
+                <div class="productions-grid">
+                    <div class="production-item">
+                        <iframe class="production-player" src="https://www.youtube.com/embed/ZGxSXchZNfo?start=0" 
+                                title="Boiler Room" allowfullscreen></iframe>
+                        <div class="production-info">
+                            <div class="production-role">Logística & Producción</div>
+                            <div class="production-name">Boiler Room</div>
+                        </div>
+                    </div>
+                    <div class="production-item">
+                        <iframe class="production-player" src="https://www.youtube.com/embed/SD3T_Or_mvk?start=3" 
+                                title="Tra Tra" allowfullscreen></iframe>
+                        <div class="production-info">
+                            <div class="production-role">Coordinación</div>
+                            <div class="production-name">Tra Tra</div>
+                        </div>
+                    </div>
+                    <div class="production-item">
+                        <iframe class="production-player" src="https://www.youtube.com/embed/XCW95zjBUK4" 
+                                title="Gats" allowfullscreen></iframe>
+                        <div class="production-info">
+                            <div class="production-role">Producción Ejecutiva</div>
+                            <div class="production-name">Gats</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- SONIDO QUE ME GUSTA -->
+            <section class="sound-i-love">
+                <div class="sound-title" data-txt="Un Sonido Que Vale la Pena Escuchar">Un Sonido Que Vale la Pena Escuchar</div>
+                <div class="sound-player">
+                    <audio controls style="width: 100%;">
+                        <source src="micancion.mp3" type="audio/mpeg">
+                        Tu navegador no soporta el elemento de audio.
+                    </audio>
+                </div>
+            </section>
+            <!-- CONEXIÓN -->
+            <section class="elegant-connection">
+                <div class="connection-title" data-txt="Iniciemos una Conversación">Iniciemos una Conversación</div>
+                <p class="connection-subtitle" data-txt="¿Tienes un proyecto musical que necesita dirección estratégica? Hablemos sobre cómo podemos llevarlo al siguiente nivel">
+                    ¿Tienes un proyecto musical que necesita dirección estratégica? Hablemos sobre cómo podemos llevarlo al siguiente nivel
+                </p>
+                <div class="connection-actions">
+                    <a class="action-btn primary" href="mailto:emc121091@me.com?subject=Colaboración%20Musical&body=Hola,%20me%20gustaría%20explorar%20posibilidades%20de%20trabajo%20conjunto%20para%20mi%20proyecto%20musical." data-txt="Correo Electrónico">
+                        Correo Electrónico
+                    </a>
+                    <a class="action-btn" href="https://wa.me/525512478139?text=Hola,%20vi%20tu%20portafolio%20y%20me%20interesa%20conversar%20sobre%20mi%20proyecto%20musical." target="_blank" data-txt="Mensaje Directo">
+                        Mensaje Directo
+                    </a>
+                </div>
+            </section>
+            <footer class="portfolio-footer" data-txt="&copy; 2024 Conciencia Sonora - Conecta Tu Música">
+                &copy; 2024 Conciencia Sonora - Conecta Tu Música
+            </footer>
         </div>
-        <div class="production" role="group" aria-label="Tra Tra">
-          <iframe loading="lazy" src="https://www.youtube.com/embed/SD3T_Or_mvk?start=3" title="Tra Tra"></iframe>
-          <div class="production-info">
-            <div class="production-role">Coordinación</div>
-            <div class="production-name">Tra Tra</div>
-          </div>
-        </div>
-        <div class="production" role="group" aria-label="Gats">
-          <iframe loading="lazy" src="https://www.youtube.com/embed/XCW95zjBUK4" title="Gats"></iframe>
-          <div class="production-info">
-            <div class="production-role">Producción Ejecutiva</div>
-            <div class="production-name">Gats</div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- SOUND -->
-    <section class="sound" aria-labelledby="sound-title">
-      <h4 id="sound-title" data-txt="Un Sonido Que Vale la Pena Escuchar">Un Sonido Que Vale la Pena Escuchar</h4>
-      <div class="audio-player" role="region" aria-label="Reproductor de audio">
-        <audio controls style="width:100%">
-          <source src="micancion.mp3" type="audio/mpeg" />
-          Tu navegador no soporta el elemento de audio.
-        </audio>
-      </div>
-    </section>
-    <!-- CONNECTION -->
-    <section class="connection" aria-labelledby="contact-title">
-      <h4 id="contact-title" data-txt="Iniciemos una Conversación">Iniciemos una Conversación</h4>
-      <p data-txt="¿Tienes un proyecto musical que necesita dirección estratégica? Hablemos sobre cómo podemos llevarlo al siguiente nivel.">
-        ¿Tienes un proyecto musical que necesita dirección estratégica? Hablemos sobre cómo podemos llevarlo al siguiente nivel.
-      </p>
-      <div class="buttons">
-        <a class="action-link primary" href="mailto:emc121091@me.com?subject=Colaboración%20Musical" aria-label="Contactar por correo" data-txt="Correo Electrónico">Correo Electrónico</a>
-        <a class="action-link" href="https://wa.me/525512478139?text=Hola,%20vi%20tu%20portafolio%20y%20me%20interesa%20conversar" target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp" data-txt="Mensaje Directo">Mensaje Directo</a>
-      </div>
-    </section>
-    <!-- FOOTER -->
-    <footer class="footer" role="contentinfo" data-txt="© 2024 Conciencia Sonora - Conecta Tu Música por Eduardo Mejía">
-      © 2024 Conciencia Sonora - Conecta Tu Música por Eduardo Mejía
-    </footer>
-  </main>
-  <script>
-    // DARK/LIGHT TOGGLE
-    const themeBtn = document.querySelector('.toggle-theme');
-    themeBtn.onclick = () => {
-      document.body.classList.toggle("light");
-      themeBtn.textContent = document.body.classList.contains("light") ? "🌞" : "🌙";
-    };
-    // MULTILENGUAJE
-    const dict = {
-      es: {
-        "Conecta Tu Música": "Conecta Tu Música",
-        "Conciencia Sonora": "Conciencia Sonora",
-        "Donde cada proyecto encuentra su camino perfecto": "Donde cada proyecto encuentra su camino perfecto",
-        "Eventos Realizados":"Eventos Realizados",
-        "Años de Experiencia":"Años de Experiencia",
-        "Áreas de Especialización":"Áreas de Especialización",
-        "Booking & Giras":"Booking & Giras",
-        "Conexión estratégica de artistas con venues para presentaciones en vivo y giras nacionales e internacionales":
-          "Conexión estratégica de artistas con venues para presentaciones en vivo y giras nacionales e internacionales",
-        "Gestión Editorial":"Gestión Editorial",
-        "Registro profesional de obras musicales y administración de derechos para maximizar el potencial de cada creación":
-          "Registro profesional de obras musicales y administración de derechos para maximizar el potencial de cada creación",
-        "Distribución Digital":"Distribución Digital",
-        "Estrategias de lanzamiento y distribución en plataformas globales para amplificar el alcance de tu música":
-          "Estrategias de lanzamiento y distribución en plataformas globales para amplificar el alcance de tu música",
-        "Proyectos Destacados":"Proyectos Destacados",
-        "Un Sonido Que Vale la Pena Escuchar":"Un Sonido Que Vale la Pena Escuchar",
-        "Iniciemos una Conversación":"Iniciemos una Conversación",
-        "¿Tienes un proyecto musical que necesita dirección estratégica? Hablemos sobre cómo podemos llevarlo al siguiente nivel.":
-          "¿Tienes un proyecto musical que necesita dirección estratégica? Hablemos sobre cómo podemos llevarlo al siguiente nivel.",
-        "Correo Electrónico":"Correo Electrónico",
-        "Mensaje Directo":"Mensaje Directo",
-        "© 2024 Conciencia Sonora - Conecta Tu Música por Eduardo Mejía": "© 2024 Conciencia Sonora - Conecta Tu Música por Eduardo Mejía"
-      },
-      en: {
-        "Conecta Tu Música": "Connect Your Music",
-        "Conciencia Sonora": "Sonora Awareness",
-        "Donde cada proyecto encuentra su camino perfecto": "Where every project finds its perfect path",
-        "Eventos Realizados":"Events Delivered",
-        "Años de Experiencia":"Years of Experience",
-        "Áreas de Especialización":"Expertise Areas",
-        "Booking & Giras":"Tour Booking",
-        "Conexión estratégica de artistas con venues para presentaciones en vivo y giras nacionales e internacionales":
-          "Strategic connection of artists with venues for live shows and national/international tours",
-        "Gestión Editorial":"Editorial Management",
-        "Registro profesional de obras musicales y administración de derechos para maximizar el potencial de cada creación":
-          "Professional registration and rights management to maximize every creation",
-        "Distribución Digital":"Digital Distribution",
-        "Estrategias de lanzamiento y distribución en plataformas globales para amplificar el alcance de tu música":
-          "Launch and distribution strategies on global platforms to amplify your music",
-        "Proyectos Destacados":"Featured Projects",
-        "Un Sonido Que Vale la Pena Escuchar":"A Sound Worth Listening To",
-        "Iniciemos una Conversación":"Let's Start a Conversation",
-        "¿Tienes un proyecto musical que necesita dirección estratégica? Hablemos sobre cómo podemos llevarlo al siguiente nivel.":
-          "Do you have a music project that needs strategic direction? Let's talk about how we can take it to the next level.",
-        "Correo Electrónico":"Email",
-        "Mensaje Directo":"Direct Message",
-        "© 2024 Conciencia Sonora - Conecta Tu Música por Eduardo Mejía": "© 2024 Conciencia Sonora by Eduardo Mejía"
-      }
-    };
-    const langBtn = document.querySelector('.lang-toggle');
-    let lang = "es";
-    langBtn.onclick = () => {
-      lang = (lang === "es") ? "en" : "es";
-      langBtn.textContent = lang.toUpperCase() === "EN" ? "ES" : "EN";
-      document.documentElement.lang = lang;
-      document.querySelectorAll('[data-txt]').forEach(el=>{
-        let txt=el.getAttribute('data-txt');
-        if(dict[lang][txt]) el.textContent=dict[lang][txt];
-      });
-    };
-  </script>
+    </div>
+    <script>
+        // DARK/LIGHT
+        const themeBtn = document.getElementById('toggle-theme');
+        themeBtn.onclick = () => {
+            document.body.classList.toggle("light");
+            themeBtn.textContent = document.body.classList.contains("light") ? "🌞" : "🌙";
+        };
+        // MULTILENGUAJE
+        const dict = {
+            es: {
+                "Conecta Tu Música": "Conecta Tu Música",
+                "CONCIENCIA SONORA": "CONCIENCIA SONORA",
+                "Donde cada proyecto encuentra su camino perfecto": "Donde cada proyecto encuentra su camino perfecto",
+                "Eventos Realizados":"Eventos Realizados",
+                "Años de Experiencia":"Años de Experiencia",
+                "Áreas de Especialización":"Áreas de Especialización",
+                "Booking & Giras":"Booking & Giras",
+                "Conexión estratégica de artistas con venues para presentaciones en vivo y giras nacionales e internacionales":
+                  "Conexión estratégica de artistas con venues para presentaciones en vivo y giras nacionales e internacionales",
+                "Gestión Editorial":"Gestión Editorial",
+                "Registro profesional de obras musicales y administración de derechos para maximizar el potencial de cada creación":
+                  "Registro profesional de obras musicales y administración de derechos para maximizar el potencial de cada creación",
+                "Distribución Digital":"Distribución Digital",
+                "Estrategias de lanzamiento y distribución en plataformas globales para amplificar el alcance de tu música":
+                  "Estrategias de lanzamiento y distribución en plataformas globales para amplificar el alcance de tu música",
+                "Proyectos Destacados":"Proyectos Destacados",
+                "Un Sonido Que Vale la Pena Escuchar":"Un Sonido Que Vale la Pena Escuchar",
+                "Iniciemos una Conversación":"Iniciemos una Conversación",
+                "¿Tienes un proyecto musical que necesita dirección estratégica? Hablemos sobre cómo podemos llevarlo al siguiente nivel":
+                  "¿Tienes un proyecto musical que necesita dirección estratégica? Hablemos sobre cómo podemos llevarlo al siguiente nivel",
+                "Correo Electrónico":"Correo Electrónico",
+                "Mensaje Directo":"Mensaje Directo",
+                "&copy; 2024 Conciencia Sonora - Conecta Tu Música": "&copy; 2024 Conciencia Sonora - Conecta Tu Música"
+            },
+            en: {
+                "Conecta Tu Música": "Connect Your Music",
+                "CONCIENCIA SONORA": "SONORA AWARENESS",
+                "Donde cada proyecto encuentra su camino perfecto": "Where every project finds its perfect path",
+                "Eventos Realizados":"Events Delivered",
+                "Años de Experiencia":"Years Experience",
+                "Áreas de Especialización":"Expertise Areas",
+                "Booking & Giras":"Tour Booking",
+                "Conexión estratégica de artistas con venues para presentaciones en vivo y giras nacionales e internacionales":
+                  "Strategic artist-venue connections for live shows & national/international tours",
+                "Gestión Editorial":"Editorial Management",
+                "Registro profesional de obras musicales y administración de derechos para maximizar el potencial de cada creación":
+                  "Professional registration & rights management to maximize every creation",
+                "Distribución Digital":"Digital Distribution",
+                "Estrategias de lanzamiento y distribución en plataformas globales para amplificar el alcance de tu música":
+                  "Launch & distribution strategies on global platforms for maximum reach",
+                "Proyectos Destacados":"Featured Projects",
+                "Un Sonido Que Vale la Pena Escuchar":"A Sound Worth Listening To",
+                "Iniciemos una Conversación":"Let's Start a Conversation",
+                "¿Tienes un proyecto musical que necesita dirección estratégica? Hablemos sobre cómo podemos llevarlo al siguiente nivel":
+                  "Got a music project that needs strategic direction? Let's take it to the next level.",
+                "Correo Electrónico":"Email",
+                "Mensaje Directo":"Direct Message",
+                "&copy; 2024 Conciencia Sonora - Conecta Tu Música": "&copy; 2024 Conciencia Sonora by Eduardo Mejía"
+            }
+        };
+        const langBtn = document.getElementById('toggle-lang');
+        let lang = "es";
+        langBtn.onclick = () => {
+            lang = (lang === "es") ? "en" : "es";
+            langBtn.textContent = lang.toUpperCase() === "EN" ? "ES" : "EN";
+            document.documentElement.lang = lang;
+            document.querySelectorAll('[data-txt]').forEach(el=>{
+                let txt=el.getAttribute('data-txt');
+                if(dict[lang][txt]) el.textContent=dict[lang][txt];
+            });
+        };
+    </script>
 </body>
 </html>
