@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eduardo Mejía - Estrategias Musicales Internacionales</title>
+    <title>Conciencia Sonora - Conecta Tu Música</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
         
@@ -62,7 +62,7 @@
             padding: 0 2rem;
         }
         
-        /* HERO SECTION - CONFIANZA ORGÁNICA */
+        /* HERO SECTION - ANIMACIÓN GUAY */
         .neuro-hero {
             padding: 8rem 0 4rem;
             text-align: center;
@@ -80,32 +80,32 @@
             width: 100%;
             height: 100%;
             filter: drop-shadow(var(--glow-primary));
-            animation: logoFloat 6s ease-in-out infinite;
+            animation: logoSpin 20s linear infinite;
         }
         
-        @keyframes logoFloat {
-            0%, 100% { 
-                transform: translateY(0px) scale(1) rotate(0deg);
-                filter: drop-shadow(0 0 20px rgba(29, 185, 84, 0.4));
+        @keyframes logoSpin {
+            0% { 
+                transform: rotate(0deg) scale(1);
+                filter: drop-shadow(0 0 25px rgba(29, 185, 84, 0.6));
             }
-            33% { 
-                transform: translateY(-10px) scale(1.05) rotate(2deg);
-                filter: drop-shadow(0 0 30px rgba(29, 185, 84, 0.6));
+            50% { 
+                transform: rotate(180deg) scale(1.1);
+                filter: drop-shadow(0 0 35px rgba(29, 185, 84, 0.8));
             }
-            66% { 
-                transform: translateY(5px) scale(1.02) rotate(-1deg);
-                filter: drop-shadow(0 0 25px rgba(29, 185, 84, 0.5));
+            100% { 
+                transform: rotate(360deg) scale(1);
+                filter: drop-shadow(0 0 25px rgba(29, 185, 84, 0.6));
             }
         }
         
         .neural-logo:hover {
-            animation: logoPulse 0.8s ease-in-out;
+            animation: logoPulseSpin 0.8s ease-in-out;
         }
         
-        @keyframes logoPulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.15); }
-            100% { transform: scale(1.1); }
+        @keyframes logoPulseSpin {
+            0% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.3) rotate(180deg); }
+            100% { transform: scale(1.2) rotate(360deg); }
         }
         
         .quantum-tagline {
@@ -150,48 +150,39 @@
             margin: 0 auto 3rem;
         }
         
-        /* CONFIDENCE METRICS */
-        .confidence-metrics {
+        /* REAL METRICS - SIN TARJETAS DE EXPERIENCIA */
+        .real-metrics {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0;
             margin: 4rem 0;
-        }
-        
-        .confidence-node {
-            background: var(--neural-card);
-            border: 1px solid var(--neural-border);
-            border-radius: 16px;
-            padding: 2.5rem 2rem;
             text-align: center;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
         
-        .confidence-node::before {
+        .real-metric {
+            padding: 3rem 2rem;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .real-metric:first-child::after {
             content: '';
             position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(29, 185, 84, 0.1), transparent);
-            transition: left 0.6s ease;
+            right: 0;
+            top: 20%;
+            height: 60%;
+            width: 1px;
+            background: rgba(255, 255, 255, 0.1);
         }
         
-        .confidence-node:hover::before {
-            left: 100%;
+        .real-metric:hover {
+            background: rgba(255, 255, 255, 0.03);
         }
         
-        .confidence-node:hover {
-            transform: translateY(-8px);
-            border-color: var(--quantum-green);
-            box-shadow: var(--glow-primary);
-        }
-        
-        .confidence-value {
-            font-size: 2.5rem;
+        .metric-number {
+            font-size: 3rem;
             font-weight: 900;
             color: var(--quantum-green);
             display: block;
@@ -199,7 +190,7 @@
             margin-bottom: 0.5rem;
         }
         
-        .confidence-label {
+        .metric-label {
             font-size: 1rem;
             color: var(--neural-subtle);
             font-weight: 600;
@@ -207,8 +198,8 @@
             letter-spacing: 0.05em;
         }
         
-        /* ORGANIC SERVICES */
-        .organic-services {
+        /* SERVICIOS REALES - SIN MARCAS */
+        .real-services {
             margin: 6rem 0;
         }
         
@@ -278,35 +269,14 @@
             font-size: 1rem;
             color: var(--neural-subtle);
             line-height: 1.6;
-            margin-bottom: 1.5rem;
         }
         
-        .service-features {
-            list-style: none;
-            text-align: left;
-        }
-        
-        .service-features li {
-            padding: 0.5rem 0;
-            color: var(--neural-subtle);
-            position: relative;
-            padding-left: 1.5rem;
-        }
-        
-        .service-features li::before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            color: var(--quantum-green);
-            font-weight: bold;
-        }
-        
-        /* EXPERIENCE VISUAL */
-        .experience-visual {
+        /* PRODUCCIONES REALES */
+        .real-productions {
             margin: 6rem 0;
         }
         
-        .experience-title {
+        .productions-title {
             font-size: 1.1rem;
             font-weight: 600;
             color: var(--quantum-cyan);
@@ -316,13 +286,13 @@
             margin-bottom: 4rem;
         }
         
-        .media-showcase {
+        .productions-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 2rem;
         }
         
-        .media-item {
+        .production-item {
             background: var(--neural-card);
             border: 1px solid var(--neural-border);
             border-radius: 16px;
@@ -330,42 +300,46 @@
             transition: all 0.4s ease;
         }
         
-        .media-item:hover {
+        .production-item:hover {
             transform: translateY(-5px);
             border-color: var(--quantum-cyan);
             box-shadow: var(--glow-secondary);
         }
         
-        .media-player {
+        .production-player {
             width: 100%;
             height: 200px;
             border: none;
             background: var(--neural-surface);
         }
         
-        .media-info {
+        .production-info {
             padding: 1.5rem;
+            text-align: center;
         }
         
-        .media-name {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: var(--neural-text);
+        .production-role {
+            font-size: 0.9rem;
+            color: var(--quantum-green);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
             margin-bottom: 0.5rem;
         }
         
-        .media-context {
-            font-size: 0.9rem;
-            color: var(--neural-subtle);
+        .production-name {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--neural-text);
         }
         
-        /* IMMERSIVE AUDIO */
-        .immersive-audio {
+        /* SONIDO QUE ME GUSTA */
+        .sound-i-love {
             margin: 4rem 0;
             text-align: center;
         }
         
-        .audio-title {
+        .sound-title {
             font-size: 1.1rem;
             font-weight: 600;
             color: var(--quantum-green);
@@ -374,7 +348,7 @@
             margin-bottom: 2rem;
         }
         
-        .audio-experience {
+        .sound-player {
             background: var(--neural-card);
             border: 1px solid var(--neural-border);
             border-radius: 16px;
@@ -384,13 +358,13 @@
             transition: all 0.4s ease;
         }
         
-        .audio-experience:hover {
+        .sound-player:hover {
             border-color: var(--quantum-green);
             box-shadow: var(--glow-primary);
         }
         
-        /* ORGANIC CONNECTION */
-        .organic-connection {
+        /* CONEXIÓN REAL */
+        .real-connection {
             margin: 6rem 0 4rem;
             text-align: center;
         }
@@ -453,38 +427,6 @@
             color: var(--neural-bg);
         }
         
-        .social-network {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-        
-        .social-node {
-            width: 50px;
-            height: 50px;
-            background: var(--neural-card);
-            border: 1px solid var(--neural-border);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--quantum-cyan);
-            text-decoration: none;
-            transition: all 0.4s ease;
-        }
-        
-        .social-node:hover {
-            transform: translateY(-3px) scale(1.1);
-            border-color: var(--quantum-cyan);
-            background: rgba(0, 212, 255, 0.1);
-        }
-        
-        .social-node svg {
-            width: 20px;
-            height: 20px;
-        }
-        
         .portfolio-footer {
             margin-top: 4rem;
             padding: 3rem 0;
@@ -500,9 +442,12 @@
                 font-size: 2.5rem;
             }
             
-            .confidence-metrics {
+            .real-metrics {
                 grid-template-columns: 1fr;
-                gap: 1rem;
+            }
+            
+            .real-metric::after {
+                display: none !important;
             }
             
             .services-grid {
@@ -510,7 +455,7 @@
                 gap: 1.5rem;
             }
             
-            .media-showcase {
+            .productions-grid {
                 grid-template-columns: 1fr;
             }
             
@@ -534,106 +479,96 @@
             <!-- HERO SECTION -->
             <section class="neuro-hero">
                 <div class="logo-container">
-                    <img src="logo.svg" alt="Eduardo Mejía" class="neural-logo">
+                    <img src="logo.svg" alt="Conciencia Sonora" class="neural-logo">
                 </div>
                 
-                <div class="quantum-tagline">Conexión Musical Internacional</div>
-                <h1 class="neuro-title">EDUARDO MEJÍA</h1>
-                <p class="neuro-subtitle">Estrategias que conectan tu música con el mundo</p>
+                <div class="quantum-tagline">Conecta Tu Música</div>
+                <h1 class="neuro-title">CONCIENCIA SONORA</h1>
+                <p class="neuro-subtitle">Donde cada proyecto encuentra su camino perfecto</p>
             </section>
             
-            <!-- CONFIDENCE METRICS -->
-            <section class="confidence-metrics">
-                <div class="confidence-node">
-                    <span class="confidence-value">5+</span>
-                    <span class="confidence-label">Países de Experiencia</span>
+            <!-- MÉTRICAS REALES -->
+            <section class="real-metrics">
+                <div class="real-metric">
+                    <span class="metric-number">400+</span>
+                    <span class="metric-label">Deals Cerrados</span>
                 </div>
-                <div class="confidence-node">
-                    <span class="confidence-value">3+</span>
-                    <span class="confidence-label">Syncs Globales</span>
-                </div>
-                <div class="confidence-node">
-                    <span class="confidence-value">2</span>
-                    <span class="confidence-label">Distribuidoras Directas</span>
+                <div class="real-metric">
+                    <span class="metric-number">5+</span>
+                    <span class="metric-label">Años de Experiencia</span>
                 </div>
             </section>
             
-            <!-- ORGANIC SERVICES -->
-            <section class="organic-services">
-                <div class="services-title">Servicios Especializados</div>
+            <!-- SERVICIOS REALES -->
+            <section class="real-services">
+                <div class="services-title">Lo Que Hago</div>
                 
                 <div class="services-grid">
                     <div class="service-card">
-                        <div class="service-icon">🌎</div>
-                        <div class="service-name">Booking Internacional</div>
+                        <div class="service-icon">🎵</div>
+                        <div class="service-name">Booking & Giras</div>
                         <div class="service-desc">
-                            Conexión estratégica entre España y México para artistas
+                            Conecto artistas con venues estratégicos para fechas y giras
                         </div>
-                        <ul class="service-features">
-                            <li>Fechas en mercados clave</li>
-                            <li>Giras cortas y eventos</li>
-                            <li>Enfoque reggaetón y electrónica</li>
-                        </ul>
                     </div>
                     
                     <div class="service-card">
-                        <div class="service-icon">📝</div>
-                        <div class="service-name">Editorial & Publishing</div>
+                        <div class="service-icon">📄</div>
+                        <div class="service-name">Editorial</div>
                         <div class="service-desc">
-                            Gestión profesional de derechos y administración
+                            Registro de obras y gestión de derechos para artistas
                         </div>
-                        <ul class="service-features">
-                            <li>Registro Indautor</li>
-                            <li>Onerpm Publishing</li>
-                            <li>Afiliación SACM</li>
-                        </ul>
                     </div>
                     
                     <div class="service-card">
-                        <div class="service-icon">🚀</div>
-                        <div class="service-name">Distribución Global</div>
+                        <div class="service-icon">🌍</div>
+                        <div class="service-name">Distribución</div>
                         <div class="service-desc">
-                            Lanzamientos en todas las plataformas digitales
-                        </div>
-                        <ul class="service-features">
-                            <li>Onerpm directo</li>
-                            <li>Symphonic Distribution</li>
-                            <li>Estrategias de lanzamiento</li>
-                        </ul>
-                    </div>
-                </div>
-            </section>
-            
-            <!-- EXPERIENCE VISUAL -->
-            <section class="experience-visual">
-                <div class="experience-title">Experiencia en Acción</div>
-                
-                <div class="media-showcase">
-                    <div class="media-item">
-                        <iframe class="media-player" src="https://www.youtube.com/embed/ZGxSXchZNfo?start=0" 
-                                title="Boiler Room Experience" allowfullscreen></iframe>
-                        <div class="media-info">
-                            <div class="media-name">Boiler Room</div>
-                            <div class="media-context">Experiencia en eventos globales</div>
-                        </div>
-                    </div>
-                    
-                    <div class="media-item">
-                        <iframe class="media-player" src="https://www.youtube.com/embed/SD3T_Or_mvk?start=3" 
-                                title="Producción Profesional" allowfullscreen></iframe>
-                        <div class="media-info">
-                            <div class="media-name">Producción Musical</div>
-                            <div class="media-context">Dirección y estrategia</div>
+                            Lanzamiento de música en todas las plataformas digitales
                         </div>
                     </div>
                 </div>
             </section>
             
-            <!-- IMMERSIVE AUDIO -->
-            <section class="immersive-audio">
-                <div class="audio-title">Mi Sonido</div>
+            <!-- PRODUCCIONES REALES -->
+            <section class="real-productions">
+                <div class="productions-title">Proyectos Reales</div>
                 
-                <div class="audio-experience">
+                <div class="productions-grid">
+                    <div class="production-item">
+                        <iframe class="production-player" src="https://www.youtube.com/embed/ZGxSXchZNfo?start=0" 
+                                title="Boiler Room" allowfullscreen></iframe>
+                        <div class="production-info">
+                            <div class="production-role">Logística & Producción</div>
+                            <div class="production-name">Boiler Room</div>
+                        </div>
+                    </div>
+                    
+                    <div class="production-item">
+                        <iframe class="production-player" src="https://www.youtube.com/embed/SD3T_Or_mvk?start=3" 
+                                title="Tra Tra" allowfullscreen></iframe>
+                        <div class="production-info">
+                            <div class="production-role">Coordinación</div>
+                            <div class="production-name">Tra Tra</div>
+                        </div>
+                    </div>
+                    
+                    <div class="production-item">
+                        <iframe class="production-player" src="https://www.youtube.com/embed/XCW95zjBUK4" 
+                                title="Gats" allowfullscreen></iframe>
+                        <div class="production-info">
+                            <div class="production-role">Producción Ejecutiva</div>
+                            <div class="production-name">Gats</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- SONIDO QUE ME GUSTA -->
+            <section class="sound-i-love">
+                <div class="sound-title">Un Sonido Que Me Encanta</div>
+                
+                <div class="sound-player">
                     <audio controls style="width: 100%;">
                         <source src="micancion.mp3" type="audio/mpeg">
                         Tu navegador no soporta el elemento de audio.
@@ -641,33 +576,25 @@
                 </div>
             </section>
             
-            <!-- ORGANIC CONNECTION -->
-            <section class="organic-connection">
-                <div class="connection-title">Conectemos</div>
+            <!-- CONEXIÓN REAL -->
+            <section class="real-connection">
+                <div class="connection-title">Hablemos de Tu Proyecto</div>
                 <p class="connection-subtitle">
-                    Hablemos de tu proyecto musical y encontremos la mejor estrategia juntos
+                    ¿Tienes música que necesita llegar más lejos? Conversemos
                 </p>
                 
                 <div class="connection-actions">
-                    <a class="action-btn primary" href="mailto:emc121091@me.com?subject=Colaboración%20Musical&body=Hola%20Eduardo,%20me%20interesa%20conocer%20más%20sobre%20tus%20servicios%20musicales.">
+                    <a class="action-btn primary" href="mailto:emc121091@me.com?subject=Hablemos%20de%20mi%20proyecto%20musical&body=Hola,%20me%20gustaría%20conversar%20sobre%20mi%20proyecto%20musical%20y%20cómo%20podemos%20trabajar%20juntos.">
                         Email Directo
                     </a>
-                    <a class="action-btn" href="https://wa.me/525512478139?text=Hola%20Eduardo,%20vi%20tu%20portfolio%20y%20me%20interesa%20conversar%20sobre%20mis%20proyectos%20musicales." target="_blank">
+                    <a class="action-btn" href="https://wa.me/525512478139?text=Hola,%20vi%20tu%20portfolio%20y%20me%20gustaría%20hablar%20de%20mi%20proyecto%20musical." target="_blank">
                         WhatsApp
-                    </a>
-                </div>
-                
-                <div class="social-network">
-                    <a class="social-node" href="https://edumecar.github.io/Book/" title="Dashboard" target="_blank">
-                        <svg viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/>
-                        </svg>
                     </a>
                 </div>
             </section>
             
             <footer class="portfolio-footer">
-                &copy; 2024 Eduardo Mejía · Estrategias Musicales Internacionales
+                &copy; 2024 Conciencia Sonora - Conecta Tu Música
             </footer>
         </div>
     </div>
