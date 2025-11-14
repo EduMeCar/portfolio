@@ -886,8 +886,8 @@
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    animateCounter(document.getElementById('metricEvents'), 200);
-                    animateCounter(document.getElementById('metricYears'), 5);
+                    animateCounter(document.getElementById('metricEvents'), 300);
+                    animateCounter(document.getElementById('metricYears'), 6);
                     observer.unobserve(entry.target);
                 }
             });
