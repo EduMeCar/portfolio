@@ -239,6 +239,152 @@
             max-width: 600px;
             margin: 0 auto 3rem;
         }
+
+        <!-- AÑADIR DESPUÉS DEL HERO SECTION -->
+<section class="about-section">
+    <div class="quantum-container">
+        <div class="about-content">
+            <div class="about-text">
+                <h2 class="about-title" data-es="Mi Filosofía" data-en="My Philosophy">Mi Filosofía</h2>
+                <p class="about-description" data-es="No soy un manager tradicional. Soy un arquitecto de carreras musicales que conecta talento con oportunidades reales. Mi enfoque está en artistas y productores que tienen la música pero no la audiencia." data-en="I'm not a traditional manager. I'm a music career architect who connects talent with real opportunities. My focus is on artists and producers who have the music but not the audience.">
+                    No soy un manager tradicional. Soy un arquitecto de carreras musicales que conecta talento con oportunidades reales. Mi enfoque está en artistas y productores que tienen la música pero no la audiencia.
+                </p>
+                
+                <div class="about-points">
+                    <div class="about-point">
+                        <span class="point-icon">🎯</span>
+                        <div>
+                            <strong data-es="Estrategia, No Solo Contactos" data-en="Strategy, Not Just Contacts">Estrategia, No Solo Contactos</strong>
+                            <p data-es="Creo planes personalizados basados en datos, no en suposiciones" data-en="I create personalized plans based on data, not assumptions">Creo planes personalizados basados en datos, no en suposiciones</p>
+                        </div>
+                    </div>
+                    
+                    <div class="about-point">
+                        <span class="point-icon">🚀</span>
+                        <div>
+                            <strong data-es="Resultados Medibles" data-en="Measurable Results">Resultados Medibles</strong>
+                            <p data-es="Cada proyecto tiene objetivos claros y métricas de éxito definidas" data-en="Every project has clear objectives and defined success metrics">Cada proyecto tiene objetivos claros y métricas de éxito definidas</p>
+                        </div>
+                    </div>
+                    
+                    <div class="about-point">
+                        <span class="point-icon">💎</span>
+                        <div>
+                            <strong data-es="Transparencia Total" data-en="Total Transparency">Transparencia Total</strong>
+                            <p data-es="Sabes exactamente qué hago, cómo lo hago y qué resultados esperamos" data-en="You know exactly what I do, how I do it, and what results we expect">Sabes exactamente qué hago, cómo lo hago y qué resultados esperamos</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="about-photo">
+                <!-- REEMPLAZA CON TU FOTO -->
+                <div class="photo-placeholder">
+                    <span data-es="Tu Foto Aquí" data-en="Your Photo Here">Tu Foto Aquí</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+.about-section {
+    padding: 6rem 0;
+    background: var(--neural-surface);
+    border-top: 1px solid var(--neural-border);
+    border-bottom: 1px solid var(--neural-border);
+}
+
+.about-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.about-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--neural-text) 0%, var(--quantum-cyan) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 2rem;
+}
+
+.about-description {
+    font-size: 1.2rem;
+    line-height: 1.7;
+    color: var(--neural-subtle);
+    margin-bottom: 3rem;
+}
+
+.about-points {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.about-point {
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+}
+
+.point-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.about-point strong {
+    display: block;
+    color: var(--neural-text);
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+.about-point p {
+    color: var(--neural-subtle);
+    line-height: 1.5;
+}
+
+.about-photo {
+    text-align: center;
+}
+
+.photo-placeholder {
+    width: 280px;
+    height: 280px;
+    background: var(--neural-card);
+    border: 2px dashed var(--neural-border);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--neural-subtle);
+    font-size: 1rem;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .about-content {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+    
+    .about-title {
+        font-size: 2rem;
+    }
+    
+    .photo-placeholder {
+        width: 200px;
+        height: 200px;
+        margin: 0 auto;
+    }
+}
+</style>
         
         /* MÉTRICAS CON CONTEO ANIMADO */
         .elegant-metrics {
