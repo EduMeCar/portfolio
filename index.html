@@ -789,6 +789,10 @@
                             allowfullscreen="" 
                             allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
                             loading="lazy">
+                    </iframe>
+                    <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--neural-subtle);" data-es="Mis proyectos y colaboraciones musicales" data-en="My projects and musical collaborations">
+                            
+                    </p>
                 </div>
             </section>
             
@@ -886,8 +890,8 @@
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    animateCounter(document.getElementById('metricEvents'), 300);
-                    animateCounter(document.getElementById('metricYears'), 6);
+                    animateCounter(document.getElementById('metricEvents'), 200);
+                    animateCounter(document.getElementById('metricYears'), 5);
                     observer.unobserve(entry.target);
                 }
             });
