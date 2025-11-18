@@ -9,28 +9,27 @@
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
         
         :root {
-            --carbon: #0a0a0a;
-            --steel: #1a1a1a;
+            --vinyl-black: #0a0a0a;
+            --dusty-gray: #1a1a1a;
             --concrete: #2a2a2a;
-            --chrome: #f8f9fa;
-            --neon-red: #ff073a;
-            --neon-cyan: #00f5ff;
-            --grid-line: rgba(255,255,255,0.03);
+            --warm-white: #f5f5f5;
+            --detroit-red: #ff073a;
+            --analog-cyan: #00f5ff;
+            --vintage-yellow: #ffd700;
+            --cassette-tape: #8b4513;
             
             /* Light mode */
-            --light-carbon: #ffffff;
-            --light-steel: #f8f9fa;
-            --light-concrete: #e9ecef;
-            --light-chrome: #212529;
-            --light-grid: rgba(0,0,0,0.03);
+            --light-vinyl: #f8f9fa;
+            --light-dust: #e9ecef;
+            --light-concrete: #dee2e6;
+            --light-text: #212529;
         }
         
         .light-mode {
-            --carbon: var(--light-carbon);
-            --steel: var(--light-steel);
+            --vinyl-black: var(--light-vinyl);
+            --dusty-gray: var(--light-dust);
             --concrete: var(--light-concrete);
-            --chrome: var(--light-chrome);
-            --grid-line: var(--light-grid);
+            --warm-white: var(--light-text);
         }
         
         * {
@@ -40,8 +39,8 @@
         }
         
         body {
-            background: var(--carbon);
-            color: var(--chrome);
+            background: var(--vinyl-black);
+            color: var(--warm-white);
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             line-height: 1.6;
             overflow-x: hidden;
@@ -49,12 +48,12 @@
         }
         
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 0 2rem;
         }
         
-        /* CONTROL BAR */
+        /* CONTROL BAR VINTAGE */
         .control-bar {
             position: fixed;
             top: 20px;
@@ -67,25 +66,26 @@
         .control-btn {
             width: 40px;
             height: 40px;
-            background: var(--steel);
+            background: var(--dusty-gray);
             border: 1px solid var(--concrete);
-            border-radius: 8px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
             transition: all 0.3s ease;
-            color: var(--chrome);
+            color: var(--warm-white);
             font-size: 0.9rem;
         }
         
         .control-btn:hover {
-            border-color: var(--neon-cyan);
+            border-color: var(--detroit-red);
             transform: scale(1.1);
+            background: var(--concrete);
         }
         
-        /* HERO */
-        .arch-hero {
+        /* HERO CON LOGO VINTAGE */
+        .vintage-hero {
             min-height: 100vh;
             display: flex;
             align-items: center;
@@ -93,8 +93,9 @@
             text-align: center;
             position: relative;
             background: 
-                linear-gradient(90deg, var(--grid-line) 1px, transparent 1px) 0 0 / 50px 50px,
-                linear-gradient(var(--grid-line) 1px, transparent 1px) 0 0 / 50px 50px;
+                radial-gradient(circle at 20% 50%, rgba(255, 7, 58, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(0, 245, 255, 0.1) 0%, transparent 50%),
+                linear-gradient(45deg, var(--vinyl-black) 0%, var(--dusty-gray) 100%);
         }
         
         .hero-content {
@@ -102,71 +103,182 @@
             z-index: 2;
         }
         
-        .arch-name {
-            font-size: 4rem;
-            font-weight: 300;
-            letter-spacing: -0.02em;
-            margin-bottom: 1rem;
-        }
-        
-        .arch-title {
-            font-size: 1.2rem;
-            font-weight: 400;
-            color: var(--neon-cyan);
-            text-transform: uppercase;
-            letter-spacing: 0.3em;
+        .logo-container {
+            margin: 0 auto 2rem;
+            width: 180px;
+            height: 180px;
             position: relative;
         }
         
-        /* LO QUE HAGO SECTION */
-        .what-i-do {
+        .vintage-logo {
+            width: 100%;
+            height: 100%;
+            filter: sepia(0.3) contrast(1.1) brightness(0.9);
+            animation: vinylSpin 20s linear infinite;
+            border-radius: 50%;
+        }
+        
+        @keyframes vinylSpin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .arch-name {
+            font-size: 3.5rem;
+            font-weight: 300;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+        
+        .arch-title {
+            font-size: 1.1rem;
+            font-weight: 400;
+            color: var(--analog-cyan);
+            text-transform: uppercase;
+            letter-spacing: 0.4em;
+            position: relative;
+            margin-bottom: 3rem;
+        }
+        
+        .arch-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--detroit-red), transparent);
+        }
+        
+        /* TIMELINE ELEGANTE */
+        .timeline-section {
             padding: 6rem 0;
-            background: var(--steel);
+            background: var(--dusty-gray);
+            position: relative;
+        }
+        
+        .timeline-section::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, transparent, var(--detroit-red), transparent);
+            transform: translateX(-50%);
         }
         
         .section-title {
             font-size: 1rem;
             font-weight: 500;
-            color: var(--neon-cyan);
+            color: var(--analog-cyan);
             text-transform: uppercase;
-            letter-spacing: 0.2em;
+            letter-spacing: 0.3em;
             text-align: center;
             margin-bottom: 4rem;
         }
         
-        .metrics-services-grid {
+        .timeline-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .timeline-years {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+        
+        .year-marker {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .year-dot {
+            width: 12px;
+            height: 12px;
+            background: var(--detroit-red);
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            position: relative;
+        }
+        
+        .year-dot::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 20px;
+            height: 20px;
+            border: 1px solid var(--detroit-red);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+            100% { transform: translate(-50%, -50%) scale(2); opacity: 0; }
+        }
+        
+        .year-label {
+            font-size: 0.9rem;
+            color: var(--warm-white);
+            font-weight: 500;
+        }
+        
+        /* SERVICIOS ARMONIOSOS */
+        .services-harmony {
             display: grid;
             grid-template-columns: 1fr 2fr;
             gap: 4rem;
             align-items: start;
         }
         
-        .metrics-column {
+        .metrics-elegant {
             display: flex;
             flex-direction: column;
-            gap: 3rem;
+            gap: 2rem;
         }
         
-        .metric-card {
+        .metric-vintage {
             text-align: center;
-            padding: 2rem;
-            background: var(--carbon);
+            padding: 2rem 1.5rem;
+            background: var(--vinyl-black);
             border: 1px solid var(--concrete);
             border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .metric-vintage::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--detroit-red);
         }
         
         .metric-number {
-            font-size: 3rem;
-            font-weight: 300;
-            color: var(--neon-red);
+            font-size: 2.5rem;
+            font-weight: 200;
+            color: var(--vintage-yellow);
             display: block;
             line-height: 1;
             margin-bottom: 0.5rem;
+            font-feature-settings: "tnum";
         }
         
         .metric-label {
-            font-size: 0.9rem;
-            color: var(--chrome);
+            font-size: 0.8rem;
+            color: var(--warm-white);
             font-weight: 400;
             text-transform: uppercase;
             letter-spacing: 0.1em;
@@ -178,29 +290,52 @@
             gap: 2rem;
         }
         
-        .service-card {
+        .service-vintage {
             padding: 2.5rem 2rem;
-            background: var(--carbon);
+            background: var(--vinyl-black);
             border: 1px solid var(--concrete);
             border-radius: 8px;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
         }
         
-        .service-card:hover {
-            border-color: var(--neon-cyan);
+        .service-vintage::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 7, 58, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+        
+        .service-vintage:hover::before {
+            left: 100%;
+        }
+        
+        .service-vintage:hover {
+            border-color: var(--analog-cyan);
             transform: translateY(-5px);
+        }
+        
+        .service-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--detroit-red);
         }
         
         .service-name {
             font-size: 1.3rem;
             font-weight: 600;
             margin-bottom: 1rem;
-            color: var(--chrome);
+            color: var(--warm-white);
         }
         
         .service-desc {
-            font-size: 1rem;
-            color: var(--chrome);
+            font-size: 0.95rem;
+            color: var(--warm-white);
             opacity: 0.9;
             line-height: 1.6;
         }
@@ -216,24 +351,41 @@
             gap: 2rem;
         }
         
-        .project-card {
-            background: var(--steel);
+        .project-vintage {
+            background: var(--dusty-gray);
             border: 1px solid var(--concrete);
             border-radius: 8px;
             overflow: hidden;
             transition: all 0.3s ease;
+            position: relative;
         }
         
-        .project-card:hover {
+        .project-vintage::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent, rgba(255, 7, 58, 0.05), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .project-vintage:hover::before {
+            opacity: 1;
+        }
+        
+        .project-vintage:hover {
             transform: translateY(-5px);
-            border-color: var(--neon-cyan);
+            border-color: var(--detroit-red);
         }
         
         .project-player {
             width: 100%;
             height: 200px;
             border: none;
-            background: var(--carbon);
+            background: var(--vinyl-black);
         }
         
         .project-info {
@@ -243,7 +395,7 @@
         
         .project-role {
             font-size: 0.9rem;
-            color: var(--neon-red);
+            color: var(--detroit-red);
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.05em;
@@ -253,28 +405,27 @@
         .project-name {
             font-size: 1.1rem;
             font-weight: 600;
-            color: var(--chrome);
+            color: var(--warm-white);
         }
         
-        /* NUESTRO SONIDO */
+        /* NUESTRO SONIDO EXPANDIDO */
         .our-sound {
             padding: 4rem 0;
-            background: var(--steel);
-            text-align: center;
+            background: var(--dusty-gray);
         }
         
-        .sound-player {
-            max-width: 600px;
+        .sound-player-wide {
+            max-width: 100%;
             margin: 0 auto;
-            background: var(--carbon);
+            background: var(--vinyl-black);
             border: 1px solid var(--concrete);
             border-radius: 12px;
             padding: 2rem;
             transition: all 0.3s ease;
         }
         
-        .sound-player:hover {
-            border-color: var(--neon-cyan);
+        .sound-player-wide:hover {
+            border-color: var(--analog-cyan);
         }
         
         /* CONTACTO */
@@ -293,19 +444,36 @@
         
         .action-btn {
             padding: 1.2rem 2.5rem;
-            border: 2px solid var(--neon-cyan);
-            color: var(--neon-cyan);
+            border: 2px solid var(--analog-cyan);
+            color: var(--analog-cyan);
             text-decoration: none;
             border-radius: 8px;
             font-weight: 600;
             transition: all 0.4s ease;
             min-width: 180px;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .action-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 245, 255, 0.2), transparent);
+            transition: left 0.6s ease;
+        }
+        
+        .action-btn:hover::before {
+            left: 100%;
         }
         
         .action-btn.primary {
-            background: var(--neon-cyan);
-            color: var(--carbon);
+            background: var(--analog-cyan);
+            color: var(--vinyl-black);
         }
         
         .action-btn:hover {
@@ -314,15 +482,15 @@
         
         .action-btn.primary:hover {
             background: transparent;
-            color: var(--neon-cyan);
+            color: var(--analog-cyan);
         }
         
         .action-btn:not(.primary):hover {
-            background: var(--neon-cyan);
-            color: var(--carbon);
+            background: var(--analog-cyan);
+            color: var(--vinyl-black);
         }
         
-        /* WHATSAPP FLOAT */
+        /* WHATSAPP FLOAT VINTAGE */
         .whatsapp-float {
             position: fixed;
             bottom: 20px;
@@ -339,6 +507,7 @@
             z-index: 1000;
             transition: transform 0.3s ease;
             text-decoration: none;
+            border: 2px solid white;
         }
         
         .whatsapp-float:hover {
@@ -356,30 +525,58 @@
             padding: 3rem 0;
             border-top: 1px solid var(--concrete);
             text-align: center;
-            color: var(--chrome);
+            color: var(--warm-white);
             opacity: 0.8;
             font-size: 0.9rem;
         }
         
         /* RESPONSIVE DESIGN */
+        @media (min-width: 1200px) {
+            .sound-player-wide {
+                max-width: 90%;
+            }
+        }
+        
         @media (max-width: 1024px) {
             .projects-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
             
-            .metrics-services-grid {
+            .services-harmony {
                 grid-template-columns: 1fr;
                 gap: 3rem;
             }
             
-            .metrics-column {
+            .metrics-elegant {
                 flex-direction: row;
                 justify-content: center;
             }
             
-            .metric-card {
+            .metric-vintage {
                 flex: 1;
                 max-width: 200px;
+            }
+            
+            .timeline-section::before {
+                left: 30px;
+            }
+            
+            .timeline-years {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 2rem;
+                margin-left: 30px;
+            }
+            
+            .year-marker {
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+            }
+            
+            .year-dot {
+                margin: 0;
+                order: -1;
             }
         }
         
@@ -389,15 +586,20 @@
             }
             
             .arch-title {
-                font-size: 1rem;
+                font-size: 0.9rem;
             }
             
-            .metrics-column {
+            .logo-container {
+                width: 140px;
+                height: 140px;
+            }
+            
+            .metrics-elegant {
                 flex-direction: column;
                 align-items: center;
             }
             
-            .metric-card {
+            .metric-vintage {
                 width: 100%;
                 max-width: 300px;
             }
@@ -432,7 +634,7 @@
             }
             
             .metric-number {
-                font-size: 2.5rem;
+                font-size: 2rem;
             }
             
             .whatsapp-float {
@@ -464,52 +666,79 @@
     </a>
 
     <div class="neural-interface">
-        <!-- HERO SECTION -->
-        <section class="arch-hero">
+        <!-- HERO SECTION CON LOGO -->
+        <section class="vintage-hero">
             <div class="container">
                 <div class="hero-content">
+                    <div class="logo-container">
+                        <img src="logo.svg" alt="Eduardo Mejía" class="vintage-logo">
+                    </div>
                     <h1 class="arch-name">EDUARDO MEJÍA</h1>
                     <div class="arch-title" data-es="Arquitectura Musical" data-en="Musical Architecture">Arquitectura Musical</div>
                 </div>
             </div>
         </section>
         
-        <!-- LO QUE HAGO -->
-        <section class="what-i-do">
+        <!-- TIMELINE + LO QUE HAGO -->
+        <section class="timeline-section">
             <div class="container">
-                <div class="section-title" data-es="Lo Que Hago" data-en="What I Do">Lo Que Hago</div>
+                <div class="section-title" data-es="6 Años de Trayectoria" data-en="6 Years of Journey">6 Años de Trayectoria</div>
                 
-                <div class="metrics-services-grid">
-                    <div class="metrics-column">
-                        <div class="metric-card">
-                            <span class="metric-number" id="metricEvents">0</span>
-                            <span class="metric-label" data-es="Eventos Realizados" data-en="Events Curated">Eventos Realizados</span>
+                <div class="timeline-container">
+                    <div class="timeline-years">
+                        <div class="year-marker">
+                            <div class="year-dot"></div>
+                            <div class="year-label">2018</div>
                         </div>
-                        <div class="metric-card">
-                            <span class="metric-number" id="metricYears">0</span>
-                            <span class="metric-label" data-es="Años en la Escena" data-en="Years in the Scene">Años en la Escena</span>
+                        <div class="year-marker">
+                            <div class="year-dot"></div>
+                            <div class="year-label">2020</div>
+                        </div>
+                        <div class="year-marker">
+                            <div class="year-dot"></div>
+                            <div class="year-label">2022</div>
+                        </div>
+                        <div class="year-marker">
+                            <div class="year-dot"></div>
+                            <div class="year-label">2024</div>
                         </div>
                     </div>
                     
-                    <div class="services-grid">
-                        <div class="service-card">
-                            <div class="service-name" data-es="Booking & Giras" data-en="Booking & Tours">Booking & Giras</div>
-                            <div class="service-desc" data-es="Conexión estratégica de artistas con venues para presentaciones en vivo y giras nacionales e internacionales" data-en="Strategic connection of artists with venues for live performances and national/international tours">
-                                Conexión estratégica de artistas con venues para presentaciones en vivo y giras nacionales e internacionales
+                    <div class="services-harmony">
+                        <div class="metrics-elegant">
+                            <div class="metric-vintage">
+                                <span class="metric-number" id="metricEvents">0</span>
+                                <span class="metric-label" data-es="Eventos Realizados" data-en="Events Curated">Eventos Realizados</span>
+                            </div>
+                            <div class="metric-vintage">
+                                <span class="metric-number" id="metricYears">0</span>
+                                <span class="metric-label" data-es="Años en la Escena" data-en="Years in the Scene">Años en la Escena</span>
                             </div>
                         </div>
                         
-                        <div class="service-card">
-                            <div class="service-name" data-es="Gestión Editorial" data-en="Publishing Management">Gestión Editorial</div>
-                            <div class="service-desc" data-es="Registro profesional de obras musicales y administración de derechos para maximizar el potencial de cada creación" data-en="Professional registration of musical works and rights management to maximize the potential of each creation">
-                                Registro profesional de obras musicales y administración de derechos para maximizar el potencial de cada creación
+                        <div class="services-grid">
+                            <div class="service-vintage">
+                                <div class="service-icon">⤈</div>
+                                <div class="service-name" data-es="Booking & Giras" data-en="Booking & Tours">Booking & Giras</div>
+                                <div class="service-desc" data-es="Conexión estratégica de artistas con venues para presentaciones en vivo y giras nacionales e internacionales" data-en="Strategic connection of artists with venues for live performances and national/international tours">
+                                    Conexión estratégica de artistas con venues para presentaciones en vivo y giras nacionales e internacionales
+                                </div>
                             </div>
-                        </div>
-                        
-                        <div class="service-card">
-                            <div class="service-name" data-es="Distribución Digital" data-en="Digital Distribution">Distribución Digital</div>
-                            <div class="service-desc" data-es="Estrategias de lanzamiento y distribución en plataformas globales para amplificar el alcance de tu música" data-en="Launch strategies and distribution on global platforms to amplify your music's reach">
-                                Estrategias de lanzamiento y distribución en plataformas globales para amplificar el alcance de tu música
+                            
+                            <div class="service-vintage">
+                                <div class="service-icon">⌗</div>
+                                <div class="service-name" data-es="Gestión Editorial" data-en="Publishing Management">Gestión Editorial</div>
+                                <div class="service-desc" data-es="Registro profesional de obras musicales y administración de derechos para maximizar el potencial de cada creación" data-en="Professional registration of musical works and rights management to maximize the potential of each creation">
+                                    Registro profesional de obras musicales y administración de derechos para maximizar el potencial de cada creación
+                                </div>
+                            </div>
+                            
+                            <div class="service-vintage">
+                                <div class="service-icon">⤓</div>
+                                <div class="service-name" data-es="Distribución Digital" data-en="Digital Distribution">Distribución Digital</div>
+                                <div class="service-desc" data-es="Estrategias de lanzamiento y distribución en plataformas globales para amplificar el alcance de tu música" data-en="Launch strategies and distribution on global platforms to amplify your music's reach">
+                                    Estrategias de lanzamiento y distribución en plataformas globales para amplificar el alcance de tu música
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -523,7 +752,7 @@
                 <div class="section-title" data-es="Proyectos Destacados" data-en="Featured Projects">Proyectos Destacados</div>
                 
                 <div class="projects-grid">
-                    <div class="project-card">
+                    <div class="project-vintage">
                         <iframe class="project-player" src="https://www.youtube.com/embed/ZGxSXchZNfo?start=0" 
                                 title="Boiler Room" allowfullscreen></iframe>
                         <div class="project-info">
@@ -532,7 +761,7 @@
                         </div>
                     </div>
                     
-                    <div class="project-card">
+                    <div class="project-vintage">
                         <iframe class="project-player" src="https://www.youtube.com/embed/SD3T_Or_mvk?start=3" 
                                 title="Tra Tra" allowfullscreen></iframe>
                         <div class="project-info">
@@ -541,7 +770,7 @@
                         </div>
                     </div>
                     
-                    <div class="project-card">
+                    <div class="project-vintage">
                         <iframe class="project-player" src="https://www.youtube.com/embed/XCW95zjBUK4" 
                                 title="Gats" allowfullscreen></iframe>
                         <div class="project-info">
@@ -553,12 +782,12 @@
             </div>
         </section>
         
-        <!-- NUESTRO SONIDO -->
+        <!-- NUESTRO SONIDO EXPANDIDO -->
         <section class="our-sound">
             <div class="container">
                 <div class="section-title" data-es="Nuestro Sonido" data-en="Our Sound">Nuestro Sonido</div>
                 
-                <div class="sound-player">
+                <div class="sound-player-wide">
                     <iframe style="border-radius:12px" 
                             src="https://open.spotify.com/embed/playlist/26qaG2E3bW6ZNIk5mvPpjr?utm_source=generator" 
                             width="100%" 
@@ -651,11 +880,15 @@
             });
         });
 
-        observer.observe(document.querySelector('.what-i-do'));
+        observer.observe(document.querySelector('.timeline-section'));
 
         // Precargar elementos críticos
         document.addEventListener('DOMContentLoaded', function() {
             updateLanguage(currentLanguage);
+            
+            // Precargar logo
+            const logo = new Image();
+            logo.src = 'logo.svg';
         });
     </script>
 </body>
