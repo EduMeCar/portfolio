@@ -6,642 +6,472 @@
     <title>Eduardo Mejía - Arquitectura Musical</title>
     
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-        
+        /* SISTEMA DE DISEÑO ARQUITECTÓNICO */
         :root {
-            --vinyl-black: #0a0a0a;
-            --dusty-gray: #1a1a1a;
-            --concrete: #2a2a2a;
-            --warm-white: #f5f5f5;
-            --detroit-red: #ff073a;
-            --analog-cyan: #00f5ff;
-            --vintage-yellow: #ffd700;
-            --cassette-tape: #8b4513;
+            /* Paleta tonal arquitectónica */
+            --foundation: #0a0a0a;
+            --structure: #1a1a1a;
+            --surface: #2a2a2a;
+            --accent: #ffffff;
+            --primary: #ff073a;
+            --secondary: #00f5ff;
             
-            /* Light mode */
-            --light-vinyl: #f8f9fa;
-            --light-dust: #e9ecef;
-            --light-concrete: #dee2e6;
-            --light-text: #212529;
+            /* Sistema de proporciones áureas */
+            --ratio: 1.618;
+            --space-unit: 1rem;
+            --space-xs: calc(var(--space-unit) / var(--ratio));
+            --space-sm: var(--space-unit);
+            --space-md: calc(var(--space-unit) * var(--ratio));
+            --space-lg: calc(var(--space-md) * var(--ratio));
+            --space-xl: calc(var(--space-lg) * var(--ratio));
+            
+            /* Tipografía modular */
+            --text-xs: 0.75rem;
+            --text-sm: 0.875rem;
+            --text-base: 1rem;
+            --text-lg: 1.125rem;
+            --text-xl: 1.25rem;
+            --text-2xl: 1.5rem;
+            --text-3xl: 2rem;
+            --text-4xl: 2.5rem;
+            --text-hero: 3.5rem;
         }
-        
-        .light-mode {
-            --vinyl-black: var(--light-vinyl);
-            --dusty-gray: var(--light-dust);
-            --concrete: var(--light-concrete);
-            --warm-white: var(--light-text);
-        }
-        
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
-            background: var(--vinyl-black);
-            color: var(--warm-white);
+            background: var(--foundation);
+            color: var(--accent);
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             line-height: 1.6;
-            overflow-x: hidden;
-            transition: all 0.4s ease;
+            font-weight: 400;
         }
-        
+
+        /* SISTEMA DE GRILLA ARQUITECTÓNICA */
         .container {
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 0 2rem;
+            padding: 0 var(--space-md);
         }
-        
-        /* CONTROL BAR VINTAGE */
-        .control-bar {
-            position: fixed;
-            top: 20px;
-            right: 20px;
+
+        .grid-system {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: var(--space-md);
+            align-items: start;
+        }
+
+        /* HERO ARQUITECTÓNICO */
+        .arch-hero {
+            min-height: 100vh;
             display: flex;
-            gap: 10px;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: 
+                linear-gradient(135deg, var(--foundation) 0%, var(--structure) 100%);
+        }
+
+        .hero-content {
+            text-align: center;
+            position: relative;
+        }
+
+        .name-architecture {
+            font-size: var(--text-hero);
+            font-weight: 300;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+            margin-bottom: var(--space-sm);
+            text-transform: uppercase;
+        }
+
+        .title-architecture {
+            font-size: var(--text-lg);
+            font-weight: 400;
+            color: var(--secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            position: relative;
+        }
+
+        .title-architecture::after {
+            content: '';
+            position: absolute;
+            bottom: -var(--space-md);
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 1px;
+            background: var(--secondary);
+        }
+
+        /* SECCIÓN ARQUITECTURA MUSICAL */
+        .arch-music {
+            padding: var(--space-xl) 0;
+            background: var(--structure);
+        }
+
+        .arch-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: var(--space-xl);
+            align-items: start;
+        }
+
+        /* TIMELINE ARQUITECTÓNICA */
+        .timeline-arch {
+            position: relative;
+            padding: var(--space-lg) 0;
+        }
+
+        .timeline-arch::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: linear-gradient(to bottom, 
+                transparent 0%, 
+                var(--primary) 10%, 
+                var(--primary) 90%, 
+                transparent 100%);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: var(--space-lg);
+            margin-bottom: var(--space-xl);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -6px;
+            top: 0;
+            width: 12px;
+            height: 12px;
+            background: var(--primary);
+            border-radius: 50%;
+        }
+
+        .timeline-year {
+            font-size: var(--text-sm);
+            font-weight: 600;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: var(--space-xs);
+        }
+
+        .timeline-content {
+            font-size: var(--text-base);
+            line-height: 1.6;
+            color: var(--accent);
+            opacity: 0.9;
+        }
+
+        /* SERVICIOS ARQUITECTÓNICOS */
+        .services-arch {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--space-md);
+        }
+
+        .service-module {
+            background: var(--foundation);
+            border: 1px solid var(--surface);
+            padding: var(--space-lg);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .service-module:hover {
+            border-color: var(--secondary);
+            transform: translateY(-2px);
+        }
+
+        .service-icon {
+            font-size: var(--text-2xl);
+            margin-bottom: var(--space-md);
+            color: var(--primary);
+        }
+
+        .service-title {
+            font-size: var(--text-lg);
+            font-weight: 600;
+            margin-bottom: var(--space-sm);
+            color: var(--accent);
+        }
+
+        .service-desc {
+            font-size: var(--text-sm);
+            line-height: 1.6;
+            color: var(--accent);
+            opacity: 0.8;
+        }
+
+        /* PROYECTOS ARQUITECTÓNICOS */
+        .arch-projects {
+            padding: var(--space-xl) 0;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-md);
+        }
+
+        .project-module {
+            background: var(--structure);
+            border: 1px solid var(--surface);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .project-module:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .project-media {
+            width: 100%;
+            height: 200px;
+            background: var(--foundation);
+            border: none;
+        }
+
+        .project-info {
+            padding: var(--space-md);
+        }
+
+        .project-role {
+            font-size: var(--text-xs);
+            font-weight: 600;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: var(--space-xs);
+        }
+
+        .project-name {
+            font-size: var(--text-base);
+            font-weight: 600;
+            color: var(--accent);
+        }
+
+        /* SONIDO ARQUITECTÓNICO */
+        .arch-sound {
+            padding: var(--space-xl) 0;
+            background: var(--structure);
+        }
+
+        .sound-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .sound-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-md);
+            margin-bottom: var(--space-lg);
+        }
+
+        .sound-logo {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .sound-title {
+            font-size: var(--text-lg);
+            font-weight: 600;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .sound-player {
+            width: 100%;
+            background: var(--foundation);
+            border: 1px solid var(--surface);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        /* CONTROL SYSTEM */
+        .control-arch {
+            position: fixed;
+            top: var(--space-md);
+            right: var(--space-md);
+            display: flex;
+            gap: var(--space-xs);
             z-index: 1000;
         }
-        
-        .control-btn {
+
+        .control-module {
             width: 40px;
             height: 40px;
-            background: var(--dusty-gray);
-            border: 1px solid var(--concrete);
-            border-radius: 50%;
+            background: var(--structure);
+            border: 1px solid var(--surface);
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
             transition: all 0.3s ease;
-            color: var(--warm-white);
-            font-size: 0.9rem;
+            font-size: var(--text-sm);
+            color: var(--accent);
         }
-        
-        .control-btn:hover {
-            border-color: var(--detroit-red);
-            transform: scale(1.1);
-            background: var(--concrete);
+
+        .control-module:hover {
+            border-color: var(--secondary);
+            transform: scale(1.05);
         }
-        
-        /* HERO CON LOGO VINTAGE */
-        .vintage-hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            position: relative;
-            background: 
-                radial-gradient(circle at 20% 50%, rgba(255, 7, 58, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(0, 245, 255, 0.1) 0%, transparent 50%),
-                linear-gradient(45deg, var(--vinyl-black) 0%, var(--dusty-gray) 100%);
-        }
-        
-        .hero-content {
-            position: relative;
-            z-index: 2;
-        }
-        
-        .logo-container {
-            margin: 0 auto 2rem;
-            width: 180px;
-            height: 180px;
-            position: relative;
-        }
-        
-        .vintage-logo {
-            width: 100%;
-            height: 100%;
-            filter: sepia(0.3) contrast(1.1) brightness(0.9);
-            animation: vinylSpin 20s linear infinite;
-            border-radius: 50%;
-        }
-        
-        @keyframes vinylSpin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
-        .arch-name {
-            font-size: 3.5rem;
-            font-weight: 300;
-            letter-spacing: -0.02em;
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-        }
-        
-        .arch-title {
-            font-size: 1.1rem;
-            font-weight: 400;
-            color: var(--analog-cyan);
-            text-transform: uppercase;
-            letter-spacing: 0.4em;
-            position: relative;
-            margin-bottom: 3rem;
-        }
-        
-        .arch-title::after {
-            content: '';
-            position: absolute;
-            bottom: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--detroit-red), transparent);
-        }
-        
-        /* TIMELINE ELEGANTE */
-        .timeline-section {
-            padding: 6rem 0;
-            background: var(--dusty-gray);
-            position: relative;
-        }
-        
-        .timeline-section::before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: linear-gradient(to bottom, transparent, var(--detroit-red), transparent);
-            transform: translateX(-50%);
-        }
-        
-        .section-title {
-            font-size: 1rem;
-            font-weight: 500;
-            color: var(--analog-cyan);
-            text-transform: uppercase;
-            letter-spacing: 0.3em;
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-        
-        .timeline-container {
-            max-width: 1000px;
-            margin: 0 auto;
-            position: relative;
-        }
-        
-        .timeline-years {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 4rem;
-            position: relative;
-        }
-        
-        .year-marker {
-            text-align: center;
-            position: relative;
-            z-index: 2;
-        }
-        
-        .year-dot {
-            width: 12px;
-            height: 12px;
-            background: var(--detroit-red);
-            border-radius: 50%;
-            margin: 0 auto 1rem;
-            position: relative;
-        }
-        
-        .year-dot::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 20px;
-            height: 20px;
-            border: 1px solid var(--detroit-red);
-            border-radius: 50%;
-            animation: pulse 2s infinite;
-        }
-        
-        @keyframes pulse {
-            0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
-            100% { transform: translate(-50%, -50%) scale(2); opacity: 0; }
-        }
-        
-        .year-label {
-            font-size: 0.9rem;
-            color: var(--warm-white);
-            font-weight: 500;
-        }
-        
-        /* SERVICIOS ARMONIOSOS */
-        .services-harmony {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 4rem;
-            align-items: start;
-        }
-        
-        .metrics-elegant {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-        }
-        
-        .metric-vintage {
-            text-align: center;
-            padding: 2rem 1.5rem;
-            background: var(--vinyl-black);
-            border: 1px solid var(--concrete);
-            border-radius: 8px;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .metric-vintage::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: var(--detroit-red);
-        }
-        
-        .metric-number {
-            font-size: 2.5rem;
-            font-weight: 200;
-            color: var(--vintage-yellow);
-            display: block;
-            line-height: 1;
-            margin-bottom: 0.5rem;
-            font-feature-settings: "tnum";
-        }
-        
-        .metric-label {
-            font-size: 0.8rem;
-            color: var(--warm-white);
-            font-weight: 400;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-        }
-        
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
-        }
-        
-        .service-vintage {
-            padding: 2.5rem 2rem;
-            background: var(--vinyl-black);
-            border: 1px solid var(--concrete);
-            border-radius: 8px;
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .service-vintage::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 7, 58, 0.1), transparent);
-            transition: left 0.6s ease;
-        }
-        
-        .service-vintage:hover::before {
-            left: 100%;
-        }
-        
-        .service-vintage:hover {
-            border-color: var(--analog-cyan);
-            transform: translateY(-5px);
-        }
-        
-        .service-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-            color: var(--detroit-red);
-        }
-        
-        .service-name {
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: var(--warm-white);
-        }
-        
-        .service-desc {
-            font-size: 0.95rem;
-            color: var(--warm-white);
-            opacity: 0.9;
-            line-height: 1.6;
-        }
-        
-        /* PROYECTOS DESTACADOS */
-        .featured-projects {
-            padding: 6rem 0;
-        }
-        
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-        }
-        
-        .project-vintage {
-            background: var(--dusty-gray);
-            border: 1px solid var(--concrete);
-            border-radius: 8px;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-        
-        .project-vintage::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg, transparent, rgba(255, 7, 58, 0.05), transparent);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        
-        .project-vintage:hover::before {
-            opacity: 1;
-        }
-        
-        .project-vintage:hover {
-            transform: translateY(-5px);
-            border-color: var(--detroit-red);
-        }
-        
-        .project-player {
-            width: 100%;
-            height: 200px;
-            border: none;
-            background: var(--vinyl-black);
-        }
-        
-        .project-info {
-            padding: 1.5rem;
-            text-align: center;
-        }
-        
-        .project-role {
-            font-size: 0.9rem;
-            color: var(--detroit-red);
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 0.5rem;
-        }
-        
-        .project-name {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--warm-white);
-        }
-        
-        /* NUESTRO SONIDO EXPANDIDO */
-        .our-sound {
-            padding: 4rem 0;
-            background: var(--dusty-gray);
-        }
-        
-        .sound-player-wide {
-            max-width: 100%;
-            margin: 0 auto;
-            background: var(--vinyl-black);
-            border: 1px solid var(--concrete);
-            border-radius: 12px;
-            padding: 2rem;
-            transition: all 0.3s ease;
-        }
-        
-        .sound-player-wide:hover {
-            border-color: var(--analog-cyan);
-        }
-        
-        /* CONTACTO */
-        .contact-section {
-            padding: 6rem 0 4rem;
-            text-align: center;
-        }
-        
-        .contact-actions {
-            display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-            margin-bottom: 3rem;
-            flex-wrap: wrap;
-        }
-        
-        .action-btn {
-            padding: 1.2rem 2.5rem;
-            border: 2px solid var(--analog-cyan);
-            color: var(--analog-cyan);
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: 600;
-            transition: all 0.4s ease;
-            min-width: 180px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .action-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 245, 255, 0.2), transparent);
-            transition: left 0.6s ease;
-        }
-        
-        .action-btn:hover::before {
-            left: 100%;
-        }
-        
-        .action-btn.primary {
-            background: var(--analog-cyan);
-            color: var(--vinyl-black);
-        }
-        
-        .action-btn:hover {
-            transform: translateY(-3px);
-        }
-        
-        .action-btn.primary:hover {
-            background: transparent;
-            color: var(--analog-cyan);
-        }
-        
-        .action-btn:not(.primary):hover {
-            background: var(--analog-cyan);
-            color: var(--vinyl-black);
-        }
-        
-        /* WHATSAPP FLOAT VINTAGE */
-        .whatsapp-float {
+
+        /* WHATSAPP MODULE */
+        .whatsapp-arch {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: #25D366;
-            color: white;
+            bottom: var(--space-md);
+            right: var(--space-md);
             width: 60px;
             height: 60px;
+            background: #25D366;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
-            z-index: 1000;
-            transition: transform 0.3s ease;
             text-decoration: none;
-            border: 2px solid white;
+            transition: transform 0.3s ease;
+            z-index: 1000;
         }
-        
-        .whatsapp-float:hover {
+
+        .whatsapp-arch:hover {
             transform: scale(1.1);
         }
-        
+
         .whatsapp-icon {
             width: 30px;
             height: 30px;
+            fill: white;
         }
-        
-        /* FOOTER */
-        .portfolio-footer {
-            margin-top: 4rem;
-            padding: 3rem 0;
-            border-top: 1px solid var(--concrete);
+
+        /* CONTACTO ARQUITECTÓNICO */
+        .arch-contact {
+            padding: var(--space-xl) 0;
             text-align: center;
-            color: var(--warm-white);
-            opacity: 0.8;
-            font-size: 0.9rem;
         }
-        
-        /* RESPONSIVE DESIGN */
-        @media (min-width: 1200px) {
-            .sound-player-wide {
-                max-width: 90%;
-            }
+
+        .contact-grid {
+            display: flex;
+            gap: var(--space-md);
+            justify-content: center;
+            flex-wrap: wrap;
         }
-        
+
+        .contact-module {
+            padding: var(--space-md) var(--space-lg);
+            border: 1px solid var(--surface);
+            text-decoration: none;
+            color: var(--accent);
+            transition: all 0.3s ease;
+            min-width: 180px;
+            text-align: center;
+        }
+
+        .contact-module.primary {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: var(--foundation);
+        }
+
+        .contact-module:hover {
+            border-color: var(--secondary);
+            transform: translateY(-2px);
+        }
+
+        .contact-module.primary:hover {
+            background: transparent;
+            color: var(--primary);
+        }
+
+        /* FOOTER ARQUITECTÓNICO */
+        .arch-footer {
+            padding: var(--space-lg) 0;
+            border-top: 1px solid var(--surface);
+            text-align: center;
+            color: var(--accent);
+            opacity: 0.7;
+            font-size: var(--text-sm);
+        }
+
+        /* SISTEMA RESPONSIVO */
         @media (max-width: 1024px) {
+            .arch-grid {
+                grid-template-columns: 1fr;
+                gap: var(--space-lg);
+            }
+            
             .projects-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
             
-            .services-harmony {
+            .services-arch {
                 grid-template-columns: 1fr;
-                gap: 3rem;
-            }
-            
-            .metrics-elegant {
-                flex-direction: row;
-                justify-content: center;
-            }
-            
-            .metric-vintage {
-                flex: 1;
-                max-width: 200px;
-            }
-            
-            .timeline-section::before {
-                left: 30px;
-            }
-            
-            .timeline-years {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 2rem;
-                margin-left: 30px;
-            }
-            
-            .year-marker {
-                display: flex;
-                align-items: center;
-                gap: 1rem;
-            }
-            
-            .year-dot {
-                margin: 0;
-                order: -1;
             }
         }
-        
+
         @media (max-width: 768px) {
-            .arch-name {
-                font-size: 2.5rem;
+            :root {
+                --text-hero: 2.5rem;
             }
             
-            .arch-title {
-                font-size: 0.9rem;
-            }
-            
-            .logo-container {
-                width: 140px;
-                height: 140px;
-            }
-            
-            .metrics-elegant {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .metric-vintage {
-                width: 100%;
-                max-width: 300px;
-            }
-            
-            .services-grid {
-                grid-template-columns: 1fr;
+            .name-architecture {
+                font-size: var(--text-hero);
             }
             
             .projects-grid {
                 grid-template-columns: 1fr;
             }
             
-            .contact-actions {
+            .contact-grid {
                 flex-direction: column;
                 align-items: center;
             }
             
-            .action-btn {
+            .contact-module {
                 width: 100%;
                 max-width: 300px;
             }
             
-            .control-bar {
-                top: 10px;
-                right: 10px;
+            .control-arch {
+                top: var(--space-sm);
+                right: var(--space-sm);
             }
         }
-        
+
         @media (max-width: 480px) {
-            .arch-name {
-                font-size: 2rem;
+            :root {
+                --text-hero: 2rem;
             }
             
-            .metric-number {
-                font-size: 2rem;
+            .sound-header {
+                flex-direction: column;
+                gap: var(--space-sm);
             }
             
-            .whatsapp-float {
+            .whatsapp-arch {
                 width: 50px;
                 height: 50px;
-                bottom: 15px;
-                right: 15px;
+                bottom: var(--space-sm);
+                right: var(--space-sm);
             }
             
             .whatsapp-icon {
@@ -652,143 +482,154 @@
     </style>
 </head>
 <body>
-    <!-- CONTROL BAR -->
-    <div class="control-bar">
-        <button class="control-btn" id="themeToggle" title="Modo claro/oscuro">🌓</button>
-        <button class="control-btn" id="languageToggle" title="Español/English">ES/EN</button>
+    <!-- SISTEMA DE CONTROL -->
+    <div class="control-arch">
+        <button class="control-module" id="themeToggle" title="Modo claro/oscuro">◑</button>
+        <button class="control-module" id="languageToggle" title="Español/English">ES/EN</button>
     </div>
-    
-    <!-- WHATSAPP FLOAT -->
-    <a href="https://wa.me/525512478139?text=Hola,%20vi%20tu%20portafolio%20y%20me%20interesa%20conversar%20sobre%20mi%20proyecto%20musical." class="whatsapp-float" target="_blank" aria-label="Contactar por WhatsApp">
-        <svg class="whatsapp-icon" viewBox="0 0 24 24" fill="currentColor">
+
+    <!-- MÓDULO WHATSAPP -->
+    <a href="https://wa.me/525512478139?text=Hola,%20vi%20tu%20portafolio%20y%20me%20interesa%20conversar%20sobre%20mi%20proyecto%20musical." 
+       class="whatsapp-arch" target="_blank" aria-label="Contactar por WhatsApp">
+        <svg class="whatsapp-icon" viewBox="0 0 24 24">
             <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893-.001-3.189-1.262-6.189-3.553-8.449"/>
         </svg>
     </a>
 
-    <div class="neural-interface">
-        <!-- HERO SECTION CON LOGO -->
-        <section class="vintage-hero">
-            <div class="container">
-                <div class="hero-content">
-                    <div class="logo-container">
-                        <img src="logo.svg" alt="Eduardo Mejía" class="vintage-logo">
-                    </div>
-                    <h1 class="arch-name">EDUARDO MEJÍA</h1>
-                    <div class="arch-title" data-es="Arquitectura Musical" data-en="Musical Architecture">Arquitectura Musical</div>
+    <!-- HERO ARQUITECTÓNICO -->
+    <section class="arch-hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="name-architecture">EDUARDO MEJÍA</h1>
+                <div class="title-architecture" data-es="Arquitectura Musical" data-en="Musical Architecture">
+                    Arquitectura Musical
                 </div>
             </div>
-        </section>
-        
-        <!-- TIMELINE + LO QUE HAGO -->
-        <section class="timeline-section">
-            <div class="container">
-                <div class="section-title" data-es="6 Años de Trayectoria" data-en="6 Years of Journey">6 Años de Trayectoria</div>
-                
-                <div class="timeline-container">
-                    <div class="timeline-years">
-                        <div class="year-marker">
-                            <div class="year-dot"></div>
-                            <div class="year-label">2018</div>
-                        </div>
-                        <div class="year-marker">
-                            <div class="year-dot"></div>
-                            <div class="year-label">2020</div>
-                        </div>
-                        <div class="year-marker">
-                            <div class="year-dot"></div>
-                            <div class="year-label">2022</div>
-                        </div>
-                        <div class="year-marker">
-                            <div class="year-dot"></div>
-                            <div class="year-label">2024</div>
+        </div>
+    </section>
+
+    <!-- ARQUITECTURA MUSICAL -->
+    <section class="arch-music">
+        <div class="container">
+            <div class="arch-grid">
+                <!-- TIMELINE ESTRUCTURAL -->
+                <div class="timeline-arch">
+                    <div class="timeline-item">
+                        <div class="timeline-year">2018-2020</div>
+                        <div class="timeline-content" data-es="Fundación de estructuras sonoras y primeras colaboraciones estratégicas" 
+                             data-en="Foundation of sound structures and first strategic collaborations">
+                            Fundación de estructuras sonoras y primeras colaboraciones estratégicas
                         </div>
                     </div>
-                    
-                    <div class="services-harmony">
-                        <div class="metrics-elegant">
-                            <div class="metric-vintage">
-                                <span class="metric-number" id="metricEvents">0</span>
-                                <span class="metric-label" data-es="Eventos Realizados" data-en="Events Curated">Eventos Realizados</span>
-                            </div>
-                            <div class="metric-vintage">
-                                <span class="metric-number" id="metricYears">0</span>
-                                <span class="metric-label" data-es="Años en la Escena" data-en="Years in the Scene">Años en la Escena</span>
-                            </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2020-2022</div>
+                        <div class="timeline-content" data-es="Expansión internacional y desarrollo de sistemas de distribución" 
+                             data-en="International expansion and distribution systems development">
+                            Expansión internacional y desarrollo de sistemas de distribución
                         </div>
-                        
-                        <div class="services-grid">
-                            <div class="service-vintage">
-                                <div class="service-icon">⤈</div>
-                                <div class="service-name" data-es="Booking & Giras" data-en="Booking & Tours">Booking & Giras</div>
-                                <div class="service-desc" data-es="Conexión estratégica de artistas con venues para presentaciones en vivo y giras nacionales e internacionales" data-en="Strategic connection of artists with venues for live performances and national/international tours">
-                                    Conexión estratégica de artistas con venues para presentaciones en vivo y giras nacionales e internacionales
-                                </div>
-                            </div>
-                            
-                            <div class="service-vintage">
-                                <div class="service-icon">⌗</div>
-                                <div class="service-name" data-es="Gestión Editorial" data-en="Publishing Management">Gestión Editorial</div>
-                                <div class="service-desc" data-es="Registro profesional de obras musicales y administración de derechos para maximizar el potencial de cada creación" data-en="Professional registration of musical works and rights management to maximize the potential of each creation">
-                                    Registro profesional de obras musicales y administración de derechos para maximizar el potencial de cada creación
-                                </div>
-                            </div>
-                            
-                            <div class="service-vintage">
-                                <div class="service-icon">⤓</div>
-                                <div class="service-name" data-es="Distribución Digital" data-en="Digital Distribution">Distribución Digital</div>
-                                <div class="service-desc" data-es="Estrategias de lanzamiento y distribución en plataformas globales para amplificar el alcance de tu música" data-en="Launch strategies and distribution on global platforms to amplify your music's reach">
-                                    Estrategias de lanzamiento y distribución en plataformas globales para amplificar el alcance de tu música
-                                </div>
-                            </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2022-2024</div>
+                        <div class="timeline-content" data-es="Arquitectura de experiencias musicales a escala global" 
+                             data-en="Architecture of musical experiences at global scale">
+                            Arquitectura de experiencias musicales a escala global
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SERVICIOS ESTRUCTURALES -->
+                <div class="services-arch">
+                    <div class="service-module">
+                        <div class="service-icon">⟷</div>
+                        <div class="service-title" data-es="Booking & Giras" data-en="Booking & Tours">
+                            Booking & Giras
+                        </div>
+                        <div class="service-desc" data-es="Estructuración de circuitos de presentación en vivo con enfoque estratégico y escalable" 
+                             data-en="Structuring live performance circuits with strategic and scalable approach">
+                            Estructuración de circuitos de presentación en vivo con enfoque estratégico y escalable
+                        </div>
+                    </div>
+                    <div class="service-module">
+                        <div class="service-icon">⎗</div>
+                        <div class="service-title" data-es="Gestión Editorial" data-en="Publishing Management">
+                            Gestión Editorial
+                        </div>
+                        <div class="service-desc" data-es="Sistema integral de protección y administración de derechos de autor y conexos" 
+                             data-en="Comprehensive system for copyright and related rights protection and administration">
+                            Sistema integral de protección y administración de derechos de autor y conexos
+                        </div>
+                    </div>
+                    <div class="service-module">
+                        <div class="service-icon">⤨</div>
+                        <div class="service-title" data-es="Distribución Digital" data-en="Digital Distribution">
+                            Distribución Digital
+                        </div>
+                        <div class="service-desc" data-es="Arquitectura de lanzamientos y estrategias de posicionamiento en ecosistemas digitales" 
+                             data-en="Launch architecture and positioning strategies in digital ecosystems">
+                            Arquitectura de lanzamientos y estrategias de posicionamiento en ecosistemas digitales
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
-        
-        <!-- PROYECTOS DESTACADOS -->
-        <section class="featured-projects">
-            <div class="container">
-                <div class="section-title" data-es="Proyectos Destacados" data-en="Featured Projects">Proyectos Destacados</div>
-                
-                <div class="projects-grid">
-                    <div class="project-vintage">
-                        <iframe class="project-player" src="https://www.youtube.com/embed/ZGxSXchZNfo?start=0" 
-                                title="Boiler Room" allowfullscreen></iframe>
-                        <div class="project-info">
-                            <div class="project-role" data-es="Logística & Producción" data-en="Logistics & Production">Logística & Producción</div>
-                            <div class="project-name" data-es="Boiler Room" data-en="Boiler Room">Boiler Room</div>
+        </div>
+    </section>
+
+    <!-- PROYECTOS ARQUITECTÓNICOS -->
+    <section class="arch-projects">
+        <div class="container">
+            <div class="projects-grid">
+                <div class="project-module">
+                    <iframe class="project-media" src="https://www.youtube.com/embed/ZGxSXchZNfo?start=0" 
+                            title="Boiler Room" allowfullscreen></iframe>
+                    <div class="project-info">
+                        <div class="project-role" data-es="Producción Ejecutiva" data-en="Executive Production">
+                            Producción Ejecutiva
+                        </div>
+                        <div class="project-name" data-es="Boiler Room México" data-en="Boiler Room Mexico">
+                            Boiler Room México
                         </div>
                     </div>
-                    
-                    <div class="project-vintage">
-                        <iframe class="project-player" src="https://www.youtube.com/embed/SD3T_Or_mvk?start=3" 
-                                title="Tra Tra" allowfullscreen></iframe>
-                        <div class="project-info">
-                            <div class="project-role" data-es="Coordinación" data-en="Coordination">Coordinación</div>
-                            <div class="project-name" data-es="Remix Released" data-en="Remix Released">Remix Released</div>
+                </div>
+                <div class="project-module">
+                    <iframe class="project-media" src="https://www.youtube.com/embed/SD3T_Or_mvk?start=3" 
+                            title="Tra Tra" allowfullscreen></iframe>
+                    <div class="project-info">
+                        <div class="project-role" data-es="Coordinación Estratégica" data-en="Strategic Coordination">
+                            Coordinación Estratégica
+                        </div>
+                        <div class="project-name" data-es="Remix Released" data-en="Remix Released">
+                            Remix Released
                         </div>
                     </div>
-                    
-                    <div class="project-vintage">
-                        <iframe class="project-player" src="https://www.youtube.com/embed/XCW95zjBUK4" 
-                                title="Gats" allowfullscreen></iframe>
-                        <div class="project-info">
-                            <div class="project-role" data-es="Producción Ejecutiva" data-en="Executive Production">Producción Ejecutiva</div>
-                            <div class="project-name" data-es="Proyecto Emergente" data-en="Emerging Project">Proyecto Emergente</div>
+                </div>
+                <div class="project-module">
+                    <iframe class="project-media" src="https://www.youtube.com/embed/XCW95zjBUK4" 
+                            title="Gats" allowfullscreen></iframe>
+                    <div class="project-info">
+                        <div class="project-role" data-es="Desarrollo de Proyecto" data-en="Project Development">
+                            Desarrollo de Proyecto
+                        </div>
+                        <div class="project-name" data-es="Artista Emergente" data-en="Emerging Artist">
+                            Artista Emergente
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
-        
-        <!-- NUESTRO SONIDO EXPANDIDO -->
-        <section class="our-sound">
-            <div class="container">
-                <div class="section-title" data-es="Nuestro Sonido" data-en="Our Sound">Nuestro Sonido</div>
-                
-                <div class="sound-player-wide">
-                    <iframe style="border-radius:12px" 
+        </div>
+    </section>
+
+    <!-- SONIDO ARQUITECTÓNICO -->
+    <section class="arch-sound">
+        <div class="container">
+            <div class="sound-container">
+                <div class="sound-header">
+                    <img src="logo.svg" alt="TurboBoyz" class="sound-logo">
+                    <div class="sound-title" data-es="Nuestro Sonido" data-en="Our Sound">
+                        Nuestro Sonido
+                    </div>
+                </div>
+                <div class="sound-player">
+                    <iframe style="border-radius:8px" 
                             src="https://open.spotify.com/embed/playlist/26qaG2E3bW6ZNIk5mvPpjr?utm_source=generator" 
                             width="100%" 
                             height="152" 
@@ -799,96 +640,100 @@
                     </iframe>
                 </div>
             </div>
-        </section>
-        
-        <!-- CONTACTO -->
-        <section class="contact-section">
-            <div class="container">
-                <div class="section-title" data-es="Disponible para proyectos" data-en="Available for projects">Disponible para proyectos</div>
-                
-                <div class="contact-actions">
-                    <a class="action-btn primary" href="mailto:emc121091@me.com?subject=Colaboración%20Musical&body=Hola,%20me%20gustaría%20explorar%20posibilidades%20de%20trabajo%20conjunto%20para%20mi%20proyecto%20musical." data-es="Contacto" data-en="Contact">
-                        Contacto
-                    </a>
-                    <a class="action-btn" href="https://edumecar.github.io/Book/" target="_blank" data-es="Ver Planes de Booking" data-en="View Booking Plans">
-                        Ver Planes de Booking
-                    </a>
-                    <a class="action-btn" href="https://www.linkedin.com/in/edumecar" target="_blank" data-es="LinkedIn" data-en="LinkedIn">
-                        LinkedIn
-                    </a>
-                </div>
+        </div>
+    </section>
+
+    <!-- CONTACTO ARQUITECTÓNICO -->
+    <section class="arch-contact">
+        <div class="container">
+            <div class="contact-grid">
+                <a class="contact-module primary" 
+                   href="mailto:emc121091@me.com?subject=Colaboración%20Musical&body=Hola,%20me%20gustaría%20explorar%20posibilidades%20de%20trabajo%20conjunto%20para%20mi%20proyecto%20musical." 
+                   data-es="Iniciar Proyecto" data-en="Start Project">
+                    Iniciar Proyecto
+                </a>
+                <a class="contact-module" 
+                   href="https://edumecar.github.io/Book/" 
+                   target="_blank" 
+                   data-es="Ver Arquitectura de Booking" data-en="View Booking Architecture">
+                    Ver Arquitectura de Booking
+                </a>
+                <a class="contact-module" 
+                   href="https://www.linkedin.com/in/edumecar" 
+                   target="_blank" 
+                   data-es="LinkedIn Profesional" data-en="Professional LinkedIn">
+                    LinkedIn Profesional
+                </a>
             </div>
-        </section>
-        
-        <footer class="portfolio-footer">
-            <div class="container">
-                <span data-es="&copy; 2024 Eduardo Mejía - Arquitectura Musical" data-en="&copy; 2024 Eduardo Mejía - Musical Architecture">&copy; 2024 Eduardo Mejía - Arquitectura Musical</span>
-            </div>
-        </footer>
-    </div>
+        </div>
+    </section>
+
+    <footer class="arch-footer">
+        <div class="container">
+            <span data-es="&copy; 2024 Eduardo Mejía - Arquitectura Musical" 
+                  data-en="&copy; 2024 Eduardo Mejía - Musical Architecture">
+                &copy; 2024 Eduardo Mejía - Arquitectura Musical
+            </span>
+        </div>
+    </footer>
 
     <script>
-        // ===== TOGGLE TEMA CLARO/OSCURO =====
-        const themeToggle = document.getElementById('themeToggle');
-        themeToggle.addEventListener('click', () => {
-            document.body.classList.toggle('light-mode');
-            themeToggle.textContent = document.body.classList.contains('light-mode') ? '🌙' : '🌓';
-        });
-
-        // ===== TOGGLE IDIOMA =====
-        const languageToggle = document.getElementById('languageToggle');
-        let currentLanguage = 'es';
-        
-        function updateLanguage(lang) {
-            document.querySelectorAll('[data-es]').forEach(element => {
-                const text = element.getAttribute(`data-${lang}`);
-                if (text) {
-                    element.textContent = text;
-                }
-            });
-        }
-        
-        languageToggle.addEventListener('click', () => {
-            currentLanguage = currentLanguage === 'es' ? 'en' : 'es';
-            languageToggle.textContent = currentLanguage === 'es' ? 'ES/EN' : 'EN/ES';
-            updateLanguage(currentLanguage);
-        });
-
-        // ===== CONTADORES ANIMADOS =====
-        function animateCounter(element, target, suffix = '+') {
-            let current = 0;
-            const increment = target / 60;
-            const timer = setInterval(() => {
-                current += increment;
-                if (current >= target) {
-                    element.textContent = target + suffix;
-                    clearInterval(timer);
-                } else {
-                    element.textContent = Math.floor(current) + suffix;
-                }
-            }, 30);
-        }
-
-        // Iniciar animación cuando las métricas sean visibles
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    animateCounter(document.getElementById('metricEvents'), 300);
-                    animateCounter(document.getElementById('metricYears'), 5);
-                    observer.unobserve(entry.target);
-                }
-            });
-        });
-
-        observer.observe(document.querySelector('.timeline-section'));
-
-        // Precargar elementos críticos
-        document.addEventListener('DOMContentLoaded', function() {
-            updateLanguage(currentLanguage);
+        // SISTEMA DE CONFIGURACIÓN ARQUITECTÓNICA
+        class ArchitectureConfig {
+            constructor() {
+                this.currentLanguage = 'es';
+                this.init();
+            }
             
-            // Precargar logo
-            const logo = new Image();
-            logo.src = 'logo.svg';
+            init() {
+                this.setupThemeToggle();
+                this.setupLanguageToggle();
+                this.setupObservers();
+            }
+            
+            setupThemeToggle() {
+                const themeToggle = document.getElementById('themeToggle');
+                themeToggle.addEventListener('click', () => {
+                    document.body.classList.toggle('light-mode');
+                    // Implementación de modo claro si es necesario
+                });
+            }
+            
+            setupLanguageToggle() {
+                const languageToggle = document.getElementById('languageToggle');
+                languageToggle.addEventListener('click', () => {
+                    this.currentLanguage = this.currentLanguage === 'es' ? 'en' : 'es';
+                    this.updateLanguage();
+                    languageToggle.textContent = this.currentLanguage === 'es' ? 'ES/EN' : 'EN/ES';
+                });
+            }
+            
+            updateLanguage() {
+                document.querySelectorAll('[data-es]').forEach(element => {
+                    const text = element.getAttribute(`data-${this.currentLanguage}`);
+                    if (text) element.textContent = text;
+                });
+            }
+            
+            setupObservers() {
+                // Sistema de observación para animaciones futuras
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('arch-visible');
+                        }
+                    });
+                });
+                
+                document.querySelectorAll('.service-module, .project-module').forEach(el => {
+                    observer.observe(el);
+                });
+            }
+        }
+        
+        // INICIALIZACIÓN DEL SISTEMA
+        document.addEventListener('DOMContentLoaded', () => {
+            new ArchitectureConfig();
         });
     </script>
 </body>
