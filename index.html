@@ -6,43 +6,42 @@
     <title>Eduardo Mejía - Arquitectura Musical</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* SISTEMA DE DISEÑO ARQUITECTÓNICO AVANZADO */
+        /* SISTEMA DE DISEÑO HÍBRIDO: POST-PUNK + DETROIT TECHNO */
         :root {
-            /* Sistema tonal arquitectónico */
-            --foundation: #0a0a0a;
-            --structure: #111111;
-            --surface: #1a1a1a;
-            --accent: #ffffff;
-            --primary: #ff073a;
-            --secondary: #00f5ff;
-            --tertiary: #8b5cf6;
+            /* Paleta Post-Punk Británico */
+            --postpunk-black: #000000;
+            --postpunk-red: #8B0000;
+            --postpunk-white: #F8F8F8;
+            --postpunk-gray: #2F2F2F;
+            --postpunk-contrast: #FFFF00;
             
-            /* Sistema de proporciones modulares */
-            --base-unit: 1rem;
-            --space-xs: calc(var(--base-unit) * 0.5);
-            --space-sm: var(--base-unit);
-            --space-md: calc(var(--base-unit) * 1.5);
-            --space-lg: calc(var(--base-unit) * 2);
-            --space-xl: calc(var(--base-unit) * 3);
-            --space-xxl: calc(var(--base-unit) * 5);
+            /* Paleta Detroit Techno */
+            --detroit-blue: #1E90FF;
+            --detroit-cyan: #00CED1;
+            --detroit-purple: #8A2BE2;
+            --detroit-grid: #1A1A1A;
             
-            /* Tipografía escalable */
-            --text-xs: 0.75rem;
-            --text-sm: 0.875rem;
-            --text-base: 1rem;
-            --text-lg: 1.125rem;
-            --text-xl: 1.25rem;
-            --text-2xl: 1.5rem;
-            --text-3xl: 2rem;
-            --text-4xl: 2.5rem;
-            --text-hero: 4rem;
+            /* Sistema de Espaciado Post-Punk */
+            --space-tight: 0.5rem;
+            --space-base: 1rem;
+            --space-medium: 1.5rem;
+            --space-large: 2.5rem;
+            --space-xl: 4rem;
             
-            /* Transiciones avanzadas */
-            --ease-out-quint: cubic-bezier(0.23, 1, 0.32, 1);
-            --ease-in-out-quint: cubic-bezier(0.86, 0, 0.07, 1);
+            /* Tipografía Híbrida */
+            --font-postpunk: 'Helvetica Neue', Arial, sans-serif;
+            --font-techno: 'Courier New', monospace;
+            --font-display: 'Arial Black', Impact, sans-serif;
+            
+            /* Efectos Visuales */
+            --glitch-effect: 2px 2px 0px var(--postpunk-red),
+                             -2px -2px 0px var(--detroit-cyan);
+            --neon-glow: 0 0 10px var(--detroit-cyan),
+                         0 0 20px var(--detroit-cyan),
+                         0 0 30px var(--detroit-blue);
         }
 
-        /* RESET AVANZADO */
+        /* RESET POST-PUNK */
         * {
             margin: 0;
             padding: 0;
@@ -51,106 +50,125 @@
 
         html {
             scroll-behavior: smooth;
-            font-size: 16px;
         }
 
         body {
-            background: var(--foundation);
-            color: var(--accent);
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            line-height: 1.6;
-            font-weight: 400;
+            background: var(--postpunk-black);
+            color: var(--postpunk-white);
+            font-family: var(--font-postpunk);
+            line-height: 1.4;
             overflow-x: hidden;
-            position: relative;
+            background-image: 
+                linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.9)),
+                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="none" stroke="%232F2F2F" stroke-width="1"/></svg>');
         }
 
-        /* FONDO INTERACTIVO */
-        .audio-visualizer {
+        /* NAVEGACIÓN HÍBRIDA */
+        .nav-hybrid {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%;
-            z-index: -1;
-            opacity: 0.03;
-        }
-
-        /* NAVEGACIÓN ARQUITECTÓNICA */
-        .nav-arch {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            padding: var(--space-md);
+            padding: var(--space-base);
             display: flex;
             justify-content: space-between;
             align-items: center;
             z-index: 1000;
-            background: rgba(10, 10, 10, 0.8);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            border-bottom: 1px solid var(--postpunk-red);
         }
 
-        .nav-logo {
-            font-size: var(--text-lg);
-            font-weight: 700;
-            color: var(--accent);
-            text-decoration: none;
+        .nav-title {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--postpunk-white);
+        }
+
+        .nav-title span {
+            color: var(--postpunk-red);
         }
 
         .nav-controls {
             display: flex;
-            gap: var(--space-sm);
+            gap: var(--space-tight);
         }
 
-        .nav-control {
-            width: 40px;
-            height: 40px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .nav-btn {
+            padding: var(--space-tight) var(--space-base);
+            background: transparent;
+            border: 1px solid var(--postpunk-gray);
+            color: var(--postpunk-white);
+            font-family: var(--font-techno);
+            font-size: 0.8rem;
             cursor: pointer;
-            transition: all 0.3s var(--ease-out-quint);
-            background: rgba(255, 255, 255, 0.02);
-            color: var(--accent);
+            transition: all 0.3s ease;
+            text-transform: uppercase;
         }
 
-        .nav-control:hover {
-            border-color: var(--secondary);
-            transform: translateY(-2px);
+        .nav-btn:hover {
+            border-color: var(--detroit-cyan);
+            background: rgba(0, 206, 209, 0.1);
         }
 
         /* HERO REVOLUCIONARIO */
-        .hero-arch {
+        .hero-fusion {
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
             overflow: hidden;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(139, 0, 0, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(0, 206, 209, 0.1) 0%, transparent 50%),
+                linear-gradient(135deg, var(--postpunk-black) 0%, var(--postpunk-gray) 100%);
         }
 
         .hero-content {
             text-align: center;
             position: relative;
             z-index: 2;
+            padding: 0 var(--space-base);
             max-width: 800px;
-            padding: 0 var(--space-md);
         }
 
-        .name-architecture {
-            font-size: var(--text-hero);
-            font-weight: 300;
-            letter-spacing: -0.02em;
-            line-height: 1.1;
-            margin-bottom: var(--space-md);
+        .hero-name {
+            font-family: var(--font-display);
+            font-size: 4rem;
+            font-weight: 900;
             text-transform: uppercase;
-            position: relative;
+            letter-spacing: -0.02em;
+            line-height: 0.9;
+            margin-bottom: var(--space-medium);
+            color: var(--postpunk-white);
+            text-shadow: var(--glitch-effect);
+            animation: glitch 5s infinite;
         }
 
-        .name-architecture::after {
+        @keyframes glitch {
+            0%, 100% { transform: translate(0); }
+            10% { transform: translate(-2px, -2px); }
+            20% { transform: translate(2px, 2px); }
+            30% { transform: translate(-2px, 2px); }
+            40% { transform: translate(2px, -2px); }
+            50% { transform: translate(0); }
+        }
+
+        .hero-subtitle {
+            font-family: var(--font-techno);
+            font-size: 1.2rem;
+            color: var(--detroit-cyan);
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            margin-bottom: var(--space-large);
+            position: relative;
+            display: inline-block;
+        }
+
+        .hero-subtitle::after {
             content: '';
             position: absolute;
             bottom: -10px;
@@ -158,294 +176,358 @@
             transform: translateX(-50%);
             width: 100px;
             height: 2px;
-            background: linear-gradient(90deg, transparent, var(--primary), transparent);
-        }
-
-        .title-architecture {
-            font-size: var(--text-xl);
-            font-weight: 400;
-            color: var(--secondary);
-            text-transform: uppercase;
-            letter-spacing: 0.3em;
-            margin-bottom: var(--space-xl);
-            position: relative;
+            background: linear-gradient(90deg, transparent, var(--postpunk-red), var(--detroit-cyan), transparent);
         }
 
         .hero-description {
-            font-size: var(--text-lg);
+            font-size: 1.1rem;
             line-height: 1.6;
             max-width: 600px;
             margin: 0 auto;
-            opacity: 0.8;
+            color: var(--postpunk-white);
+            opacity: 0.9;
         }
 
-        /* ARQUITECTURA INTERACTIVA */
-        .arch-interactive {
-            padding: var(--space-xxl) 0;
+        /* TIMELINE FUSIÓN */
+        .timeline-fusion {
+            padding: var(--space-xl) 0;
             position: relative;
+            background: var(--postpunk-black);
         }
 
-        .arch-container {
+        .timeline-container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 var(--space-md);
-        }
-
-        .arch-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: var(--space-xl);
-            align-items: start;
-        }
-
-        /* TIMELINE ARQUITECTÓNICA INTERACTIVA */
-        .timeline-arch {
+            padding: 0 var(--space-base);
             position: relative;
-            padding: var(--space-lg) 0;
         }
 
-        .timeline-arch::before {
+        .timeline-title {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            text-align: center;
+            text-transform: uppercase;
+            margin-bottom: var(--space-large);
+            color: var(--postpunk-white);
+            position: relative;
+        }
+
+        .timeline-title::after {
             content: '';
             position: absolute;
-            left: 0;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--postpunk-red);
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
             top: 0;
             bottom: 0;
+            left: 50%;
             width: 2px;
             background: linear-gradient(to bottom, 
                 transparent 0%, 
-                var(--primary) 10%, 
-                var(--primary) 90%, 
+                var(--postpunk-red) 10%, 
+                var(--detroit-cyan) 50%,
+                var(--postpunk-red) 90%, 
                 transparent 100%);
+            transform: translateX(-50%);
         }
 
         .timeline-item {
             position: relative;
-            padding-left: var(--space-xl);
-            margin-bottom: var(--space-xl);
-            cursor: pointer;
-            transition: all 0.4s var(--ease-out-quint);
-            opacity: 0.6;
+            margin-bottom: var(--space-large);
+            width: 50%;
+            padding: var(--space-medium);
         }
 
-        .timeline-item.active {
-            opacity: 1;
-            transform: translateX(10px);
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            text-align: right;
+            padding-right: var(--space-large);
         }
 
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -8px;
-            top: 0;
-            width: 16px;
-            height: 16px;
-            background: var(--primary);
-            border-radius: 50%;
-            transition: all 0.4s var(--ease-out-quint);
-        }
-
-        .timeline-item.active::before {
-            background: var(--secondary);
-            box-shadow: 0 0 0 4px rgba(0, 245, 255, 0.2);
-            transform: scale(1.2);
+        .timeline-item:nth-child(even) {
+            left: 50%;
+            padding-left: var(--space-large);
         }
 
         .timeline-year {
-            font-size: var(--text-sm);
-            font-weight: 600;
-            color: var(--primary);
+            font-family: var(--font-techno);
+            font-size: 1rem;
+            color: var(--detroit-cyan);
+            margin-bottom: var(--space-tight);
             text-transform: uppercase;
             letter-spacing: 0.1em;
-            margin-bottom: var(--space-xs);
-            transition: color 0.3s ease;
-        }
-
-        .timeline-item.active .timeline-year {
-            color: var(--secondary);
         }
 
         .timeline-content {
-            font-size: var(--text-base);
-            line-height: 1.6;
-            color: var(--accent);
+            background: var(--postpunk-gray);
+            padding: var(--space-medium);
+            border: 1px solid rgba(139, 0, 0, 0.3);
+            position: relative;
+            transition: all 0.3s ease;
         }
 
-        /* SERVICIOS ARQUITECTÓNICOS INTERACTIVOS */
-        .services-arch {
+        .timeline-content:hover {
+            border-color: var(--detroit-cyan);
+            box-shadow: 0 0 15px rgba(0, 206, 209, 0.3);
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content::after {
+            content: '';
+            position: absolute;
+            top: 20px;
+            right: -10px;
+            width: 0;
+            height: 0;
+            border-top: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+            border-left: 10px solid var(--postpunk-gray);
+        }
+
+        .timeline-item:nth-child(even) .timeline-content::after {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: -10px;
+            width: 0;
+            height: 0;
+            border-top: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+            border-right: 10px solid var(--postpunk-gray);
+        }
+
+        .timeline-dot {
+            position: absolute;
+            top: 20px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--postpunk-red);
+            border: 2px solid var(--postpunk-black);
+            z-index: 2;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-dot {
+            right: -8px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-dot {
+            left: -8px;
+        }
+
+        /* SERVICIOS FUSIÓN */
+        .services-fusion {
+            padding: var(--space-xl) 0;
+            background: var(--postpunk-gray);
+        }
+
+        .services-title {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            text-align: center;
+            text-transform: uppercase;
+            margin-bottom: var(--space-large);
+            color: var(--postpunk-white);
+            position: relative;
+        }
+
+        .services-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--detroit-cyan);
+        }
+
+        .services-grid {
             display: grid;
-            grid-template-columns: 1fr;
-            gap: var(--space-md);
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-medium);
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--space-base);
         }
 
-        .service-module {
-            background: var(--structure);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            padding: var(--space-lg);
-            transition: all 0.4s var(--ease-out-quint);
+        .service-card {
+            background: var(--postpunk-black);
+            border: 1px solid rgba(139, 0, 0, 0.3);
+            padding: var(--space-large);
+            transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
-            cursor: pointer;
         }
 
-        .service-module::before {
+        .service-card::before {
             content: '';
             position: absolute;
             top: 0;
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 7, 58, 0.05), transparent);
-            transition: left 0.6s var(--ease-out-quint);
+            background: linear-gradient(90deg, transparent, rgba(0, 206, 209, 0.1), transparent);
+            transition: left 0.6s ease;
         }
 
-        .service-module:hover::before {
+        .service-card:hover::before {
             left: 100%;
         }
 
-        .service-module:hover {
-            border-color: var(--secondary);
+        .service-card:hover {
+            border-color: var(--detroit-cyan);
             transform: translateY(-5px);
         }
 
         .service-icon {
-            font-size: var(--text-2xl);
-            margin-bottom: var(--space-md);
-            color: var(--primary);
-            transition: color 0.3s ease;
+            font-size: 2.5rem;
+            margin-bottom: var(--space-medium);
+            color: var(--postpunk-red);
         }
 
-        .service-module:hover .service-icon {
-            color: var(--secondary);
-        }
-
-        .service-title {
-            font-size: var(--text-lg);
-            font-weight: 600;
-            margin-bottom: var(--space-sm);
-            color: var(--accent);
+        .service-name {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            margin-bottom: var(--space-base);
+            color: var(--postpunk-white);
+            text-transform: uppercase;
         }
 
         .service-desc {
-            font-size: var(--text-sm);
-            line-height: 1.6;
-            color: var(--accent);
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: var(--postpunk-white);
             opacity: 0.8;
         }
 
-        /* PROYECTOS ARQUITECTÓNICOS INTERACTIVOS */
-        .arch-projects {
-            padding: var(--space-xxl) 0;
-            background: var(--structure);
+        /* PROYECTOS FUSIÓN */
+        .projects-fusion {
+            padding: var(--space-xl) 0;
+            background: var(--postpunk-black);
         }
 
-        .section-title {
-            font-size: var(--text-2xl);
-            font-weight: 300;
+        .projects-title {
+            font-family: var(--font-display);
+            font-size: 2rem;
             text-align: center;
-            margin-bottom: var(--space-xl);
             text-transform: uppercase;
-            letter-spacing: 0.1em;
+            margin-bottom: var(--space-large);
+            color: var(--postpunk-white);
             position: relative;
         }
 
-        .section-title::after {
+        .projects-title::after {
             content: '';
             position: absolute;
             bottom: -10px;
             left: 50%;
             transform: translateX(-50%);
-            width: 60px;
-            height: 2px;
-            background: var(--primary);
+            width: 100px;
+            height: 3px;
+            background: var(--postpunk-red);
         }
 
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: var(--space-md);
+            gap: var(--space-medium);
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--space-base);
         }
 
-        .project-module {
-            background: var(--foundation);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+        .project-card {
+            background: var(--postpunk-gray);
+            border: 1px solid rgba(139, 0, 0, 0.3);
             overflow: hidden;
-            transition: all 0.4s var(--ease-out-quint);
-            position: relative;
-            cursor: pointer;
+            transition: all 0.3s ease;
         }
 
-        .project-module::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg, transparent, rgba(255, 7, 58, 0.03), transparent);
-            opacity: 0;
-            transition: opacity 0.4s ease;
-            z-index: 1;
-        }
-
-        .project-module:hover::before {
-            opacity: 1;
-        }
-
-        .project-module:hover {
-            border-color: var(--primary);
+        .project-card:hover {
+            border-color: var(--detroit-cyan);
             transform: translateY(-5px);
         }
 
         .project-media {
             width: 100%;
             height: 200px;
-            background: var(--surface);
+            background: var(--postpunk-black);
             border: none;
-            transition: transform 0.4s var(--ease-out-quint);
-        }
-
-        .project-module:hover .project-media {
-            transform: scale(1.05);
         }
 
         .project-info {
-            padding: var(--space-md);
-            position: relative;
-            z-index: 2;
+            padding: var(--space-medium);
         }
 
         .project-role {
-            font-size: var(--text-xs);
-            font-weight: 600;
-            color: var(--primary);
+            font-family: var(--font-techno);
+            font-size: 0.8rem;
+            color: var(--detroit-cyan);
             text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: var(--space-xs);
+            letter-spacing: 0.1em;
+            margin-bottom: var(--space-tight);
         }
 
         .project-name {
-            font-size: var(--text-base);
-            font-weight: 600;
-            color: var(--accent);
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            color: var(--postpunk-white);
+            text-transform: uppercase;
         }
 
-        /* SONIDO ARQUITECTÓNICO */
-        .arch-sound {
-            padding: var(--space-xxl) 0;
+        /* SONIDO FUSIÓN */
+        .sound-fusion {
+            padding: var(--space-xl) 0;
+            background: var(--postpunk-gray);
+            text-align: center;
+        }
+
+        .sound-title {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            text-transform: uppercase;
+            margin-bottom: var(--space-large);
+            color: var(--postpunk-white);
             position: relative;
         }
 
+        .sound-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--detroit-cyan);
+        }
+
         .sound-container {
-            max-width: 900px;
+            max-width: 800px;
             margin: 0 auto;
+            padding: 0 var(--space-base);
         }
 
         .sound-header {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: var(--space-md);
-            margin-bottom: var(--space-lg);
+            gap: var(--space-medium);
+            margin-bottom: var(--space-large);
         }
 
         .sound-logo {
@@ -453,101 +535,100 @@
             height: 80px;
             border-radius: 50%;
             object-fit: cover;
-            border: 2px solid var(--primary);
-            transition: all 0.4s var(--ease-out-quint);
+            border: 2px solid var(--postpunk-red);
+            transition: all 0.3s ease;
         }
 
         .sound-logo:hover {
+            border-color: var(--detroit-cyan);
             transform: rotate(15deg);
-            border-color: var(--secondary);
-        }
-
-        .sound-title {
-            font-size: var(--text-xl);
-            font-weight: 600;
-            color: var(--accent);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
         }
 
         .sound-player {
             width: 100%;
-            background: var(--structure);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 12px;
+            background: var(--postpunk-black);
+            border: 1px solid rgba(139, 0, 0, 0.3);
+            border-radius: 8px;
             overflow: hidden;
-            transition: all 0.4s var(--ease-out-quint);
+            transition: all 0.3s ease;
         }
 
         .sound-player:hover {
-            border-color: var(--secondary);
-            transform: translateY(-5px);
+            border-color: var(--detroit-cyan);
+            box-shadow: 0 0 15px rgba(0, 206, 209, 0.3);
         }
 
-        /* CONTACTO ARQUITECTÓNICO */
-        .arch-contact {
-            padding: var(--space-xxl) 0;
-            background: var(--structure);
+        /* CONTACTO FUSIÓN */
+        .contact-fusion {
+            padding: var(--space-xl) 0;
+            background: var(--postpunk-black);
             text-align: center;
+        }
+
+        .contact-title {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            text-transform: uppercase;
+            margin-bottom: var(--space-large);
+            color: var(--postpunk-white);
+            position: relative;
+        }
+
+        .contact-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--postpunk-red);
         }
 
         .contact-grid {
             display: flex;
-            gap: var(--space-md);
+            gap: var(--space-medium);
             justify-content: center;
             flex-wrap: wrap;
             max-width: 800px;
             margin: 0 auto;
+            padding: 0 var(--space-base);
         }
 
-        .contact-module {
-            padding: var(--space-md) var(--space-lg);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+        .contact-btn {
+            padding: var(--space-medium) var(--space-large);
+            border: 1px solid var(--postpunk-red);
+            background: transparent;
+            color: var(--postpunk-white);
             text-decoration: none;
-            color: var(--accent);
-            transition: all 0.4s var(--ease-out-quint);
+            font-family: var(--font-techno);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: all 0.3s ease;
             min-width: 180px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
         }
 
-        .contact-module::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 245, 255, 0.1), transparent);
-            transition: left 0.6s var(--ease-out-quint);
+        .contact-btn.primary {
+            background: var(--postpunk-red);
+            color: var(--postpunk-white);
         }
 
-        .contact-module:hover::before {
-            left: 100%;
-        }
-
-        .contact-module.primary {
-            background: var(--primary);
-            border-color: var(--primary);
-            color: var(--foundation);
-        }
-
-        .contact-module:hover {
-            border-color: var(--secondary);
+        .contact-btn:hover {
+            border-color: var(--detroit-cyan);
+            background: rgba(0, 206, 209, 0.1);
             transform: translateY(-3px);
         }
 
-        .contact-module.primary:hover {
+        .contact-btn.primary:hover {
             background: transparent;
-            color: var(--primary);
+            color: var(--postpunk-red);
         }
 
-        /* WHATSAPP ARQUITECTÓNICO */
-        .whatsapp-arch {
+        /* WHATSAPP FUSIÓN */
+        .whatsapp-fusion {
             position: fixed;
-            bottom: var(--space-lg);
-            right: var(--space-lg);
+            bottom: var(--space-large);
+            right: var(--space-large);
             width: 60px;
             height: 60px;
             background: #25D366;
@@ -556,15 +637,14 @@
             align-items: center;
             justify-content: center;
             text-decoration: none;
-            transition: all 0.4s var(--ease-out-quint);
+            transition: all 0.3s ease;
             z-index: 1000;
-            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.3);
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
             border: 2px solid white;
         }
 
-        .whatsapp-arch:hover {
+        .whatsapp-fusion:hover {
             transform: scale(1.1) rotate(10deg);
-            box-shadow: 0 6px 25px rgba(37, 211, 102, 0.5);
         }
 
         .whatsapp-icon {
@@ -573,45 +653,61 @@
             fill: white;
         }
 
-        /* FOOTER ARQUITECTÓNICO */
-        .arch-footer {
-            padding: var(--space-xl) 0;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        /* FOOTER FUSIÓN */
+        .footer-fusion {
+            padding: var(--space-large) 0;
+            background: var(--postpunk-gray);
             text-align: center;
-            color: var(--accent);
-            opacity: 0.7;
-            font-size: var(--text-sm);
+            border-top: 1px solid rgba(139, 0, 0, 0.3);
         }
 
-        /* SISTEMA RESPONSIVO AVANZADO */
+        .footer-text {
+            font-family: var(--font-techno);
+            font-size: 0.9rem;
+            color: var(--postpunk-white);
+            opacity: 0.7;
+        }
+
+        /* RESPONSIVE DESIGN */
         @media (max-width: 1024px) {
-            :root {
-                --text-hero: 3rem;
-            }
-            
-            .arch-grid {
-                grid-template-columns: 1fr;
-                gap: var(--space-lg);
-            }
-            
+            .services-grid,
             .projects-grid {
                 grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .timeline::before {
+                left: 30px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 0;
+                text-align: left;
+            }
+            
+            .timeline-item:nth-child(odd),
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+            
+            .timeline-item:nth-child(odd) .timeline-dot,
+            .timeline-item:nth-child(even) .timeline-dot {
+                left: 22px;
+            }
+            
+            .timeline-item:nth-child(odd) .timeline-content::after,
+            .timeline-item:nth-child(even) .timeline-content::after {
+                display: none;
             }
         }
 
         @media (max-width: 768px) {
-            :root {
-                --text-hero: 2.5rem;
-                --space-md: 1rem;
-                --space-lg: 1.5rem;
-                --space-xl: 2rem;
-                --space-xxl: 3rem;
+            .hero-name {
+                font-size: 2.5rem;
             }
             
-            .name-architecture {
-                font-size: var(--text-hero);
-            }
-            
+            .services-grid,
             .projects-grid {
                 grid-template-columns: 1fr;
             }
@@ -621,19 +717,19 @@
                 align-items: center;
             }
             
-            .contact-module {
+            .contact-btn {
                 width: 100%;
                 max-width: 300px;
             }
             
             .sound-header {
                 flex-direction: column;
-                gap: var(--space-sm);
+                gap: var(--space-base);
             }
             
-            .whatsapp-arch {
-                bottom: var(--space-md);
-                right: var(--space-md);
+            .whatsapp-fusion {
+                bottom: var(--space-medium);
+                right: var(--space-medium);
                 width: 50px;
                 height: 50px;
             }
@@ -645,252 +741,230 @@
         }
 
         @media (max-width: 480px) {
-            :root {
-                --text-hero: 2rem;
+            .hero-name {
+                font-size: 2rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1rem;
             }
             
             .hero-description {
-                font-size: var(--text-base);
+                font-size: 0.9rem;
             }
-        }
-
-        /* ANIMACIONES PERSONALIZADAS */
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        .floating {
-            animation: float 6s ease-in-out infinite;
-        }
-
-        /* ESTADOS DE INTERACCIÓN */
-        .interactive-element {
-            transition: all 0.4s var(--ease-out-quint);
-        }
-
-        .interactive-element:hover {
-            transform: translateY(-5px);
         }
     </style>
 </head>
 <body>
-    <!-- FONDO INTERACTIVO -->
-    <canvas class="audio-visualizer" id="visualizer"></canvas>
-
-    <!-- NAVEGACIÓN ARQUITECTÓNICA -->
-    <nav class="nav-arch">
-        <a href="#" class="nav-logo">EM</a>
+    <!-- NAVEGACIÓN HÍBRIDA -->
+    <nav class="nav-hybrid">
+        <div class="nav-title">EDUARDO <span>MEJÍA</span></div>
         <div class="nav-controls">
-            <button class="nav-control" id="themeToggle">
-                <i class="fas fa-moon"></i>
-            </button>
-            <button class="nav-control" id="languageToggle">
-                ES/EN
-            </button>
+            <button class="nav-btn" id="themeToggle">Tema</button>
+            <button class="nav-btn" id="languageToggle">ES/EN</button>
         </div>
     </nav>
 
-    <!-- HERO REVOLUCIONARIO -->
-    <section class="hero-arch">
+    <!-- HERO FUSIÓN -->
+    <section class="hero-fusion">
         <div class="hero-content">
-            <h1 class="name-architecture floating">EDUARDO MEJÍA</h1>
-            <div class="title-architecture" data-es="Arquitectura Musical" data-en="Musical Architecture">
+            <h1 class="hero-name">EDUARDO<br>MEJÍA</h1>
+            <div class="hero-subtitle" data-es="Arquitectura Musical" data-en="Musical Architecture">
                 Arquitectura Musical
             </div>
-            <p class="hero-description" data-es="Diseño de estructuras sonoras que transforman proyectos en experiencias memorables" 
-               data-en="Design of sound structures that transform projects into memorable experiences">
-                Diseño de estructuras sonoras que transforman proyectos en experiencias memorables
+            <p class="hero-description" data-es="Fusión de estructuras sonoras post-punk y techno para crear experiencias musicales revolucionarias" 
+               data-en="Fusion of post-punk and techno sound structures to create revolutionary musical experiences">
+                Fusión de estructuras sonoras post-punk y techno para crear experiencias musicales revolucionarias
             </p>
         </div>
     </section>
 
-    <!-- ARQUITECTURA INTERACTIVA -->
-    <section class="arch-interactive">
-        <div class="arch-container">
-            <div class="arch-grid">
-                <!-- TIMELINE INTERACTIVA -->
-                <div class="timeline-arch">
-                    <div class="timeline-item active">
-                        <div class="timeline-year">2018-2020</div>
-                        <div class="timeline-content" data-es="Fundación de estructuras sonoras y primeras colaboraciones estratégicas" 
-                             data-en="Foundation of sound structures and first strategic collaborations">
-                            Fundación de estructuras sonoras y primeras colaboraciones estratégicas
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-year">2020-2022</div>
-                        <div class="timeline-content" data-es="Expansión internacional y desarrollo de sistemas de distribución" 
-                             data-en="International expansion and distribution systems development">
-                            Expansión internacional y desarrollo de sistemas de distribución
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-year">2022-2024</div>
-                        <div class="timeline-content" data-es="Arquitectura de experiencias musicales a escala global" 
-                             data-en="Architecture of musical experiences at global scale">
-                            Arquitectura de experiencias musicales a escala global
-                        </div>
-                    </div>
-                </div>
-
-                <!-- SERVICIOS INTERACTIVOS -->
-                <div class="services-arch">
-                    <div class="service-module interactive-element">
-                        <div class="service-icon">⟷</div>
-                        <div class="service-title" data-es="Booking & Giras" data-en="Booking & Tours">
-                            Booking & Giras
-                        </div>
-                        <div class="service-desc" data-es="Estructuración de circuitos de presentación en vivo con enfoque estratégico y escalable" 
-                             data-en="Structuring live performance circuits with strategic and scalable approach">
-                            Estructuración de circuitos de presentación en vivo con enfoque estratégico y escalable
-                        </div>
-                    </div>
-                    <div class="service-module interactive-element">
-                        <div class="service-icon">⎗</div>
-                        <div class="service-title" data-es="Gestión Editorial" data-en="Publishing Management">
-                            Gestión Editorial
-                        </div>
-                        <div class="service-desc" data-es="Sistema integral de protección y administración de derechos de autor y conexos" 
-                             data-en="Comprehensive system for copyright and related rights protection and administration">
-                            Sistema integral de protección y administración de derechos de autor y conexos
-                        </div>
-                    </div>
-                    <div class="service-module interactive-element">
-                        <div class="service-icon">⤨</div>
-                        <div class="service-title" data-es="Distribución Digital" data-en="Digital Distribution">
-                            Distribución Digital
-                        </div>
-                        <div class="service-desc" data-es="Arquitectura de lanzamientos y estrategias de posicionamiento en ecosistemas digitales" 
-                             data-en="Launch architecture and positioning strategies in digital ecosystems">
-                            Arquitectura de lanzamientos y estrategias de posicionamiento en ecosistemas digitales
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- PROYECTOS ARQUITECTÓNICOS INTERACTIVOS -->
-    <section class="arch-projects">
-        <div class="arch-container">
-            <h2 class="section-title" data-es="Proyectos Destacados" data-en="Featured Projects">
-                Proyectos Destacados
+    <!-- TIMELINE FUSIÓN -->
+    <section class="timeline-fusion">
+        <div class="timeline-container">
+            <h2 class="timeline-title" data-es="Línea de Tiempo" data-en="Timeline">
+                Línea de Tiempo
             </h2>
-            <div class="projects-grid">
-                <div class="project-module interactive-element">
-                    <iframe class="project-media" src="https://www.youtube.com/embed/ZGxSXchZNfo?start=0" 
-                            title="Boiler Room" allowfullscreen></iframe>
-                    <div class="project-info">
-                        <div class="project-role" data-es="Producción Ejecutiva" data-en="Executive Production">
-                            Producción Ejecutiva
-                        </div>
-                        <div class="project-name" data-es="Boiler Room México" data-en="Boiler Room Mexico">
-                            Boiler Room México
-                        </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-year">2018-2020</div>
+                    <div class="timeline-content">
+                        <h3 data-es="Fundación Post-Punk" data-en="Post-Punk Foundation">Fundación Post-Punk</h3>
+                        <p data-es="Primeras exploraciones en la arquitectura sonora británica y desarrollo de metodologías de gestión musical" 
+                           data-en="First explorations in British sound architecture and development of music management methodologies">
+                            Primeras exploraciones en la arquitectura sonora británica y desarrollo de metodologías de gestión musical
+                        </p>
                     </div>
                 </div>
-                <div class="project-module interactive-element">
-                    <iframe class="project-media" src="https://www.youtube.com/embed/SD3T_Or_mvk?start=3" 
-                            title="Tra Tra" allowfullscreen></iframe>
-                    <div class="project-info">
-                        <div class="project-role" data-es="Coordinación Estratégica" data-en="Strategic Coordination">
-                            Coordinación Estratégica
-                        </div>
-                        <div class="project-name" data-es="Remix Released" data-en="Remix Released">
-                            Remix Released
-                        </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-year">2020-2022</div>
+                    <div class="timeline-content">
+                        <h3 data-es="Evolución Detroit" data-en="Detroit Evolution">Evolución Detroit</h3>
+                        <p data-es="Integración de elementos techno en la gestión musical y expansión hacia circuitos internacionales" 
+                           data-en="Integration of techno elements in music management and expansion to international circuits">
+                            Integración de elementos techno en la gestión musical y expansión hacia circuitos internacionales
+                        </p>
                     </div>
                 </div>
-                <div class="project-module interactive-element">
-                    <iframe class="project-media" src="https://www.youtube.com/embed/XCW95zjBUK4" 
-                            title="Gats" allowfullscreen></iframe>
-                    <div class="project-info">
-                        <div class="project-role" data-es="Desarrollo de Proyecto" data-en="Project Development">
-                            Desarrollo de Proyecto
-                        </div>
-                        <div class="project-name" data-es="Artista Emergente" data-en="Emerging Artist">
-                            Artista Emergente
-                        </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-year">2022-2024</div>
+                    <div class="timeline-content">
+                        <h3 data-es="Fusión Revolucionaria" data-en="Revolutionary Fusion">Fusión Revolucionaria</h3>
+                        <p data-es="Desarrollo del concepto de Arquitectura Musical que une ambas tradiciones en una metodología única" 
+                           data-en="Development of the Musical Architecture concept that unites both traditions in a unique methodology">
+                            Desarrollo del concepto de Arquitectura Musical que une ambas tradiciones en una metodología única
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- SONIDO ARQUITECTÓNICO -->
-    <section class="arch-sound">
-        <div class="arch-container">
-            <div class="sound-container">
-                <div class="sound-header">
-                    <img src="logo.svg" alt="TurboBoyz" class="sound-logo">
-                    <div class="sound-title" data-es="Nuestro Sonido" data-en="Our Sound">
-                        Nuestro Sonido
-                    </div>
+    <!-- SERVICIOS FUSIÓN -->
+    <section class="services-fusion">
+        <h2 class="services-title" data-es="Servicios" data-en="Services">
+            Servicios
+        </h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">⟷</div>
+                <h3 class="service-name" data-es="Booking & Giras" data-en="Booking & Tours">
+                    Booking & Giras
+                </h3>
+                <p class="service-desc" data-es="Circuitos de presentación que fusionan la intensidad post-punk con la precisión techno" 
+                   data-en="Performance circuits that fuse post-punk intensity with techno precision">
+                    Circuitos de presentación que fusionan la intensidad post-punk con la precisión techno
+                </p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">⎗</div>
+                <h3 class="service-name" data-es="Gestión Editorial" data-en="Publishing Management">
+                    Gestión Editorial
+                </h3>
+                <p class="service-desc" data-es="Protección y administración de obras con metodología híbrida post-punk/techno" 
+                   data-en="Protection and administration of works with hybrid post-punk/techno methodology">
+                    Protección y administración de obras con metodología híbrida post-punk/techno
+                </p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">⤨</div>
+                <h3 class="service-name" data-es="Distribución Digital" data-en="Digital Distribution">
+                    Distribución Digital
+                </h3>
+                <p class="service-desc" data-es="Estrategias de lanzamiento que combinan el DIY post-punk con la innovación techno" 
+                   data-en="Launch strategies that combine post-punk DIY with techno innovation">
+                    Estrategias de lanzamiento que combinan el DIY post-punk con la innovación techno
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROYECTOS FUSIÓN -->
+    <section class="projects-fusion">
+        <h2 class="projects-title" data-es="Proyectos" data-en="Projects">
+            Proyectos
+        </h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <iframe class="project-media" src="https://www.youtube.com/embed/ZGxSXchZNfo?start=0" 
+                        title="Boiler Room" allowfullscreen></iframe>
+                <div class="project-info">
+                    <div class="project-role" data-es="Producción" data-en="Production">Producción</div>
+                    <div class="project-name" data-es="Boiler Room" data-en="Boiler Room">Boiler Room</div>
                 </div>
-                <div class="sound-player interactive-element">
-                    <iframe style="border-radius:8px" 
-                            src="https://open.spotify.com/embed/playlist/26qaG2E3bW6ZNIk5mvPpjr?utm_source=generator" 
-                            width="100%" 
-                            height="152" 
-                            frameBorder="0" 
-                            allowfullscreen="" 
-                            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
-                            loading="lazy">
-                    </iframe>
+            </div>
+            <div class="project-card">
+                <iframe class="project-media" src="https://www.youtube.com/embed/SD3T_Or_mvk?start=3" 
+                        title="Tra Tra" allowfullscreen></iframe>
+                <div class="project-info">
+                    <div class="project-role" data-es="Coordinación" data-en="Coordination">Coordinación</div>
+                    <div class="project-name" data-es="Remix" data-en="Remix">Remix</div>
+                </div>
+            </div>
+            <div class="project-card">
+                <iframe class="project-media" src="https://www.youtube.com/embed/XCW95zjBUK4" 
+                        title="Gats" allowfullscreen></iframe>
+                <div class="project-info">
+                    <div class="project-role" data-es="Desarrollo" data-en="Development">Desarrollo</div>
+                    <div class="project-name" data-es="Emergente" data-en="Emerging">Emergente</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CONTACTO ARQUITECTÓNICO -->
-    <section class="arch-contact">
-        <div class="arch-container">
-            <h2 class="section-title" data-es="Construyamos Juntos" data-en="Let's Build Together">
-                Construyamos Juntos
-            </h2>
-            <div class="contact-grid">
-                <a class="contact-module primary interactive-element" 
-                   href="mailto:emc121091@me.com?subject=Colaboración%20Musical&body=Hola,%20me%20gustaría%20explorar%20posibilidades%20de%20trabajo%20conjunto%20para%20mi%20proyecto%20musical." 
-                   data-es="Iniciar Proyecto" data-en="Start Project">
-                    Iniciar Proyecto
-                </a>
-                <a class="contact-module interactive-element" 
-                   href="https://edumecar.github.io/Book/" 
-                   target="_blank" 
-                   data-es="Ver Arquitectura de Booking" data-en="View Booking Architecture">
-                    Ver Arquitectura de Booking
-                </a>
-                <a class="contact-module interactive-element" 
-                   href="https://www.linkedin.com/in/edumecar" 
-                   target="_blank" 
-                   data-es="LinkedIn Profesional" data-en="Professional LinkedIn">
-                    LinkedIn Profesional
-                </a>
+    <!-- SONIDO FUSIÓN -->
+    <section class="sound-fusion">
+        <h2 class="sound-title" data-es="Nuestro Sonido" data-en="Our Sound">
+            Nuestro Sonido
+        </h2>
+        <div class="sound-container">
+            <div class="sound-header">
+                <img src="logo.svg" alt="TurboBoyz" class="sound-logo">
+                <h3 class="sound-name" data-es="TurboBoyz Selection" data-en="TurboBoyz Selection">
+                    TurboBoyz Selection
+                </h3>
+            </div>
+            <div class="sound-player">
+                <iframe style="border-radius:8px" 
+                        src="https://open.spotify.com/embed/playlist/26qaG2E3bW6ZNIk5mvPpjr?utm_source=generator" 
+                        width="100%" 
+                        height="152" 
+                        frameBorder="0" 
+                        allowfullscreen="" 
+                        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+                        loading="lazy">
+                </iframe>
             </div>
         </div>
     </section>
 
-    <!-- WHATSAPP ARQUITECTÓNICO -->
+    <!-- CONTACTO FUSIÓN -->
+    <section class="contact-fusion">
+        <h2 class="contact-title" data-es="Contacto" data-en="Contact">
+            Contacto
+        </h2>
+        <div class="contact-grid">
+            <a class="contact-btn primary" 
+               href="mailto:emc121091@me.com?subject=Colaboración%20Musical&body=Hola,%20me%20gustaría%20explorar%20posibilidades%20de%20trabajo%20conjunto%20para%20mi%20proyecto%20musical." 
+               data-es="Iniciar Proyecto" data-en="Start Project">
+                Iniciar Proyecto
+            </a>
+            <a class="contact-btn" 
+               href="https://edumecar.github.io/Book/" 
+               target="_blank" 
+               data-es="Booking" data-en="Booking">
+                Booking
+            </a>
+            <a class="contact-btn" 
+               href="https://www.linkedin.com/in/edumecar" 
+               target="_blank" 
+               data-es="LinkedIn" data-en="LinkedIn">
+                LinkedIn
+            </a>
+        </div>
+    </section>
+
+    <!-- WHATSAPP FUSIÓN -->
     <a href="https://wa.me/525512478139?text=Hola,%20vi%20tu%20portafolio%20y%20me%20interesa%20conversar%20sobre%20mi%20proyecto%20musical." 
-       class="whatsapp-arch" target="_blank" aria-label="Contactar por WhatsApp">
+       class="whatsapp-fusion" target="_blank" aria-label="Contactar por WhatsApp">
         <svg class="whatsapp-icon" viewBox="0 0 24 24">
             <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893-.001-3.189-1.262-6.189-3.553-8.449"/>
         </svg>
     </a>
 
-    <footer class="arch-footer">
-        <div class="arch-container">
-            <span data-es="&copy; 2024 Eduardo Mejía - Arquitectura Musical" 
-                  data-en="&copy; 2024 Eduardo Mejía - Musical Architecture">
-                &copy; 2024 Eduardo Mejía - Arquitectura Musical
-            </span>
+    <footer class="footer-fusion">
+        <div class="footer-text" data-es="&copy; 2024 Eduardo Mejía - Arquitectura Musical" 
+              data-en="&copy; 2024 Eduardo Mejía - Musical Architecture">
+            &copy; 2024 Eduardo Mejía - Arquitectura Musical
         </div>
     </footer>
 
     <script>
-        // SISTEMA ARQUITECTÓNICO INTERACTIVO
-        class ArchitectureSystem {
+        // SISTEMA DE FUSIÓN
+        class FusionSystem {
             constructor() {
                 this.currentLanguage = 'es';
                 this.init();
@@ -899,22 +973,15 @@
             init() {
                 this.setupThemeToggle();
                 this.setupLanguageToggle();
-                this.setupTimelineInteractions();
-                this.setupScrollAnimations();
-                this.setupAudioVisualizer();
-                this.setupInteractiveElements();
+                this.setupTimelineAnimation();
+                this.setupScrollEffects();
             }
             
             setupThemeToggle() {
                 const themeToggle = document.getElementById('themeToggle');
                 themeToggle.addEventListener('click', () => {
                     document.body.classList.toggle('light-mode');
-                    const icon = themeToggle.querySelector('i');
-                    if (document.body.classList.contains('light-mode')) {
-                        icon.className = 'fas fa-sun';
-                    } else {
-                        icon.className = 'fas fa-moon';
-                    }
+                    // Aquí podrías implementar el modo claro si lo deseas
                 });
             }
             
@@ -934,116 +1001,45 @@
                 });
             }
             
-            setupTimelineInteractions() {
+            setupTimelineAnimation() {
                 const timelineItems = document.querySelectorAll('.timeline-item');
-                
-                timelineItems.forEach(item => {
-                    item.addEventListener('click', () => {
-                        // Remove active class from all items
-                        timelineItems.forEach(i => i.classList.remove('active'));
-                        // Add active class to clicked item
-                        item.classList.add('active');
-                    });
-                });
-            }
-            
-            setupScrollAnimations() {
-                const observerOptions = {
-                    threshold: 0.1,
-                    rootMargin: '0px 0px -50px 0px'
-                };
                 
                 const observer = new IntersectionObserver((entries) => {
                     entries.forEach(entry => {
                         if (entry.isIntersecting) {
-                            entry.target.classList.add('animate-in');
+                            entry.target.style.opacity = '1';
+                            entry.target.style.transform = 'translateX(0)';
                         }
                     });
-                }, observerOptions);
+                }, {
+                    threshold: 0.5
+                });
                 
-                // Observe all interactive elements
-                document.querySelectorAll('.interactive-element').forEach(el => {
-                    observer.observe(el);
+                timelineItems.forEach(item => {
+                    item.style.opacity = '0';
+                    if (item.classList.contains('timeline-item:nth-child(odd)')) {
+                        item.style.transform = 'translateX(-50px)';
+                    } else {
+                        item.style.transform = 'translateX(50px)';
+                    }
+                    item.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                    observer.observe(item);
                 });
             }
             
-            setupAudioVisualizer() {
-                const canvas = document.getElementById('visualizer');
-                const ctx = canvas.getContext('2d');
-                
-                // Set canvas size
-                function resizeCanvas() {
-                    canvas.width = window.innerWidth;
-                    canvas.height = window.innerHeight;
-                }
-                
-                resizeCanvas();
-                window.addEventListener('resize', resizeCanvas);
-                
-                // Create audio visualizer effect
-                function drawVisualizer() {
-                    requestAnimationFrame(drawVisualizer);
-                    
-                    ctx.fillStyle = 'rgba(10, 10, 10, 0.05)';
-                    ctx.fillRect(0, 0, canvas.width, canvas.height);
-                    
-                    const time = Date.now() * 0.002;
-                    const centerX = canvas.width / 2;
-                    const centerY = canvas.height / 2;
-                    const maxRadius = Math.min(centerX, centerY) * 0.8;
-                    
-                    // Draw concentric circles with subtle animation
-                    for (let i = 0; i < 5; i++) {
-                        const radius = maxRadius * (i / 5);
-                        const pulse = Math.sin(time + i) * 2;
-                        
-                        ctx.beginPath();
-                        ctx.arc(centerX, centerY, radius + pulse, 0, Math.PI * 2);
-                        ctx.strokeStyle = `rgba(255, 7, 58, ${0.1 - i * 0.02})`;
-                        ctx.lineWidth = 1;
-                        ctx.stroke();
-                    }
-                    
-                    // Draw connecting lines
-                    const points = 12;
-                    for (let i = 0; i < points; i++) {
-                        const angle = (i / points) * Math.PI * 2;
-                        const x1 = centerX + Math.cos(angle) * maxRadius * 0.3;
-                        const y1 = centerY + Math.sin(angle) * maxRadius * 0.3;
-                        const x2 = centerX + Math.cos(angle + time * 0.5) * maxRadius * 0.7;
-                        const y2 = centerY + Math.sin(angle + time * 0.5) * maxRadius * 0.7;
-                        
-                        ctx.beginPath();
-                        ctx.moveTo(x1, y1);
-                        ctx.lineTo(x2, y2);
-                        ctx.strokeStyle = `rgba(0, 245, 255, ${0.2})`;
-                        ctx.lineWidth = 1;
-                        ctx.stroke();
-                    }
-                }
-                
-                drawVisualizer();
-            }
-            
-            setupInteractiveElements() {
-                // Add subtle hover effects to all interactive elements
-                const interactiveElements = document.querySelectorAll('.interactive-element');
-                
-                interactiveElements.forEach(element => {
-                    element.addEventListener('mouseenter', () => {
-                        element.style.transform = 'translateY(-5px)';
-                    });
-                    
-                    element.addEventListener('mouseleave', () => {
-                        element.style.transform = 'translateY(0)';
-                    });
+            setupScrollEffects() {
+                // Efecto de parallax sutil en el hero
+                window.addEventListener('scroll', () => {
+                    const scrolled = window.pageYOffset;
+                    const hero = document.querySelector('.hero-fusion');
+                    hero.style.transform = `translateY(${scrolled * 0.5}px)`;
                 });
             }
         }
         
-        // Initialize the architecture system
+        // Inicializar el sistema
         document.addEventListener('DOMContentLoaded', () => {
-            new ArchitectureSystem();
+            new FusionSystem();
         });
     </script>
 </body>
