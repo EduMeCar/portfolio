@@ -3,59 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Conciencia Sonora - Eduardo Mejía</title>
-    
-    <!-- SEO META TAGS -->
-    <meta name="description" content="Eduardo Mejía - Conciencia Sonora. Servicios profesionales de booking, gestión editorial y distribución digital para artistas musicales.">
-    <meta name="keywords" content="música, booking, distribución digital, gestión editorial, producción musical, Eduardo Mejía">
-    <meta name="author" content="Eduardo Mejía">
-    
-    <!-- OPEN GRAPH -->
-    <meta property="og:title" content="Conciencia Sonora - Eduardo Mejía">
-    <meta property="og:description" content="Servicios profesionales de booking, gestión editorial y distribución digital para artistas musicales.">
-    <meta property="og:type" content="website">
-    <meta property="og:image" content="logo.png">
-    
-    <!-- PWA META TAGS -->
-    <meta name="theme-color" content="#1db954">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <link rel="manifest" href="manifest.json">
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <title>Eduardo Mejía - Arquitectura Musical</title>
     
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
         
         :root {
-            --neural-bg: #0a0a0a;
-            --neural-surface: #111112;
-            --neural-card: #1a1a1c;
-            --neural-border: #2a2a2e;
-            --neural-text: #f8f9fa;
-            --neural-subtle: #a0a0a7;
-            --quantum-green: #1db954;
-            --quantum-cyan: #00d4ff;
-            --quantum-purple: #8b5cf6;
-            --glow-primary: 0 0 30px rgba(29, 185, 84, 0.3);
-            --glow-secondary: 0 0 30px rgba(0, 212, 255, 0.2);
+            --carbon: #0a0a0a;
+            --steel: #1a1a1a;
+            --concrete: #2a2a2a;
+            --chrome: #f8f9fa;
+            --neon-red: #ff073a;
+            --neon-cyan: #00f5ff;
+            --grid-line: rgba(255,255,255,0.03);
             
-            /* Light mode variables */
-            --light-bg: #ffffff;
-            --light-surface: #f8f9fa;
-            --light-card: #ffffff;
-            --light-border: #e9ecef;
-            --light-text: #212529;
-            --light-subtle: #6c757d;
+            /* Light mode */
+            --light-carbon: #ffffff;
+            --light-steel: #f8f9fa;
+            --light-concrete: #e9ecef;
+            --light-chrome: #212529;
+            --light-grid: rgba(0,0,0,0.03);
         }
         
-        /* Light mode */
         .light-mode {
-            --neural-bg: var(--light-bg);
-            --neural-surface: var(--light-surface);
-            --neural-card: var(--light-card);
-            --neural-border: var(--light-border);
-            --neural-text: var(--light-text);
-            --neural-subtle: var(--light-subtle);
+            --carbon: var(--light-carbon);
+            --steel: var(--light-steel);
+            --concrete: var(--light-concrete);
+            --chrome: var(--light-chrome);
+            --grid-line: var(--light-grid);
         }
         
         * {
@@ -64,17 +39,19 @@
             box-sizing: border-box;
         }
         
-        html {
-            scroll-behavior: smooth;
-        }
-        
         body {
-            background: var(--neural-bg);
-            color: var(--neural-text);
+            background: var(--carbon);
+            color: var(--chrome);
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             line-height: 1.6;
             overflow-x: hidden;
             transition: all 0.4s ease;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
         }
         
         /* CONTROL BAR */
@@ -90,394 +67,223 @@
         .control-btn {
             width: 40px;
             height: 40px;
-            background: var(--neural-card);
-            border: 1px solid var(--neural-border);
+            background: var(--steel);
+            border: 1px solid var(--concrete);
             border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
             transition: all 0.3s ease;
-            color: var(--neural-text);
+            color: var(--chrome);
             font-size: 0.9rem;
         }
         
-        .control-btn:hover,
-        .control-btn:focus {
+        .control-btn:hover {
+            border-color: var(--neon-cyan);
             transform: scale(1.1);
-            border-color: var(--quantum-green);
-            box-shadow: var(--glow-primary);
-            outline: 2px solid var(--quantum-cyan);
-            outline-offset: 2px;
         }
         
-        .neural-interface {
+        /* HERO */
+        .arch-hero {
             min-height: 100vh;
-            position: relative;
-        }
-        
-        /* NEURAL GRID BACKGROUND */
-        .neural-grid {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                linear-gradient(90deg, var(--neural-bg) 21px, transparent 1%) center,
-                linear-gradient(var(--neural-bg) 21px, transparent 1%) center,
-                var(--neural-border);
-            background-size: 22px 22px;
-            opacity: 0.1;
-            z-index: -1;
-        }
-        
-        .light-mode .neural-grid {
-            opacity: 0.05;
-            background: 
-                linear-gradient(90deg, var(--neural-bg) 21px, transparent 1%) center,
-                linear-gradient(var(--neural-bg) 21px, transparent 1%) center,
-                #e9ecef;
-            background-size: 22px 22px;
-            opacity: 0.3;
-        }
-        
-        .quantum-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-        
-        /* HERO SECTION */
-        .neuro-hero {
-            padding: 8rem 0 4rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             text-align: center;
             position: relative;
+            background: 
+                linear-gradient(90deg, var(--grid-line) 1px, transparent 1px) 0 0 / 50px 50px,
+                linear-gradient(var(--grid-line) 1px, transparent 1px) 0 0 / 50px 50px;
         }
         
-        .logo-container {
+        .hero-content {
             position: relative;
-            width: 200px;
-            height: 200px;
-            margin: 0 auto 3rem;
+            z-index: 2;
         }
         
-        .neural-logo {
-            width: 100%;
-            height: 100%;
-            filter: drop-shadow(var(--glow-primary));
-            animation: soundWave 3s ease-in-out infinite;
+        .arch-name {
+            font-size: 4rem;
+            font-weight: 300;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
         }
         
-        @keyframes soundWave {
-            0%, 100% { 
-                transform: scale(1);
-                filter: drop-shadow(0 0 20px rgba(29, 185, 84, 0.4));
-            }
-            25% { 
-                transform: scale(1.08);
-                filter: drop-shadow(0 0 30px rgba(29, 185, 84, 0.6));
-            }
-            50% { 
-                transform: scale(1.05);
-                filter: drop-shadow(0 0 25px rgba(29, 185, 84, 0.5));
-            }
-            75% { 
-                transform: scale(1.12);
-                filter: drop-shadow(0 0 35px rgba(29, 185, 84, 0.7));
-            }
-        }
-        
-        .neural-logo:hover {
-            animation: soundPulse 0.6s ease-in-out;
-        }
-        
-        @keyframes soundPulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.2); }
-            100% { transform: scale(1.15); }
-        }
-        
-        .quantum-tagline {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--quantum-cyan);
+        .arch-title {
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: var(--neon-cyan);
             text-transform: uppercase;
             letter-spacing: 0.3em;
-            margin-bottom: 1rem;
             position: relative;
-            display: inline-block;
         }
         
-        .quantum-tagline::after {
-            content: '';
-            position: absolute;
-            bottom: -8px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 2px;
-            background: var(--quantum-cyan);
+        /* LO QUE HAGO SECTION */
+        .what-i-do {
+            padding: 6rem 0;
+            background: var(--steel);
         }
         
-        .neuro-title {
-            font-size: 3.5rem;
-            font-weight: 900;
-            background: linear-gradient(135deg, var(--neural-text) 0%, var(--quantum-green) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            line-height: 1.1;
-            margin-bottom: 1rem;
-            letter-spacing: -0.02em;
-        }
-        
-        .neuro-subtitle {
-            font-size: 1.4rem;
-            color: var(--neural-subtle);
+        .section-title {
+            font-size: 1rem;
             font-weight: 500;
-            max-width: 600px;
-            margin: 0 auto 3rem;
-        }
-        
-        /* MÉTRICAS CON CONTEO ANIMADO */
-        .elegant-metrics {
-            display: flex;
-            justify-content: center;
-            gap: 4rem;
-            margin: 5rem 0;
+            color: var(--neon-cyan);
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
             text-align: center;
+            margin-bottom: 4rem;
         }
         
-        .metric-elegant {
-            position: relative;
+        .metrics-services-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+            align-items: start;
         }
         
-        .metric-elegant:not(:last-child)::after {
-            content: '';
-            position: absolute;
-            right: -2rem;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 1px;
-            height: 60px;
-            background: rgba(255, 255, 255, 0.1);
+        .metrics-column {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
         }
         
-        .light-mode .metric-elegant:not(:last-child)::after {
-            background: rgba(0, 0, 0, 0.1);
+        .metric-card {
+            text-align: center;
+            padding: 2rem;
+            background: var(--carbon);
+            border: 1px solid var(--concrete);
+            border-radius: 8px;
         }
         
-        .elegant-number {
-            font-size: 3.5rem;
-            font-weight: 900;
-            color: var(--quantum-green);
+        .metric-number {
+            font-size: 3rem;
+            font-weight: 300;
+            color: var(--neon-red);
             display: block;
             line-height: 1;
             margin-bottom: 0.5rem;
         }
         
-        .elegant-label {
+        .metric-label {
             font-size: 0.9rem;
-            color: var(--neural-subtle);
-            font-weight: 600;
+            color: var(--chrome);
+            font-weight: 400;
             text-transform: uppercase;
             letter-spacing: 0.1em;
         }
         
-        /* SERVICIOS PROFESIONALES */
-        .professional-services {
-            margin: 6rem 0;
-        }
-        
-        .services-title {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--quantum-purple);
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-        
-        .services-elegant {
+        .services-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(2, 1fr);
             gap: 2rem;
-            max-width: 900px;
-            margin: 0 auto;
         }
         
-        .service-elegant {
-            background: var(--neural-card);
-            border: 1px solid var(--neural-border);
-            border-radius: 12px;
+        .service-card {
             padding: 2.5rem 2rem;
-            text-align: center;
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
+            background: var(--carbon);
+            border: 1px solid var(--concrete);
+            border-radius: 8px;
+            transition: all 0.3s ease;
         }
         
-        .service-elegant::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: var(--quantum-purple);
-            transform: scaleX(0);
-            transition: transform 0.4s ease;
+        .service-card:hover {
+            border-color: var(--neon-cyan);
+            transform: translateY(-5px);
         }
         
-        .service-elegant:hover::before {
-            transform: scaleX(1);
-        }
-        
-        .service-elegant:hover {
-            transform: translateY(-8px);
-            border-color: var(--quantum-purple);
-            box-shadow: 0 0 30px rgba(139, 92, 246, 0.2);
-        }
-        
-        .service-heading {
+        .service-name {
             font-size: 1.3rem;
-            font-weight: 800;
-            color: var(--neural-text);
+            font-weight: 600;
             margin-bottom: 1rem;
+            color: var(--chrome);
         }
         
-        .service-description {
+        .service-desc {
             font-size: 1rem;
-            color: var(--neural-subtle);
+            color: var(--chrome);
+            opacity: 0.9;
             line-height: 1.6;
         }
         
-        /* PROYECTOS REALES */
-        .real-productions {
-            margin: 6rem 0;
+        /* PROYECTOS DESTACADOS */
+        .featured-projects {
+            padding: 6rem 0;
         }
         
-        .productions-title {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--quantum-cyan);
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-        
-        .productions-grid {
+        .projects-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 2rem;
         }
         
-        .production-item {
-            background: var(--neural-card);
-            border: 1px solid var(--neural-border);
-            border-radius: 12px;
+        .project-card {
+            background: var(--steel);
+            border: 1px solid var(--concrete);
+            border-radius: 8px;
             overflow: hidden;
-            transition: all 0.4s ease;
+            transition: all 0.3s ease;
         }
         
-        .production-item:hover {
-            transform: translateY(-8px);
-            border-color: var(--quantum-cyan);
-            box-shadow: var(--glow-secondary);
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--neon-cyan);
         }
         
-        .production-player {
+        .project-player {
             width: 100%;
             height: 200px;
             border: none;
-            background: var(--neural-surface);
+            background: var(--carbon);
         }
         
-        .production-info {
+        .project-info {
             padding: 1.5rem;
             text-align: center;
         }
         
-        .production-role {
+        .project-role {
             font-size: 0.9rem;
-            color: var(--quantum-green);
+            color: var(--neon-red);
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.05em;
             margin-bottom: 0.5rem;
         }
         
-        .production-name {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: var(--neural-text);
-        }
-
-        .production-story {
-            font-size: 0.9rem;
-            color: var(--neural-subtle);
-            margin-top: 0.5rem;
-            line-height: 1.4;
-        }
-        
-        /* SONIDO QUE ME GUSTA */
-        .sound-i-love {
-            margin: 4rem 0;
-            text-align: center;
-        }
-        
-        .sound-title {
+        .project-name {
             font-size: 1.1rem;
             font-weight: 600;
-            color: var(--quantum-green);
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            margin-bottom: 2rem;
+            color: var(--chrome);
+        }
+        
+        /* NUESTRO SONIDO */
+        .our-sound {
+            padding: 4rem 0;
+            background: var(--steel);
+            text-align: center;
         }
         
         .sound-player {
-            background: var(--neural-card);
-            border: 1px solid var(--neural-border);
-            border-radius: 12px;
-            padding: 2.5rem;
-            max-width: 500px;
+            max-width: 600px;
             margin: 0 auto;
-            transition: all 0.4s ease;
+            background: var(--carbon);
+            border: 1px solid var(--concrete);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.3s ease;
         }
         
         .sound-player:hover {
-            border-color: var(--quantum-green);
-            box-shadow: var(--glow-primary);
+            border-color: var(--neon-cyan);
         }
         
-        /* CONEXIÓN ELEGANTE */
-        .elegant-connection {
-            margin: 6rem 0 4rem;
+        /* CONTACTO */
+        .contact-section {
+            padding: 6rem 0 4rem;
             text-align: center;
         }
         
-        .connection-title {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--quantum-cyan);
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            margin-bottom: 3rem;
-        }
-        
-        .connection-subtitle {
-            font-size: 1.2rem;
-            color: var(--neural-subtle);
-            margin-bottom: 3rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        .connection-actions {
+        .contact-actions {
             display: flex;
             gap: 1.5rem;
             justify-content: center;
@@ -487,51 +293,36 @@
         
         .action-btn {
             padding: 1.2rem 2.5rem;
-            border: 2px solid var(--quantum-green);
-            color: var(--quantum-green);
+            border: 2px solid var(--neon-cyan);
+            color: var(--neon-cyan);
             text-decoration: none;
             border-radius: 8px;
-            font-weight: 700;
+            font-weight: 600;
             transition: all 0.4s ease;
             min-width: 180px;
             text-align: center;
         }
         
         .action-btn.primary {
-            background: var(--quantum-green);
-            color: var(--neural-bg);
+            background: var(--neon-cyan);
+            color: var(--carbon);
         }
         
-        .action-btn:hover,
-        .action-btn:focus {
+        .action-btn:hover {
             transform: translateY(-3px);
-            box-shadow: var(--glow-primary);
-            outline: 2px solid var(--quantum-cyan);
-            outline-offset: 2px;
         }
         
-        .action-btn.primary:hover,
-        .action-btn.primary:focus {
+        .action-btn.primary:hover {
             background: transparent;
-            color: var(--quantum-green);
+            color: var(--neon-cyan);
         }
         
-        .action-btn:not(.primary):hover,
-        .action-btn:not(.primary):focus {
-            background: var(--quantum-green);
-            color: var(--neural-bg);
+        .action-btn:not(.primary):hover {
+            background: var(--neon-cyan);
+            color: var(--carbon);
         }
         
-        .portfolio-footer {
-            margin-top: 4rem;
-            padding: 3rem 0;
-            border-top: 1px solid var(--neural-border);
-            text-align: center;
-            color: var(--neural-subtle);
-            font-size: 0.9rem;
-        }
-        
-        /* WHATSAPP FLOAT BUTTON */
+        /* WHATSAPP FLOAT */
         .whatsapp-float {
             position: fixed;
             bottom: 20px;
@@ -557,73 +348,69 @@
         .whatsapp-icon {
             width: 30px;
             height: 30px;
-            fill: currentColor;
         }
         
-        /* INSTALL PROMPT */
-        .install-prompt {
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--neural-card);
-            border: 1px solid var(--neural-border);
-            border-radius: 12px;
-            padding: 1rem 1.5rem;
-            display: none;
-            align-items: center;
-            gap: 1rem;
-            z-index: 1000;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-        }
-        
-        .install-prompt.show {
-            display: flex;
-        }
-        
-        .install-btn {
-            background: var(--quantum-green);
-            color: white;
-            border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: 600;
-        }
-        
-        .install-close {
-            background: none;
-            border: none;
-            color: var(--neural-subtle);
-            cursor: pointer;
-            font-size: 1.2rem;
+        /* FOOTER */
+        .portfolio-footer {
+            margin-top: 4rem;
+            padding: 3rem 0;
+            border-top: 1px solid var(--concrete);
+            text-align: center;
+            color: var(--chrome);
+            opacity: 0.8;
+            font-size: 0.9rem;
         }
         
         /* RESPONSIVE DESIGN */
+        @media (max-width: 1024px) {
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .metrics-services-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            
+            .metrics-column {
+                flex-direction: row;
+                justify-content: center;
+            }
+            
+            .metric-card {
+                flex: 1;
+                max-width: 200px;
+            }
+        }
+        
         @media (max-width: 768px) {
-            .neuro-title {
+            .arch-name {
                 font-size: 2.5rem;
             }
             
-            .elegant-metrics {
+            .arch-title {
+                font-size: 1rem;
+            }
+            
+            .metrics-column {
                 flex-direction: column;
-                gap: 2rem;
+                align-items: center;
             }
             
-            .metric-elegant::after {
-                display: none;
+            .metric-card {
+                width: 100%;
+                max-width: 300px;
             }
             
-            .services-elegant {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-            
-            .productions-grid {
+            .services-grid {
                 grid-template-columns: 1fr;
             }
             
-            .connection-actions {
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-actions {
                 flex-direction: column;
                 align-items: center;
             }
@@ -640,15 +427,11 @@
         }
         
         @media (max-width: 480px) {
-            .neuro-title {
+            .arch-name {
                 font-size: 2rem;
             }
             
-            .neuro-subtitle {
-                font-size: 1.1rem;
-            }
-            
-            .elegant-number {
+            .metric-number {
                 font-size: 2.5rem;
             }
             
@@ -673,134 +456,128 @@
         <button class="control-btn" id="languageToggle" title="Español/English">ES/EN</button>
     </div>
     
-    <!-- WHATSAPP FLOAT BUTTON -->
+    <!-- WHATSAPP FLOAT -->
     <a href="https://wa.me/525512478139?text=Hola,%20vi%20tu%20portafolio%20y%20me%20interesa%20conversar%20sobre%20mi%20proyecto%20musical." class="whatsapp-float" target="_blank" aria-label="Contactar por WhatsApp">
-        <svg class="whatsapp-icon" viewBox="0 0 24 24">
+        <svg class="whatsapp-icon" viewBox="0 0 24 24" fill="currentColor">
             <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893-.001-3.189-1.262-6.189-3.553-8.449"/>
         </svg>
     </a>
-    
-    <!-- INSTALL PROMPT -->
-    <div class="install-prompt" id="installPrompt">
-        <span data-es="¿Instalar Conciencia Sonora?" data-en="Install Sound Consciousness?">¿Instalar Conciencia Sonora?</span>
-        <button class="install-btn" id="installButton" data-es="Instalar" data-en="Install">Instalar</button>
-        <button class="install-close" id="installClose">×</button>
-    </div>
 
     <div class="neural-interface">
-        <div class="neural-grid"></div>
+        <!-- HERO SECTION -->
+        <section class="arch-hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="arch-name">EDUARDO MEJÍA</h1>
+                    <div class="arch-title" data-es="Arquitectura Musical" data-en="Musical Architecture">Arquitectura Musical</div>
+                </div>
+            </div>
+        </section>
         
-        <div class="quantum-container">
-            <!-- HERO SECTION -->
-            <section class="neuro-hero">
-                <div class="logo-container">
-                    <img src="logo.svg" alt="Eduardo Mejía" class="neural-logo">
-                </div>
+        <!-- LO QUE HAGO -->
+        <section class="what-i-do">
+            <div class="container">
+                <div class="section-title" data-es="Lo Que Hago" data-en="What I Do">Lo Que Hago</div>
                 
-                <h1 class="neuro-title">EDUARDO MEJÍA</h1>
-                <div class="quantum-tagline" data-es="Conciencia Sonora" data-en="Sound Consciousness">Conciencia Sonora</div>
-                <p class="neuro-subtitle" data-es="Donde cada proyecto encuentra su camino perfecto" data-en="Where every project finds its perfect path">Donde cada proyecto encuentra su camino perfecto</p>
-            </section>
-            
-            <!-- MÉTRICAS CON CONTEO ANIMADO -->
-            <section class="elegant-metrics">
-                <div class="metric-elegant">
-                    <span class="elegant-number" id="metricEvents">0</span>
-                    <span class="elegant-label" data-es="Eventos Realizados" data-en="Events Curated">Eventos Realizados</span>
-                </div>
-                <div class="metric-elegant">
-                    <span class="elegant-number" id="metricYears">0</span>
-                    <span class="elegant-label" data-es="Años en la Escena" data-en="Years in the Scene">Años en la Escena</span>
-                </div>
-            </section>
-            
-            <!-- SERVICIOS PROFESIONALES -->
-            <section class="professional-services">
-                <div class="services-title" data-es="Lo Que Hago" data-en="What I Do">Lo Que Hago</div>
-                
-                <div class="services-elegant">
-                    <div class="service-elegant">
-                        <div class="service-heading" data-es="Booking & Giras" data-en="Booking & Tours">Booking & Giras</div>
-                        <div class="service-description" data-es="Conexión estratégica de artistas con venues para presentaciones en vivo y giras nacionales e internacionales" data-en="Strategic connection of artists with venues for live performances and national/international tours">
-                            Conexión estratégica de artistas con venues para presentaciones en vivo y giras nacionales e internacionales
+                <div class="metrics-services-grid">
+                    <div class="metrics-column">
+                        <div class="metric-card">
+                            <span class="metric-number" id="metricEvents">0</span>
+                            <span class="metric-label" data-es="Eventos Realizados" data-en="Events Curated">Eventos Realizados</span>
+                        </div>
+                        <div class="metric-card">
+                            <span class="metric-number" id="metricYears">0</span>
+                            <span class="metric-label" data-es="Años en la Escena" data-en="Years in the Scene">Años en la Escena</span>
                         </div>
                     </div>
                     
-                    <div class="service-elegant">
-                        <div class="service-heading" data-es="Gestión Editorial" data-en="Publishing Management">Gestión Editorial</div>
-                        <div class="service-description" data-es="Registro profesional de obras musicales y administración de derechos para maximizar el potencial de cada creación" data-en="Professional registration of musical works and rights management to maximize the potential of each creation">
-                            Registro profesional de obras musicales y administración de derechos para maximizar el potencial de cada creación
+                    <div class="services-grid">
+                        <div class="service-card">
+                            <div class="service-name" data-es="Booking & Giras" data-en="Booking & Tours">Booking & Giras</div>
+                            <div class="service-desc" data-es="Conexión estratégica de artistas con venues para presentaciones en vivo y giras nacionales e internacionales" data-en="Strategic connection of artists with venues for live performances and national/international tours">
+                                Conexión estratégica de artistas con venues para presentaciones en vivo y giras nacionales e internacionales
+                            </div>
                         </div>
-                    </div>
-                    
-                    <div class="service-elegant">
-                        <div class="service-heading" data-es="Distribución Digital" data-en="Digital Distribution">Distribución Digital</div>
-                        <div class="service-description" data-es="Estrategias de lanzamiento y distribución en plataformas globales para amplificar el alcance de tu música" data-en="Launch strategies and distribution on global platforms to amplify your music's reach">
-                            Estrategias de lanzamiento y distribución en plataformas globales para amplificar el alcance de tu música
+                        
+                        <div class="service-card">
+                            <div class="service-name" data-es="Gestión Editorial" data-en="Publishing Management">Gestión Editorial</div>
+                            <div class="service-desc" data-es="Registro profesional de obras musicales y administración de derechos para maximizar el potencial de cada creación" data-en="Professional registration of musical works and rights management to maximize the potential of each creation">
+                                Registro profesional de obras musicales y administración de derechos para maximizar el potencial de cada creación
+                            </div>
+                        </div>
+                        
+                        <div class="service-card">
+                            <div class="service-name" data-es="Distribución Digital" data-en="Digital Distribution">Distribución Digital</div>
+                            <div class="service-desc" data-es="Estrategias de lanzamiento y distribución en plataformas globales para amplificar el alcance de tu música" data-en="Launch strategies and distribution on global platforms to amplify your music's reach">
+                                Estrategias de lanzamiento y distribución en plataformas globales para amplificar el alcance de tu música
+                            </div>
                         </div>
                     </div>
                 </div>
-            </section>
-            
-            <!-- PROYECTOS REALES -->
-            <section class="real-productions">
-                <div class="productions-title" data-es="Proyectos Destacados" data-en="Featured Projects">Proyectos Destacados</div>
+            </div>
+        </section>
+        
+        <!-- PROYECTOS DESTACADOS -->
+        <section class="featured-projects">
+            <div class="container">
+                <div class="section-title" data-es="Proyectos Destacados" data-en="Featured Projects">Proyectos Destacados</div>
                 
-                <div class="productions-grid">
-                    <div class="production-item">
-                        <iframe class="production-player" src="https://www.youtube.com/embed/ZGxSXchZNfo?start=0" 
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <iframe class="project-player" src="https://www.youtube.com/embed/ZGxSXchZNfo?start=0" 
                                 title="Boiler Room" allowfullscreen></iframe>
-                        <div class="production-info">
-                            <div class="production-role" data-es="Logística & Producción" data-en="Logistics & Production">Logística & Producción</div>
-                            <div class="production-name" data-es="Boiler Room" data-en="Boiler Room">Boiler Room</div>
+                        <div class="project-info">
+                            <div class="project-role" data-es="Logística & Producción" data-en="Logistics & Production">Logística & Producción</div>
+                            <div class="project-name" data-es="Boiler Room" data-en="Boiler Room">Boiler Room</div>
                         </div>
                     </div>
                     
-                    <div class="production-item">
-                        <iframe class="production-player" src="https://www.youtube.com/embed/SD3T_Or_mvk?start=3" 
+                    <div class="project-card">
+                        <iframe class="project-player" src="https://www.youtube.com/embed/SD3T_Or_mvk?start=3" 
                                 title="Tra Tra" allowfullscreen></iframe>
-                        <div class="production-info">
-                            <div class="production-role" data-es="Coordinación" data-en="Coordination">Coordinación</div>
-                            <div class="production-name" data-es="Remix Released" data-en="Remix Released">Remix Released</div>
+                        <div class="project-info">
+                            <div class="project-role" data-es="Coordinación" data-en="Coordination">Coordinación</div>
+                            <div class="project-name" data-es="Remix Released" data-en="Remix Released">Remix Released</div>
                         </div>
                     </div>
                     
-                    <div class="production-item">
-                        <iframe class="production-player" src="https://www.youtube.com/embed/XCW95zjBUK4" 
+                    <div class="project-card">
+                        <iframe class="project-player" src="https://www.youtube.com/embed/XCW95zjBUK4" 
                                 title="Gats" allowfullscreen></iframe>
-                        <div class="production-info">
-                            <div class="production-role" data-es="Producción Ejecutiva" data-en="Executive Production">Producción Ejecutiva</div>
-                            <div class="production-name" data-es="Proyecto Emergente" data-en="Emerging Project">Proyecto Emergente</div>
+                        <div class="project-info">
+                            <div class="project-role" data-es="Producción Ejecutiva" data-en="Executive Production">Producción Ejecutiva</div>
+                            <div class="project-name" data-es="Proyecto Emergente" data-en="Emerging Project">Proyecto Emergente</div>
                         </div>
                     </div>
                 </div>
-            </section>
-            
-            <!-- SONIDO QUE ME GUSTA -->
-<section class="sound-i-love">
-    <div class="sound-title" data-es="Nuestro sonido:" data-en="Our sound:">Nuestro sonido:</div>
-    
-    <div class="sound-player">
-        <iframe style="border-radius:12px" 
-                src="https://open.spotify.com/embed/playlist/26qaG2E3bW6ZNIk5mvPpjr?utm_source=generator" 
-                width="100%" 
-                height="152" 
-                frameBorder="0" 
-                allowfullscreen="" 
-                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
-                loading="lazy">
-        </iframe>
-    </div>
-</section>
-            
-            <!-- CONEXIÓN ELEGANTE -->
-            <section class="elegant-connection">
-                <div class="connection-title" data-es="Disponible para proyectos" data-en="Available for projects">Disponible para proyectos</div>
-                <p class="connection-subtitle" data-es="¿Tienes un proyecto musical que necesita dirección estratégica? Hablemos sobre cómo podemos llevarlo al siguiente nivel" data-en="Do you have a music project that needs strategic direction? Let's talk about how we can take it to the next level">
-                    ¿Tienes un proyecto musical que necesita dirección estratégica? Hablemos sobre cómo podemos llevarlo al siguiente nivel
-                </p>
+            </div>
+        </section>
+        
+        <!-- NUESTRO SONIDO -->
+        <section class="our-sound">
+            <div class="container">
+                <div class="section-title" data-es="Nuestro Sonido" data-en="Our Sound">Nuestro Sonido</div>
                 
-                <div class="connection-actions">
+                <div class="sound-player">
+                    <iframe style="border-radius:12px" 
+                            src="https://open.spotify.com/embed/playlist/26qaG2E3bW6ZNIk5mvPpjr?utm_source=generator" 
+                            width="100%" 
+                            height="152" 
+                            frameBorder="0" 
+                            allowfullscreen="" 
+                            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+                            loading="lazy">
+                    </iframe>
+                </div>
+            </div>
+        </section>
+        
+        <!-- CONTACTO -->
+        <section class="contact-section">
+            <div class="container">
+                <div class="section-title" data-es="Disponible para proyectos" data-en="Available for projects">Disponible para proyectos</div>
+                
+                <div class="contact-actions">
                     <a class="action-btn primary" href="mailto:emc121091@me.com?subject=Colaboración%20Musical&body=Hola,%20me%20gustaría%20explorar%20posibilidades%20de%20trabajo%20conjunto%20para%20mi%20proyecto%20musical." data-es="Contacto" data-en="Contact">
                         Contacto
                     </a>
@@ -811,21 +588,17 @@
                         LinkedIn
                     </a>
                 </div>
-            </section>
-            
-            <footer class="portfolio-footer">
-                <span data-es="&copy; 2024 Conciencia Sonora - Eduardo Mejía" data-en="&copy; 2024 Sound Consciousness - Eduardo Mejía">&copy; 2024 Conciencia Sonora - Eduardo Mejía</span>
-            </footer>
-        </div>
+            </div>
+        </section>
+        
+        <footer class="portfolio-footer">
+            <div class="container">
+                <span data-es="&copy; 2024 Eduardo Mejía - Arquitectura Musical" data-en="&copy; 2024 Eduardo Mejía - Musical Architecture">&copy; 2024 Eduardo Mejía - Arquitectura Musical</span>
+            </div>
+        </footer>
     </div>
 
     <script>
-        // ===== DETECCIÓN AUTOMÁTICA DE IDIOMA =====
-        function detectUserLanguage() {
-            const userLang = navigator.language || navigator.userLanguage;
-            return userLang.startsWith('es') ? 'es' : 'en';
-        }
-
         // ===== TOGGLE TEMA CLARO/OSCURO =====
         const themeToggle = document.getElementById('themeToggle');
         themeToggle.addEventListener('click', () => {
@@ -833,11 +606,10 @@
             themeToggle.textContent = document.body.classList.contains('light-mode') ? '🌙' : '🌓';
         });
 
-        // ===== TOGGLE IDIOMA ESPAÑOL/INGLÉS =====
+        // ===== TOGGLE IDIOMA =====
         const languageToggle = document.getElementById('languageToggle');
-        let currentLanguage = detectUserLanguage();
+        let currentLanguage = 'es';
         
-        // Función para actualizar todos los textos
         function updateLanguage(lang) {
             document.querySelectorAll('[data-es]').forEach(element => {
                 const text = element.getAttribute(`data-${lang}`);
@@ -847,94 +619,44 @@
             });
         }
         
-        // Inicializar con idioma del usuario
-        languageToggle.textContent = currentLanguage === 'es' ? 'ES/EN' : 'EN/ES';
-        updateLanguage(currentLanguage);
-        
         languageToggle.addEventListener('click', () => {
             currentLanguage = currentLanguage === 'es' ? 'en' : 'es';
             languageToggle.textContent = currentLanguage === 'es' ? 'ES/EN' : 'EN/ES';
             updateLanguage(currentLanguage);
         });
 
-        // Inicializar textos según idioma detectado
-        document.addEventListener('DOMContentLoaded', function() {
-            updateLanguage(currentLanguage);
-            
-            // Precargar imágenes críticas
-            const logo = new Image();
-            logo.src = 'logo.svg';
-        });
-
-        // ===== ANIMACIÓN DE CONTEO EN MÉTRICAS =====
-        function animateCounter(element, target, duration = 2000) {
-            let start = 0;
-            const increment = target / (duration / 16);
+        // ===== CONTADORES ANIMADOS =====
+        function animateCounter(element, target, suffix = '+') {
             let current = 0;
-            
+            const increment = target / 60;
             const timer = setInterval(() => {
                 current += increment;
                 if (current >= target) {
-                    element.textContent = target + '+';
+                    element.textContent = target + suffix;
                     clearInterval(timer);
                 } else {
-                    element.textContent = Math.floor(current);
+                    element.textContent = Math.floor(current) + suffix;
                 }
-            }, 16);
+            }, 30);
         }
 
         // Iniciar animación cuando las métricas sean visibles
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    animateCounter(document.getElementById('metricEvents'), 200);
+                    animateCounter(document.getElementById('metricEvents'), 300);
                     animateCounter(document.getElementById('metricYears'), 5);
                     observer.unobserve(entry.target);
                 }
             });
         });
 
-        observer.observe(document.querySelector('.elegant-metrics'));
+        observer.observe(document.querySelector('.what-i-do'));
 
-        // ===== PWA INSTALL PROMPT =====
-        let deferredPrompt;
-        const installPrompt = document.getElementById('installPrompt');
-        const installButton = document.getElementById('installButton');
-        const installClose = document.getElementById('installClose');
-
-        window.addEventListener('beforeinstallprompt', (e) => {
-            e.preventDefault();
-            deferredPrompt = e;
-            installPrompt.classList.add('show');
+        // Precargar elementos críticos
+        document.addEventListener('DOMContentLoaded', function() {
+            updateLanguage(currentLanguage);
         });
-
-        installButton.addEventListener('click', async () => {
-            if (deferredPrompt) {
-                deferredPrompt.prompt();
-                const { outcome } = await deferredPrompt.userChoice;
-                if (outcome === 'accepted') {
-                    installPrompt.classList.remove('show');
-                }
-                deferredPrompt = null;
-            }
-        });
-
-        installClose.addEventListener('click', () => {
-            installPrompt.classList.remove('show');
-        });
-
-        // Service Worker Registration (para PWA completa)
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/sw.js')
-                    .then(registration => {
-                        console.log('SW registered: ', registration);
-                    })
-                    .catch(registrationError => {
-                        console.log('SW registration failed: ', registrationError);
-                    });
-            });
-        }
     </script>
 </body>
 </html>
