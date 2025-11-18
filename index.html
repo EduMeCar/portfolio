@@ -4,28 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eduardo Mejía - Arquitectura Musical</title>
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* SISTEMA DE DISEÑO ARQUITECTÓNICO */
+        /* SISTEMA DE DISEÑO ARQUITECTÓNICO AVANZADO */
         :root {
-            /* Paleta tonal arquitectónica */
+            /* Sistema tonal arquitectónico */
             --foundation: #0a0a0a;
-            --structure: #1a1a1a;
-            --surface: #2a2a2a;
+            --structure: #111111;
+            --surface: #1a1a1a;
             --accent: #ffffff;
             --primary: #ff073a;
             --secondary: #00f5ff;
+            --tertiary: #8b5cf6;
             
-            /* Sistema de proporciones áureas */
-            --ratio: 1.618;
-            --space-unit: 1rem;
-            --space-xs: calc(var(--space-unit) / var(--ratio));
-            --space-sm: var(--space-unit);
-            --space-md: calc(var(--space-unit) * var(--ratio));
-            --space-lg: calc(var(--space-md) * var(--ratio));
-            --space-xl: calc(var(--space-lg) * var(--ratio));
+            /* Sistema de proporciones modulares */
+            --base-unit: 1rem;
+            --space-xs: calc(var(--base-unit) * 0.5);
+            --space-sm: var(--base-unit);
+            --space-md: calc(var(--base-unit) * 1.5);
+            --space-lg: calc(var(--base-unit) * 2);
+            --space-xl: calc(var(--base-unit) * 3);
+            --space-xxl: calc(var(--base-unit) * 5);
             
-            /* Tipografía modular */
+            /* Tipografía escalable */
             --text-xs: 0.75rem;
             --text-sm: 0.875rem;
             --text-base: 1rem;
@@ -34,51 +35,109 @@
             --text-2xl: 1.5rem;
             --text-3xl: 2rem;
             --text-4xl: 2.5rem;
-            --text-hero: 3.5rem;
+            --text-hero: 4rem;
+            
+            /* Transiciones avanzadas */
+            --ease-out-quint: cubic-bezier(0.23, 1, 0.32, 1);
+            --ease-in-out-quint: cubic-bezier(0.86, 0, 0.07, 1);
         }
 
+        /* RESET AVANZADO */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
         body {
             background: var(--foundation);
             color: var(--accent);
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             line-height: 1.6;
             font-weight: 400;
+            overflow-x: hidden;
+            position: relative;
         }
 
-        /* SISTEMA DE GRILLA ARQUITECTÓNICA */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 var(--space-md);
+        /* FONDO INTERACTIVO */
+        .audio-visualizer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.03;
         }
 
-        .grid-system {
-            display: grid;
-            grid-template-columns: repeat(12, 1fr);
-            gap: var(--space-md);
-            align-items: start;
+        /* NAVEGACIÓN ARQUITECTÓNICA */
+        .nav-arch {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: var(--space-md);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        /* HERO ARQUITECTÓNICO */
-        .arch-hero {
+        .nav-logo {
+            font-size: var(--text-lg);
+            font-weight: 700;
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .nav-controls {
+            display: flex;
+            gap: var(--space-sm);
+        }
+
+        .nav-control {
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s var(--ease-out-quint);
+            background: rgba(255, 255, 255, 0.02);
+            color: var(--accent);
+        }
+
+        .nav-control:hover {
+            border-color: var(--secondary);
+            transform: translateY(-2px);
+        }
+
+        /* HERO REVOLUCIONARIO */
+        .hero-arch {
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
-            background: 
-                linear-gradient(135deg, var(--foundation) 0%, var(--structure) 100%);
+            overflow: hidden;
         }
 
         .hero-content {
             text-align: center;
             position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 0 var(--space-md);
         }
 
         .name-architecture {
@@ -86,44 +145,60 @@
             font-weight: 300;
             letter-spacing: -0.02em;
             line-height: 1.1;
-            margin-bottom: var(--space-sm);
+            margin-bottom: var(--space-md);
             text-transform: uppercase;
+            position: relative;
+        }
+
+        .name-architecture::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
         }
 
         .title-architecture {
-            font-size: var(--text-lg);
+            font-size: var(--text-xl);
             font-weight: 400;
             color: var(--secondary);
             text-transform: uppercase;
             letter-spacing: 0.3em;
+            margin-bottom: var(--space-xl);
             position: relative;
         }
 
-        .title-architecture::after {
-            content: '';
-            position: absolute;
-            bottom: -var(--space-md);
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 1px;
-            background: var(--secondary);
+        .hero-description {
+            font-size: var(--text-lg);
+            line-height: 1.6;
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0.8;
         }
 
-        /* SECCIÓN ARQUITECTURA MUSICAL */
-        .arch-music {
-            padding: var(--space-xl) 0;
-            background: var(--structure);
+        /* ARQUITECTURA INTERACTIVA */
+        .arch-interactive {
+            padding: var(--space-xxl) 0;
+            position: relative;
+        }
+
+        .arch-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--space-md);
         }
 
         .arch-grid {
             display: grid;
-            grid-template-columns: 1fr 2fr;
+            grid-template-columns: 1fr 1fr;
             gap: var(--space-xl);
             align-items: start;
         }
 
-        /* TIMELINE ARQUITECTÓNICA */
+        /* TIMELINE ARQUITECTÓNICA INTERACTIVA */
         .timeline-arch {
             position: relative;
             padding: var(--space-lg) 0;
@@ -135,7 +210,7 @@
             left: 0;
             top: 0;
             bottom: 0;
-            width: 1px;
+            width: 2px;
             background: linear-gradient(to bottom, 
                 transparent 0%, 
                 var(--primary) 10%, 
@@ -145,19 +220,34 @@
 
         .timeline-item {
             position: relative;
-            padding-left: var(--space-lg);
+            padding-left: var(--space-xl);
             margin-bottom: var(--space-xl);
+            cursor: pointer;
+            transition: all 0.4s var(--ease-out-quint);
+            opacity: 0.6;
+        }
+
+        .timeline-item.active {
+            opacity: 1;
+            transform: translateX(10px);
         }
 
         .timeline-item::before {
             content: '';
             position: absolute;
-            left: -6px;
+            left: -8px;
             top: 0;
-            width: 12px;
-            height: 12px;
+            width: 16px;
+            height: 16px;
             background: var(--primary);
             border-radius: 50%;
+            transition: all 0.4s var(--ease-out-quint);
+        }
+
+        .timeline-item.active::before {
+            background: var(--secondary);
+            box-shadow: 0 0 0 4px rgba(0, 245, 255, 0.2);
+            transform: scale(1.2);
         }
 
         .timeline-year {
@@ -167,39 +257,65 @@
             text-transform: uppercase;
             letter-spacing: 0.1em;
             margin-bottom: var(--space-xs);
+            transition: color 0.3s ease;
+        }
+
+        .timeline-item.active .timeline-year {
+            color: var(--secondary);
         }
 
         .timeline-content {
             font-size: var(--text-base);
             line-height: 1.6;
             color: var(--accent);
-            opacity: 0.9;
         }
 
-        /* SERVICIOS ARQUITECTÓNICOS */
+        /* SERVICIOS ARQUITECTÓNICOS INTERACTIVOS */
         .services-arch {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: 1fr;
             gap: var(--space-md);
         }
 
         .service-module {
-            background: var(--foundation);
-            border: 1px solid var(--surface);
+            background: var(--structure);
+            border: 1px solid rgba(255, 255, 255, 0.05);
             padding: var(--space-lg);
-            transition: all 0.3s ease;
+            transition: all 0.4s var(--ease-out-quint);
             position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .service-module::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 7, 58, 0.05), transparent);
+            transition: left 0.6s var(--ease-out-quint);
+        }
+
+        .service-module:hover::before {
+            left: 100%;
         }
 
         .service-module:hover {
             border-color: var(--secondary);
-            transform: translateY(-2px);
+            transform: translateY(-5px);
         }
 
         .service-icon {
             font-size: var(--text-2xl);
             margin-bottom: var(--space-md);
             color: var(--primary);
+            transition: color 0.3s ease;
+        }
+
+        .service-module:hover .service-icon {
+            color: var(--secondary);
         }
 
         .service-title {
@@ -216,9 +332,31 @@
             opacity: 0.8;
         }
 
-        /* PROYECTOS ARQUITECTÓNICOS */
+        /* PROYECTOS ARQUITECTÓNICOS INTERACTIVOS */
         .arch-projects {
-            padding: var(--space-xl) 0;
+            padding: var(--space-xxl) 0;
+            background: var(--structure);
+        }
+
+        .section-title {
+            font-size: var(--text-2xl);
+            font-weight: 300;
+            text-align: center;
+            margin-bottom: var(--space-xl);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 2px;
+            background: var(--primary);
         }
 
         .projects-grid {
@@ -228,26 +366,52 @@
         }
 
         .project-module {
-            background: var(--structure);
-            border: 1px solid var(--surface);
+            background: var(--foundation);
+            border: 1px solid rgba(255, 255, 255, 0.05);
             overflow: hidden;
-            transition: all 0.3s ease;
+            transition: all 0.4s var(--ease-out-quint);
+            position: relative;
+            cursor: pointer;
+        }
+
+        .project-module::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent, rgba(255, 7, 58, 0.03), transparent);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: 1;
+        }
+
+        .project-module:hover::before {
+            opacity: 1;
         }
 
         .project-module:hover {
             border-color: var(--primary);
-            transform: translateY(-2px);
+            transform: translateY(-5px);
         }
 
         .project-media {
             width: 100%;
             height: 200px;
-            background: var(--foundation);
+            background: var(--surface);
             border: none;
+            transition: transform 0.4s var(--ease-out-quint);
+        }
+
+        .project-module:hover .project-media {
+            transform: scale(1.05);
         }
 
         .project-info {
             padding: var(--space-md);
+            position: relative;
+            z-index: 2;
         }
 
         .project-role {
@@ -267,12 +431,12 @@
 
         /* SONIDO ARQUITECTÓNICO */
         .arch-sound {
-            padding: var(--space-xl) 0;
-            background: var(--structure);
+            padding: var(--space-xxl) 0;
+            position: relative;
         }
 
         .sound-container {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
         }
 
@@ -285,14 +449,21 @@
         }
 
         .sound-logo {
-            width: 60px;
-            height: 60px;
+            width: 80px;
+            height: 80px;
             border-radius: 50%;
             object-fit: cover;
+            border: 2px solid var(--primary);
+            transition: all 0.4s var(--ease-out-quint);
+        }
+
+        .sound-logo:hover {
+            transform: rotate(15deg);
+            border-color: var(--secondary);
         }
 
         .sound-title {
-            font-size: var(--text-lg);
+            font-size: var(--text-xl);
             font-weight: 600;
             color: var(--accent);
             text-transform: uppercase;
@@ -301,71 +472,22 @@
 
         .sound-player {
             width: 100%;
-            background: var(--foundation);
-            border: 1px solid var(--surface);
-            border-radius: 8px;
-            overflow: hidden;
-        }
-
-        /* CONTROL SYSTEM */
-        .control-arch {
-            position: fixed;
-            top: var(--space-md);
-            right: var(--space-md);
-            display: flex;
-            gap: var(--space-xs);
-            z-index: 1000;
-        }
-
-        .control-module {
-            width: 40px;
-            height: 40px;
             background: var(--structure);
-            border: 1px solid var(--surface);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: var(--text-sm);
-            color: var(--accent);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.4s var(--ease-out-quint);
         }
 
-        .control-module:hover {
+        .sound-player:hover {
             border-color: var(--secondary);
-            transform: scale(1.05);
-        }
-
-        /* WHATSAPP MODULE */
-        .whatsapp-arch {
-            position: fixed;
-            bottom: var(--space-md);
-            right: var(--space-md);
-            width: 60px;
-            height: 60px;
-            background: #25D366;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            transition: transform 0.3s ease;
-            z-index: 1000;
-        }
-
-        .whatsapp-arch:hover {
-            transform: scale(1.1);
-        }
-
-        .whatsapp-icon {
-            width: 30px;
-            height: 30px;
-            fill: white;
+            transform: translateY(-5px);
         }
 
         /* CONTACTO ARQUITECTÓNICO */
         .arch-contact {
-            padding: var(--space-xl) 0;
+            padding: var(--space-xxl) 0;
+            background: var(--structure);
             text-align: center;
         }
 
@@ -374,16 +496,35 @@
             gap: var(--space-md);
             justify-content: center;
             flex-wrap: wrap;
+            max-width: 800px;
+            margin: 0 auto;
         }
 
         .contact-module {
             padding: var(--space-md) var(--space-lg);
-            border: 1px solid var(--surface);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             text-decoration: none;
             color: var(--accent);
-            transition: all 0.3s ease;
+            transition: all 0.4s var(--ease-out-quint);
             min-width: 180px;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-module::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 245, 255, 0.1), transparent);
+            transition: left 0.6s var(--ease-out-quint);
+        }
+
+        .contact-module:hover::before {
+            left: 100%;
         }
 
         .contact-module.primary {
@@ -394,7 +535,7 @@
 
         .contact-module:hover {
             border-color: var(--secondary);
-            transform: translateY(-2px);
+            transform: translateY(-3px);
         }
 
         .contact-module.primary:hover {
@@ -402,18 +543,52 @@
             color: var(--primary);
         }
 
+        /* WHATSAPP ARQUITECTÓNICO */
+        .whatsapp-arch {
+            position: fixed;
+            bottom: var(--space-lg);
+            right: var(--space-lg);
+            width: 60px;
+            height: 60px;
+            background: #25D366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.4s var(--ease-out-quint);
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.3);
+            border: 2px solid white;
+        }
+
+        .whatsapp-arch:hover {
+            transform: scale(1.1) rotate(10deg);
+            box-shadow: 0 6px 25px rgba(37, 211, 102, 0.5);
+        }
+
+        .whatsapp-icon {
+            width: 30px;
+            height: 30px;
+            fill: white;
+        }
+
         /* FOOTER ARQUITECTÓNICO */
         .arch-footer {
-            padding: var(--space-lg) 0;
-            border-top: 1px solid var(--surface);
+            padding: var(--space-xl) 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
             text-align: center;
             color: var(--accent);
             opacity: 0.7;
             font-size: var(--text-sm);
         }
 
-        /* SISTEMA RESPONSIVO */
+        /* SISTEMA RESPONSIVO AVANZADO */
         @media (max-width: 1024px) {
+            :root {
+                --text-hero: 3rem;
+            }
+            
             .arch-grid {
                 grid-template-columns: 1fr;
                 gap: var(--space-lg);
@@ -422,15 +597,15 @@
             .projects-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
-            
-            .services-arch {
-                grid-template-columns: 1fr;
-            }
         }
 
         @media (max-width: 768px) {
             :root {
                 --text-hero: 2.5rem;
+                --space-md: 1rem;
+                --space-lg: 1.5rem;
+                --space-xl: 2rem;
+                --space-xxl: 3rem;
             }
             
             .name-architecture {
@@ -451,9 +626,21 @@
                 max-width: 300px;
             }
             
-            .control-arch {
-                top: var(--space-sm);
-                right: var(--space-sm);
+            .sound-header {
+                flex-direction: column;
+                gap: var(--space-sm);
+            }
+            
+            .whatsapp-arch {
+                bottom: var(--space-md);
+                right: var(--space-md);
+                width: 50px;
+                height: 50px;
+            }
+            
+            .whatsapp-icon {
+                width: 25px;
+                height: 25px;
             }
         }
 
@@ -462,59 +649,69 @@
                 --text-hero: 2rem;
             }
             
-            .sound-header {
-                flex-direction: column;
-                gap: var(--space-sm);
+            .hero-description {
+                font-size: var(--text-base);
             }
-            
-            .whatsapp-arch {
-                width: 50px;
-                height: 50px;
-                bottom: var(--space-sm);
-                right: var(--space-sm);
-            }
-            
-            .whatsapp-icon {
-                width: 25px;
-                height: 25px;
-            }
+        }
+
+        /* ANIMACIONES PERSONALIZADAS */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* ESTADOS DE INTERACCIÓN */
+        .interactive-element {
+            transition: all 0.4s var(--ease-out-quint);
+        }
+
+        .interactive-element:hover {
+            transform: translateY(-5px);
         }
     </style>
 </head>
 <body>
-    <!-- SISTEMA DE CONTROL -->
-    <div class="control-arch">
-        <button class="control-module" id="themeToggle" title="Modo claro/oscuro">◑</button>
-        <button class="control-module" id="languageToggle" title="Español/English">ES/EN</button>
-    </div>
+    <!-- FONDO INTERACTIVO -->
+    <canvas class="audio-visualizer" id="visualizer"></canvas>
 
-    <!-- MÓDULO WHATSAPP -->
-    <a href="https://wa.me/525512478139?text=Hola,%20vi%20tu%20portafolio%20y%20me%20interesa%20conversar%20sobre%20mi%20proyecto%20musical." 
-       class="whatsapp-arch" target="_blank" aria-label="Contactar por WhatsApp">
-        <svg class="whatsapp-icon" viewBox="0 0 24 24">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893-.001-3.189-1.262-6.189-3.553-8.449"/>
-        </svg>
-    </a>
+    <!-- NAVEGACIÓN ARQUITECTÓNICA -->
+    <nav class="nav-arch">
+        <a href="#" class="nav-logo">EM</a>
+        <div class="nav-controls">
+            <button class="nav-control" id="themeToggle">
+                <i class="fas fa-moon"></i>
+            </button>
+            <button class="nav-control" id="languageToggle">
+                ES/EN
+            </button>
+        </div>
+    </nav>
 
-    <!-- HERO ARQUITECTÓNICO -->
-    <section class="arch-hero">
-        <div class="container">
-            <div class="hero-content">
-                <h1 class="name-architecture">EDUARDO MEJÍA</h1>
-                <div class="title-architecture" data-es="Arquitectura Musical" data-en="Musical Architecture">
-                    Arquitectura Musical
-                </div>
+    <!-- HERO REVOLUCIONARIO -->
+    <section class="hero-arch">
+        <div class="hero-content">
+            <h1 class="name-architecture floating">EDUARDO MEJÍA</h1>
+            <div class="title-architecture" data-es="Arquitectura Musical" data-en="Musical Architecture">
+                Arquitectura Musical
             </div>
+            <p class="hero-description" data-es="Diseño de estructuras sonoras que transforman proyectos en experiencias memorables" 
+               data-en="Design of sound structures that transform projects into memorable experiences">
+                Diseño de estructuras sonoras que transforman proyectos en experiencias memorables
+            </p>
         </div>
     </section>
 
-    <!-- ARQUITECTURA MUSICAL -->
-    <section class="arch-music">
-        <div class="container">
+    <!-- ARQUITECTURA INTERACTIVA -->
+    <section class="arch-interactive">
+        <div class="arch-container">
             <div class="arch-grid">
-                <!-- TIMELINE ESTRUCTURAL -->
+                <!-- TIMELINE INTERACTIVA -->
                 <div class="timeline-arch">
-                    <div class="timeline-item">
+                    <div class="timeline-item active">
                         <div class="timeline-year">2018-2020</div>
                         <div class="timeline-content" data-es="Fundación de estructuras sonoras y primeras colaboraciones estratégicas" 
                              data-en="Foundation of sound structures and first strategic collaborations">
@@ -537,9 +734,9 @@
                     </div>
                 </div>
 
-                <!-- SERVICIOS ESTRUCTURALES -->
+                <!-- SERVICIOS INTERACTIVOS -->
                 <div class="services-arch">
-                    <div class="service-module">
+                    <div class="service-module interactive-element">
                         <div class="service-icon">⟷</div>
                         <div class="service-title" data-es="Booking & Giras" data-en="Booking & Tours">
                             Booking & Giras
@@ -549,7 +746,7 @@
                             Estructuración de circuitos de presentación en vivo con enfoque estratégico y escalable
                         </div>
                     </div>
-                    <div class="service-module">
+                    <div class="service-module interactive-element">
                         <div class="service-icon">⎗</div>
                         <div class="service-title" data-es="Gestión Editorial" data-en="Publishing Management">
                             Gestión Editorial
@@ -559,7 +756,7 @@
                             Sistema integral de protección y administración de derechos de autor y conexos
                         </div>
                     </div>
-                    <div class="service-module">
+                    <div class="service-module interactive-element">
                         <div class="service-icon">⤨</div>
                         <div class="service-title" data-es="Distribución Digital" data-en="Digital Distribution">
                             Distribución Digital
@@ -574,11 +771,14 @@
         </div>
     </section>
 
-    <!-- PROYECTOS ARQUITECTÓNICOS -->
+    <!-- PROYECTOS ARQUITECTÓNICOS INTERACTIVOS -->
     <section class="arch-projects">
-        <div class="container">
+        <div class="arch-container">
+            <h2 class="section-title" data-es="Proyectos Destacados" data-en="Featured Projects">
+                Proyectos Destacados
+            </h2>
             <div class="projects-grid">
-                <div class="project-module">
+                <div class="project-module interactive-element">
                     <iframe class="project-media" src="https://www.youtube.com/embed/ZGxSXchZNfo?start=0" 
                             title="Boiler Room" allowfullscreen></iframe>
                     <div class="project-info">
@@ -590,7 +790,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="project-module">
+                <div class="project-module interactive-element">
                     <iframe class="project-media" src="https://www.youtube.com/embed/SD3T_Or_mvk?start=3" 
                             title="Tra Tra" allowfullscreen></iframe>
                     <div class="project-info">
@@ -602,7 +802,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="project-module">
+                <div class="project-module interactive-element">
                     <iframe class="project-media" src="https://www.youtube.com/embed/XCW95zjBUK4" 
                             title="Gats" allowfullscreen></iframe>
                     <div class="project-info">
@@ -620,7 +820,7 @@
 
     <!-- SONIDO ARQUITECTÓNICO -->
     <section class="arch-sound">
-        <div class="container">
+        <div class="arch-container">
             <div class="sound-container">
                 <div class="sound-header">
                     <img src="logo.svg" alt="TurboBoyz" class="sound-logo">
@@ -628,7 +828,7 @@
                         Nuestro Sonido
                     </div>
                 </div>
-                <div class="sound-player">
+                <div class="sound-player interactive-element">
                     <iframe style="border-radius:8px" 
                             src="https://open.spotify.com/embed/playlist/26qaG2E3bW6ZNIk5mvPpjr?utm_source=generator" 
                             width="100%" 
@@ -645,20 +845,23 @@
 
     <!-- CONTACTO ARQUITECTÓNICO -->
     <section class="arch-contact">
-        <div class="container">
+        <div class="arch-container">
+            <h2 class="section-title" data-es="Construyamos Juntos" data-en="Let's Build Together">
+                Construyamos Juntos
+            </h2>
             <div class="contact-grid">
-                <a class="contact-module primary" 
+                <a class="contact-module primary interactive-element" 
                    href="mailto:emc121091@me.com?subject=Colaboración%20Musical&body=Hola,%20me%20gustaría%20explorar%20posibilidades%20de%20trabajo%20conjunto%20para%20mi%20proyecto%20musical." 
                    data-es="Iniciar Proyecto" data-en="Start Project">
                     Iniciar Proyecto
                 </a>
-                <a class="contact-module" 
+                <a class="contact-module interactive-element" 
                    href="https://edumecar.github.io/Book/" 
                    target="_blank" 
                    data-es="Ver Arquitectura de Booking" data-en="View Booking Architecture">
                     Ver Arquitectura de Booking
                 </a>
-                <a class="contact-module" 
+                <a class="contact-module interactive-element" 
                    href="https://www.linkedin.com/in/edumecar" 
                    target="_blank" 
                    data-es="LinkedIn Profesional" data-en="Professional LinkedIn">
@@ -668,8 +871,16 @@
         </div>
     </section>
 
+    <!-- WHATSAPP ARQUITECTÓNICO -->
+    <a href="https://wa.me/525512478139?text=Hola,%20vi%20tu%20portafolio%20y%20me%20interesa%20conversar%20sobre%20mi%20proyecto%20musical." 
+       class="whatsapp-arch" target="_blank" aria-label="Contactar por WhatsApp">
+        <svg class="whatsapp-icon" viewBox="0 0 24 24">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893-.001-3.189-1.262-6.189-3.553-8.449"/>
+        </svg>
+    </a>
+
     <footer class="arch-footer">
-        <div class="container">
+        <div class="arch-container">
             <span data-es="&copy; 2024 Eduardo Mejía - Arquitectura Musical" 
                   data-en="&copy; 2024 Eduardo Mejía - Musical Architecture">
                 &copy; 2024 Eduardo Mejía - Arquitectura Musical
@@ -678,8 +889,8 @@
     </footer>
 
     <script>
-        // SISTEMA DE CONFIGURACIÓN ARQUITECTÓNICA
-        class ArchitectureConfig {
+        // SISTEMA ARQUITECTÓNICO INTERACTIVO
+        class ArchitectureSystem {
             constructor() {
                 this.currentLanguage = 'es';
                 this.init();
@@ -688,14 +899,22 @@
             init() {
                 this.setupThemeToggle();
                 this.setupLanguageToggle();
-                this.setupObservers();
+                this.setupTimelineInteractions();
+                this.setupScrollAnimations();
+                this.setupAudioVisualizer();
+                this.setupInteractiveElements();
             }
             
             setupThemeToggle() {
                 const themeToggle = document.getElementById('themeToggle');
                 themeToggle.addEventListener('click', () => {
                     document.body.classList.toggle('light-mode');
-                    // Implementación de modo claro si es necesario
+                    const icon = themeToggle.querySelector('i');
+                    if (document.body.classList.contains('light-mode')) {
+                        icon.className = 'fas fa-sun';
+                    } else {
+                        icon.className = 'fas fa-moon';
+                    }
                 });
             }
             
@@ -715,25 +934,116 @@
                 });
             }
             
-            setupObservers() {
-                // Sistema de observación para animaciones futuras
+            setupTimelineInteractions() {
+                const timelineItems = document.querySelectorAll('.timeline-item');
+                
+                timelineItems.forEach(item => {
+                    item.addEventListener('click', () => {
+                        // Remove active class from all items
+                        timelineItems.forEach(i => i.classList.remove('active'));
+                        // Add active class to clicked item
+                        item.classList.add('active');
+                    });
+                });
+            }
+            
+            setupScrollAnimations() {
+                const observerOptions = {
+                    threshold: 0.1,
+                    rootMargin: '0px 0px -50px 0px'
+                };
+                
                 const observer = new IntersectionObserver((entries) => {
                     entries.forEach(entry => {
                         if (entry.isIntersecting) {
-                            entry.target.classList.add('arch-visible');
+                            entry.target.classList.add('animate-in');
                         }
                     });
-                });
+                }, observerOptions);
                 
-                document.querySelectorAll('.service-module, .project-module').forEach(el => {
+                // Observe all interactive elements
+                document.querySelectorAll('.interactive-element').forEach(el => {
                     observer.observe(el);
+                });
+            }
+            
+            setupAudioVisualizer() {
+                const canvas = document.getElementById('visualizer');
+                const ctx = canvas.getContext('2d');
+                
+                // Set canvas size
+                function resizeCanvas() {
+                    canvas.width = window.innerWidth;
+                    canvas.height = window.innerHeight;
+                }
+                
+                resizeCanvas();
+                window.addEventListener('resize', resizeCanvas);
+                
+                // Create audio visualizer effect
+                function drawVisualizer() {
+                    requestAnimationFrame(drawVisualizer);
+                    
+                    ctx.fillStyle = 'rgba(10, 10, 10, 0.05)';
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+                    
+                    const time = Date.now() * 0.002;
+                    const centerX = canvas.width / 2;
+                    const centerY = canvas.height / 2;
+                    const maxRadius = Math.min(centerX, centerY) * 0.8;
+                    
+                    // Draw concentric circles with subtle animation
+                    for (let i = 0; i < 5; i++) {
+                        const radius = maxRadius * (i / 5);
+                        const pulse = Math.sin(time + i) * 2;
+                        
+                        ctx.beginPath();
+                        ctx.arc(centerX, centerY, radius + pulse, 0, Math.PI * 2);
+                        ctx.strokeStyle = `rgba(255, 7, 58, ${0.1 - i * 0.02})`;
+                        ctx.lineWidth = 1;
+                        ctx.stroke();
+                    }
+                    
+                    // Draw connecting lines
+                    const points = 12;
+                    for (let i = 0; i < points; i++) {
+                        const angle = (i / points) * Math.PI * 2;
+                        const x1 = centerX + Math.cos(angle) * maxRadius * 0.3;
+                        const y1 = centerY + Math.sin(angle) * maxRadius * 0.3;
+                        const x2 = centerX + Math.cos(angle + time * 0.5) * maxRadius * 0.7;
+                        const y2 = centerY + Math.sin(angle + time * 0.5) * maxRadius * 0.7;
+                        
+                        ctx.beginPath();
+                        ctx.moveTo(x1, y1);
+                        ctx.lineTo(x2, y2);
+                        ctx.strokeStyle = `rgba(0, 245, 255, ${0.2})`;
+                        ctx.lineWidth = 1;
+                        ctx.stroke();
+                    }
+                }
+                
+                drawVisualizer();
+            }
+            
+            setupInteractiveElements() {
+                // Add subtle hover effects to all interactive elements
+                const interactiveElements = document.querySelectorAll('.interactive-element');
+                
+                interactiveElements.forEach(element => {
+                    element.addEventListener('mouseenter', () => {
+                        element.style.transform = 'translateY(-5px)';
+                    });
+                    
+                    element.addEventListener('mouseleave', () => {
+                        element.style.transform = 'translateY(0)';
+                    });
                 });
             }
         }
         
-        // INICIALIZACIÓN DEL SISTEMA
+        // Initialize the architecture system
         document.addEventListener('DOMContentLoaded', () => {
-            new ArchitectureConfig();
+            new ArchitectureSystem();
         });
     </script>
 </body>
