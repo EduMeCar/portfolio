@@ -92,6 +92,73 @@
       transition: all 0.3s ease; text-transform: uppercase; font-family: 'Courier New', monospace;
     }
     .control-btn:hover { border-color: var(--digital-cyan); background: var(--digital-cyan); color: var(--black-absolute);}
+
+    /* SECCIÓN SERVICIOS */
+    .section-services {
+      margin: 46px 0 24px 0;
+      text-align: center;
+    }
+    .services-title {
+      color:var(--digital-cyan);
+      font-size:1.4rem;
+      font-weight:bold;
+      letter-spacing:2.5px;
+      text-transform:uppercase;
+      margin-bottom: 24px;
+      text-shadow:0 0 22px #00eee9,0 1px 0 #1a1a1a;
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 32px;
+      justify-content: center;
+      align-items: stretch;
+      max-width:900px;
+      margin:0 auto;
+    }
+    .service-card {
+      background: var(--panel-deep);
+      border: 2px solid var(--grid-gray);
+      border-radius: 14px;
+      padding: 32px 18px 22px 18px;
+      box-shadow:0 4px 18px rgba(0,0,0,0.15);
+      cursor:pointer;
+      transition: border-color .24s, box-shadow .19s, transform .18s;
+      position:relative;
+    }
+    .service-card:hover {
+      border-color: var(--digital-cyan);
+      box-shadow: 0 0 24px var(--glitch-magenta);
+      transform: translateY(-6px) scale(1.04);
+    }
+    .service-header {
+      display:flex;
+      align-items: center;
+      justify-content: center;
+      gap: 13px;
+      margin-bottom: 16px;
+    }
+    .service-icon {
+      color: var(--digital-cyan);
+      font-size:2.1rem;
+      filter: drop-shadow(0 0 7px #00fff966);
+    }
+    .service-name {
+      font-size:1.05rem;
+      font-weight: bold;
+      color: white;
+      letter-spacing: 1.1px;
+      text-transform: uppercase;
+    }
+    .service-desc {
+      color: rgba(255,255,255,0.84);
+      line-height:1.5;
+      font-size: .98rem;
+    }
+    @media (max-width:900px){
+      .services-grid{grid-template-columns:1fr;}
+    }
+
     /* SECCIÓN 2 */
     .section-2 { margin-bottom: 40px;}
     .gallery-grid {
@@ -145,11 +212,6 @@
       margin-top:16px;text-align:center;color:rgba(255,255,255,0.5);font-size:0.98em;letter-spacing:1px;
     }
 
-    /* Separador SVG cable/onda */
-    .svg-separator {
-      margin:32px auto 28px;width:99%;
-    }
-
     /* WhatsApp Floating */
     .whatsapp-float {
       position: fixed; bottom: 20px; right: 20px;
@@ -165,6 +227,9 @@
     @media (max-width: 960px) {
         .section-1 { grid-template-columns: 1fr;}
         .gallery-grid { grid-template-columns: repeat(2,1fr);}
+    }
+    @media (max-width: 900px){
+      .services-grid{grid-template-columns:1fr;}
     }
     @media (max-width: 640px) {
         .main-title { font-size: 1.5rem;}
@@ -216,16 +281,41 @@
       </div>
     </section>
 
-    <!-- SVG cable separador techno -->
-    <div class="svg-separator">
-      <svg width="100%" height="40" viewBox="0 0 900 41" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M0 20 Q 150 0 300 20 T 600 20 T 900 20" stroke="#00FFFF" stroke-width="4" fill="transparent"/>
-        <circle cx="0" cy="20" r="7" fill="#FF00FF"/>
-        <circle cx="900" cy="20" r="7" fill="#CC0000"/>
-      </svg>
-    </div>
+    <!-- SECCIÓN DE SERVICIOS DESTACADOS -->
+    <section class="section-services">
+      <div class="services-title">Servicios</div>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-header">
+            <span class="service-icon"><i class="fas fa-route"></i></span>
+            <span class="service-name">BOOKING & TOURS</span>
+          </div>
+          <p class="service-desc">
+            Circuitos de performance y gestión neuronal de giras internacionales
+          </p>
+        </div>
+        <div class="service-card">
+          <div class="service-header">
+            <span class="service-icon"><i class="fas fa-network-wired"></i></span>
+            <span class="service-name">DIGITAL FLOW</span>
+          </div>
+          <p class="service-desc">
+            Estrategias multiplataforma y desarrollo de ecosistemas digitales
+          </p>
+        </div>
+        <div class="service-card">
+          <div class="service-header">
+            <span class="service-icon"><i class="fas fa-wave-square"></i></span>
+            <span class="service-name">SYNTH STRATEGY</span>
+          </div>
+          <p class="service-desc">
+            Arquitectura de sonido y frameworks estratégicos para artistas
+          </p>
+        </div>
+      </div>
+    </section>
 
-    <!-- SECCIÓN 2: Galería de Videos techno-cool -->
+    <!-- SECCIÓN GALERÍA DE VIDEOS -->
     <section class="section-2">
       <div class="gallery-grid">
         <div class="gallery-thumb" data-video="ZGxSXchZNfo">
@@ -268,7 +358,7 @@
       </div>
     </section>
 
-    <!-- SECCIÓN 3 -->
+    <!-- SECCIÓN CONTACTO -->
     <section class="section-3">
       <div class="contact-grid">
         <a href="mailto:emc121091@me.com?subject=PROYECTO MUSICAL" class="contact-port port-primary">START PROJECT</a>
