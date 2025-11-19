@@ -3,24 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eduardo Mejía - Musical Project Manager</title>
+    <title>EDUARDO MEJÍA // SISTEMA NERVIOSO MUSICAL</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* SISTEMA ROLAND VINTAGE + DASHBOARD */
         :root {
-            /* Paleta Roland Vintage */
-            --roland-red: #CC0000;
-            --roland-black: #000000;
-            --roland-gray: #333333;
-            --roland-light: #666666;
-            --roland-white: #FFFFFF;
-            --roland-orange: #FF6600;
-            --roland-yellow: #FFCC00;
+            /* PALETA TURBO MEJORADA */
+            --roland-core: #CC0000;
+            --black-absolute: #000000;
+            --grid-gray: #1a1a1a;
+            --digital-cyan: #00FFFF;
+            --glitch-magenta: #FF00FF;
+            --stream-orange: #FF6600;
+            --data-yellow: #FFCC00;
+            --quantum-purple: #8B00FF;
             
-            /* Elementos de equipo */
-            --knob-shadow: 0 4px 8px rgba(0,0,0,0.3);
-            --led-glow: 0 0 8px currentColor;
-            --panel-gradient: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+            /* EFECTOS TURBO */
+            --hologram-glow: 0 0 20px rgba(0, 255, 255, 0.5);
+            --neon-shadow: 0 0 15px currentColor;
+            --panel-deep: linear-gradient(160deg, #0a0a0a 0%, #1a1a1a 50%, #000000 100%);
+            --data-stream: linear-gradient(90deg, transparent, var(--digital-cyan), transparent);
         }
 
         * {
@@ -30,481 +31,602 @@
         }
 
         body {
-            background: var(--roland-black);
-            color: var(--roland-white);
+            background: var(--black-absolute);
+            color: white;
             font-family: 'Courier New', monospace;
             line-height: 1.4;
             overflow-x: hidden;
             background-image: 
-                radial-gradient(circle at 20% 80%, rgba(204,0,0,0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(255,102,0,0.1) 0%, transparent 50%);
+                radial-gradient(circle at 10% 20%, rgba(204,0,0,0.15) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(0,255,255,0.1) 0%, transparent 40%),
+                radial-gradient(circle at 50% 50%, rgba(255,0,255,0.05) 0%, transparent 60%);
         }
 
-        /* DASHBOARD CONTAINER */
-        .dashboard {
+        /* SISTEMA DE GRID TURBO */
+        .turbo-dashboard {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
             grid-template-rows: auto 1fr 1fr auto;
-            gap: 20px;
-            padding: 20px;
+            gap: 15px;
+            padding: 15px;
             min-height: 100vh;
             max-width: 1400px;
             margin: 0 auto;
         }
 
-        /* HEADER ROLAND STYLE */
-        .header-roland {
-            grid-column: 1 / -1;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px;
-            background: var(--panel-gradient);
-            border: 2px solid var(--roland-gray);
-            border-radius: 8px;
-            position: relative;
-            box-shadow: var(--knob-shadow);
-        }
-
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .roland-logo {
-            width: 50px;
-            height: 50px;
-            background: var(--roland-red);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            color: var(--roland-white);
-            font-size: 1.2rem;
-            border: 2px solid var(--roland-white);
-        }
-
-        .brand-name {
-            font-size: 1.8rem;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .brand-name .first {
-            color: var(--roland-white);
-        }
-
-        .brand-name .second {
-            color: var(--roland-red);
-        }
-
-        .dashboard-controls {
-            display: flex;
-            gap: 10px;
-        }
-
-        .control-knob {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: var(--roland-gray);
-            border: 2px solid var(--roland-light);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            color: var(--roland-white);
-            box-shadow: var(--knob-shadow);
-        }
-
-        .control-knob:hover {
-            transform: rotate(30deg);
-            border-color: var(--roland-red);
-        }
-
-        /* HERO SECTION - VU METER STYLE */
-        .hero-vu {
+        /* HEADER NEURONAL */
+        .header-neural {
             grid-column: 1 / -1;
             display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 20px;
-            padding: 30px;
-            background: var(--panel-gradient);
-            border: 2px solid var(--roland-gray);
-            border-radius: 8px;
-            box-shadow: var(--knob-shadow);
-        }
-
-        .hero-content {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .hero-title {
-            font-size: 3rem;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            margin-bottom: 10px;
-            color: var(--roland-white);
-        }
-
-        .hero-subtitle {
-            font-size: 1.2rem;
-            color: var(--roland-red);
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            margin-bottom: 20px;
-            position: relative;
-        }
-
-        .hero-subtitle::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 0;
-            width: 100px;
-            height: 3px;
-            background: var(--roland-red);
-        }
-
-        .hero-description {
-            font-size: 1rem;
-            line-height: 1.6;
-            color: var(--roland-white);
-            opacity: 0.9;
-            max-width: 500px;
-        }
-
-        .vu-meter {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+            grid-template-columns: auto 1fr auto;
             align-items: center;
-            gap: 10px;
-        }
-
-        .vu-display {
-            width: 100%;
-            height: 200px;
-            background: var(--roland-black);
-            border: 2px solid var(--roland-gray);
+            padding: 20px;
+            background: var(--panel-deep);
+            border: 1px solid var(--grid-gray);
             border-radius: 4px;
             position: relative;
             overflow: hidden;
         }
 
-        .vu-level {
+        .header-neural::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--data-stream);
+            animation: dataFlow 3s linear infinite;
+        }
+
+        @keyframes dataFlow {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .logo-hologram {
+            width: 60px;
+            height: 60px;
+            background: 
+                radial-gradient(circle at 30% 30%, var(--roland-core), transparent 70%),
+                conic-gradient(from 0deg, var(--digital-cyan), var(--glitch-magenta), var(--roland-core), var(--digital-cyan));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+            font-size: 1.4rem;
+            border: 2px solid var(--digital-cyan);
+            box-shadow: var(--hologram-glow);
+            animation: hologramSpin 8s linear infinite;
+        }
+
+        @keyframes hologramSpin {
+            0% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(180deg) scale(1.05); }
+            100% { transform: rotate(360deg) scale(1); }
+        }
+
+        .brand-turbo {
+            text-align: center;
+        }
+
+        .brand-main {
+            font-size: 2rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            background: linear-gradient(45deg, var(--roland-core), var(--digital-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 5px;
+        }
+
+        .brand-sub {
+            font-size: 0.9rem;
+            color: var(--digital-cyan);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .neural-controls {
+            display: flex;
+            gap: 10px;
+        }
+
+        .quantum-knob {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: var(--grid-gray);
+            border: 2px solid var(--digital-cyan);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: var(--digital-cyan);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .quantum-knob:hover {
+            transform: rotate(45deg);
+            border-color: var(--glitch-magenta);
+            box-shadow: var(--neon-shadow);
+        }
+
+        /* HERO VU TURBO */
+        .hero-turbo {
+            grid-column: 1 / -1;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 20px;
+            padding: 25px;
+            background: var(--panel-deep);
+            border: 1px solid var(--grid-gray);
+            border-radius: 4px;
+            position: relative;
+        }
+
+        .hero-content-turbo {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .hero-title-turbo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+            background: linear-gradient(45deg, white, var(--digital-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle-turbo {
+            font-size: 1.1rem;
+            color: var(--roland-core);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .hero-subtitle-turbo::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 80px;
+            height: 2px;
+            background: var(--roland-core);
+            animation: pulseWidth 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes pulseWidth {
+            0% { width: 80px; }
+            100% { width: 120px; }
+        }
+
+        .hero-description-turbo {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: rgba(255,255,255,0.9);
+            max-width: 500px;
+        }
+
+        .vu-turbo {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .vu-container-turbo {
+            width: 100%;
+            height: 180px;
+            background: var(--black-absolute);
+            border: 1px solid var(--grid-gray);
+            border-radius: 4px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .vu-level-turbo {
             position: absolute;
             bottom: 0;
             left: 0;
             width: 100%;
-            height: 75%;
-            background: linear-gradient(to top, var(--roland-red), var(--roland-orange), var(--roland-yellow));
-            animation: vuPulse 2s ease-in-out infinite alternate;
+            height: 70%;
+            background: linear-gradient(to top, 
+                var(--roland-core), 
+                var(--stream-orange), 
+                var(--data-yellow),
+                var(--digital-cyan));
+            animation: turboPulse 1.5s ease-in-out infinite alternate;
+            filter: brightness(1.2);
         }
 
-        @keyframes vuPulse {
-            0% { height: 65%; }
-            100% { height: 85%; }
+        @keyframes turboPulse {
+            0% { 
+                height: 60%;
+                filter: brightness(1.2) hue-rotate(0deg);
+            }
+            100% { 
+                height: 85%;
+                filter: brightness(1.5) hue-rotate(20deg);
+            }
         }
 
-        .vu-label {
-            font-size: 0.9rem;
-            color: var(--roland-white);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        /* SERVICES - MIXER CHANNELS */
-        .services-mixer {
+        /* HEXAGON GRID - SERVICIOS */
+        .services-hexagon {
             grid-column: 1;
             display: flex;
             flex-direction: column;
             gap: 15px;
             padding: 20px;
-            background: var(--panel-gradient);
-            border: 2px solid var(--roland-gray);
-            border-radius: 8px;
-            box-shadow: var(--knob-shadow);
+            background: var(--panel-deep);
+            border: 1px solid var(--grid-gray);
+            border-radius: 4px;
         }
 
-        .section-title {
-            font-size: 1.2rem;
+        .section-title-turbo {
+            font-size: 1.1rem;
             font-weight: bold;
             text-transform: uppercase;
             letter-spacing: 2px;
-            color: var(--roland-white);
-            margin-bottom: 10px;
+            color: var(--digital-cyan);
+            margin-bottom: 15px;
             position: relative;
         }
 
-        .section-title::after {
+        .section-title-turbo::after {
             content: '';
             position: absolute;
             bottom: -5px;
             left: 0;
             width: 40px;
             height: 2px;
-            background: var(--roland-red);
+            background: var(--digital-cyan);
         }
 
-        .mixer-channel {
-            background: var(--roland-black);
-            border: 1px solid var(--roland-gray);
-            border-radius: 4px;
+        .hex-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+
+        .hex-service {
+            background: var(--black-absolute);
+            border: 1px solid var(--grid-gray);
+            border-radius: 6px;
             padding: 15px;
             transition: all 0.3s ease;
             cursor: pointer;
+            position: relative;
+            overflow: hidden;
         }
 
-        .mixer-channel:hover {
-            border-color: var(--roland-red);
-            transform: translateY(-2px);
+        .hex-service::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0,255,255,0.1), transparent);
+            transition: left 0.5s ease;
         }
 
-        .channel-header {
+        .hex-service:hover {
+            border-color: var(--digital-cyan);
+            transform: translateY(-3px);
+        }
+
+        .hex-service:hover::before {
+            left: 100%;
+        }
+
+        .service-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
 
-        .channel-name {
-            font-size: 1rem;
+        .service-name {
+            font-size: 0.9rem;
             font-weight: bold;
-            color: var(--roland-white);
+            color: white;
             text-transform: uppercase;
         }
 
-        .channel-led {
-            width: 10px;
-            height: 10px;
+        .service-led {
+            width: 8px;
+            height: 8px;
             border-radius: 50%;
-            background: var(--roland-red);
-            box-shadow: var(--led-glow);
+            background: var(--roland-core);
+            box-shadow: 0 0 10px var(--roland-core);
+            animation: ledPulse 2s ease-in-out infinite;
         }
 
-        .channel-desc {
-            font-size: 0.85rem;
-            color: var(--roland-white);
-            opacity: 0.8;
+        @keyframes ledPulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        .service-desc {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.8);
             line-height: 1.4;
         }
 
-        /* PROJECTS - SEQUENCER GRID */
-        .projects-sequencer {
+        /* SEQUENCER HEXAGONAL - PROYECTOS */
+        .projects-hex {
             grid-column: 2;
             display: flex;
             flex-direction: column;
             gap: 15px;
             padding: 20px;
-            background: var(--panel-gradient);
-            border: 2px solid var(--roland-gray);
-            border-radius: 8px;
-            box-shadow: var(--knob-shadow);
+            background: var(--panel-deep);
+            border: 1px solid var(--grid-gray);
+            border-radius: 4px;
         }
 
-        .sequencer-grid {
+        .hex-sequencer {
             display: grid;
-            grid-template-columns: 1fr;
-            gap: 10px;
-        }
-
-        .sequence-track {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-columns: repeat(2, 1fr);
             gap: 8px;
         }
 
-        .sequence-step {
-            height: 80px;
-            background: var(--roland-black);
-            border: 1px solid var(--roland-gray);
-            border-radius: 4px;
+        .hex-step {
+            aspect-ratio: 1;
+            background: var(--black-absolute);
+            border: 1px solid var(--grid-gray);
+            border-radius: 6px;
             overflow: hidden;
             transition: all 0.3s ease;
             cursor: pointer;
+            position: relative;
+            clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
         }
 
-        .sequence-step:hover {
-            border-color: var(--roland-orange);
+        .hex-step:hover {
+            border-color: var(--digital-cyan);
+            transform: scale(1.05);
+            z-index: 2;
         }
 
-        .step-active {
-            border-color: var(--roland-red);
+        .hex-step.active {
+            border-color: var(--roland-core);
+            box-shadow: 0 0 15px rgba(204,0,0,0.5);
         }
 
-        .step-media {
+        .hex-media {
             width: 100%;
             height: 100%;
-            border: none;
+            object-fit: cover;
+            transition: transform 0.3s ease;
         }
 
-        .step-info {
+        .hex-step:hover .hex-media {
+            transform: scale(1.1);
+        }
+
+        .hex-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0,0,0,0.8);
             padding: 5px;
-            text-align: center;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
         }
 
-        .step-role {
-            font-size: 0.7rem;
-            color: var(--roland-red);
+        .hex-step:hover .hex-info {
+            transform: translateY(0);
+        }
+
+        .hex-role {
+            font-size: 0.6rem;
+            color: var(--roland-core);
             text-transform: uppercase;
         }
 
-        .step-name {
-            font-size: 0.8rem;
-            color: var(--roland-white);
+        .hex-name {
+            font-size: 0.7rem;
+            color: white;
             font-weight: bold;
         }
 
-        /* SOUND - TURNTABLE SECTION */
-        .sound-turntable {
+        /* TURNTABLE TURBO */
+        .sound-turbo {
             grid-column: 3;
             display: flex;
             flex-direction: column;
             gap: 15px;
             padding: 20px;
-            background: var(--panel-gradient);
-            border: 2px solid var(--roland-gray);
-            border-radius: 8px;
-            box-shadow: var(--knob-shadow);
+            background: var(--panel-deep);
+            border: 1px solid var(--grid-gray);
+            border-radius: 4px;
         }
 
-        .turntable-container {
+        .turntable-turbo {
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 15px;
         }
 
-        .turntable {
-            width: 180px;
-            height: 180px;
+        .hologram-turntable {
+            width: 160px;
+            height: 160px;
             border-radius: 50%;
-            background: var(--roland-black);
-            border: 15px solid var(--roland-gray);
+            background: var(--black-absolute);
+            border: 12px solid var(--grid-gray);
             position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: var(--knob-shadow);
+            box-shadow: 
+                0 0 20px rgba(0,255,255,0.3),
+                inset 0 0 20px rgba(0,0,0,0.5);
+            transition: all 0.3s ease;
         }
 
-        .turntable::before {
+        .hologram-turntable::before {
             content: '';
             position: absolute;
-            width: 30px;
-            height: 30px;
+            width: 25px;
+            height: 25px;
             border-radius: 50%;
-            background: var(--roland-red);
+            background: var(--roland-core);
+            box-shadow: 0 0 15px var(--roland-core);
+            z-index: 2;
         }
 
-        .vinyl {
-            width: 140px;
-            height: 140px;
+        .quantum-vinyl {
+            width: 120px;
+            height: 120px;
             border-radius: 50%;
             background: 
-                radial-gradient(circle at center, #333 0%, #333 10%, transparent 10.1%),
-                radial-gradient(circle at center, #111 0%, #111 40%, #333 40.1%, #333 45%, transparent 45.1%),
-                repeating-radial-gradient(circle at center, #111 0%, #111 2%, #333 2.1%, #333 4%);
-            animation: spin 20s linear infinite;
+                radial-gradient(circle at center, var(--grid-gray) 0%, var(--grid-gray) 8%, transparent 8.1%),
+                radial-gradient(circle at center, var(--black-absolute) 0%, var(--black-absolute) 35%, var(--grid-gray) 35.1%, var(--grid-gray) 38%, transparent 38.1%),
+                repeating-radial-gradient(circle at center, var(--black-absolute) 0%, var(--black-absolute) 2%, var(--grid-gray) 2.1%, var(--grid-gray) 4%);
+            animation: quantumSpin 15s linear infinite;
+            position: relative;
         }
 
-        @keyframes spin {
+        .quantum-vinyl::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 50%;
+            background: conic-gradient(transparent, var(--digital-cyan), transparent, var(--glitch-magenta), transparent);
+            opacity: 0.3;
+            animation: hologramSpin 4s linear infinite;
+        }
+
+        @keyframes quantumSpin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
 
-        .turntable-controls {
+        .turbo-controls {
             display: flex;
-            gap: 10px;
+            gap: 8px;
         }
 
-        .turntable-btn {
+        .control-btn {
             padding: 8px 15px;
-            background: var(--roland-black);
-            border: 1px solid var(--roland-gray);
-            color: var(--roland-white);
+            background: var(--black-absolute);
+            border: 1px solid var(--grid-gray);
+            color: white;
             border-radius: 4px;
             cursor: pointer;
             transition: all 0.3s ease;
             text-transform: uppercase;
             font-size: 0.8rem;
+            font-family: 'Courier New', monospace;
         }
 
-        .turntable-btn:hover {
-            border-color: var(--roland-red);
-            background: var(--roland-red);
+        .control-btn:hover {
+            border-color: var(--digital-cyan);
+            background: var(--digital-cyan);
+            color: var(--black-absolute);
         }
 
-        .player-container {
+        .stream-player {
             width: 100%;
-            background: var(--roland-black);
-            border: 1px solid var(--roland-gray);
+            background: var(--black-absolute);
+            border: 1px solid var(--grid-gray);
             border-radius: 4px;
             overflow: hidden;
         }
 
-        /* FOOTER - PATCH BAY */
-        .footer-patchbay {
+        /* FOOTER NEURONAL */
+        .footer-neural {
             grid-column: 1 / -1;
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 20px;
             padding: 20px;
-            background: var(--panel-gradient);
-            border: 2px solid var(--roland-gray);
-            border-radius: 8px;
-            box-shadow: var(--knob-shadow);
+            background: var(--panel-deep);
+            border: 1px solid var(--grid-gray);
+            border-radius: 4px;
+            position: relative;
         }
 
-        .contact-patch {
+        .neural-connect {
             display: flex;
             flex-direction: column;
             gap: 15px;
         }
 
-        .patch-ports {
+        .neural-ports {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 10px;
+            gap: 8px;
         }
 
-        .patch-port {
+        .neural-port {
             padding: 12px 15px;
-            background: var(--roland-black);
-            border: 1px solid var(--roland-gray);
+            background: var(--black-absolute);
+            border: 1px solid var(--grid-gray);
             border-radius: 4px;
             text-align: center;
             text-decoration: none;
-            color: var(--roland-white);
+            color: white;
             transition: all 0.3s ease;
             text-transform: uppercase;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
+            font-family: 'Courier New', monospace;
+            position: relative;
+            overflow: hidden;
         }
 
-        .patch-port:hover {
-            border-color: var(--roland-red);
-            background: var(--roland-red);
+        .neural-port::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0,255,255,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .neural-port:hover {
+            border-color: var(--digital-cyan);
             transform: translateY(-2px);
         }
 
-        .port-primary {
-            background: var(--roland-red);
-            border-color: var(--roland-red);
+        .neural-port:hover::before {
+            left: 100%;
         }
 
-        .port-primary:hover {
+        .port-turbo {
+            background: var(--roland-core);
+            border-color: var(--roland-core);
+            font-weight: bold;
+        }
+
+        .port-turbo:hover {
             background: transparent;
         }
 
-        .whatsapp-patch {
+        .whatsapp-quantum {
             display: flex;
             align-items: center;
             justify-content: center;
@@ -517,64 +639,64 @@
             bottom: 20px;
             right: 20px;
             text-decoration: none;
-            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+            box-shadow: 
+                0 4px 15px rgba(37, 211, 102, 0.4),
+                0 0 20px rgba(37, 211, 102, 0.3);
             transition: all 0.3s ease;
             z-index: 1000;
+            animation: quantumPulse 2s ease-in-out infinite;
         }
 
-        .whatsapp-patch:hover {
-            transform: scale(1.1) rotate(15deg);
+        @keyframes quantumPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
         }
 
-        /* RESPONSIVE DESIGN */
+        .whatsapp-quantum:hover {
+            transform: scale(1.2) rotate(15deg);
+            animation: none;
+        }
+
+        /* RESPONSIVE TURBO */
         @media (max-width: 1024px) {
-            .dashboard {
+            .turbo-dashboard {
                 grid-template-columns: 1fr 1fr;
                 grid-template-rows: auto auto 1fr auto;
             }
             
-            .sound-turntable {
+            .sound-turbo {
                 grid-column: 1 / -1;
-                grid-template-columns: 1fr 1fr;
-            }
-            
-            .turntable-container {
-                grid-column: 1;
-            }
-            
-            .player-container {
-                grid-column: 2;
             }
         }
 
         @media (max-width: 768px) {
-            .dashboard {
+            .turbo-dashboard {
                 grid-template-columns: 1fr;
                 grid-template-rows: auto;
-                gap: 15px;
+                gap: 12px;
             }
             
-            .hero-vu {
+            .hero-turbo {
                 grid-template-columns: 1fr;
             }
             
-            .vu-meter {
+            .vu-turbo {
                 order: -1;
             }
             
-            .sequence-track {
+            .hex-sequencer {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .footer-neural {
                 grid-template-columns: 1fr;
             }
             
-            .footer-patchbay {
+            .neural-ports {
                 grid-template-columns: 1fr;
             }
             
-            .patch-ports {
-                grid-template-columns: 1fr;
-            }
-            
-            .whatsapp-patch {
+            .whatsapp-quantum {
                 bottom: 15px;
                 right: 15px;
                 width: 45px;
@@ -583,149 +705,183 @@
         }
 
         @media (max-width: 480px) {
-            .hero-title {
-                font-size: 2rem;
+            .hero-title-turbo {
+                font-size: 1.8rem;
             }
             
-            .brand-name {
-                font-size: 1.4rem;
+            .brand-main {
+                font-size: 1.5rem;
             }
             
-            .roland-logo {
-                width: 40px;
-                height: 40px;
-                font-size: 1rem;
+            .logo-hologram {
+                width: 50px;
+                height: 50px;
+                font-size: 1.1rem;
+            }
+            
+            .hex-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
-    <!-- DASHBOARD ROLAND STYLE -->
-    <div class="dashboard">
-        <!-- HEADER -->
-        <header class="header-roland">
-            <div class="logo-container">
-                <div class="roland-logo">TR</div>
-                <div class="brand-name">
-                    <span class="first">EDUARDO</span>
-                    <span class="second">MEJÍA</span>
-                </div>
+    <!-- DASHBOARD TURBO -->
+    <div class="turbo-dashboard">
+        <!-- HEADER NEURONAL -->
+        <header class="header-neural">
+            <div class="logo-hologram">TR</div>
+            <div class="brand-turbo">
+                <div class="brand-main">EDUARDO MEJÍA</div>
+                <div class="brand-sub">SISTEMA NERVIOSO MUSICAL</div>
             </div>
-            <div class="dashboard-controls">
-                <div class="control-knob" id="themeToggle">
-                    <i class="fas fa-adjust"></i>
+            <div class="neural-controls">
+                <div class="quantum-knob" id="quantumToggle">
+                    <i class="fas fa-bolt"></i>
                 </div>
-                <div class="control-knob" id="languageToggle">
-                    ES/EN
+                <div class="quantum-knob" id="streamToggle">
+                    <i class="fas fa-wave-square"></i>
                 </div>
             </div>
         </header>
 
-        <!-- HERO VU METER -->
-        <section class="hero-vu">
-            <div class="hero-content">
-                <h1 class="hero-title">MUSICAL PROJECT MANAGER</h1>
-                <div class="hero-subtitle">ARCHITECTURE & STRATEGY</div>
-                <p class="hero-description">
-                    Designing sound structures and strategic frameworks for artists and labels. 
-                    From vinyl to digital, creating cohesive musical ecosystems.
+        <!-- HERO TURBO -->
+        <section class="hero-turbo">
+            <div class="hero-content-turbo">
+                <h1 class="hero-title-turbo">ROLAND CORE × CLOUD FLOW</h1>
+                <div class="hero-subtitle-turbo">VOLTAJE → STREAM → ALGORITMO</div>
+                <p class="hero-description-turbo">
+                    Sistema nervioso central donde el tacto físico encuentra el flujo digital. 
+                    Arquitectura sonica que convierte streams en voltaje y algoritmos en pulsaciones analógicas.
                 </p>
             </div>
-            <div class="vu-meter">
-                <div class="vu-display">
-                    <div class="vu-level"></div>
+            <div class="vu-turbo">
+                <div class="vu-container-turbo">
+                    <div class="vu-level-turbo"></div>
                 </div>
-                <div class="vu-label">CREATIVE OUTPUT</div>
+                <div class="vu-label">OUTPUT NEURONAL</div>
             </div>
         </section>
 
-        <!-- SERVICES MIXER -->
-        <section class="services-mixer">
-            <h2 class="section-title">SERVICES</h2>
-            <div class="mixer-channel">
-                <div class="channel-header">
-                    <div class="channel-name">BOOKING & TOURS</div>
-                    <div class="channel-led"></div>
-                </div>
-                <p class="channel-desc">
-                    Strategic live performance circuits and international tour management
-                </p>
-            </div>
-            <div class="mixer-channel">
-                <div class="channel-header">
-                    <div class="channel-name">PUBLISHING</div>
-                    <div class="channel-led"></div>
-                </div>
-                <p class="channel-desc">
-                    Rights management and editorial strategy for musical works
-                </p>
-            </div>
-            <div class="mixer-channel">
-                <div class="channel-header">
-                    <div class="channel-name">DIGITAL DISTRO</div>
-                    <div class="channel-led"></div>
-                </div>
-                <p class="channel-desc">
-                    Multi-platform release strategies and digital ecosystem development
-                </p>
-            </div>
-        </section>
-
-        <!-- PROJECTS SEQUENCER -->
-        <section class="projects-sequencer">
-            <h2 class="section-title">PROJECTS</h2>
-            <div class="sequencer-grid">
-                <div class="sequence-track">
-                    <div class="sequence-step step-active">
-                        <iframe class="step-media" src="https://www.youtube.com/embed/ZGxSXchZNfo?start=0" 
-                                title="Boiler Room" allowfullscreen></iframe>
-                        <div class="step-info">
-                            <div class="step-role">PRODUCTION</div>
-                            <div class="step-name">BOILER ROOM</div>
-                        </div>
+        <!-- SERVICIOS HEXAGONO -->
+        <section class="services-hexagon">
+            <h2 class="section-title-turbo">SERVICES</h2>
+            <div class="hex-grid">
+                <div class="hex-service">
+                    <div class="service-header">
+                        <div class="service-name">BOOKING & TOURS</div>
+                        <div class="service-led"></div>
                     </div>
+                    <p class="service-desc">
+                        Circuitos de performance y gestión neuronal de giras internacionales
+                    </p>
                 </div>
-                <div class="sequence-track">
-                    <div class="sequence-step">
-                        <iframe class="step-media" src="https://www.youtube.com/embed/SD3T_Or_mvk?start=3" 
-                                title="Tra Tra" allowfullscreen></iframe>
-                        <div class="step-info">
-                            <div class="step-role">COORDINATION</div>
-                            <div class="step-name">REMIX PROJECT</div>
-                        </div>
+                <div class="hex-service">
+                    <div class="service-header">
+                        <div class="service-name">PUBLISHING</div>
+                        <div class="service-led"></div>
                     </div>
+                    <p class="service-desc">
+                        Gestión de derechos y estrategia editorial para obras sónicas
+                    </p>
                 </div>
-                <div class="sequence-track">
-                    <div class="sequence-step">
-                        <iframe class="step-media" src="https://www.youtube.com/embed/XCW95zjBUK4" 
-                                title="Gats" allowfullscreen></iframe>
-                        <div class="step-info">
-                            <div class="step-role">DEVELOPMENT</div>
-                            <div class="step-name">EMERGING ARTIST</div>
-                        </div>
+                <div class="hex-service">
+                    <div class="service-header">
+                        <div class="service-name">DIGITAL FLOW</div>
+                        <div class="service-led"></div>
                     </div>
+                    <p class="service-desc">
+                        Estrategias multiplataforma y desarrollo de ecosistemas digitales
+                    </p>
+                </div>
+                <div class="hex-service">
+                    <div class="service-header">
+                        <div class="service-name">SYNTH STRATEGY</div>
+                        <div class="service-led"></div>
+                    </div>
+                    <p class="service-desc">
+                        Arquitectura de sonido y frameworks estratégicos para artistas
+                    </p>
                 </div>
             </div>
         </section>
 
-        <!-- SOUND TURNTABLE -->
-        <section class="sound-turntable">
-            <h2 class="section-title">SOUND</h2>
-            <div class="turntable-container">
-                <div class="turntable">
-                    <div class="vinyl"></div>
+        <!-- PROYECTOS HEXAGONAL -->
+        <section class="projects-hex">
+            <h2 class="section-title-turbo">PROJECTS</h2>
+            <div class="hex-sequencer">
+                <div class="hex-step active">
+                    <iframe class="hex-media" src="https://www.youtube.com/embed/ZGxSXchZNfo?start=0" 
+                            title="Boiler Room" allowfullscreen></iframe>
+                    <div class="hex-info">
+                        <div class="hex-role">PRODUCTION</div>
+                        <div class="hex-name">BOILER ROOM</div>
+                    </div>
                 </div>
-                <div class="turntable-controls">
-                    <button class="turntable-btn">PLAY</button>
-                    <button class="turntable-btn">STOP</button>
+                <div class="hex-step">
+                    <iframe class="hex-media" src="https://www.youtube.com/embed/SD3T_Or_mvk?start=3" 
+                            title="Tra Tra" allowfullscreen></iframe>
+                    <div class="hex-info">
+                        <div class="hex-role">COORDINATION</div>
+                        <div class="hex-name">REMIX PROJECT</div>
+                    </div>
+                </div>
+                <div class="hex-step">
+                    <iframe class="hex-media" src="https://www.youtube.com/embed/XCW95zjBUK4" 
+                            title="Gats" allowfullscreen></iframe>
+                    <div class="hex-info">
+                        <div class="hex-role">DEVELOPMENT</div>
+                        <div class="hex-name">EMERGING ARTIST</div>
+                    </div>
+                </div>
+                <div class="hex-step">
+                    <div class="hex-media" style="background: var(--grid-gray); display: flex; align-items: center; justify-content: center;">
+                        <i class="fas fa-satellite-dish" style="font-size: 2rem; color: var(--digital-cyan);"></i>
+                    </div>
+                    <div class="hex-info">
+                        <div class="hex-role">INNOVATION</div>
+                        <div class="hex-name">QUANTUM AUDIO</div>
+                    </div>
+                </div>
+                <div class="hex-step">
+                    <div class="hex-media" style="background: var(--grid-gray); display: flex; align-items: center; justify-content: center;">
+                        <i class="fas fa-network-wired" style="font-size: 2rem; color: var(--glitch-magenta);"></i>
+                    </div>
+                    <div class="hex-info">
+                        <div class="hex-role">SYSTEMS</div>
+                        <div class="hex-name">NEURAL NETWORKS</div>
+                    </div>
+                </div>
+                <div class="hex-step">
+                    <div class="hex-media" style="background: var(--grid-gray); display: flex; align-items: center; justify-content: center;">
+                        <i class="fas fa-code-merge" style="font-size: 2rem; color: var(--stream-orange);"></i>
+                    </div>
+                    <div class="hex-info">
+                        <div class="hex-role">TECH</div>
+                        <div class="hex-name">API STREAMING</div>
+                    </div>
                 </div>
             </div>
-            <div class="player-container">
-                <iframe style="border-radius:4px" 
+        </section>
+
+        <!-- SOUND TURBO -->
+        <section class="sound-turbo">
+            <h2 class="section-title-turbo">SOUND</h2>
+            <div class="turntable-turbo">
+                <div class="hologram-turntable">
+                    <div class="quantum-vinyl"></div>
+                </div>
+                <div class="turbo-controls">
+                    <button class="control-btn" id="playQuantum">PLAY</button>
+                    <button class="control-btn" id="stopQuantum">STOP</button>
+                    <button class="control-btn" id="glitchBtn">GLITCH</button>
+                </div>
+            </div>
+            <div class="stream-player">
+                <iframe style="border-radius:4px; border: none;" 
                         src="https://open.spotify.com/embed/playlist/26qaG2E3bW6ZNIk5mvPpjr?utm_source=generator" 
                         width="100%" 
                         height="152" 
-                        frameBorder="0" 
                         allowfullscreen="" 
                         allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
                         loading="lazy">
@@ -733,109 +889,186 @@
             </div>
         </section>
 
-        <!-- FOOTER PATCHBAY -->
-        <footer class="footer-patchbay">
-            <div class="contact-patch">
-                <h2 class="section-title">CONNECT</h2>
-                <div class="patch-ports">
-                    <a href="mailto:emc121091@me.com?subject=Musical Project Inquiry" class="patch-port port-primary">
+        <!-- FOOTER NEURONAL -->
+        <footer class="footer-neural">
+            <div class="neural-connect">
+                <h2 class="section-title-turbo">CONNECT</h2>
+                <div class="neural-ports">
+                    <a href="mailto:emc121091@me.com?subject=QUANTUM PROJECT INQUIRY" class="neural-port port-turbo">
                         START PROJECT
                     </a>
-                    <a href="https://edumecar.github.io/Book/" target="_blank" class="patch-port">
+                    <a href="https://edumecar.github.io/Book/" target="_blank" class="neural-port">
                         BOOKING PLANS
                     </a>
-                    <a href="https://www.linkedin.com/in/edumecar" target="_blank" class="patch-port">
+                    <a href="https://www.linkedin.com/in/edumecar" target="_blank" class="neural-port">
                         LINKEDIN
                     </a>
-                    <a href="#" class="patch-port">
+                    <a href="#" class="neural-port">
                         CASE STUDIES
                     </a>
                 </div>
             </div>
         </footer>
 
-        <!-- WHATSAPP PATCH -->
-        <a href="https://wa.me/525512478139?text=Hi,%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20discuss%20a%20music%20project." 
-           class="whatsapp-patch" target="_blank" aria-label="Contact on WhatsApp">
+        <!-- WHATSAPP QUANTUM -->
+        <a href="https://wa.me/525512478139?text=Hi,%20I%20saw%20your%20quantum%20portfolio%20and%20would%20like%20to%20discuss%20a%20music%20project." 
+           class="whatsapp-quantum" target="_blank" aria-label="Contact on WhatsApp">
             <i class="fab fa-whatsapp" style="font-size: 1.5rem;"></i>
         </a>
     </div>
 
     <script>
-        // ROLAND DASHBOARD SYSTEM
-        class RolandDashboard {
+        // SISTEMA TURBO MEJORADO
+        class TurboSystem {
             constructor() {
-                this.currentLanguage = 'es';
+                this.quantumState = 'active';
+                this.streamState = 'flowing';
                 this.init();
             }
             
             init() {
-                this.setupThemeToggle();
-                this.setupLanguageToggle();
+                this.setupQuantumToggle();
+                this.setupStreamToggle();
                 this.setupTurntableControls();
-                this.setupSequenceSteps();
+                this.setupHexSteps();
+                this.setupGlitchEffects();
             }
             
-            setupThemeToggle() {
-                const themeToggle = document.getElementById('themeToggle');
-                themeToggle.addEventListener('click', () => {
-                    document.body.classList.toggle('light-mode');
-                    const icon = themeToggle.querySelector('i');
-                    if (document.body.classList.contains('light-mode')) {
-                        icon.className = 'fas fa-sun';
-                    } else {
-                        icon.className = 'fas fa-adjust';
+            setupQuantumToggle() {
+                const quantumToggle = document.getElementById('quantumToggle');
+                quantumToggle.addEventListener('click', () => {
+                    this.quantumState = this.quantumState === 'active' ? 'hyper' : 'active';
+                    document.body.classList.toggle('quantum-hyper');
+                    quantumToggle.style.borderColor = this.quantumState === 'hyper' ? 
+                        'var(--glitch-magenta)' : 'var(--digital-cyan)';
+                    
+                    // Efecto de pulso cuántico
+                    if (this.quantumState === 'hyper') {
+                        this.quantumPulse();
                     }
                 });
             }
             
-            setupLanguageToggle() {
-                const languageToggle = document.getElementById('languageToggle');
-                languageToggle.addEventListener('click', () => {
-                    this.currentLanguage = this.currentLanguage === 'es' ? 'en' : 'es';
-                    this.updateLanguage();
-                    languageToggle.textContent = this.currentLanguage === 'es' ? 'ES/EN' : 'EN/ES';
+            quantumPulse() {
+                const elements = document.querySelectorAll('.hex-service, .hex-step');
+                elements.forEach((el, index) => {
+                    setTimeout(() => {
+                        el.style.transform = 'scale(1.1)';
+                        setTimeout(() => {
+                            el.style.transform = 'scale(1)';
+                        }, 300);
+                    }, index * 100);
                 });
             }
             
-            updateLanguage() {
-                // Implement language switching if needed
-                console.log('Language switched to:', this.currentLanguage);
+            setupStreamToggle() {
+                const streamToggle = document.getElementById('streamToggle');
+                streamToggle.addEventListener('click', () => {
+                    this.streamState = this.streamState === 'flowing' ? 'glitching' : 'flowing';
+                    const vuLevel = document.querySelector('.vu-level-turbo');
+                    
+                    if (this.streamState === 'glitching') {
+                        vuLevel.style.animation = 'glitchPulse 0.8s steps(2, start) infinite';
+                    } else {
+                        vuLevel.style.animation = 'turboPulse 1.5s ease-in-out infinite alternate';
+                    }
+                });
             }
             
             setupTurntableControls() {
-                const turntable = document.querySelector('.turntable');
-                const vinyl = document.querySelector('.vinyl');
-                const playBtn = document.querySelector('.turntable-btn:nth-child(1)');
-                const stopBtn = document.querySelector('.turntable-btn:nth-child(2)');
+                const turntable = document.querySelector('.hologram-turntable');
+                const vinyl = document.querySelector('.quantum-vinyl');
+                const playBtn = document.getElementById('playQuantum');
+                const stopBtn = document.getElementById('stopQuantum');
                 
                 playBtn.addEventListener('click', () => {
                     vinyl.style.animationPlayState = 'running';
-                    turntable.style.borderColor = '#FF6600';
+                    turntable.style.borderColor = 'var(--stream-orange)';
+                    turntable.style.boxShadow = '0 0 25px rgba(255,102,0,0.5)';
                 });
                 
                 stopBtn.addEventListener('click', () => {
                     vinyl.style.animationPlayState = 'paused';
-                    turntable.style.borderColor = '#666666';
+                    turntable.style.borderColor = 'var(--grid-gray)';
+                    turntable.style.boxShadow = '0 0 20px rgba(0,255,255,0.3)';
                 });
             }
             
-            setupSequenceSteps() {
-                const steps = document.querySelectorAll('.sequence-step');
+            setupHexSteps() {
+                const steps = document.querySelectorAll('.hex-step');
                 
                 steps.forEach(step => {
                     step.addEventListener('click', () => {
-                        steps.forEach(s => s.classList.remove('step-active'));
-                        step.classList.add('step-active');
+                        steps.forEach(s => s.classList.remove('active'));
+                        step.classList.add('active');
+                        
+                        // Efecto de resonancia
+                        step.style.animation = 'resonance 0.5s ease';
+                        setTimeout(() => {
+                            step.style.animation = '';
+                        }, 500);
                     });
+                });
+            }
+            
+            setupGlitchEffects() {
+                const glitchBtn = document.getElementById('glitchBtn');
+                glitchBtn.addEventListener('click', () => {
+                    document.body.style.animation = 'glitch 0.3s linear';
+                    setTimeout(() => {
+                        document.body.style.animation = '';
+                    }, 300);
                 });
             }
         }
         
-        // Initialize the dashboard
+        // Inicializar el sistema turbo
         document.addEventListener('DOMContentLoaded', () => {
-            new RolandDashboard();
+            new TurboSystem();
         });
+
+        // Añadir keyframes para efectos adicionales
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes glitchPulse {
+                0%, 100% { 
+                    height: 60%;
+                    filter: brightness(1.2) hue-rotate(0deg);
+                }
+                25% { 
+                    height: 85%;
+                    filter: brightness(1.5) hue-rotate(90deg);
+                }
+                50% { 
+                    height: 40%;
+                    filter: brightness(0.8) hue-rotate(180deg);
+                }
+                75% { 
+                    height: 95%;
+                    filter: brightness(2) hue-rotate(270deg);
+                }
+            }
+            
+            @keyframes resonance {
+                0% { transform: scale(1); }
+                50% { transform: scale(1.1); }
+                100% { transform: scale(1); }
+            }
+            
+            @keyframes glitch {
+                0% { transform: translateX(0); }
+                25% { transform: translateX(-5px); }
+                50% { transform: translateX(5px); }
+                75% { transform: translateX(-5px); }
+                100% { transform: translateX(0); }
+            }
+            
+            .quantum-hyper .logo-hologram {
+                animation-duration: 2s;
+                filter: hue-rotate(180deg);
+            }
+        `;
+        document.head.appendChild(style);
     </script>
 </body>
 </html>
