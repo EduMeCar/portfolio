@@ -13,287 +13,192 @@
       --digital-cyan: #00FFFF;
       --glitch-magenta: #FF00FF;
       --panel-deep: linear-gradient(160deg, #0a0a0a 0%, #1a1a1a 50%, #000000 100%);
-      --hologram-glow: 0 0 20px rgba(0, 255, 255, 0.5);
+      --hologram-glow: 0 0 20px rgba(0,255,255,0.5);
+      --bg-light: #f6f7fa;
+      --text-dark: #101314;
+      --gray-light: #e7e9ed;
     }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * {margin:0;padding:0;box-sizing:border-box;}
     body {
-      background: var(--black-absolute); color: white;
+      background: var(--black-absolute);
+      color: white;
       font-family: 'Courier New', monospace;
-      line-height: 1.4;
+      line-height: 1.38;
       overflow-x: hidden;
+      transition: background 0.4s, color 0.4s;
+      min-height: 100vh;
     }
-    .container { max-width: 1200px; margin: 0 auto; padding: 22px 6vw 18px 6vw; }
-
-    /* Top controls */
-    .top-controls { position: absolute; top: 20px; right: 20px; display: flex; gap: 10px; z-index: 2;}
-    .theme-btn {
-      width: 40px; height: 40px; border-radius: 50%;
-      background: var(--grid-gray); border: 1px solid var(--digital-cyan);
-      color: var(--digital-cyan); display: flex; align-items: center; justify-content: center;
-      cursor: pointer; transition: all 0.3s ease;
+    .container {max-width:1200px; margin:0 auto; padding:30px 6vw 18px 6vw;}
+    .spacer-top {height:38px; width:100%;}
+    .top-controls-box {
+      position: absolute; top:34px; right:6vw; display:flex; gap:18px; z-index:2; 
     }
 
-    /* SECCIÓN 1 */
+    .knob-btn {
+      width:55px; height:55px; background:transparent; border:none; cursor:pointer;
+      display:flex; align-items:center; justify-content:center; padding:0; margin:0;
+    }
+    .knob-svg {
+      width:45px; height:45px; display:block; filter:drop-shadow(0 2px 9px #00FFFF55);
+      transition: filter .21s;
+    }
+    .knob-label {
+      display:block; text-align:center; font-size:.85em; color:var(--digital-cyan); margin-top:3px; letter-spacing:1.3px;
+      font-family:inherit;
+      user-select: none;
+    }
+    /* Estilos de knob en tema claro */
+    body.light-theme {
+      background: var(--bg-light);
+      color: var(--text-dark);
+      --panel-deep: linear-gradient(155deg, #e5e7ea 0%, #f4f4f6 60%, #c7d6ed 100%);
+      --black-absolute: #f6f7fa;
+      --grid-gray: #b2b2b2;
+      --hologram-glow: 0 0 14px #00b6dd44;
+      --text-dark: #24293a;
+    }
+    body.light-theme .main-title {
+      filter: none;
+    }
+    body.light-theme .service-card,
+    body.light-theme .sound-module { background: var(--panel-deep); }
+    body.light-theme .gallery-thumb { border-color: var(--text-dark);}
+    body.light-theme .video-player-frame, body.light-theme .section-3 { background: var(--panel-deep);}
+    body.light-theme .contact-port { background: var(--bg-light); color: var(--text-dark);}
+    body.light-theme .footer { color:#636465;}
+    /* Hero Section */
     .section-1 {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 42px;
-      margin-bottom: 54px; min-height: 56vh; align-items: center;
+      display:grid; grid-template-columns:1fr 1fr; gap:46px;
+      margin-bottom:48px; min-height:50vh; align-items:center;
     }
-    .title-content { display: flex; flex-direction: column; justify-content: center; padding-right: 16px; }
+    .title-content {display:flex;flex-direction:column;justify-content:center;padding-right:16px;}
     .main-title {
-      font-size: 3rem; font-weight: bold; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 22px;
-      background: linear-gradient(45deg, white, var(--digital-cyan)); -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent; line-height: 1.05;
-      filter: drop-shadow(0 2px 10px var(--digital-cyan));
-      animation: title-glitch 2s infinite steps(2, jump-none);
+      font-size:2.8rem;font-weight:bold;text-transform:uppercase;letter-spacing:3px;margin-bottom:20px;
+      background:linear-gradient(45deg,white,var(--digital-cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1.08;
+      filter:drop-shadow(0 2px 10px var(--digital-cyan));animation:title-glitch 2s infinite steps(2,jump-none);
     }
-    @keyframes title-glitch { 0% {filter: none;} 50% {filter: drop-shadow(0 0 8px var(--glitch-magenta));} }
+    @keyframes title-glitch {0%{filter:none;}50%{filter:drop-shadow(0 0 8px var(--glitch-magenta));}}
     .subtitle {
-      font-size: 1.2rem; color: var(--roland-core); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 15px;
+      font-size:1.11rem;color:var(--roland-core);text-transform:uppercase;letter-spacing:2px;margin-bottom:14px;
     }
-    .description { font-size: 1rem; line-height: 1.6; color: rgba(255,255,255,0.9); margin-bottom: 22px;}
+    .description {font-size:.99rem;line-height:1.6;color:rgba(255,255,255,0.9);margin-bottom:17px;}
+    .audio-controls-box {
+      display:flex;align-items:center;justify-content:center;gap:12px;margin-top:14px;margin-bottom:2px;
+    }
+    .audio-track-label {
+      font-size:.97em;color:var(--digital-cyan);margin:0 0 0 7px; user-select:none;
+    }
     #eqCanvas {
-      width: 90%; max-width: 420px; margin: 15px auto 0 auto; display: none; background: transparent; border: none;
-      display: block;
+      width:95%; max-width:340px; margin:13px auto 9px auto;display:block; background:transparent;border:none; height:44px;
     }
-
+    /* Vinilo */
     .sound-module {
-      background: var(--panel-deep); border: 1px solid var(--grid-gray); border-radius: 8px;
-      padding: 28px 20px 28px 20px; display: flex; flex-direction: column; gap: 21px;
+      background:var(--panel-deep);border:1px solid var(--grid-gray);border-radius:8px;
+      padding:26px 19px 26px 19px;display:flex;flex-direction:column;gap:22px;
     }
-    .turntable-container { display: flex; flex-direction: column; align-items: center; gap: 15px;}
+    .turntable-container {display:flex;flex-direction:column;align-items:center;gap:13px;}
     .hologram-turntable {
-      width: 200px; height: 200px; border-radius: 50%; background: var(--black-absolute);
-      border: 15px solid var(--grid-gray); position: relative; display: flex; align-items: center; justify-content: center;
-      box-shadow: var(--hologram-glow); transition: border-color .2s, box-shadow .2s;
+      width:200px;height:200px;border-radius:50%;background:var(--black-absolute);
+      border:15px solid var(--grid-gray);position:relative;display:flex;align-items:center;justify-content:center;
+      box-shadow:var(--hologram-glow);transition:border-color .2s,box-shadow .2s;
     }
     .quantum-vinyl {
-      width: 150px; height: 150px; border-radius: 50%;
+      width:150px;height:150px;border-radius:50%;
       background:
-        radial-gradient(circle at center, var(--grid-gray) 0%, var(--grid-gray) 8%, transparent 8.1%),
-        radial-gradient(circle at center, var(--black-absolute) 0%, var(--black-absolute) 35%, var(--grid-gray) 35.1%, var(--grid-gray) 38%, transparent 38.1%),
-        repeating-radial-gradient(circle at center, var(--black-absolute) 0%, var(--black-absolute) 2%, var(--grid-gray) 2.1%, var(--grid-gray) 4%);
-      animation: quantumSpin 15s linear infinite;
-      animation-play-state: paused;
-      position: relative;
+        radial-gradient(circle at center,var(--grid-gray) 0%,var(--grid-gray) 8%,transparent 8.1%),
+        radial-gradient(circle at center,var(--black-absolute) 0%,var(--black-absolute) 35%,var(--grid-gray) 35.1%,var(--grid-gray) 38%,transparent 38.1%),
+        repeating-radial-gradient(circle at center,var(--black-absolute) 0%,var(--black-absolute) 2%,var(--grid-gray) 2.1%,var(--grid-gray) 4%);
+      animation:quantumSpin 15s linear infinite; animation-play-state:paused; position:relative;
     }
-    /* Logo centrado del vinilo */
-    .vinyl-logo {
-      position: absolute;
-      left: 50%; top: 50%; width: 65px; height: 65px;
-      transform: translate(-50%,-50%);
-      pointer-events: none; z-index: 3;
-      filter: drop-shadow(0 0 8px #00FFFF66);
-    }
-    @keyframes quantumSpin { 0% { transform: rotate(0deg);} 100% {transform: rotate(360deg);} }
-    .player-controls { display: flex; gap: 10px; justify-content: center; }
-    .control-btn {
-      padding: 10px 20px; background: var(--black-absolute);
-      border: 1px solid var(--grid-gray); color: white; border-radius: 4px; cursor: pointer;
-      transition: all 0.3s ease; text-transform: uppercase; font-family: 'Courier New', monospace;
-    }
-    .control-btn:hover { border-color: var(--digital-cyan); background: var(--digital-cyan); color: var(--black-absolute);}
-
-    /* SECCIÓN SERVICIOS */
-    .section-services {
-      margin: 38px 0 50px 0;
-      text-align: center;
-    }
-    .services-title {
-      color:var(--digital-cyan);
-      font-size:1.4rem;
-      font-weight:bold;
-      letter-spacing:2.5px;
-      text-transform:uppercase;
-      margin-bottom: 24px;
-      text-shadow:0 0 22px #00eee9,0 1px 0 #1a1a1a;
-    }
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(3,1fr);
-      gap: 32px;
-      justify-content: center;
-      align-items: stretch;
-      max-width:900px;
-      margin:0 auto;
-    }
-    .service-card {
-      background: var(--panel-deep);
-      border: 2px solid var(--grid-gray);
-      border-radius: 14px;
-      padding: 32px 18px 22px 18px;
-      box-shadow:0 4px 18px rgba(0,0,0,0.15);
-      cursor:pointer;
-      transition: border-color .24s, box-shadow .19s, transform .18s;
-      position:relative;
-    }
-    .service-card:hover {
-      border-color: var(--digital-cyan);
-      box-shadow: 0 0 24px var(--glitch-magenta);
-      transform: translateY(-6px) scale(1.04);
-    }
-    .service-header {
-      display:flex;
-      align-items: center;
-      justify-content: center;
-      gap: 13px;
-      margin-bottom: 16px;
-    }
-    .service-icon {
-      color: var(--digital-cyan);
-      font-size:2.1rem;
-      filter: drop-shadow(0 0 7px #00fff966);
-    }
-    .service-name {
-      font-size:1.05rem;
-      font-weight: bold;
-      color: white;
-      letter-spacing: 1.1px;
-      text-transform: uppercase;
-    }
-    .service-desc {
-      color: rgba(255,255,255,0.84);
-      line-height:1.5;
-      font-size: .98rem;
-    }
-    @media (max-width:900px){
-      .services-grid{grid-template-columns:1fr;}
-    }
-
-    /* SECCIÓN 2 / REPRODUCTOR */
-    .section-2 {
-      margin-bottom: 56px;
-      padding-bottom:0;
-    }
-    .video-player-frame {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: var(--panel-deep);
-      border-radius: 13px;
-      border: 2px solid var(--grid-gray);
-      margin: 0 auto 0 auto;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.14);
-      max-width: 800px;
-      overflow: hidden;
-      min-height: 180px;
-    }
-    .video-title {
-      color: var(--digital-cyan);
-      text-align: center;
-      font-size: 1.11rem;
-      margin: 13px 0 15px 0;
-      min-height: 24px;
-      letter-spacing:.8px;
-    }
-    .miniaturenav {
-      display: flex;
-      justify-content: center;
-    }
-    .video-thumbs {
-      display: flex; gap: 13px; margin: 0 auto 11px auto; flex-wrap: wrap; justify-content: center;
-    }
-    .video-thumb {
-      width: 58px; height: 38px; border-radius:8px;
-      border: 2.5px solid var(--grid-gray);
-      overflow: hidden; cursor: pointer; transition: border-color .22s, box-shadow .2s;
-      opacity: .8;
-      box-shadow:0 0 7px rgba(0,0,0,0.09);
-    }
-    .video-thumb.active {
-      border-color: var(--digital-cyan); opacity: 1; box-shadow:0 2px 18px var(--glitch-magenta);
-    }
-    .video-thumb img {
-      width: 100%; height: 100%; object-fit:cover; display: block;
-      filter: grayscale(12%) contrast(1.09);
-    }
-    .video-dots {
-      display: flex; gap: 7px; align-items: center; justify-content: center; margin-bottom: 2px;
-    }
-    .video-dot {
-      width: 13px; height: 13px; border-radius: 50%;
-      background: var(--grid-gray);
-      border: 2px solid var(--digital-cyan);
-      cursor: pointer;
-      transition: background .21s, border-color .21s;
-      margin-top: 0;
-    }
-    .video-dot.active {
-      background: var(--digital-cyan);
-      border-color: var(--glitch-magenta);
-    }
-
-    /* SECCIÓN 3 */
-    .section-3 { margin-top:12px; background:var(--panel-deep); border:1px solid var(--grid-gray); border-radius:8px; padding:38px 0 34px 0;}
-    .contact-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; max-width: 800px; margin: 0 auto;}
-    .contact-port {
-      padding: 20px; background: var(--black-absolute); border: 1px solid var(--grid-gray);
-      border-radius: 6px; text-align:center; text-decoration:none;color:white;
-      transition: all 0.3s ease; text-transform: uppercase; font-family:'Courier New', monospace;
-      position:relative;font-weight:600;font-size:1.12em;letter-spacing:1.5px;
-    }
-    .contact-port:hover { border-color: var(--digital-cyan); transform:translateY(-3px) scale(1.025);}
-    .port-primary { background:var(--roland-core); border-color:var(--roland-core); font-weight:bold; color:white;}
-    .port-primary:hover { background:transparent; color:var(--roland-core);}
-    .footer {
-      margin-top:18px;text-align:center;color:rgba(255,255,255,0.5);font-size:0.98em;letter-spacing:1px;
-    }
-
-    /* WhatsApp Floating */
-    .whatsapp-float {
-      position: fixed; bottom: 20px; right: 20px;
-      background: #25D366; color: white;
-      width: 60px; height: 60px; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      text-decoration: none; box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
-      z-index: 1000; animation: float 3s ease-in-out infinite;
-    }
-    @keyframes float { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-10px);} }
-
-    /* Responsive */
-    @media (max-width: 1100px){
-      .container{padding-left:2vw;padding-right:2vw;}
-      .section-1{gap:18px;}
-    }
-    @media (max-width: 960px) {
-        .section-1 { grid-template-columns: 1fr;}
-        .gallery-grid { grid-template-columns: repeat(2,1fr);}
-    }
-    @media (max-width: 900px){
-      .services-grid{grid-template-columns:1fr;}
-    }
-    @media (max-width: 700px){
-      .section-1{margin-bottom:24px;}
-      .section-services{margin-top:28px;}
-      .section-2{margin-bottom:22px;}
-      .contact-grid{grid-template-columns:1fr;}
-      .video-title{font-size:.99rem;}
-    }
-    @media (max-width: 520px) {
-        .main-title { font-size: 1.32rem;}
-        .section-3 { padding:14px;}
-        .sound-module{padding:16px 3vw;}
-        .video-thumbs{gap:7px;}
-        .video-thumb{width:31px;height:18px;}
-    }
+    .vinyl-logo {position:absolute;left:50%;top:50%;width:65px;height:65px;transform:translate(-50%,-50%);pointer-events:none;z-index:3;filter:drop-shadow(0 0 8px #00FFFF66);}
+    @keyframes quantumSpin {0%{transform:rotate(0deg);}100%{transform:rotate(360deg);}}
+    .player-controls {display:flex;gap:7px;justify-content:center;}
+    .control-btn {padding:8px 15px; background:var(--black-absolute); border:1px solid var(--grid-gray); color:white; border-radius:4px; cursor:pointer;
+      transition:all 0.3s ease; text-transform:uppercase; font-family:'Courier New',monospace;}
+    .control-btn:hover {border-color:var(--digital-cyan);background:var(--digital-cyan);color:var(--black-absolute);}
+    /* Sección servicios */
+    .section-services {margin:28px 0 38px 0;text-align:center;}
+    .services-title {color:var(--digital-cyan);font-size:1.28rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:23px;}
+    .services-grid {display:grid;grid-template-columns:repeat(3,1fr);gap:29px;max-width:900px;margin:0 auto;}
+    .service-card {background:var(--panel-deep);border:2px solid var(--grid-gray);border-radius:14px;padding:28px 14px 18px 14px;box-shadow:0 4px 18px rgba(0,0,0,0.12);cursor:pointer;transition:border-color .24s, box-shadow .19s, transform .18s;position:relative;}
+    .service-card:hover {border-color:var(--digital-cyan);box-shadow:0 0 24px var(--glitch-magenta);transform:translateY(-6px) scale(1.04);}
+    .service-header {display:flex;align-items:center;justify-content:center;gap:13px;margin-bottom:15px;}
+    .service-icon {color:var(--digital-cyan);font-size:2.1rem;filter:drop-shadow(0 0 7px #00fff966);}
+    .service-name {font-size:1.03rem;font-weight:bold;color:white;letter-spacing:1px;text-transform:uppercase;}
+    .service-desc {color:rgba(255,255,255,0.84);line-height:1.5;font-size:.98rem;}
+    @media (max-width:900px){.services-grid{grid-template-columns:1fr;}}
+    /* Video/Singles */
+    .section-2 {margin-bottom:51px;}
+    .video-player-frame {display:flex;justify-content:center;align-items:center;background:var(--panel-deep);border-radius:13px;border:2px solid var(--grid-gray);margin:0 auto 0 auto;box-shadow:0 4px 15px rgba(0,0,0,0.14);max-width:800px;overflow:hidden;min-height:180px;}
+    .video-title {color:var(--digital-cyan);text-align:center;font-size:1.11rem;margin:13px 0 15px 0;min-height:24px;letter-spacing:.8px;}
+    .miniaturenav {display:flex;justify-content:center;}
+    .video-thumbs {display:flex;gap:13px;margin:0 auto 11px auto;flex-wrap:wrap;justify-content:center;}
+    .video-thumb {width:58px;height:38px;border-radius:8px;border:2.5px solid var(--grid-gray);overflow:hidden;cursor:pointer;transition:border-color .22s,box-shadow .2s;opacity:.8;box-shadow:0 0 7px rgba(0,0,0,0.09);}
+    .video-thumb.active {border-color:var(--digital-cyan);opacity:1;box-shadow:0 2px 18px var(--glitch-magenta);}
+    .video-thumb img {width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(12%) contrast(1.09);}
+    .video-dots {display:flex;gap:7px;align-items:center;justify-content:center;margin-bottom:2px;}
+    .video-dot {width:13px;height:13px;border-radius:50%;background:var(--grid-gray);border:2px solid var(--digital-cyan);cursor:pointer;transition:background .21s, border-color .21s;}
+    .video-dot.active {background:var(--digital-cyan);border-color:var(--glitch-magenta);}
+    /* Sección 3 */
+    .section-3 {margin-top:22px;background:var(--panel-deep);border:1px solid var(--grid-gray);border-radius:8px;padding:30px 0 26px 0;}
+    .contact-grid {display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:800px;margin:0 auto;}
+    .contact-port {padding:18px;background:var(--black-absolute);border:1px solid var(--grid-gray);border-radius:6px;text-align:center;text-decoration:none;color:white;transition:all 0.3s ease;text-transform:uppercase;font-family:'Courier New',monospace;position:relative;font-weight:600;font-size:1.12em;letter-spacing:1.5px;}
+    .contact-port:hover {border-color:var(--digital-cyan);transform:translateY(-3px) scale(1.025);}
+    .port-primary {background:var(--roland-core);border-color:var(--roland-core);font-weight:bold;color:white;}
+    .port-primary:hover {background:transparent;color:var(--roland-core);}
+    .footer {margin-top:19px;text-align:center;color:rgba(255,255,255,0.5);font-size:.98em;letter-spacing:1px;}
+    .whatsapp-float {position:fixed;bottom:20px;right:20px;background:#25D366;color:white;width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 4px 20px rgba(37,211,102,0.4);z-index:1000;animation:float 3s ease-in-out infinite;}
+    @keyframes float {0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
+    @media (max-width:960px){.section-1{grid-template-columns:1fr;}.top-controls-box{right:3vw;}}
+    @media (max-width:900px){.services-grid{grid-template-columns:1fr;}}
+    @media (max-width:700px){.section-1{margin-bottom:18px;}.section-services{margin-top:18px;}.section-2{margin-bottom:12px;}.contact-grid{grid-template-columns:1fr;}.video-title{font-size:.99rem;}}
+    @media (max-width:520px){.main-title{font-size:1.15rem;}.section-3{padding:11px;}.sound-module{padding:8px 2vw;}.video-thumbs{gap:5px;}.video-thumb{width:29px;height:18px;}}
   </style>
 </head>
 <body>
+  <div class="spacer-top"></div>
   <div class="container">
     <!-- Controles superiores -->
-    <div class="top-controls">
-      <button class="theme-btn" id="themeToggle"><i class="fas fa-adjust"></i></button>
+    <div class="top-controls-box">
+      <button class="knob-btn" id="themeKnob" aria-label="Tema">
+        <!-- SVG perilla dark/light -->
+        <svg class="knob-svg" id="themeKnobSVG" viewBox="0 0 42 42">
+          <circle cx="21" cy="21" r="19" fill="#181d25" stroke="#00FFFF" stroke-width="2"/>
+          <circle cx="21" cy="21" r="13" fill="#242834"/>
+          <rect x="20" y="4" width="2" height="7" rx="1" fill="#FFF"/>
+          <circle id="theme-dot" cx="21" cy="8" r="2.4" fill="#00FFFF"/>
+        </svg>
+        <span class="knob-label" id="themeLabel">Dark</span>
+      </button>
+      <button class="knob-btn" id="langKnob" aria-label="Idioma">
+        <!-- SVG perilla idioma -->
+        <svg class="knob-svg" id="langKnobSVG" viewBox="0 0 42 42">
+          <circle cx="21" cy="21" r="19" fill="#181d25" stroke="#00FFFF" stroke-width="2"/>
+          <circle cx="21" cy="21" r="13" fill="#242834"/>
+          <rect x="20" y="4" width="2" height="7" rx="1" fill="#FFF"/>
+          <circle id="lang-dot" cx="21" cy="8" r="2.4" fill="#FF00FF"/>
+        </svg>
+        <span class="knob-label" id="langLabel">ES</span>
+      </button>
     </div>
 
     <!-- SECCIÓN 1: Hero, EQ, Vinilo, Spotify -->
     <section class="section-1">
       <div class="title-content">
-        <h1 class="main-title">ROLAND CORE × CLOUD FLOW</h1>
-        <div class="subtitle">VOLTAJE → STREAM → ALGORITMO</div>
-        <p class="description">
+        <h1 class="main-title" data-es="ROLAND CORE × CLOUD FLOW" data-en="ROLAND CORE × CLOUD FLOW">ROLAND CORE × CLOUD FLOW</h1>
+        <div class="subtitle" data-es="VOLTAJE → STREAM → ALGORITMO" data-en="VOLTAGE → STREAM → ALGORITHM">VOLTAJE → STREAM → ALGORITMO</div>
+        <p class="description" data-es="Ecosistema musical híbrido: donde el voltaje de Detroit y el pulso post punk chocan con la creatividad digital.<br>Arquitecturas sónicas, frameworks analógicos, y creatividad iluminando cada cable.<br><span style='color:var(--digital-cyan);font-size:1.05em;'>Diseñado para sellos, artistas, promotores y soñadores eléctricos.</span>" data-en="Hybrid musical ecosystem: where Detroit voltage and post-punk pulse crash into digital creativity.<br>Sonic architectures, analog frameworks, and creativity illuminating every cable.<br><span style='color:var(--digital-cyan);font-size:1.05em;'>Designed for labels, artists, promoters and electric dreamers.</span>">
           Ecosistema musical híbrido: donde el voltaje de Detroit y el pulso post punk chocan con la creatividad digital.<br>
           Arquitecturas sónicas, frameworks analógicos, y creatividad iluminando cada cable.<br>
           <span style="color:var(--digital-cyan);font-size:1.05em;">Diseñado para sellos, artistas, promotores y soñadores eléctricos.</span>
         </p>
+        <div class="audio-controls-box">
+          <button class="control-btn" id="backSong"><i class="fas fa-backward"></i></button>
+          <button class="control-btn" id="playBtn">PLAY</button>
+          <button class="control-btn" id="stopBtn">STOP</button>
+          <button class="control-btn" id="nextSong"><i class="fas fa-forward"></i></button>
+          <span class="audio-track-label" id="audioTrackLabel">track 1/5</span>
+        </div>
         <canvas id="eqCanvas" width="260" height="44"></canvas>
       </div>
       <div class="sound-module">
@@ -304,56 +209,52 @@
               <img src="logo.svg" alt="logo" class="vinyl-logo">
             </div>
           </div>
-          <div class="player-controls">
-            <button class="control-btn" id="playBtn">PLAY</button>
-            <button class="control-btn" id="stopBtn">STOP</button>
-          </div>
         </div>
         <audio id="localAudio">
-          <source src="micancion.mp3" type="audio/mpeg">
+          <source id="audioSource" src="micancion.mp3" type="audio/mpeg">
           Tu navegador no soporta el elemento audio.
         </audio>
         <div class="stream-player">
-          <iframe style="border-radius:4px;border:none;width:100%;" src="https://open.spotify.com/embed/playlist/26qaG2E3bW6ZNIk5mvPpjr?utm_source=generator" height="84" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+          <iframe style="border-radius:4px;border:none;width:100%;" id="spotifyFrame" src="https://open.spotify.com/embed/playlist/26qaG2E3bW6ZNIk5mvPpjr?utm_source=generator" height="84" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
         </div>
       </div>
     </section>
 
     <!-- SECCIÓN DE SERVICIOS DESTACADOS -->
     <section class="section-services">
-      <div class="services-title">Servicios</div>
+      <div class="services-title" data-es="Servicios" data-en="Services">Servicios</div>
       <div class="services-grid">
         <div class="service-card">
           <div class="service-header">
             <span class="service-icon"><i class="fas fa-route"></i></span>
-            <span class="service-name">BOOKING & TOURS</span>
+            <span class="service-name" data-es="BOOKING & TOURS" data-en="BOOKING & TOURS">BOOKING & TOURS</span>
           </div>
-          <p class="service-desc">
+          <p class="service-desc" data-es="Circuitos de performance y gestión neuronal de giras internacionales" data-en="Performance circuits and neural tour management for international gigs">
             Circuitos de performance y gestión neuronal de giras internacionales
           </p>
         </div>
         <div class="service-card">
           <div class="service-header">
             <span class="service-icon"><i class="fas fa-network-wired"></i></span>
-            <span class="service-name">DIGITAL FLOW</span>
+            <span class="service-name" data-es="DIGITAL FLOW" data-en="DIGITAL FLOW">DIGITAL FLOW</span>
           </div>
-          <p class="service-desc">
+          <p class="service-desc" data-es="Estrategias multiplataforma y desarrollo de ecosistemas digitales" data-en="Multiplatform strategies and development of digital ecosystems">
             Estrategias multiplataforma y desarrollo de ecosistemas digitales
           </p>
         </div>
         <div class="service-card">
           <div class="service-header">
             <span class="service-icon"><i class="fas fa-wave-square"></i></span>
-            <span class="service-name">SYNTH STRATEGY</span>
+            <span class="service-name" data-es="SYNTH STRATEGY" data-en="SYNTH STRATEGY">SYNTH STRATEGY</span>
           </div>
-          <p class="service-desc">
+          <p class="service-desc" data-es="Arquitectura de sonido y frameworks estratégicos para artistas" data-en="Sound architecture and strategic frameworks for artists">
             Arquitectura de sonido y frameworks estratégicos para artistas
           </p>
         </div>
       </div>
     </section>
 
-    <!-- SECCIÓN GALERÍA UN SOLO VIDEO CON MINIATURAS Y DOTS -->
+    <!-- SECCIÓN VIDEOS ÚNICO CON MINIATURAS Y DOTS -->
     <section class="section-2">
       <div class="video-player-frame">
         <iframe id="singleVideo" width="100%" height="370" src="https://www.youtube.com/embed/ZGxSXchZNfo?modestbranding=1&rel=0" frameborder="0" allowfullscreen></iframe>
@@ -368,12 +269,12 @@
     <!-- SECCIÓN CONTACTO -->
     <section class="section-3">
       <div class="contact-grid">
-        <a href="mailto:emc121091@me.com?subject=PROYECTO MUSICAL" class="contact-port port-primary">START PROJECT</a>
-        <a href="https://edumecar.github.io/Book/" target="_blank" class="contact-port">BOOKING PLANS</a>
-        <a href="https://www.linkedin.com/in/edumecar" target="_blank" class="contact-port">LINKEDIN</a>
+        <a href="mailto:emc121091@me.com?subject=PROYECTO MUSICAL" class="contact-port port-primary" data-es="INICIAR PROYECTO" data-en="START PROJECT">INICIAR PROYECTO</a>
+        <a href="https://edumecar.github.io/Book/" target="_blank" class="contact-port" data-es="PLANES BOOKING" data-en="BOOKING PLANS">PLANES BOOKING</a>
+        <a href="https://www.linkedin.com/in/edumecar" target="_blank" class="contact-port" data-es="LINKEDIN" data-en="LINKEDIN">LINKEDIN</a>
       </div>
     </section>
-    <div class="footer">
+    <div class="footer" data-es="Portfolio de Eduardo Mejía – Arquitectura sónica, booking, ideas eléctricas y futuro analógico." data-en="Eduardo Mejía’s Portfolio – Sonic architecture, booking, electric ideas and analog future.">
       Portfolio de Eduardo Mejía – Arquitectura sónica, booking, ideas eléctricas y futuro analógico.
     </div>
   </div>
@@ -382,58 +283,109 @@
     <i class="fab fa-whatsapp" style="font-size: 1.7rem;"></i>
   </a>
   <script>
-    // Ecualizador animado solo con audio
+    // TEMA CLARO/OSCURO con perilla animada
+    const themeKnob = document.getElementById('themeKnob');
+    const themeKnobSVG = document.getElementById('themeKnobSVG');
+    const themeLabel = document.getElementById('themeLabel');
+    let darkTheme = true;
+    themeKnob.onclick = () => {
+      darkTheme = !darkTheme;
+      document.body.classList.toggle('light-theme', !darkTheme);
+      // Animación knob: rotate la perilla
+      themeKnobSVG.style.transform = darkTheme ? 'rotate(0deg)' : 'rotate(150deg)';
+      themeLabel.textContent = darkTheme ? "Dark" : "Light";
+    };
+
+    // IDIOMA con perilla animada
+    const langKnob = document.getElementById('langKnob');
+    const langKnobSVG = document.getElementById('langKnobSVG');
+    const langLabel = document.getElementById('langLabel');
+    let lang = "es";
+    langKnob.onclick = () => {
+      lang = (lang === "es") ? "en" : "es";
+      langKnobSVG.style.transform = (lang === "en") ? 'rotate(-120deg)' : 'rotate(0deg)';
+      langLabel.textContent = (lang === "en") ? "EN" : "ES";
+      // Actualizar textos con data-es/data-en
+      document.querySelectorAll("[data-es]").forEach(el => {
+        el.innerHTML = el.getAttribute(`data-${lang}`);
+      });
+    };
+
+    // AUDIO: múltiples tracks y controles
+    let currentTrack = 1, totalTracks = 5;
     const audio = document.getElementById('localAudio');
+    const audioSource = document.getElementById('audioSource');
     const playBtn = document.getElementById('playBtn');
     const stopBtn = document.getElementById('stopBtn');
+    const backSong = document.getElementById('backSong');
+    const nextSong = document.getElementById('nextSong');
     const vinyl = document.querySelector('.quantum-vinyl');
     const turntable = document.querySelector('.hologram-turntable');
     const eqCanvas = document.getElementById('eqCanvas');
     const eqCtx = eqCanvas.getContext('2d');
+    const audioTrackLabel = document.getElementById('audioTrackLabel');
     let eqAnim = null, analyser, src, dataArray, audioCtx;
 
+    function updateTrackLabel() {
+      audioTrackLabel.textContent = `track ${currentTrack}/5`;
+    }
+    function setTrack(num) {
+      if(num<1) num = totalTracks;
+      if(num>totalTracks) num = 1;
+      currentTrack = num;
+      audio.pause(); audio.currentTime=0;
+      vinyl.style.animationPlayState='paused';
+      audioSource.src = `micancion${currentTrack===1?"":currentTrack}.mp3`;
+      audio.load();
+      updateTrackLabel();
+    }
+    backSong.onclick = ()=>{ setTrack(currentTrack-1);}
+    nextSong.onclick = ()=>{ setTrack(currentTrack+1);}
+    setTrack(1);
+
+    // EQ Mejorado (más “pro”)
     function setupEQ(){
       audioCtx = new (window.AudioContext||window.webkitAudioContext)();
       src = audioCtx.createMediaElementSource(audio);
       analyser = audioCtx.createAnalyser();
-      src.connect(analyser);
-      analyser.connect(audioCtx.destination);
-      analyser.fftSize = 32;
+      src.connect(analyser); analyser.connect(audioCtx.destination);
+      analyser.fftSize = 128;
       dataArray = new Uint8Array(analyser.frequencyBinCount);
     }
-
     function drawEQ(){
       eqCtx.clearRect(0,0,eqCanvas.width,eqCanvas.height);
       analyser.getByteFrequencyData(dataArray);
-      let bars = dataArray.length, barW = (eqCanvas.width / bars)-1;
+      let bars = dataArray.length, barW = (eqCanvas.width / bars)-2;
       for(let i=0;i<bars;i++){
-        let val = dataArray[i]/2;
-        eqCtx.fillStyle = `hsl(${180+(i*12)},100%,60%)`;
-        eqCtx.fillRect(i*(barW+1),eqCanvas.height-val, barW, val);
-        eqCtx.shadowColor = '#00ffffCC';
-        eqCtx.shadowBlur = 6;
+        let val=dataArray[i]/1.6;
+        let hue=160+Math.floor(80*(i/bars));
+        eqCtx.fillStyle = `hsl(${hue},100%,56%)`;
+        eqCtx.fillRect(i*(barW+2),eqCanvas.height-val, barW, val);
+        if(val>5){
+          eqCtx.shadowColor = '#00ffffCC';
+          eqCtx.shadowBlur = 6;
+        }
       }
       eqAnim = requestAnimationFrame(drawEQ);
     }
-
-    playBtn.addEventListener('click',()=>{
+    playBtn.onclick = ()=>{
       if(!audioCtx){ setupEQ(); }
       eqCanvas.style.display='block';
-      audio.play(); vinyl.style.animationPlayState='running';
+      audio.play();
+      vinyl.style.animationPlayState='running';
       turntable.style.borderColor='#FF6600';
       turntable.style.boxShadow='0 0 25px #ff660088';
       drawEQ();
-    });
-    stopBtn.addEventListener('click',()=>{
+    };
+    stopBtn.onclick = ()=>{
       audio.pause(); audio.currentTime=0;
       vinyl.style.animationPlayState='paused';
       turntable.style.borderColor='#666';
       turntable.style.boxShadow='0 0 20px #00ffff55';
-      if(eqAnim) cancelAnimationFrame(eqAnim);
-      eqCanvas.style.display='none';
-    });
+      if(eqAnim) cancelAnimationFrame(eqAnim); eqCanvas.style.display='none';
+    };
 
-    // VIDEO UNICO CON MINIATURAS + DOTS
+    // VIDEOS: thumbnails, dots, título
     const videos = [
       {id: "ZGxSXchZNfo", title: "Boiler Room 1"},
       {id: "SD3T_Or_mvk", title: "Tra Tra Live"},
@@ -449,13 +401,11 @@
     const videoTitle = document.getElementById('videoTitle');
     const thumbsContainer = document.getElementById('videoThumbs');
     const dotsContainer = document.getElementById('videoDots');
-
     function renderThumbs() {
       thumbsContainer.innerHTML = '';
       videos.forEach((v,i) => {
         const thumb = document.createElement('div');
-        thumb.className = 'video-thumb' + (i===vidIndex ? ' active':'');
-        thumb.title = v.title;
+        thumb.className = 'video-thumb' + (i===vidIndex ? ' active':''); thumb.title = v.title;
         thumb.innerHTML = `<img src="https://img.youtube.com/vi/${v.id}/hqdefault.jpg" alt="">`;
         thumb.onclick = ()=>{ vidIndex = i; updateVideo(); };
         thumbsContainer.appendChild(thumb);
@@ -465,8 +415,7 @@
       dotsContainer.innerHTML = '';
       videos.forEach((v,i)=>{
         const dot = document.createElement('div');
-        dot.className = 'video-dot' + (i===vidIndex ? ' active':'');
-        dot.title = v.title;
+        dot.className = 'video-dot' + (i===vidIndex ? ' active':''); dot.title = v.title;
         dot.onclick = ()=>{ vidIndex=i; updateVideo(); };
         dotsContainer.appendChild(dot);
       });
@@ -474,20 +423,10 @@
     function updateVideo() {
       singleVideo.src = `https://www.youtube.com/embed/${videos[vidIndex].id}?modestbranding=1&rel=0&autoplay=1`;
       videoTitle.textContent = videos[vidIndex].title;
-      renderThumbs();
-      renderDots();
+      renderThumbs(); renderDots();
     }
-    renderThumbs();
-    renderDots();
-    updateVideo();
+    renderThumbs(); renderDots(); updateVideo();
 
-    // Theme toggle (opcional futuro)
-    const themeToggle = document.getElementById('themeToggle');
-    themeToggle.addEventListener('click',()=>{
-      document.body.classList.toggle('light-theme');
-      const icon = themeToggle.querySelector('i');
-      icon.className = document.body.classList.contains('light-theme') ? 'fas fa-moon':'fas fa-adjust';
-    });
   </script>
 </body>
 </html>
