@@ -22,7 +22,7 @@
       line-height: 1.4;
       overflow-x: hidden;
     }
-    .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 22px 6vw 18px 6vw; }
 
     /* Top controls */
     .top-controls { position: absolute; top: 20px; right: 20px; display: flex; gap: 10px; z-index: 2;}
@@ -35,14 +35,14 @@
 
     /* SECCIÓN 1 */
     .section-1 {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 30px;
-      margin-bottom: 40px; min-height: 60vh; align-items: center;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 42px;
+      margin-bottom: 54px; min-height: 56vh; align-items: center;
     }
-    .title-content { display: flex; flex-direction: column; justify-content: center; padding-right: 20px; }
+    .title-content { display: flex; flex-direction: column; justify-content: center; padding-right: 16px; }
     .main-title {
-      font-size: 3rem; font-weight: bold; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 20px;
+      font-size: 3rem; font-weight: bold; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 22px;
       background: linear-gradient(45deg, white, var(--digital-cyan)); -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent; line-height: 1.1;
+      -webkit-text-fill-color: transparent; line-height: 1.05;
       filter: drop-shadow(0 2px 10px var(--digital-cyan));
       animation: title-glitch 2s infinite steps(2, jump-none);
     }
@@ -50,15 +50,15 @@
     .subtitle {
       font-size: 1.2rem; color: var(--roland-core); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 15px;
     }
-    .description { font-size: 1rem; line-height: 1.6; color: rgba(255,255,255,0.9); margin-bottom: 20px;}
+    .description { font-size: 1rem; line-height: 1.6; color: rgba(255,255,255,0.9); margin-bottom: 22px;}
     #eqCanvas {
-      width: 90%; max-width: 420px; margin: 20px auto 0 auto; display: none; background: transparent; border: none;
+      width: 90%; max-width: 420px; margin: 15px auto 0 auto; display: none; background: transparent; border: none;
       display: block;
     }
 
     .sound-module {
       background: var(--panel-deep); border: 1px solid var(--grid-gray); border-radius: 8px;
-      padding: 25px; display: flex; flex-direction: column; gap: 24px;
+      padding: 28px 20px 28px 20px; display: flex; flex-direction: column; gap: 21px;
     }
     .turntable-container { display: flex; flex-direction: column; align-items: center; gap: 15px;}
     .hologram-turntable {
@@ -95,7 +95,7 @@
 
     /* SECCIÓN SERVICIOS */
     .section-services {
-      margin: 46px 0 24px 0;
+      margin: 38px 0 50px 0;
       text-align: center;
     }
     .services-title {
@@ -159,46 +159,72 @@
       .services-grid{grid-template-columns:1fr;}
     }
 
-    /* SECCIÓN 2 */
-    .section-2 { margin-bottom: 40px;}
-    .gallery-grid {
-      display: grid; grid-template-columns: repeat(4,1fr); gap: 24px; margin: 0 auto; max-width: 950px;
+    /* SECCIÓN 2 / REPRODUCTOR */
+    .section-2 {
+      margin-bottom: 56px;
+      padding-bottom:0;
     }
-    .gallery-thumb {
-      background: var(--panel-deep); border: 2px solid var(--grid-gray); border-radius: 12px;
-      overflow: hidden; box-shadow: 0 3px 15px rgba(0,0,0,0.2);
-      cursor: pointer; transition: border-color .2s, transform .2s, box-shadow .2s; position: relative;
+    .video-player-frame {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: var(--panel-deep);
+      border-radius: 13px;
+      border: 2px solid var(--grid-gray);
+      margin: 0 auto 0 auto;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.14);
+      max-width: 800px;
+      overflow: hidden;
+      min-height: 180px;
     }
-    .gallery-thumb:hover {
-      border-color: var(--digital-cyan); transform: translateY(-5px) scale(1.03); box-shadow:0 0 24px var(--glitch-magenta);
+    .video-title {
+      color: var(--digital-cyan);
+      text-align: center;
+      font-size: 1.11rem;
+      margin: 13px 0 15px 0;
+      min-height: 24px;
+      letter-spacing:.8px;
     }
-    .gallery-thumb img {
-      width: 100%; height: 150px; object-fit: cover; display: block;
-      filter: grayscale(30%) contrast(1.2);
-      transition: filter .2s;
+    .miniaturenav {
+      display: flex;
+      justify-content: center;
     }
-    .gallery-thumb:hover img { filter: grayscale(0%) brightness(1.1);}
-    .gallery-thumb span {
-      display:block;background:var(--black-absolute);color:var(--digital-cyan);text-align:center;
-      padding:7px;font-size:0.98em;letter-spacing:1.5px;text-transform:uppercase;
+    .video-thumbs {
+      display: flex; gap: 13px; margin: 0 auto 11px auto; flex-wrap: wrap; justify-content: center;
     }
-
-    /* Modal de video */
-    #videoModal {
-      display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(10,20,25,0.92);
-      align-items:center; justify-content:center; z-index:333; transition:background .25s;
+    .video-thumb {
+      width: 58px; height: 38px; border-radius:8px;
+      border: 2.5px solid var(--grid-gray);
+      overflow: hidden; cursor: pointer; transition: border-color .22s, box-shadow .2s;
+      opacity: .8;
+      box-shadow:0 0 7px rgba(0,0,0,0.09);
     }
-    #videoModal.active{ display:flex;}
-    #videoModal iframe{ width:80vw; max-width: 740px; height:44vw; max-height:420px; border:none;border-radius:12px;}
-    #videoModal .close{
-      position:absolute;top:35px;right:40px;font-size:2.5rem;color:var(--digital-cyan);
-      background:none; border:none; cursor:pointer; z-index:10; font-family: inherit;
-      filter: drop-shadow(0 0 7px var(--glitch-magenta));
+    .video-thumb.active {
+      border-color: var(--digital-cyan); opacity: 1; box-shadow:0 2px 18px var(--glitch-magenta);
+    }
+    .video-thumb img {
+      width: 100%; height: 100%; object-fit:cover; display: block;
+      filter: grayscale(12%) contrast(1.09);
+    }
+    .video-dots {
+      display: flex; gap: 7px; align-items: center; justify-content: center; margin-bottom: 2px;
+    }
+    .video-dot {
+      width: 13px; height: 13px; border-radius: 50%;
+      background: var(--grid-gray);
+      border: 2px solid var(--digital-cyan);
+      cursor: pointer;
+      transition: background .21s, border-color .21s;
+      margin-top: 0;
+    }
+    .video-dot.active {
+      background: var(--digital-cyan);
+      border-color: var(--glitch-magenta);
     }
 
     /* SECCIÓN 3 */
-    .section-3 { background:var(--panel-deep); border:1px solid var(--grid-gray); border-radius:8px; padding:40px;margin-bottom:20px;}
-    .contact-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px;}
+    .section-3 { margin-top:12px; background:var(--panel-deep); border:1px solid var(--grid-gray); border-radius:8px; padding:38px 0 34px 0;}
+    .contact-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; max-width: 800px; margin: 0 auto;}
     .contact-port {
       padding: 20px; background: var(--black-absolute); border: 1px solid var(--grid-gray);
       border-radius: 6px; text-align:center; text-decoration:none;color:white;
@@ -209,7 +235,7 @@
     .port-primary { background:var(--roland-core); border-color:var(--roland-core); font-weight:bold; color:white;}
     .port-primary:hover { background:transparent; color:var(--roland-core);}
     .footer {
-      margin-top:16px;text-align:center;color:rgba(255,255,255,0.5);font-size:0.98em;letter-spacing:1px;
+      margin-top:18px;text-align:center;color:rgba(255,255,255,0.5);font-size:0.98em;letter-spacing:1px;
     }
 
     /* WhatsApp Floating */
@@ -221,9 +247,13 @@
       text-decoration: none; box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
       z-index: 1000; animation: float 3s ease-in-out infinite;
     }
-    @keyframes float { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-12px);} }
+    @keyframes float { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-10px);} }
 
     /* Responsive */
+    @media (max-width: 1100px){
+      .container{padding-left:2vw;padding-right:2vw;}
+      .section-1{gap:18px;}
+    }
     @media (max-width: 960px) {
         .section-1 { grid-template-columns: 1fr;}
         .gallery-grid { grid-template-columns: repeat(2,1fr);}
@@ -231,11 +261,19 @@
     @media (max-width: 900px){
       .services-grid{grid-template-columns:1fr;}
     }
-    @media (max-width: 640px) {
-        .main-title { font-size: 1.5rem;}
-        .gallery-grid { grid-template-columns: 1fr;}
-        #videoModal iframe { width:94vw;height:55vw;}
-        .section-3 { padding:18px;}
+    @media (max-width: 700px){
+      .section-1{margin-bottom:24px;}
+      .section-services{margin-top:28px;}
+      .section-2{margin-bottom:22px;}
+      .contact-grid{grid-template-columns:1fr;}
+      .video-title{font-size:.99rem;}
+    }
+    @media (max-width: 520px) {
+        .main-title { font-size: 1.32rem;}
+        .section-3 { padding:14px;}
+        .sound-module{padding:16px 3vw;}
+        .video-thumbs{gap:7px;}
+        .video-thumb{width:31px;height:18px;}
     }
   </style>
 </head>
@@ -315,47 +353,16 @@
       </div>
     </section>
 
-    <!-- SECCIÓN GALERÍA DE VIDEOS -->
+    <!-- SECCIÓN GALERÍA UN SOLO VIDEO CON MINIATURAS Y DOTS -->
     <section class="section-2">
-      <div class="gallery-grid">
-        <div class="gallery-thumb" data-video="ZGxSXchZNfo">
-          <img src="https://img.youtube.com/vi/ZGxSXchZNfo/hqdefault.jpg" alt="video1">
-          <span>Boiler Room 1</span>
-        </div>
-        <div class="gallery-thumb" data-video="SD3T_Or_mvk">
-          <img src="https://img.youtube.com/vi/SD3T_Or_mvk/hqdefault.jpg" alt="video2">
-          <span>Tra Tra Live</span>
-        </div>
-        <div class="gallery-thumb" data-video="XCW95zjBUK4">
-          <img src="https://img.youtube.com/vi/XCW95zjBUK4/hqdefault.jpg" alt="video3">
-          <span>Gats Set</span>
-        </div>
-        <div class="gallery-thumb" data-video="fIbo4pFaNgQ">
-          <img src="https://img.youtube.com/vi/fIbo4pFaNgQ/hqdefault.jpg" alt="video4">
-          <span>Detroit Flow</span>
-        </div>
-        <div class="gallery-thumb" data-video="K6ACbb5p2A0">
-          <img src="https://img.youtube.com/vi/K6ACbb5p2A0/hqdefault.jpg" alt="video5">
-          <span>Roland Jam</span>
-        </div>
-        <div class="gallery-thumb" data-video="2Vv-BfVoq4g">
-          <img src="https://img.youtube.com/vi/2Vv-BfVoq4g/hqdefault.jpg" alt="video6">
-          <span>Punk Session</span>
-        </div>
-        <div class="gallery-thumb" data-video="oHg5SJYRHA0">
-          <img src="https://img.youtube.com/vi/oHg5SJYRHA0/hqdefault.jpg" alt="video7">
-          <span>Vinyl Routine</span>
-        </div>
-        <div class="gallery-thumb" data-video="kXYiU_JCYtU">
-          <img src="https://img.youtube.com/vi/kXYiU_JCYtU/hqdefault.jpg" alt="video8">
-          <span>Engl Synth</span>
-        </div>
+      <div class="video-player-frame">
+        <iframe id="singleVideo" width="100%" height="370" src="https://www.youtube.com/embed/ZGxSXchZNfo?modestbranding=1&rel=0" frameborder="0" allowfullscreen></iframe>
       </div>
-      <!-- Modal de video -->
-      <div id="videoModal">
-        <button class="close">&times;</button>
-        <iframe id="modalPlayer" src="" allowfullscreen></iframe>
+      <div id="videoTitle" class="video-title"></div>
+      <div class="miniaturenav">
+        <div id="videoThumbs" class="video-thumbs"></div>
       </div>
+      <div id="videoDots" class="video-dots"></div>
     </section>
 
     <!-- SECCIÓN CONTACTO -->
@@ -426,23 +433,53 @@
       eqCanvas.style.display='none';
     });
 
-    // Video grid y modal
-    const thumbs = document.querySelectorAll('.gallery-thumb');
-    const modal = document.getElementById('videoModal');
-    const player = document.getElementById('modalPlayer');
-    thumbs.forEach(thumb=>{
-      thumb.onclick=()=>{
-        player.src = 'https://www.youtube.com/embed/'+thumb.dataset.video+'?autoplay=1&modestbranding=1&rel=0';
-        modal.classList.add('active');
-      }
-    });
-    document.querySelector('#videoModal .close').onclick=()=>{
-      modal.classList.remove('active'); player.src='';
-    };
-    // Salir modal al hacer click fondo oscuro
-    modal.addEventListener('click',function(e){
-      if(e.target === modal){ modal.classList.remove('active'); player.src=''; }
-    });
+    // VIDEO UNICO CON MINIATURAS + DOTS
+    const videos = [
+      {id: "ZGxSXchZNfo", title: "Boiler Room 1"},
+      {id: "SD3T_Or_mvk", title: "Tra Tra Live"},
+      {id: "XCW95zjBUK4", title: "Gats Set"},
+      {id: "fIbo4pFaNgQ", title: "Detroit Flow"},
+      {id: "K6ACbb5p2A0", title: "Roland Jam"},
+      {id: "2Vv-BfVoq4g", title: "Punk Session"},
+      {id: "oHg5SJYRHA0", title: "Vinyl Routine"},
+      {id: "kXYiU_JCYtU", title: "Engl Synth"}
+    ];
+    let vidIndex = 0;
+    const singleVideo = document.getElementById('singleVideo');
+    const videoTitle = document.getElementById('videoTitle');
+    const thumbsContainer = document.getElementById('videoThumbs');
+    const dotsContainer = document.getElementById('videoDots');
+
+    function renderThumbs() {
+      thumbsContainer.innerHTML = '';
+      videos.forEach((v,i) => {
+        const thumb = document.createElement('div');
+        thumb.className = 'video-thumb' + (i===vidIndex ? ' active':'');
+        thumb.title = v.title;
+        thumb.innerHTML = `<img src="https://img.youtube.com/vi/${v.id}/hqdefault.jpg" alt="">`;
+        thumb.onclick = ()=>{ vidIndex = i; updateVideo(); };
+        thumbsContainer.appendChild(thumb);
+      });
+    }
+    function renderDots() {
+      dotsContainer.innerHTML = '';
+      videos.forEach((v,i)=>{
+        const dot = document.createElement('div');
+        dot.className = 'video-dot' + (i===vidIndex ? ' active':'');
+        dot.title = v.title;
+        dot.onclick = ()=>{ vidIndex=i; updateVideo(); };
+        dotsContainer.appendChild(dot);
+      });
+    }
+    function updateVideo() {
+      singleVideo.src = `https://www.youtube.com/embed/${videos[vidIndex].id}?modestbranding=1&rel=0&autoplay=1`;
+      videoTitle.textContent = videos[vidIndex].title;
+      renderThumbs();
+      renderDots();
+    }
+    renderThumbs();
+    renderDots();
+    updateVideo();
 
     // Theme toggle (opcional futuro)
     const themeToggle = document.getElementById('themeToggle');
