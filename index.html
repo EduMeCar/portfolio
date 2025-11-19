@@ -268,6 +268,19 @@
             opacity: 0.7;
         }
 
+        /* SPOTIFY INTEGRADO */
+        .spotify-integrated {
+            margin-top: 20px;
+            border-top: var(--vintage-border);
+            padding-top: 20px;
+        }
+
+        .spotify-container {
+            background: var(--panel-gradient);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
         /* MAIN CONTENT GRID */
         .main-content {
             display: grid;
@@ -390,19 +403,6 @@
             font-weight: bold;
             color: var(--primary-white);
             text-transform: uppercase;
-        }
-
-        /* SPOTIFY SECTION */
-        .spotify-section {
-            margin-bottom: 40px;
-        }
-
-        .spotify-container {
-            background: var(--panel-gradient);
-            border: 1px solid var(--primary-gray);
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
 
         /* CONTACT SECTION */
@@ -579,14 +579,28 @@
                 </div>
                 <div class="track-item">
                     <span class="track-number">4</span>
-                    <span class="track-name">VILMENA DACHEKA | VisualGuard</span>
+                    <span class="track-name">MIMBIA DATHEKA . Vanillawall</span>
                 </div>
             </div>
             
             <div class="track-info-compact">
                 <div>
-                    <div class="current-track">TurboBooz · Eduardo Mejía</div>
+                    <div class="current-track">TurboBoyz · Eduardo Mejía</div>
                     <div class="current-artist">Muestra</div>
+                </div>
+            </div>
+
+            <!-- SPOTIFY INTEGRADO -->
+            <div class="spotify-integrated">
+                <div class="spotify-container">
+                    <iframe style="border-radius: 8px; border: none;" 
+                            src="https://open.spotify.com/embed/playlist/26qaG2E3bW6ZNIk5mvPpjr?utm_source=generator&theme=0" 
+                            width="100%" 
+                            height="152" 
+                            allowfullscreen="" 
+                            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+                            loading="lazy">
+                    </iframe>
                 </div>
             </div>
         </div>
@@ -658,23 +672,25 @@
                         <div class="video-name" data-es="BOILER ROOM" data-en="BOILER ROOM">BOILER ROOM</div>
                     </div>
                 </div>
+                <div class="video-card">
+                    <iframe class="video-player" src="https://www.youtube.com/embed/SD3T_Or_mvk?start=3" 
+                            title="Tra Tra" allowfullscreen></iframe>
+                    <div class="video-info">
+                        <div class="video-role" data-es="COORDINACIÓN" data-en="COORDINATION">COORDINATION</div>
+                        <div class="video-name" data-es="REMIX PROJECT" data-en="REMIX PROJECT">REMIX PROJECT</div>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <iframe class="video-player" src="https://www.youtube.com/embed/XCW95zjBUK4" 
+                            title="Gats" allowfullscreen></iframe>
+                    <div class="video-info">
+                        <div class="video-role" data-es="DESARROLLO" data-en="DEVELOPMENT">DEVELOPMENT</div>
+                        <div class="video-name" data-es="ARTISTA EMERGENTE" data-en="EMERGING ARTIST">EMERGING ARTIST</div>
+                    </div>
+                </div>
             </div>
         </section>
     </div>
-
-    <!-- SPOTIFY SECTION -->
-    <section class="spotify-section">
-        <div class="spotify-container">
-            <iframe style="border-radius: 8px; border: none;" 
-                    src="https://open.spotify.com/embed/playlist/26qaG2E3bW6ZNIk5mvPpjr?utm_source=generator&theme=0" 
-                    width="100%" 
-                    height="352" 
-                    allowfullscreen="" 
-                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
-                    loading="lazy">
-            </iframe>
-        </div>
-    </section>
 
     <!-- CONTACT SECTION -->
     <section class="contact-section">
@@ -730,8 +746,8 @@
                         src: "https://www.soundjay.com/button/beep-07.wav" // Ejemplo - reemplazar con tus archivos
                     },
                     {
-                        title: "VILMENA DACHEKA",
-                        artist: "VisualGuard",
+                        title: "MIMBIA DATHEKA",
+                        artist: "Vanillawall",
                         src: "https://www.soundjay.com/button/beep-07.wav" // Ejemplo - reemplazar con tus archivos
                     }
                 ];
