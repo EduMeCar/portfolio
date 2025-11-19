@@ -3,140 +3,163 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eduardo Mejía - Arquitectura Musical</title>
+    <title>Eduardo Mejía - Musical Project Manager</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* SISTEMA DE DISEÑO DUAL: NO-SCROLL LAPTOP + SCROLL MÓVIL */
+        /* SISTEMA ROLAND VINTAGE + DASHBOARD */
         :root {
-            /* Paleta Post-Punk + Detroit */
-            --pitch-black: #000000;
-            --blood-red: #8B0000;
-            --pure-white: #FFFFFF;
-            --concrete-gray: #1A1A1A;
-            --neon-cyan: #00FFFF;
-            --electric-blue: #1E90FF;
-            --industrial-orange: #FF4500;
+            /* Paleta Roland Vintage */
+            --roland-red: #CC0000;
+            --roland-black: #000000;
+            --roland-gray: #333333;
+            --roland-light: #666666;
+            --roland-white: #FFFFFF;
+            --roland-orange: #FF6600;
+            --roland-yellow: #FFCC00;
             
-            /* Espaciado adaptativo */
-            --space-micro: 0.25rem;
-            --space-tight: 0.5rem;
-            --space-base: 1rem;
-            --space-medium: 1.5rem;
-            --space-large: 2rem;
-            --space-xl: 3rem;
-            --space-xxl: 5rem;
-            
-            /* Tipografía dual */
-            --font-punk: 'Arial Black', 'Impact', sans-serif;
-            --font-techno: 'Courier New', 'Monaco', monospace;
-            --font-ui: 'Helvetica Neue', 'Arial', sans-serif;
+            /* Elementos de equipo */
+            --knob-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            --led-glow: 0 0 8px currentColor;
+            --panel-gradient: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
         }
 
-        /* RESET HÍBRIDO */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        html, body {
-            height: 100%;
-            overflow-x: hidden;
-        }
-
         body {
-            background: var(--pitch-black);
-            color: var(--pure-white);
-            font-family: var(--font-ui);
+            background: var(--roland-black);
+            color: var(--roland-white);
+            font-family: 'Courier New', monospace;
             line-height: 1.4;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 20% 80%, rgba(204,0,0,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255,102,0,0.1) 0%, transparent 50%);
         }
 
-        /* CONTENEDOR PRINCIPAL DUAL */
-        .container-dual {
-            width: 100%;
-            height: 100vh; /* Para laptop - sin scroll */
+        /* DASHBOARD CONTAINER */
+        .dashboard {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            grid-template-rows: auto 1fr auto;
-            gap: var(--space-base);
-            padding: var(--space-base);
-            position: relative;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-rows: auto 1fr 1fr auto;
+            gap: 20px;
+            padding: 20px;
+            min-height: 100vh;
+            max-width: 1400px;
+            margin: 0 auto;
         }
 
-        /* HEADER FUSIÓN */
-        .header-fusion {
+        /* HEADER ROLAND STYLE */
+        .header-roland {
             grid-column: 1 / -1;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: var(--space-base);
-            border-bottom: 2px solid var(--blood-red);
-            background: rgba(0, 0, 0, 0.9);
+            padding: 20px;
+            background: var(--panel-gradient);
+            border: 2px solid var(--roland-gray);
+            border-radius: 8px;
             position: relative;
-            z-index: 10;
+            box-shadow: var(--knob-shadow);
         }
 
-        .logo-fusion {
-            font-family: var(--font-punk);
-            font-size: 1.5rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-        }
-
-        .logo-fusion span {
-            color: var(--blood-red);
-        }
-
-        .nav-controls {
+        .logo-container {
             display: flex;
-            gap: var(--space-tight);
+            align-items: center;
+            gap: 15px;
         }
 
-        .nav-btn {
-            padding: var(--space-tight) var(--space-base);
-            background: transparent;
-            border: 1px solid var(--concrete-gray);
-            color: var(--pure-white);
-            font-family: var(--font-techno);
-            font-size: 0.8rem;
+        .roland-logo {
+            width: 50px;
+            height: 50px;
+            background: var(--roland-red);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: var(--roland-white);
+            font-size: 1.2rem;
+            border: 2px solid var(--roland-white);
+        }
+
+        .brand-name {
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .brand-name .first {
+            color: var(--roland-white);
+        }
+
+        .brand-name .second {
+            color: var(--roland-red);
+        }
+
+        .dashboard-controls {
+            display: flex;
+            gap: 10px;
+        }
+
+        .control-knob {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--roland-gray);
+            border: 2px solid var(--roland-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
             cursor: pointer;
             transition: all 0.3s ease;
-            text-transform: uppercase;
+            color: var(--roland-white);
+            box-shadow: var(--knob-shadow);
         }
 
-        .nav-btn:hover {
-            border-color: var(--neon-cyan);
-            background: rgba(0, 255, 255, 0.1);
+        .control-knob:hover {
+            transform: rotate(30deg);
+            border-color: var(--roland-red);
         }
 
-        /* HERO DUAL */
-        .hero-dual {
-            grid-column: 1;
+        /* HERO SECTION - VU METER STYLE */
+        .hero-vu {
+            grid-column: 1 / -1;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 20px;
+            padding: 30px;
+            background: var(--panel-gradient);
+            border: 2px solid var(--roland-gray);
+            border-radius: 8px;
+            box-shadow: var(--knob-shadow);
+        }
+
+        .hero-content {
             display: flex;
             flex-direction: column;
             justify-content: center;
-            padding: var(--space-large);
-            position: relative;
-            border-right: 1px solid rgba(139, 0, 0, 0.3);
         }
 
-        .hero-name {
-            font-family: var(--font-punk);
-            font-size: 3.5rem;
+        .hero-title {
+            font-size: 3rem;
+            font-weight: bold;
             text-transform: uppercase;
-            line-height: 0.9;
-            margin-bottom: var(--space-medium);
-            color: var(--pure-white);
-            text-shadow: 2px 2px 0px var(--blood-red);
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+            color: var(--roland-white);
         }
 
         .hero-subtitle {
-            font-family: var(--font-techno);
             font-size: 1.2rem;
-            color: var(--neon-cyan);
+            color: var(--roland-red);
             text-transform: uppercase;
-            letter-spacing: 0.2em;
-            margin-bottom: var(--space-large);
+            letter-spacing: 4px;
+            margin-bottom: 20px;
             position: relative;
         }
 
@@ -146,636 +169,558 @@
             bottom: -10px;
             left: 0;
             width: 100px;
-            height: 2px;
-            background: linear-gradient(90deg, var(--blood-red), var(--neon-cyan));
+            height: 3px;
+            background: var(--roland-red);
         }
 
         .hero-description {
             font-size: 1rem;
             line-height: 1.6;
-            max-width: 400px;
+            color: var(--roland-white);
             opacity: 0.9;
+            max-width: 500px;
         }
 
-        /* TIMELINE DUAL */
-        .timeline-dual {
-            grid-column: 2;
+        .vu-meter {
             display: flex;
             flex-direction: column;
             justify-content: center;
-            padding: var(--space-large);
-            position: relative;
-        }
-
-        .timeline-title {
-            font-family: var(--font-punk);
-            font-size: 1.5rem;
-            text-transform: uppercase;
-            margin-bottom: var(--space-large);
-            color: var(--pure-white);
-            position: relative;
-        }
-
-        .timeline-title::after {
-            content: '';
-            position: absolute;
-            bottom: -8px;
-            left: 0;
-            width: 60px;
-            height: 2px;
-            background: var(--blood-red);
-        }
-
-        .timeline-items {
-            display: flex;
-            flex-direction: column;
-            gap: var(--space-medium);
-        }
-
-        .timeline-item {
-            display: flex;
-            align-items: flex-start;
-            gap: var(--space-base);
-            padding: var(--space-base);
-            border-left: 2px solid var(--blood-red);
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .timeline-item:hover {
-            border-left-color: var(--neon-cyan);
-            background: rgba(0, 255, 255, 0.05);
-        }
-
-        .timeline-year {
-            font-family: var(--font-techno);
-            font-size: 0.9rem;
-            color: var(--neon-cyan);
-            min-width: 80px;
-            text-transform: uppercase;
-        }
-
-        .timeline-content {
-            font-size: 0.9rem;
-            line-height: 1.5;
-            opacity: 0.9;
-        }
-
-        /* SERVICIOS DUAL */
-        .services-dual {
-            grid-column: 1;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: var(--space-base);
-            padding: var(--space-large);
-        }
-
-        .services-title {
-            grid-column: 1 / -1;
-            font-family: var(--font-punk);
-            font-size: 1.5rem;
-            text-transform: uppercase;
-            margin-bottom: var(--space-medium);
-            color: var(--pure-white);
-            position: relative;
-        }
-
-        .services-title::after {
-            content: '';
-            position: absolute;
-            bottom: -8px;
-            left: 0;
-            width: 60px;
-            height: 2px;
-            background: var(--neon-cyan);
-        }
-
-        .service-card {
-            background: var(--concrete-gray);
-            padding: var(--space-medium);
-            border: 1px solid rgba(139, 0, 0, 0.3);
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .service-card:hover {
-            border-color: var(--neon-cyan);
-            transform: translateY(-5px);
-        }
-
-        .service-icon {
-            font-size: 1.5rem;
-            margin-bottom: var(--space-base);
-            color: var(--blood-red);
-        }
-
-        .service-name {
-            font-family: var(--font-punk);
-            font-size: 1.1rem;
-            margin-bottom: var(--space-tight);
-            color: var(--pure-white);
-            text-transform: uppercase;
-        }
-
-        .service-desc {
-            font-size: 0.8rem;
-            line-height: 1.4;
-            opacity: 0.8;
-        }
-
-        /* PROYECTOS DUAL */
-        .projects-dual {
-            grid-column: 2;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: var(--space-base);
-            padding: var(--space-large);
-        }
-
-        .projects-title {
-            grid-column: 1 / -1;
-            font-family: var(--font-punk);
-            font-size: 1.5rem;
-            text-transform: uppercase;
-            margin-bottom: var(--space-medium);
-            color: var(--pure-white);
-            position: relative;
-        }
-
-        .projects-title::after {
-            content: '';
-            position: absolute;
-            bottom: -8px;
-            left: 0;
-            width: 60px;
-            height: 2px;
-            background: var(--blood-red);
-        }
-
-        .project-card {
-            background: var(--concrete-gray);
-            border: 1px solid rgba(139, 0, 0, 0.3);
-            overflow: hidden;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .project-card:hover {
-            border-color: var(--neon-cyan);
-            transform: translateY(-5px);
-        }
-
-        .project-media {
-            width: 100%;
-            height: 120px;
-            background: var(--pitch-black);
-            border: none;
-        }
-
-        .project-info {
-            padding: var(--space-base);
-        }
-
-        .project-role {
-            font-family: var(--font-techno);
-            font-size: 0.7rem;
-            color: var(--neon-cyan);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: var(--space-micro);
-        }
-
-        .project-name {
-            font-family: var(--font-punk);
-            font-size: 0.9rem;
-            color: var(--pure-white);
-            text-transform: uppercase;
-        }
-
-        /* SONIDO DUAL */
-        .sound-dual {
-            grid-column: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: var(--space-large);
-            border-right: 1px solid rgba(139, 0, 0, 0.3);
-        }
-
-        .sound-title {
-            font-family: var(--font-punk);
-            font-size: 1.5rem;
-            text-transform: uppercase;
-            margin-bottom: var(--space-medium);
-            color: var(--pure-white);
-            position: relative;
-        }
-
-        .sound-title::after {
-            content: '';
-            position: absolute;
-            bottom: -8px;
-            left: 0;
-            width: 60px;
-            height: 2px;
-            background: var(--neon-cyan);
-        }
-
-        .sound-header {
-            display: flex;
             align-items: center;
-            gap: var(--space-base);
-            margin-bottom: var(--space-medium);
+            gap: 10px;
         }
 
-        .sound-logo {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid var(--blood-red);
-            transition: all 0.3s ease;
-        }
-
-        .sound-logo:hover {
-            border-color: var(--neon-cyan);
-            transform: rotate(15deg);
-        }
-
-        .sound-name {
-            font-family: var(--font-techno);
-            font-size: 1rem;
-            color: var(--pure-white);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-        }
-
-        .sound-player {
+        .vu-display {
             width: 100%;
-            background: var(--concrete-gray);
-            border: 1px solid rgba(139, 0, 0, 0.3);
+            height: 200px;
+            background: var(--roland-black);
+            border: 2px solid var(--roland-gray);
+            border-radius: 4px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .vu-level {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 75%;
+            background: linear-gradient(to top, var(--roland-red), var(--roland-orange), var(--roland-yellow));
+            animation: vuPulse 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes vuPulse {
+            0% { height: 65%; }
+            100% { height: 85%; }
+        }
+
+        .vu-label {
+            font-size: 0.9rem;
+            color: var(--roland-white);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* SERVICES - MIXER CHANNELS */
+        .services-mixer {
+            grid-column: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            padding: 20px;
+            background: var(--panel-gradient);
+            border: 2px solid var(--roland-gray);
+            border-radius: 8px;
+            box-shadow: var(--knob-shadow);
+        }
+
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--roland-white);
+            margin-bottom: 10px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: var(--roland-red);
+        }
+
+        .mixer-channel {
+            background: var(--roland-black);
+            border: 1px solid var(--roland-gray);
+            border-radius: 4px;
+            padding: 15px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .mixer-channel:hover {
+            border-color: var(--roland-red);
+            transform: translateY(-2px);
+        }
+
+        .channel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .channel-name {
+            font-size: 1rem;
+            font-weight: bold;
+            color: var(--roland-white);
+            text-transform: uppercase;
+        }
+
+        .channel-led {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--roland-red);
+            box-shadow: var(--led-glow);
+        }
+
+        .channel-desc {
+            font-size: 0.85rem;
+            color: var(--roland-white);
+            opacity: 0.8;
+            line-height: 1.4;
+        }
+
+        /* PROJECTS - SEQUENCER GRID */
+        .projects-sequencer {
+            grid-column: 2;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            padding: 20px;
+            background: var(--panel-gradient);
+            border: 2px solid var(--roland-gray);
+            border-radius: 8px;
+            box-shadow: var(--knob-shadow);
+        }
+
+        .sequencer-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+        }
+
+        .sequence-track {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 8px;
+        }
+
+        .sequence-step {
+            height: 80px;
+            background: var(--roland-black);
+            border: 1px solid var(--roland-gray);
             border-radius: 4px;
             overflow: hidden;
             transition: all 0.3s ease;
+            cursor: pointer;
         }
 
-        .sound-player:hover {
-            border-color: var(--neon-cyan);
+        .sequence-step:hover {
+            border-color: var(--roland-orange);
         }
 
-        /* CONTACTO DUAL */
-        .contact-dual {
-            grid-column: 2;
+        .step-active {
+            border-color: var(--roland-red);
+        }
+
+        .step-media {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .step-info {
+            padding: 5px;
+            text-align: center;
+        }
+
+        .step-role {
+            font-size: 0.7rem;
+            color: var(--roland-red);
+            text-transform: uppercase;
+        }
+
+        .step-name {
+            font-size: 0.8rem;
+            color: var(--roland-white);
+            font-weight: bold;
+        }
+
+        /* SOUND - TURNTABLE SECTION */
+        .sound-turntable {
+            grid-column: 3;
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            padding: var(--space-large);
+            gap: 15px;
+            padding: 20px;
+            background: var(--panel-gradient);
+            border: 2px solid var(--roland-gray);
+            border-radius: 8px;
+            box-shadow: var(--knob-shadow);
         }
 
-        .contact-title {
-            font-family: var(--font-punk);
-            font-size: 1.5rem;
-            text-transform: uppercase;
-            margin-bottom: var(--space-medium);
-            color: var(--pure-white);
+        .turntable-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .turntable {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: var(--roland-black);
+            border: 15px solid var(--roland-gray);
             position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--knob-shadow);
         }
 
-        .contact-title::after {
+        .turntable::before {
             content: '';
             position: absolute;
-            bottom: -8px;
-            left: 0;
-            width: 60px;
-            height: 2px;
-            background: var(--blood-red);
-        }
-
-        .contact-buttons {
-            display: flex;
-            flex-direction: column;
-            gap: var(--space-base);
-        }
-
-        .contact-btn {
-            padding: var(--space-base) var(--space-medium);
-            border: 1px solid var(--blood-red);
-            background: transparent;
-            color: var(--pure-white);
-            text-decoration: none;
-            font-family: var(--font-techno);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            transition: all 0.3s ease;
-            text-align: center;
-        }
-
-        .contact-btn.primary {
-            background: var(--blood-red);
-            color: var(--pure-white);
-        }
-
-        .contact-btn:hover {
-            border-color: var(--neon-cyan);
-            background: rgba(0, 255, 255, 0.1);
-            transform: translateY(-3px);
-        }
-
-        .contact-btn.primary:hover {
-            background: transparent;
-            color: var(--blood-red);
-        }
-
-        /* WHATSAPP DUAL */
-        .whatsapp-dual {
-            position: fixed;
-            bottom: var(--space-large);
-            right: var(--space-large);
-            width: 60px;
-            height: 60px;
-            background: #25D366;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            z-index: 1000;
-            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
-            border: 2px solid white;
-        }
-
-        .whatsapp-dual:hover {
-            transform: scale(1.1) rotate(10deg);
-        }
-
-        .whatsapp-icon {
             width: 30px;
             height: 30px;
-            fill: white;
+            border-radius: 50%;
+            background: var(--roland-red);
         }
 
-        /* FOOTER DUAL */
-        .footer-dual {
-            grid-column: 1 / -1;
+        .vinyl {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            background: 
+                radial-gradient(circle at center, #333 0%, #333 10%, transparent 10.1%),
+                radial-gradient(circle at center, #111 0%, #111 40%, #333 40.1%, #333 45%, transparent 45.1%),
+                repeating-radial-gradient(circle at center, #111 0%, #111 2%, #333 2.1%, #333 4%);
+            animation: spin 20s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .turntable-controls {
             display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: var(--space-base);
-            border-top: 1px solid rgba(139, 0, 0, 0.3);
-            background: rgba(0, 0, 0, 0.9);
+            gap: 10px;
         }
 
-        .footer-text {
-            font-family: var(--font-techno);
+        .turntable-btn {
+            padding: 8px 15px;
+            background: var(--roland-black);
+            border: 1px solid var(--roland-gray);
+            color: var(--roland-white);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
             font-size: 0.8rem;
-            color: var(--pure-white);
-            opacity: 0.7;
-            text-align: center;
         }
 
-        /* ===== MÓVIL: SCROLL VERTICAL "TOP GUAI" ===== */
+        .turntable-btn:hover {
+            border-color: var(--roland-red);
+            background: var(--roland-red);
+        }
+
+        .player-container {
+            width: 100%;
+            background: var(--roland-black);
+            border: 1px solid var(--roland-gray);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        /* FOOTER - PATCH BAY */
+        .footer-patchbay {
+            grid-column: 1 / -1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            padding: 20px;
+            background: var(--panel-gradient);
+            border: 2px solid var(--roland-gray);
+            border-radius: 8px;
+            box-shadow: var(--knob-shadow);
+        }
+
+        .contact-patch {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .patch-ports {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .patch-port {
+            padding: 12px 15px;
+            background: var(--roland-black);
+            border: 1px solid var(--roland-gray);
+            border-radius: 4px;
+            text-align: center;
+            text-decoration: none;
+            color: var(--roland-white);
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
+        .patch-port:hover {
+            border-color: var(--roland-red);
+            background: var(--roland-red);
+            transform: translateY(-2px);
+        }
+
+        .port-primary {
+            background: var(--roland-red);
+            border-color: var(--roland-red);
+        }
+
+        .port-primary:hover {
+            background: transparent;
+        }
+
+        .whatsapp-patch {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #25D366;
+            color: white;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .whatsapp-patch:hover {
+            transform: scale(1.1) rotate(15deg);
+        }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 1024px) {
+            .dashboard {
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: auto auto 1fr auto;
+            }
+            
+            .sound-turntable {
+                grid-column: 1 / -1;
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .turntable-container {
+                grid-column: 1;
+            }
+            
+            .player-container {
+                grid-column: 2;
+            }
+        }
+
         @media (max-width: 768px) {
-            .container-dual {
-                height: auto;
+            .dashboard {
                 grid-template-columns: 1fr;
                 grid-template-rows: auto;
-                gap: var(--space-large);
-                padding: var(--space-base);
-                overflow-y: auto;
+                gap: 15px;
             }
-
-            .header-fusion {
-                position: sticky;
-                top: 0;
-                z-index: 100;
-            }
-
-            .hero-dual {
-                grid-column: 1;
-                border-right: none;
-                border-bottom: 1px solid rgba(139, 0, 0, 0.3);
-                padding: var(--space-xl) var(--space-base);
-                min-height: 70vh;
-            }
-
-            .hero-name {
-                font-size: 2.5rem;
-            }
-
-            .timeline-dual {
-                grid-column: 1;
-                padding: var(--space-xl) var(--space-base);
-            }
-
-            .services-dual {
-                grid-column: 1;
+            
+            .hero-vu {
                 grid-template-columns: 1fr;
-                padding: var(--space-xl) var(--space-base);
             }
-
-            .projects-dual {
-                grid-column: 1;
+            
+            .vu-meter {
+                order: -1;
+            }
+            
+            .sequence-track {
                 grid-template-columns: 1fr;
-                padding: var(--space-xl) var(--space-base);
             }
-
-            .sound-dual {
-                grid-column: 1;
-                border-right: none;
-                border-bottom: 1px solid rgba(139, 0, 0, 0.3);
-                padding: var(--space-xl) var(--space-base);
+            
+            .footer-patchbay {
+                grid-template-columns: 1fr;
             }
-
-            .contact-dual {
-                grid-column: 1;
-                padding: var(--space-xl) var(--space-base);
+            
+            .patch-ports {
+                grid-template-columns: 1fr;
             }
-
-            .whatsapp-dual {
-                bottom: var(--space-medium);
-                right: var(--space-medium);
-                width: 50px;
-                height: 50px;
-            }
-
-            .whatsapp-icon {
-                width: 25px;
-                height: 25px;
+            
+            .whatsapp-patch {
+                bottom: 15px;
+                right: 15px;
+                width: 45px;
+                height: 45px;
             }
         }
 
-        /* ANIMACIONES MÓVIL ESPECIALES */
-        @media (max-width: 768px) {
-            .hero-dual,
-            .timeline-dual,
-            .services-dual,
-            .projects-dual,
-            .sound-dual,
-            .contact-dual {
-                opacity: 0;
-                transform: translateY(30px);
-                transition: opacity 0.6s ease, transform 0.6s ease;
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2rem;
             }
-
-            .section-visible {
-                opacity: 1;
-                transform: translateY(0);
+            
+            .brand-name {
+                font-size: 1.4rem;
             }
-        }
-
-        /* EFECTOS ESPECIALES MÓVIL */
-        @media (max-width: 768px) {
-            .service-card,
-            .project-card,
-            .timeline-item,
-            .contact-btn {
-                transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            }
-
-            .service-card:active,
-            .project-card:active,
-            .timeline-item:active,
-            .contact-btn:active {
-                transform: scale(0.95);
+            
+            .roland-logo {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
             }
         }
     </style>
 </head>
 <body>
-    <!-- CONTENEDOR DUAL -->
-    <div class="container-dual">
+    <!-- DASHBOARD ROLAND STYLE -->
+    <div class="dashboard">
         <!-- HEADER -->
-        <header class="header-fusion">
-            <div class="logo-fusion">EDUARDO <span>MEJÍA</span></div>
-            <div class="nav-controls">
-                <button class="nav-btn" id="themeToggle">Tema</button>
-                <button class="nav-btn" id="languageToggle">ES/EN</button>
+        <header class="header-roland">
+            <div class="logo-container">
+                <div class="roland-logo">TR</div>
+                <div class="brand-name">
+                    <span class="first">EDUARDO</span>
+                    <span class="second">MEJÍA</span>
+                </div>
+            </div>
+            <div class="dashboard-controls">
+                <div class="control-knob" id="themeToggle">
+                    <i class="fas fa-adjust"></i>
+                </div>
+                <div class="control-knob" id="languageToggle">
+                    ES/EN
+                </div>
             </div>
         </header>
 
-        <!-- HERO -->
-        <section class="hero-dual">
-            <h1 class="hero-name">ARQUITECTURA<br>MUSICAL</h1>
-            <div class="hero-subtitle" data-es="Eduardo Mejía" data-en="Eduardo Mejía">
-                Eduardo Mejía
+        <!-- HERO VU METER -->
+        <section class="hero-vu">
+            <div class="hero-content">
+                <h1 class="hero-title">MUSICAL PROJECT MANAGER</h1>
+                <div class="hero-subtitle">ARCHITECTURE & STRATEGY</div>
+                <p class="hero-description">
+                    Designing sound structures and strategic frameworks for artists and labels. 
+                    From vinyl to digital, creating cohesive musical ecosystems.
+                </p>
             </div>
-            <p class="hero-description" data-es="Fusión post-punk y techno para experiencias sonoras revolucionarias" 
-               data-en="Post-punk and techno fusion for revolutionary sound experiences">
-                Fusión post-punk y techno para experiencias sonoras revolucionarias
-            </p>
-        </section>
-
-        <!-- TIMELINE -->
-        <section class="timeline-dual">
-            <h2 class="timeline-title" data-es="Trayectoria" data-en="Journey">
-                Trayectoria
-            </h2>
-            <div class="timeline-items">
-                <div class="timeline-item">
-                    <div class="timeline-year">2018-20</div>
-                    <div class="timeline-content" data-es="Fundación y primeras exploraciones sonoras" 
-                         data-en="Foundation and first sound explorations">
-                        Fundación y primeras exploraciones sonoras
-                    </div>
+            <div class="vu-meter">
+                <div class="vu-display">
+                    <div class="vu-level"></div>
                 </div>
-                <div class="timeline-item">
-                    <div class="timeline-year">2020-22</div>
-                    <div class="timeline-content" data-es="Expansión internacional y desarrollo técnico" 
-                         data-en="International expansion and technical development">
-                        Expansión internacional y desarrollo técnico
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-year">2022-24</div>
-                    <div class="timeline-content" data-es="Fusión revolucionaria y arquitectura musical" 
-                         data-en="Revolutionary fusion and musical architecture">
-                        Fusión revolucionaria y arquitectura musical
-                    </div>
-                </div>
+                <div class="vu-label">CREATIVE OUTPUT</div>
             </div>
         </section>
 
-        <!-- SERVICIOS -->
-        <section class="services-dual">
-            <h2 class="services-title" data-es="Servicios" data-en="Services">
-                Servicios
-            </h2>
-            <div class="service-card">
-                <div class="service-icon">⟷</div>
-                <h3 class="service-name" data-es="Booking & Giras" data-en="Booking & Tours">
-                    Booking & Giras
-                </h3>
-                <p class="service-desc" data-es="Circuitos de presentación estratégicos" 
-                   data-en="Strategic performance circuits">
-                    Circuitos de presentación estratégicos
+        <!-- SERVICES MIXER -->
+        <section class="services-mixer">
+            <h2 class="section-title">SERVICES</h2>
+            <div class="mixer-channel">
+                <div class="channel-header">
+                    <div class="channel-name">BOOKING & TOURS</div>
+                    <div class="channel-led"></div>
+                </div>
+                <p class="channel-desc">
+                    Strategic live performance circuits and international tour management
                 </p>
             </div>
-            <div class="service-card">
-                <div class="service-icon">⎗</div>
-                <h3 class="service-name" data-es="Gestión Editorial" data-en="Publishing Management">
-                    Gestión Editorial
-                </h3>
-                <p class="service-desc" data-es="Protección y administración de obras" 
-                   data-en="Work protection and administration">
-                    Protección y administración de obras
+            <div class="mixer-channel">
+                <div class="channel-header">
+                    <div class="channel-name">PUBLISHING</div>
+                    <div class="channel-led"></div>
+                </div>
+                <p class="channel-desc">
+                    Rights management and editorial strategy for musical works
                 </p>
             </div>
-            <div class="service-card">
-                <div class="service-icon">⤨</div>
-                <h3 class="service-name" data-es="Distribución Digital" data-en="Digital Distribution">
-                    Distribución Digital
-                </h3>
-                <p class="service-desc" data-es="Estrategias de lanzamiento innovadoras" 
-                   data-en="Innovative launch strategies">
-                    Estrategias de lanzamiento innovadoras
+            <div class="mixer-channel">
+                <div class="channel-header">
+                    <div class="channel-name">DIGITAL DISTRO</div>
+                    <div class="channel-led"></div>
+                </div>
+                <p class="channel-desc">
+                    Multi-platform release strategies and digital ecosystem development
                 </p>
             </div>
         </section>
 
-        <!-- PROYECTOS -->
-        <section class="projects-dual">
-            <h2 class="projects-title" data-es="Proyectos" data-en="Projects">
-                Proyectos
-            </h2>
-            <div class="project-card">
-                <iframe class="project-media" src="https://www.youtube.com/embed/ZGxSXchZNfo?start=0" 
-                        title="Boiler Room" allowfullscreen></iframe>
-                <div class="project-info">
-                    <div class="project-role" data-es="Producción" data-en="Production">Producción</div>
-                    <div class="project-name" data-es="Boiler Room" data-en="Boiler Room">Boiler Room</div>
+        <!-- PROJECTS SEQUENCER -->
+        <section class="projects-sequencer">
+            <h2 class="section-title">PROJECTS</h2>
+            <div class="sequencer-grid">
+                <div class="sequence-track">
+                    <div class="sequence-step step-active">
+                        <iframe class="step-media" src="https://www.youtube.com/embed/ZGxSXchZNfo?start=0" 
+                                title="Boiler Room" allowfullscreen></iframe>
+                        <div class="step-info">
+                            <div class="step-role">PRODUCTION</div>
+                            <div class="step-name">BOILER ROOM</div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="project-card">
-                <iframe class="project-media" src="https://www.youtube.com/embed/SD3T_Or_mvk?start=3" 
-                        title="Tra Tra" allowfullscreen></iframe>
-                <div class="project-info">
-                    <div class="project-role" data-es="Coordinación" data-en="Coordination">Coordinación</div>
-                    <div class="project-name" data-es="Remix" data-en="Remix">Remix</div>
+                <div class="sequence-track">
+                    <div class="sequence-step">
+                        <iframe class="step-media" src="https://www.youtube.com/embed/SD3T_Or_mvk?start=3" 
+                                title="Tra Tra" allowfullscreen></iframe>
+                        <div class="step-info">
+                            <div class="step-role">COORDINATION</div>
+                            <div class="step-name">REMIX PROJECT</div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="project-card">
-                <iframe class="project-media" src="https://www.youtube.com/embed/XCW95zjBUK4" 
-                        title="Gats" allowfullscreen></iframe>
-                <div class="project-info">
-                    <div class="project-role" data-es="Desarrollo" data-en="Development">Desarrollo</div>
-                    <div class="project-name" data-es="Emergente" data-en="Emerging">Emergente</div>
+                <div class="sequence-track">
+                    <div class="sequence-step">
+                        <iframe class="step-media" src="https://www.youtube.com/embed/XCW95zjBUK4" 
+                                title="Gats" allowfullscreen></iframe>
+                        <div class="step-info">
+                            <div class="step-role">DEVELOPMENT</div>
+                            <div class="step-name">EMERGING ARTIST</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- SONIDO -->
-        <section class="sound-dual">
-            <h2 class="sound-title" data-es="Sonido" data-en="Sound">
-                Sonido
-            </h2>
-            <div class="sound-header">
-                <img src="logo.svg" alt="TurboBoyz" class="sound-logo">
-                <div class="sound-name" data-es="TurboBoyz" data-en="TurboBoyz">
-                    TurboBoyz
+        <!-- SOUND TURNTABLE -->
+        <section class="sound-turntable">
+            <h2 class="section-title">SOUND</h2>
+            <div class="turntable-container">
+                <div class="turntable">
+                    <div class="vinyl"></div>
+                </div>
+                <div class="turntable-controls">
+                    <button class="turntable-btn">PLAY</button>
+                    <button class="turntable-btn">STOP</button>
                 </div>
             </div>
-            <div class="sound-player">
+            <div class="player-container">
                 <iframe style="border-radius:4px" 
                         src="https://open.spotify.com/embed/playlist/26qaG2E3bW6ZNIk5mvPpjr?utm_source=generator" 
                         width="100%" 
@@ -788,52 +733,37 @@
             </div>
         </section>
 
-        <!-- CONTACTO -->
-        <section class="contact-dual">
-            <h2 class="contact-title" data-es="Contacto" data-en="Contact">
-                Contacto
-            </h2>
-            <div class="contact-buttons">
-                <a class="contact-btn primary" 
-                   href="mailto:emc121091@me.com?subject=Colaboración%20Musical&body=Hola,%20me%20gustaría%20explorar%20posibilidades%20de%20trabajo%20conjunto%20para%20mi%20proyecto%20musical." 
-                   data-es="Iniciar Proyecto" data-en="Start Project">
-                    Iniciar Proyecto
-                </a>
-                <a class="contact-btn" 
-                   href="https://edumecar.github.io/Book/" 
-                   target="_blank" 
-                   data-es="Ver Booking" data-en="View Booking">
-                    Ver Booking
-                </a>
-                <a class="contact-btn" 
-                   href="https://www.linkedin.com/in/edumecar" 
-                   target="_blank" 
-                   data-es="LinkedIn" data-en="LinkedIn">
-                    LinkedIn
-                </a>
-            </div>
-        </section>
-
-        <!-- WHATSAPP -->
-        <a href="https://wa.me/525512478139?text=Hola,%20vi%20tu%20portafolio%20y%20me%20interesa%20conversar%20sobre%20mi%20proyecto%20musical." 
-           class="whatsapp-dual" target="_blank" aria-label="Contactar por WhatsApp">
-            <svg class="whatsapp-icon" viewBox="0 0 24 24">
-                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893-.001-3.189-1.262-6.189-3.553-8.449"/>
-            </svg>
-        </a>
-
-        <!-- FOOTER -->
-        <footer class="footer-dual">
-            <div class="footer-text" data-es="&copy; 2024 Eduardo Mejía - Arquitectura Musical" 
-                  data-en="&copy; 2024 Eduardo Mejía - Musical Architecture">
-                &copy; 2024 Eduardo Mejía - Arquitectura Musical
+        <!-- FOOTER PATCHBAY -->
+        <footer class="footer-patchbay">
+            <div class="contact-patch">
+                <h2 class="section-title">CONNECT</h2>
+                <div class="patch-ports">
+                    <a href="mailto:emc121091@me.com?subject=Musical Project Inquiry" class="patch-port port-primary">
+                        START PROJECT
+                    </a>
+                    <a href="https://edumecar.github.io/Book/" target="_blank" class="patch-port">
+                        BOOKING PLANS
+                    </a>
+                    <a href="https://www.linkedin.com/in/edumecar" target="_blank" class="patch-port">
+                        LINKEDIN
+                    </a>
+                    <a href="#" class="patch-port">
+                        CASE STUDIES
+                    </a>
+                </div>
             </div>
         </footer>
+
+        <!-- WHATSAPP PATCH -->
+        <a href="https://wa.me/525512478139?text=Hi,%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20discuss%20a%20music%20project." 
+           class="whatsapp-patch" target="_blank" aria-label="Contact on WhatsApp">
+            <i class="fab fa-whatsapp" style="font-size: 1.5rem;"></i>
+        </a>
     </div>
 
     <script>
-        // SISTEMA DUAL ADAPTATIVO
-        class DualSystem {
+        // ROLAND DASHBOARD SYSTEM
+        class RolandDashboard {
             constructor() {
                 this.currentLanguage = 'es';
                 this.init();
@@ -842,15 +772,20 @@
             init() {
                 this.setupThemeToggle();
                 this.setupLanguageToggle();
-                this.setupMobileAnimations();
-                this.setupInteractiveElements();
+                this.setupTurntableControls();
+                this.setupSequenceSteps();
             }
             
             setupThemeToggle() {
                 const themeToggle = document.getElementById('themeToggle');
                 themeToggle.addEventListener('click', () => {
                     document.body.classList.toggle('light-mode');
-                    // Implementación de modo claro si se desea
+                    const icon = themeToggle.querySelector('i');
+                    if (document.body.classList.contains('light-mode')) {
+                        icon.className = 'fas fa-sun';
+                    } else {
+                        icon.className = 'fas fa-adjust';
+                    }
                 });
             }
             
@@ -864,68 +799,42 @@
             }
             
             updateLanguage() {
-                document.querySelectorAll('[data-es]').forEach(element => {
-                    const text = element.getAttribute(`data-${this.currentLanguage}`);
-                    if (text) element.textContent = text;
+                // Implement language switching if needed
+                console.log('Language switched to:', this.currentLanguage);
+            }
+            
+            setupTurntableControls() {
+                const turntable = document.querySelector('.turntable');
+                const vinyl = document.querySelector('.vinyl');
+                const playBtn = document.querySelector('.turntable-btn:nth-child(1)');
+                const stopBtn = document.querySelector('.turntable-btn:nth-child(2)');
+                
+                playBtn.addEventListener('click', () => {
+                    vinyl.style.animationPlayState = 'running';
+                    turntable.style.borderColor = '#FF6600';
+                });
+                
+                stopBtn.addEventListener('click', () => {
+                    vinyl.style.animationPlayState = 'paused';
+                    turntable.style.borderColor = '#666666';
                 });
             }
             
-            setupMobileAnimations() {
-                // Solo en móvil
-                if (window.innerWidth <= 768) {
-                    const sections = document.querySelectorAll('.hero-dual, .timeline-dual, .services-dual, .projects-dual, .sound-dual, .contact-dual');
-                    
-                    const observer = new IntersectionObserver((entries) => {
-                        entries.forEach(entry => {
-                            if (entry.isIntersecting) {
-                                entry.target.classList.add('section-visible');
-                            }
-                        });
-                    }, {
-                        threshold: 0.1,
-                        rootMargin: '0px 0px -50px 0px'
-                    });
-                    
-                    sections.forEach(section => {
-                        observer.observe(section);
-                    });
-                }
-            }
-            
-            setupInteractiveElements() {
-                // Efectos de hover/click en todos los dispositivos
-                const interactiveElements = document.querySelectorAll('.service-card, .project-card, .timeline-item, .contact-btn');
+            setupSequenceSteps() {
+                const steps = document.querySelectorAll('.sequence-step');
                 
-                interactiveElements.forEach(element => {
-                    element.addEventListener('mouseenter', () => {
-                        element.style.transform = 'translateY(-5px)';
-                    });
-                    
-                    element.addEventListener('mouseleave', () => {
-                        element.style.transform = 'translateY(0)';
-                    });
-                    
-                    // Efecto táctil para móvil
-                    element.addEventListener('touchstart', () => {
-                        element.style.transform = 'scale(0.95)';
-                    });
-                    
-                    element.addEventListener('touchend', () => {
-                        element.style.transform = 'scale(1)';
+                steps.forEach(step => {
+                    step.addEventListener('click', () => {
+                        steps.forEach(s => s.classList.remove('step-active'));
+                        step.classList.add('step-active');
                     });
                 });
             }
         }
         
-        // Inicializar el sistema dual
+        // Initialize the dashboard
         document.addEventListener('DOMContentLoaded', () => {
-            new DualSystem();
-        });
-
-        // Precargar imagen del logo
-        window.addEventListener('load', () => {
-            const logo = new Image();
-            logo.src = 'logo.svg';
+            new RolandDashboard();
         });
     </script>
 </body>
