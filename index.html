@@ -3,36 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Musical Project Manager</title>
+    <title>Eduardo Mejía - Musical Project Manager</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* SISTEMA ANALÓGICO PERFECTO */
+        /* SISTEMA ROLAND VINTAGE + DASHBOARD */
         :root {
-            --primary-red: #CC0000;
-            --primary-black: #0a0a0a;
-            --primary-dark: #1a1a1a;
-            --primary-gray: #333333;
-            --primary-light: #666666;
-            --primary-white: #FFFFFF;
-            --primary-orange: #FF6600;
-            --primary-cyan: #00CED1;
+            /* Paleta Roland Vintage */
+            --roland-red: #CC0000;
+            --roland-black: #000000;
+            --roland-gray: #333333;
+            --roland-light: #666666;
+            --roland-white: #FFFFFF;
+            --roland-orange: #FF6600;
+            --roland-yellow: #FFCC00;
             
-            --knob-shadow: 0 4px 12px rgba(0,0,0,0.5);
-            --led-glow: 0 0 12px currentColor;
-            --panel-gradient: linear-gradient(145deg, #151515 0%, #1f1f1f 100%);
-            --vintage-border: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .light-mode {
-            --primary-red: #CC0000;
-            --primary-black: #f5f5f5;
-            --primary-dark: #e0e0e0;
-            --primary-gray: #cccccc;
-            --primary-light: #999999;
-            --primary-white: #000000;
-            --primary-orange: #FF6600;
-            --primary-cyan: #00CED1;
-            --panel-gradient: linear-gradient(145deg, #f0f0f0 0%, #e8e8e8 100%);
+            /* Elementos de equipo */
+            --knob-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            --led-glow: 0 0 8px currentColor;
+            --panel-gradient: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
         }
 
         * {
@@ -42,165 +30,389 @@
         }
 
         body {
-            background: var(--primary-black);
-            color: var(--primary-white);
+            background: var(--roland-black);
+            color: var(--roland-white);
             font-family: 'Courier New', monospace;
-            line-height: 1.5;
+            line-height: 1.4;
             overflow-x: hidden;
             background-image: 
-                radial-gradient(circle at 15% 70%, rgba(204,0,0,0.08) 0%, transparent 40%),
-                radial-gradient(circle at 85% 30%, rgba(0,206,209,0.08) 0%, transparent 40%);
-            transition: all 0.4s ease;
-            padding: 20px;
+                radial-gradient(circle at 20% 80%, rgba(204,0,0,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255,102,0,0.1) 0%, transparent 50%);
         }
 
-        /* CONTROLES SUPERIORES */
-        .top-controls {
-            display: flex;
-            justify-content: flex-end;
-            gap: 12px;
-            margin-bottom: 20px;
-        }
-
-        .analog-toggle {
-            width: 50px;
-            height: 25px;
-            background: var(--primary-dark);
-            border: 2px solid var(--primary-gray);
-            border-radius: 15px;
-            position: relative;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .analog-toggle::before {
-            content: '';
-            position: absolute;
-            top: 2px;
-            left: 2px;
-            width: 17px;
-            height: 17px;
-            background: var(--primary-red);
-            border-radius: 50%;
-            transition: all 0.3s ease;
-            box-shadow: var(--led-glow);
-        }
-
-        .light-mode .analog-toggle::before {
-            left: 27px;
-            background: var(--primary-orange);
-        }
-
-        .analog-toggle:hover {
-            border-color: var(--primary-red);
-        }
-
-        .language-toggle {
-            padding: 4px 12px;
-            background: var(--primary-dark);
-            border: 2px solid var(--primary-gray);
-            border-radius: 15px;
-            color: var(--primary-white);
-            font-size: 0.8rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-        }
-
-        .language-toggle:hover {
-            border-color: var(--primary-red);
-        }
-
-        /* HEADER GRANDE */
-        .header-large {
+        /* DASHBOARD CONTAINER */
+        .dashboard {
             display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 40px;
-            padding: 40px 0;
-            margin-bottom: 40px;
-            border-bottom: var(--vintage-border);
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-rows: auto 1fr 1fr auto;
+            gap: 20px;
+            padding: 20px;
+            min-height: 100vh;
+            max-width: 1400px;
+            margin: 0 auto;
         }
 
-        .main-title-section {
+        /* HEADER ROLAND STYLE */
+        .header-roland {
+            grid-column: 1 / -1;
             display: flex;
-            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background: var(--panel-gradient);
+            border: 2px solid var(--roland-gray);
+            border-radius: 8px;
+            position: relative;
+            box-shadow: var(--knob-shadow);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .roland-logo {
+            width: 50px;
+            height: 50px;
+            background: var(--roland-red);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
             justify-content: center;
-        }
-
-        .main-title {
-            font-size: 3.5rem;
             font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 6px;
-            color: var(--primary-white);
-            line-height: 1;
-            margin-bottom: 20px;
+            color: var(--roland-white);
+            font-size: 1.2rem;
+            border: 2px solid var(--roland-white);
         }
 
-        .subtitle {
+        .brand-name {
             font-size: 1.8rem;
             font-weight: bold;
             text-transform: uppercase;
-            letter-spacing: 3px;
-            color: var(--primary-red);
-            margin-bottom: 15px;
+            letter-spacing: 2px;
         }
 
-        .description {
-            font-size: 1rem;
-            color: var(--primary-white);
-            opacity: 0.9;
-            line-height: 1.6;
-            max-width: 600px;
+        .brand-name .first {
+            color: var(--roland-white);
         }
 
-        /* SECCIÓN DE SONIDO SIMPLIFICADA */
-        .sound-section {
+        .brand-name .second {
+            color: var(--roland-red);
+        }
+
+        .dashboard-controls {
+            display: flex;
+            gap: 10px;
+        }
+
+        .control-knob {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--roland-gray);
+            border: 2px solid var(--roland-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: var(--roland-white);
+            box-shadow: var(--knob-shadow);
+        }
+
+        .control-knob:hover {
+            transform: rotate(30deg);
+            border-color: var(--roland-red);
+        }
+
+        /* HERO SECTION - VU METER STYLE */
+        .hero-vu {
+            grid-column: 1 / -1;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 20px;
+            padding: 30px;
             background: var(--panel-gradient);
-            border: 1px solid var(--primary-gray);
+            border: 2px solid var(--roland-gray);
             border-radius: 8px;
-            padding: 25px;
+            box-shadow: var(--knob-shadow);
+        }
+
+        .hero-content {
             display: flex;
             flex-direction: column;
-            align-items: center;
-            gap: 20px;
+            justify-content: center;
         }
 
-        .sound-title {
-            font-size: 1.5rem;
+        .hero-title {
+            font-size: 3rem;
             font-weight: bold;
             text-transform: uppercase;
             letter-spacing: 3px;
-            color: var(--primary-white);
             margin-bottom: 10px;
+            color: var(--roland-white);
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--roland-red);
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .hero-subtitle::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100px;
+            height: 3px;
+            background: var(--roland-red);
+        }
+
+        .hero-description {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: var(--roland-white);
+            opacity: 0.9;
+            max-width: 500px;
+        }
+
+        .vu-meter {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .vu-display {
+            width: 100%;
+            height: 200px;
+            background: var(--roland-black);
+            border: 2px solid var(--roland-gray);
+            border-radius: 4px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .vu-level {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 75%;
+            background: linear-gradient(to top, var(--roland-red), var(--roland-orange), var(--roland-yellow));
+            animation: vuPulse 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes vuPulse {
+            0% { height: 65%; }
+            100% { height: 85%; }
+        }
+
+        .vu-label {
+            font-size: 0.9rem;
+            color: var(--roland-white);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* SERVICES - MIXER CHANNELS */
+        .services-mixer {
+            grid-column: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            padding: 20px;
+            background: var(--panel-gradient);
+            border: 2px solid var(--roland-gray);
+            border-radius: 8px;
+            box-shadow: var(--knob-shadow);
+        }
+
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--roland-white);
+            margin-bottom: 10px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: var(--roland-red);
+        }
+
+        .mixer-channel {
+            background: var(--roland-black);
+            border: 1px solid var(--roland-gray);
+            border-radius: 4px;
+            padding: 15px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .mixer-channel:hover {
+            border-color: var(--roland-red);
+            transform: translateY(-2px);
+        }
+
+        .channel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .channel-name {
+            font-size: 1rem;
+            font-weight: bold;
+            color: var(--roland-white);
+            text-transform: uppercase;
+        }
+
+        .channel-led {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--roland-red);
+            box-shadow: var(--led-glow);
+        }
+
+        .channel-desc {
+            font-size: 0.85rem;
+            color: var(--roland-white);
+            opacity: 0.8;
+            line-height: 1.4;
+        }
+
+        /* PROJECTS - SEQUENCER GRID */
+        .projects-sequencer {
+            grid-column: 2;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            padding: 20px;
+            background: var(--panel-gradient);
+            border: 2px solid var(--roland-gray);
+            border-radius: 8px;
+            box-shadow: var(--knob-shadow);
+        }
+
+        .sequencer-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+        }
+
+        .sequence-track {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 8px;
+        }
+
+        .sequence-step {
+            height: 80px;
+            background: var(--roland-black);
+            border: 1px solid var(--roland-gray);
+            border-radius: 4px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .sequence-step:hover {
+            border-color: var(--roland-orange);
+        }
+
+        .step-active {
+            border-color: var(--roland-red);
+        }
+
+        .step-media {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .step-info {
+            padding: 5px;
             text-align: center;
         }
 
-        .turntable-setup {
+        .step-role {
+            font-size: 0.7rem;
+            color: var(--roland-red);
+            text-transform: uppercase;
+        }
+
+        .step-name {
+            font-size: 0.8rem;
+            color: var(--roland-white);
+            font-weight: bold;
+        }
+
+        /* SOUND - TURNTABLE SECTION */
+        .sound-turntable {
+            grid-column: 3;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            padding: 20px;
+            background: var(--panel-gradient);
+            border: 2px solid var(--roland-gray);
+            border-radius: 8px;
+            box-shadow: var(--knob-shadow);
+        }
+
+        .turntable-container {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 20px;
+            gap: 15px;
         }
 
-        .logo-giratorio {
-            width: 120px;
-            height: 120px;
+        .turntable {
+            width: 180px;
+            height: 180px;
             border-radius: 50%;
-            background: var(--primary-black);
-            border: 8px solid var(--primary-gray);
+            background: var(--roland-black);
+            border: 15px solid var(--roland-gray);
             position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 
-                inset 0 0 20px rgba(0,0,0,0.5),
-                0 5px 15px rgba(0,0,0,0.3);
-            transition: all 0.4s ease;
+            box-shadow: var(--knob-shadow);
         }
 
-        .logo-giratorio.playing {
-            border-color: var(--primary-red);
+        .turntable::before {
+            content: '';
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: var(--roland-red);
+        }
+
+        .vinyl {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            background: 
+                radial-gradient(circle at center, #333 0%, #333 10%, transparent 10.1%),
+                radial-gradient(circle at center, #111 0%, #111 40%, #333 40.1%, #333 45%, transparent 45.1%),
+                repeating-radial-gradient(circle at center, #111 0%, #111 2%, #333 2.1%, #333 4%);
             animation: spin 20s linear infinite;
         }
 
@@ -209,543 +421,371 @@
             100% { transform: rotate(360deg); }
         }
 
-        .logo-em {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: var(--primary-white);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .logo-em span {
-            color: var(--primary-red);
-        }
-
-        .player-controls {
+        .turntable-controls {
             display: flex;
-            align-items: center;
+            gap: 10px;
+        }
+
+        .turntable-btn {
+            padding: 8px 15px;
+            background: var(--roland-black);
+            border: 1px solid var(--roland-gray);
+            color: var(--roland-white);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+        }
+
+        .turntable-btn:hover {
+            border-color: var(--roland-red);
+            background: var(--roland-red);
+        }
+
+        .player-container {
+            width: 100%;
+            background: var(--roland-black);
+            border: 1px solid var(--roland-gray);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        /* FOOTER - PATCH BAY */
+        .footer-patchbay {
+            grid-column: 1 / -1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            padding: 20px;
+            background: var(--panel-gradient);
+            border: 2px solid var(--roland-gray);
+            border-radius: 8px;
+            box-shadow: var(--knob-shadow);
+        }
+
+        .contact-patch {
+            display: flex;
+            flex-direction: column;
             gap: 15px;
         }
 
-        .control-btn {
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            background: var(--primary-black);
-            border: 2px solid var(--primary-gray);
-            color: var(--primary-white);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 1.1rem;
-        }
-
-        .control-btn:hover {
-            border-color: var(--primary-red);
-            background: var(--primary-red);
-        }
-
-        .play-btn {
-            width: 55px;
-            height: 55px;
-            background: var(--primary-red);
-            border-color: var(--primary-red);
-        }
-
-        .play-btn:hover {
-            background: transparent;
-        }
-
-        .track-info {
-            text-align: center;
-        }
-
-        .track-title {
-            font-size: 0.9rem;
-            font-weight: bold;
-            color: var(--primary-white);
-            text-transform: uppercase;
-            margin-bottom: 5px;
-        }
-
-        .track-artist {
-            font-size: 0.8rem;
-            color: var(--primary-cyan);
-            text-transform: uppercase;
-        }
-
-        /* SPOTIFY INTEGRADO */
-        .spotify-integrated {
-            width: 100%;
-            margin-top: 10px;
-        }
-
-        .spotify-container {
-            background: var(--panel-gradient);
-            border-radius: 8px;
-            overflow: hidden;
-        }
-
-        /* MAIN CONTENT GRID */
-        .main-content {
+        .patch-ports {
             display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 40px;
-            margin-bottom: 40px;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
         }
 
-        /* SERVICES SECTION */
-        .services-section {
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-        }
-
-        .section-title {
-            font-size: 1.5rem;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            margin-bottom: 20px;
-            color: var(--primary-white);
-            position: relative;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -8px;
-            left: 0;
-            width: 60px;
-            height: 2px;
-            background: var(--primary-red);
-        }
-
-        .services-list {
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-        }
-
-        .service-item {
-            background: var(--panel-gradient);
-            border: 1px solid var(--primary-gray);
-            border-radius: 8px;
-            padding: 25px;
-            transition: all 0.4s ease;
-        }
-
-        .service-item:hover {
-            border-color: var(--primary-red);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-        }
-
-        .service-name {
-            font-size: 1.2rem;
-            font-weight: bold;
-            margin-bottom: 10px;
-            color: var(--primary-white);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .service-desc {
-            font-size: 0.9rem;
-            color: var(--primary-white);
-            opacity: 0.8;
-            line-height: 1.5;
-        }
-
-        /* PROJECTS SECTION - VIDEOS MÁS PEQUEÑOS */
-        .projects-section {
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-        }
-
-        .videos-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-        }
-
-        .video-card {
-            background: var(--panel-gradient);
-            border: 1px solid var(--primary-gray);
-            border-radius: 8px;
-            overflow: hidden;
-            transition: all 0.4s ease;
-        }
-
-        .video-card:hover {
-            border-color: var(--primary-red);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-        }
-
-        .video-player {
-            width: 100%;
-            height: 150px; /* Reducido para conjugar con services */
-            border: none;
-            background: var(--primary-dark);
-        }
-
-        .video-info {
-            padding: 15px;
-        }
-
-        .video-role {
-            font-size: 0.8rem;
-            color: var(--primary-red);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 8px;
-        }
-
-        .video-name {
-            font-size: 1rem;
-            font-weight: bold;
-            color: var(--primary-white);
-            text-transform: uppercase;
-        }
-
-        /* CONTACT SECTION */
-        .contact-section {
-            padding: 50px 0;
-            text-align: center;
-            background: var(--panel-gradient);
-            border-top: var(--vintage-border);
-            border-bottom: var(--vintage-border);
-        }
-
-        .contact-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .contact-btn {
-            padding: 15px 30px;
-            background: var(--primary-dark);
-            border: 1px solid var(--primary-gray);
+        .patch-port {
+            padding: 12px 15px;
+            background: var(--roland-black);
+            border: 1px solid var(--roland-gray);
             border-radius: 4px;
+            text-align: center;
             text-decoration: none;
-            color: var(--primary-white);
+            color: var(--roland-white);
             transition: all 0.3s ease;
             text-transform: uppercase;
-            font-weight: bold;
-            letter-spacing: 1px;
-            flex: 1;
-            max-width: 200px;
+            font-size: 0.9rem;
         }
 
-        .contact-btn:hover {
-            border-color: var(--primary-red);
-            background: var(--primary-red);
-            transform: translateY(-3px);
+        .patch-port:hover {
+            border-color: var(--roland-red);
+            background: var(--roland-red);
+            transform: translateY(-2px);
         }
 
-        .btn-primary {
-            background: var(--primary-red);
-            border-color: var(--primary-red);
+        .port-primary {
+            background: var(--roland-red);
+            border-color: var(--roland-red);
         }
 
-        .btn-primary:hover {
+        .port-primary:hover {
             background: transparent;
         }
 
-        .whatsapp-fixed {
-            position: fixed;
-            bottom: 25px;
-            right: 25px;
-            width: 60px;
-            height: 60px;
-            background: #25D366;
-            border-radius: 50%;
+        .whatsapp-patch {
             display: flex;
             align-items: center;
             justify-content: center;
+            background: #25D366;
+            color: white;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
             text-decoration: none;
-            box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
             transition: all 0.3s ease;
             z-index: 1000;
         }
 
-        .whatsapp-fixed:hover {
+        .whatsapp-patch:hover {
             transform: scale(1.1) rotate(15deg);
-        }
-
-        /* FOOTER */
-        .footer {
-            padding: 30px;
-            text-align: center;
-            background: var(--primary-black);
-            color: var(--primary-white);
-            opacity: 0.7;
-            font-size: 0.9rem;
-            border-top: var(--vintage-border);
-            margin-top: 40px;
         }
 
         /* RESPONSIVE DESIGN */
         @media (max-width: 1024px) {
-            .header-large {
-                grid-template-columns: 1fr;
-                gap: 30px;
+            .dashboard {
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: auto auto 1fr auto;
             }
             
-            .main-content {
-                grid-template-columns: 1fr;
-                gap: 30px;
+            .sound-turntable {
+                grid-column: 1 / -1;
+                grid-template-columns: 1fr 1fr;
             }
             
-            .videos-grid {
-                grid-template-columns: 1fr;
+            .turntable-container {
+                grid-column: 1;
+            }
+            
+            .player-container {
+                grid-column: 2;
             }
         }
 
         @media (max-width: 768px) {
-            .main-title {
-                font-size: 2.5rem;
+            .dashboard {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto;
+                gap: 15px;
             }
             
-            .subtitle {
-                font-size: 1.4rem;
+            .hero-vu {
+                grid-template-columns: 1fr;
             }
             
-            .contact-buttons {
-                flex-direction: column;
-                align-items: center;
+            .vu-meter {
+                order: -1;
             }
             
-            .contact-btn {
-                max-width: 300px;
-                width: 100%;
+            .sequence-track {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-patchbay {
+                grid-template-columns: 1fr;
+            }
+            
+            .patch-ports {
+                grid-template-columns: 1fr;
+            }
+            
+            .whatsapp-patch {
+                bottom: 15px;
+                right: 15px;
+                width: 45px;
+                height: 45px;
             }
         }
 
         @media (max-width: 480px) {
-            .main-title {
+            .hero-title {
                 font-size: 2rem;
             }
             
-            .subtitle {
-                font-size: 1.2rem;
+            .brand-name {
+                font-size: 1.4rem;
             }
             
-            .logo-giratorio {
-                width: 100px;
-                height: 100px;
+            .roland-logo {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
             }
         }
     </style>
 </head>
 <body>
-    <!-- CONTROLES SUPERIORES -->
-    <div class="top-controls">
-        <div class="analog-toggle" id="themeToggle"></div>
-        <button class="language-toggle" id="languageToggle">ES/EN</button>
-    </div>
-
-    <!-- HEADER GRANDE -->
-    <header class="header-large">
-        <div class="main-title-section">
-            <h1 class="main-title">MUSICAL PROJECT MANAGER</h1>
-            <div class="subtitle">ARCHITECTURE & STRATEGY</div>
-            <p class="description">
-                Designing sound structures and strategic frameworks for artists and labels. 
-                From vinyl to digital, creating cohesive musical ecosystems.
-            </p>
-        </div>
-        
-        <!-- SECCIÓN DE SONIDO SIMPLIFICADA -->
-        <div class="sound-section">
-            <h2 class="sound-title">SOUND</h2>
-            
-            <div class="turntable-setup">
-                <div class="logo-giratorio" id="logo">
-                    <div class="logo-em">E<span>M</span></div>
-                </div>
-                <div class="track-info">
-                    <div class="track-title" id="currentTrackTitle">TURBOBOYZ SELECTION</div>
-                    <div class="track-artist" id="currentTrackArtist">EDUARDO MEJÍA</div>
-                </div>
-                <div class="player-controls">
-                    <button class="control-btn play-btn" id="playBtn">
-                        <i class="fas fa-play"></i>
-                    </button>
-                    <button class="control-btn" id="stopBtn">
-                        <i class="fas fa-stop"></i>
-                    </button>
+    <!-- DASHBOARD ROLAND STYLE -->
+    <div class="dashboard">
+        <!-- HEADER -->
+        <header class="header-roland">
+            <div class="logo-container">
+                <div class="roland-logo">TR</div>
+                <div class="brand-name">
+                    <span class="first">EDUARDO</span>
+                    <span class="second">MEJÍA</span>
                 </div>
             </div>
-            
-            <!-- SPOTIFY INTEGRADO -->
-            <div class="spotify-integrated">
-                <div class="spotify-container">
-                    <iframe style="border-radius: 8px; border: none;" 
-                            src="https://open.spotify.com/embed/playlist/26qaG2E3bW6ZNIk5mvPpjr?utm_source=generator&theme=0" 
-                            width="100%" 
-                            height="152" 
-                            allowfullscreen="" 
-                            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
-                            loading="lazy">
-                    </iframe>
+            <div class="dashboard-controls">
+                <div class="control-knob" id="themeToggle">
+                    <i class="fas fa-adjust"></i>
+                </div>
+                <div class="control-knob" id="languageToggle">
+                    ES/EN
                 </div>
             </div>
-        </div>
-    </header>
+        </header>
 
-    <!-- MAIN CONTENT GRID -->
-    <div class="main-content">
-        <!-- SERVICES SECTION -->
-        <section class="services-section">
-            <h2 class="section-title" data-es="SERVICIOS" data-en="SERVICES">SERVICES</h2>
-            <div class="services-list">
-                <div class="service-item">
-                    <h3 class="service-name" data-es="BOOKING & GIRAS" data-en="BOOKING & TOURS">BOOKING & TOURS</h3>
-                    <p class="service-desc" data-es="Circuitos de presentación en vivo estratégicos y gestión de giras internacionales" 
-                       data-en="Strategic live performance circuits and international tour management">
-                        Strategic live performance circuits and international tour management
-                    </p>
+        <!-- HERO VU METER -->
+        <section class="hero-vu">
+            <div class="hero-content">
+                <h1 class="hero-title">MUSICAL PROJECT MANAGER</h1>
+                <div class="hero-subtitle">ARCHITECTURE & STRATEGY</div>
+                <p class="hero-description">
+                    Designing sound structures and strategic frameworks for artists and labels. 
+                    From vinyl to digital, creating cohesive musical ecosystems.
+                </p>
+            </div>
+            <div class="vu-meter">
+                <div class="vu-display">
+                    <div class="vu-level"></div>
                 </div>
-                <div class="service-item">
-                    <h3 class="service-name" data-es="GESTIÓN EDITORIAL" data-en="PUBLISHING">PUBLISHING</h3>
-                    <p class="service-desc" data-es="Protección de derechos y estrategia editorial para obras musicales" 
-                       data-en="Rights management and editorial strategy for musical works">
-                        Rights management and editorial strategy for musical works
-                    </p>
+                <div class="vu-label">CREATIVE OUTPUT</div>
+            </div>
+        </section>
+
+        <!-- SERVICES MIXER -->
+        <section class="services-mixer">
+            <h2 class="section-title">SERVICES</h2>
+            <div class="mixer-channel">
+                <div class="channel-header">
+                    <div class="channel-name">BOOKING & TOURS</div>
+                    <div class="channel-led"></div>
                 </div>
-                <div class="service-item">
-                    <h3 class="service-name" data-es="DISTRIBUCIÓN DIGITAL" data-en="DIGITAL DISTRO">DIGITAL DISTRO</h3>
-                    <p class="service-desc" data-es="Estrategias de lanzamiento multiplataforma y desarrollo de ecosistemas digitales" 
-                       data-en="Multi-platform release strategies and digital ecosystem development">
-                        Multi-platform release strategies and digital ecosystem development
-                    </p>
+                <p class="channel-desc">
+                    Strategic live performance circuits and international tour management
+                </p>
+            </div>
+            <div class="mixer-channel">
+                <div class="channel-header">
+                    <div class="channel-name">PUBLISHING</div>
+                    <div class="channel-led"></div>
+                </div>
+                <p class="channel-desc">
+                    Rights management and editorial strategy for musical works
+                </p>
+            </div>
+            <div class="mixer-channel">
+                <div class="channel-header">
+                    <div class="channel-name">DIGITAL DISTRO</div>
+                    <div class="channel-led"></div>
+                </div>
+                <p class="channel-desc">
+                    Multi-platform release strategies and digital ecosystem development
+                </p>
+            </div>
+        </section>
+
+        <!-- PROJECTS SEQUENCER -->
+        <section class="projects-sequencer">
+            <h2 class="section-title">PROJECTS</h2>
+            <div class="sequencer-grid">
+                <div class="sequence-track">
+                    <div class="sequence-step step-active">
+                        <iframe class="step-media" src="https://www.youtube.com/embed/ZGxSXchZNfo?start=0" 
+                                title="Boiler Room" allowfullscreen></iframe>
+                        <div class="step-info">
+                            <div class="step-role">PRODUCTION</div>
+                            <div class="step-name">BOILER ROOM</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="sequence-track">
+                    <div class="sequence-step">
+                        <iframe class="step-media" src="https://www.youtube.com/embed/SD3T_Or_mvk?start=3" 
+                                title="Tra Tra" allowfullscreen></iframe>
+                        <div class="step-info">
+                            <div class="step-role">COORDINATION</div>
+                            <div class="step-name">REMIX PROJECT</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="sequence-track">
+                    <div class="sequence-step">
+                        <iframe class="step-media" src="https://www.youtube.com/embed/XCW95zjBUK4" 
+                                title="Gats" allowfullscreen></iframe>
+                        <div class="step-info">
+                            <div class="step-role">DEVELOPMENT</div>
+                            <div class="step-name">EMERGING ARTIST</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- PROJECTS SECTION -->
-        <section class="projects-section">
-            <h2 class="section-title" data-es="PROYECTOS" data-en="PROJECTS">PROJECTS</h2>
-            <div class="videos-grid">
-                <div class="video-card">
-                    <iframe class="video-player" src="https://www.youtube.com/embed/ZGxSXchZNfo?start=0" 
-                            title="Boiler Room" allowfullscreen></iframe>
-                    <div class="video-info">
-                        <div class="video-role" data-es="PRODUCCIÓN" data-en="PRODUCTION">PRODUCTION</div>
-                        <div class="video-name" data-es="BOILER ROOM" data-en="BOILER ROOM">BOILER ROOM</div>
-                    </div>
+        <!-- SOUND TURNTABLE -->
+        <section class="sound-turntable">
+            <h2 class="section-title">SOUND</h2>
+            <div class="turntable-container">
+                <div class="turntable">
+                    <div class="vinyl"></div>
                 </div>
-                <div class="video-card">
-                    <iframe class="video-player" src="https://www.youtube.com/embed/SD3T_Or_mvk?start=3" 
-                            title="Tra Tra" allowfullscreen></iframe>
-                    <div class="video-info">
-                        <div class="video-role" data-es="COORDINACIÓN" data-en="COORDINATION">COORDINATION</div>
-                        <div class="video-name" data-es="REMIX PROJECT" data-en="REMIX PROJECT">REMIX PROJECT</div>
-                    </div>
-                </div>
-                <div class="video-card">
-                    <iframe class="video-player" src="https://www.youtube.com/embed/XCW95zjBUK4" 
-                            title="Gats" allowfullscreen></iframe>
-                    <div class="video-info">
-                        <div class="video-role" data-es="DESARROLLO" data-en="DEVELOPMENT">DEVELOPMENT</div>
-                        <div class="video-name" data-es="ARTISTA EMERGENTE" data-en="EMERGING ARTIST">EMERGING ARTIST</div>
-                    </div>
-                </div>
-                <div class="video-card">
-                    <iframe class="video-player" src="https://www.youtube.com/embed/ZGxSXchZNfo?start=0" 
-                            title="Boiler Room" allowfullscreen></iframe>
-                    <div class="video-info">
-                        <div class="video-role" data-es="PRODUCCIÓN" data-en="PRODUCTION">PRODUCTION</div>
-                        <div class="video-name" data-es="BOILER ROOM" data-en="BOILER ROOM">BOILER ROOM</div>
-                    </div>
-                </div>
-                <div class="video-card">
-                    <iframe class="video-player" src="https://www.youtube.com/embed/SD3T_Or_mvk?start=3" 
-                            title="Tra Tra" allowfullscreen></iframe>
-                    <div class="video-info">
-                        <div class="video-role" data-es="COORDINACIÓN" data-en="COORDINATION">COORDINATION</div>
-                        <div class="video-name" data-es="REMIX PROJECT" data-en="REMIX PROJECT">REMIX PROJECT</div>
-                    </div>
-                </div>
-                <div class="video-card">
-                    <iframe class="video-player" src="https://www.youtube.com/embed/XCW95zjBUK4" 
-                            title="Gats" allowfullscreen></iframe>
-                    <div class="video-info">
-                        <div class="video-role" data-es="DESARROLLO" data-en="DEVELOPMENT">DEVELOPMENT</div>
-                        <div class="video-name" data-es="ARTISTA EMERGENTE" data-en="EMERGING ARTIST">EMERGING ARTIST</div>
-                    </div>
+                <div class="turntable-controls">
+                    <button class="turntable-btn">PLAY</button>
+                    <button class="turntable-btn">STOP</button>
                 </div>
             </div>
+            <div class="player-container">
+                <iframe style="border-radius:4px" 
+                        src="https://open.spotify.com/embed/playlist/26qaG2E3bW6ZNIk5mvPpjr?utm_source=generator" 
+                        width="100%" 
+                        height="152" 
+                        frameBorder="0" 
+                        allowfullscreen="" 
+                        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+                        loading="lazy">
+                </iframe>
+            </div>
         </section>
+
+        <!-- FOOTER PATCHBAY -->
+        <footer class="footer-patchbay">
+            <div class="contact-patch">
+                <h2 class="section-title">CONNECT</h2>
+                <div class="patch-ports">
+                    <a href="mailto:emc121091@me.com?subject=Musical Project Inquiry" class="patch-port port-primary">
+                        START PROJECT
+                    </a>
+                    <a href="https://edumecar.github.io/Book/" target="_blank" class="patch-port">
+                        BOOKING PLANS
+                    </a>
+                    <a href="https://www.linkedin.com/in/edumecar" target="_blank" class="patch-port">
+                        LINKEDIN
+                    </a>
+                    <a href="#" class="patch-port">
+                        CASE STUDIES
+                    </a>
+                </div>
+            </div>
+        </footer>
+
+        <!-- WHATSAPP PATCH -->
+        <a href="https://wa.me/525512478139?text=Hi,%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20discuss%20a%20music%20project." 
+           class="whatsapp-patch" target="_blank" aria-label="Contact on WhatsApp">
+            <i class="fab fa-whatsapp" style="font-size: 1.5rem;"></i>
+        </a>
     </div>
-
-    <!-- CONTACT SECTION -->
-    <section class="contact-section">
-        <h2 class="section-title" data-es="CONECTAR" data-en="CONNECT">CONNECT</h2>
-        <div class="contact-buttons">
-            <a href="mailto:emc121091@me.com?subject=Musical Project Inquiry" class="contact-btn btn-primary">
-                <span data-es="INICIAR PROYECTO" data-en="START PROJECT">START PROJECT</span>
-            </a>
-            <a href="https://edumecar.github.io/Book/" target="_blank" class="contact-btn">
-                <span data-es="PLANES DE BOOKING" data-en="BOOKING PLANS">BOOKING PLANS</span>
-            </a>
-            <a href="https://www.linkedin.com/in/edumecar" target="_blank" class="contact-btn">
-                <span data-es="LINKEDIN" data-en="LINKEDIN">LINKEDIN</span>
-            </a>
-        </div>
-    </section>
-
-    <!-- WHATSAPP FIXED -->
-    <a href="https://wa.me/525512478139?text=Hi,%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20discuss%20a%20music%20project." 
-       class="whatsapp-fixed" target="_blank" aria-label="Contact on WhatsApp">
-        <i class="fab fa-whatsapp" style="font-size: 1.5rem; color: white;"></i>
-    </a>
-
-    <!-- FOOTER -->
-    <footer class="footer">
-        <div data-es="&copy; 2024 Musical Project Manager - Todos los derechos reservados" 
-             data-en="&copy; 2024 Musical Project Manager - All rights reserved">
-            &copy; 2024 Musical Project Manager - All rights reserved
-        </div>
-    </footer>
 
     <script>
-        // SISTEMA PERFECTO
-        class PerfectSystem {
+        // ROLAND DASHBOARD SYSTEM
+        class RolandDashboard {
             constructor() {
                 this.currentLanguage = 'es';
-                this.isPlaying = false;
-                this.currentTrackIndex = 0;
-                this.tracks = [
-                    {
-                        title: "TURBOBOYZ SELECTION",
-                        artist: "EDUARDO MEJÍA",
-                        src: "cancion1.mp3" // Reemplaza con tu archivo MP3
-                    }
-                ];
-                this.audioPlayer = new Audio();
                 this.init();
             }
             
             init() {
                 this.setupThemeToggle();
                 this.setupLanguageToggle();
-                this.setupPlayerControls();
-                this.loadTrack(this.currentTrackIndex);
+                this.setupTurntableControls();
+                this.setupSequenceSteps();
             }
             
             setupThemeToggle() {
                 const themeToggle = document.getElementById('themeToggle');
                 themeToggle.addEventListener('click', () => {
                     document.body.classList.toggle('light-mode');
+                    const icon = themeToggle.querySelector('i');
+                    if (document.body.classList.contains('light-mode')) {
+                        icon.className = 'fas fa-sun';
+                    } else {
+                        icon.className = 'fas fa-adjust';
+                    }
                 });
             }
             
@@ -759,95 +799,42 @@
             }
             
             updateLanguage() {
-                document.querySelectorAll('[data-es]').forEach(element => {
-                    const text = element.getAttribute(`data-${this.currentLanguage}`);
-                    if (text) {
-                        element.textContent = text;
-                    }
-                });
+                // Implement language switching if needed
+                console.log('Language switched to:', this.currentLanguage);
             }
             
-            loadTrack(index) {
-                if (index < 0 || index >= this.tracks.length) return;
-                
-                this.currentTrackIndex = index;
-                const track = this.tracks[index];
-                
-                this.audioPlayer.src = track.src;
-                document.getElementById('currentTrackTitle').textContent = track.title;
-                document.getElementById('currentTrackArtist').textContent = track.artist;
-                
-                if (this.isPlaying) {
-                    this.playTrack();
-                }
-            }
-            
-            setupPlayerControls() {
-                const logo = document.getElementById('logo');
-                const playBtn = document.getElementById('playBtn');
-                const stopBtn = document.getElementById('stopBtn');
+            setupTurntableControls() {
+                const turntable = document.querySelector('.turntable');
+                const vinyl = document.querySelector('.vinyl');
+                const playBtn = document.querySelector('.turntable-btn:nth-child(1)');
+                const stopBtn = document.querySelector('.turntable-btn:nth-child(2)');
                 
                 playBtn.addEventListener('click', () => {
-                    if (this.isPlaying) {
-                        this.pauseTrack();
-                    } else {
-                        this.playTrack();
-                    }
+                    vinyl.style.animationPlayState = 'running';
+                    turntable.style.borderColor = '#FF6600';
                 });
                 
                 stopBtn.addEventListener('click', () => {
-                    this.stopTrack();
+                    vinyl.style.animationPlayState = 'paused';
+                    turntable.style.borderColor = '#666666';
                 });
+            }
+            
+            setupSequenceSteps() {
+                const steps = document.querySelectorAll('.sequence-step');
                 
-                this.audioPlayer.addEventListener('play', () => {
-                    this.isPlaying = true;
-                    playBtn.innerHTML = '<i class="fas fa-pause"></i>';
-                    logo.classList.add('playing');
+                steps.forEach(step => {
+                    step.addEventListener('click', () => {
+                        steps.forEach(s => s.classList.remove('step-active'));
+                        step.classList.add('step-active');
+                    });
                 });
-                
-                this.audioPlayer.addEventListener('pause', () => {
-                    this.isPlaying = false;
-                    playBtn.innerHTML = '<i class="fas fa-play"></i>';
-                    logo.classList.remove('playing');
-                });
-                
-                this.audioPlayer.addEventListener('ended', () => {
-                    this.nextTrack();
-                });
-            }
-            
-            playTrack() {
-                this.audioPlayer.play().catch(e => {
-                    console.log('Audio play failed:', e);
-                    // Simulación de reproducción si falla la carga de audio
-                    this.isPlaying = true;
-                    document.getElementById('playBtn').innerHTML = '<i class="fas fa-pause"></i>';
-                    document.getElementById('logo').classList.add('playing');
-                });
-            }
-            
-            pauseTrack() {
-                this.audioPlayer.pause();
-            }
-            
-            stopTrack() {
-                this.audioPlayer.pause();
-                this.audioPlayer.currentTime = 0;
-                this.isPlaying = false;
-                document.getElementById('playBtn').innerHTML = '<i class="fas fa-play"></i>';
-                document.getElementById('logo').classList.remove('playing');
-            }
-            
-            nextTrack() {
-                let newIndex = this.currentTrackIndex + 1;
-                if (newIndex >= this.tracks.length) newIndex = 0;
-                this.loadTrack(newIndex);
             }
         }
         
-        // Initialize the system
+        // Initialize the dashboard
         document.addEventListener('DOMContentLoaded', () => {
-            new PerfectSystem();
+            new RolandDashboard();
         });
     </script>
 </body>
