@@ -227,7 +227,7 @@
             line-height: 1.4;
         }
 
-        .hexagon-container {
+        .hexagon-video-container {
             background: var(--panel-deep);
             border: 1px solid var(--grid-gray);
             border-radius: 8px;
@@ -235,51 +235,58 @@
             display: flex;
             align-items: center;
             justify-content: center;
-        }
-
-        .main-hexagon {
-            width: 300px;
-            height: 346px;
-            background: conic-gradient(from 0deg, var(--roland-core), var(--digital-cyan), var(--glitch-magenta), var(--roland-core));
-            clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
             position: relative;
-            animation: hexagonGlow 3s ease-in-out infinite alternate;
         }
 
-        @keyframes hexagonGlow {
-            0% { filter: hue-rotate(0deg) brightness(1); }
-            100% { filter: hue-rotate(180deg) brightness(1.2); }
-        }
-
-        .hexagon-inner {
-            width: 280px;
-            height: 323px;
-            background: var(--black-absolute);
+        .hexagon-video-wrapper {
+            width: 400px;
+            height: 460px;
             clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hexagon-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.3s ease;
+        }
+
+        .video-controls {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
             display: flex;
-            flex-direction: column;
-            align-items: center;
+            gap: 10px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .hexagon-video-wrapper:hover .video-controls {
+            opacity: 1;
+        }
+
+        .video-nav {
+            display: flex;
             justify-content: center;
-            gap: 15px;
-            padding: 30px;
-            text-align: center;
+            margin-top: 20px;
+            gap: 10px;
         }
 
-        .hexagon-title {
-            font-size: 1.3rem;
-            font-weight: bold;
-            color: var(--digital-cyan);
-            text-transform: uppercase;
-            letter-spacing: 2px;
+        .nav-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--grid-gray);
+            border: 1px solid var(--digital-cyan);
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
 
-        .hexagon-subtitle {
-            font-size: 0.9rem;
-            color: var(--roland-core);
-            text-transform: uppercase;
+        .nav-dot.active {
+            background: var(--digital-cyan);
         }
 
         /* SECCIÓN 3 */
@@ -365,14 +372,9 @@
                 font-size: 2rem;
             }
             
-            .main-hexagon {
-                width: 250px;
-                height: 288px;
-            }
-            
-            .hexagon-inner {
-                width: 230px;
-                height: 265px;
+            .hexagon-video-wrapper {
+                width: 300px;
+                height: 345px;
             }
         }
     </style>
@@ -465,15 +467,28 @@
                 </div>
             </div>
             
-            <div class="hexagon-container">
-                <div class="main-hexagon">
-                    <div class="hexagon-inner">
-                        <div class="hexagon-title">SISTEMA NERVIOSO</div>
-                        <div class="hexagon-subtitle">MUSICAL</div>
-                        <p style="font-size: 0.8rem; color: rgba(255,255,255,0.8); line-height: 1.4;">
-                            Conexión perfecta entre hardware analógico y flujos digitales
-                        </p>
+            <div class="hexagon-video-container">
+                <div class="hexagon-video-wrapper">
+                    <iframe 
+                        class="hexagon-video"
+                        src="https://www.youtube.com/embed/ZGxSXchZNfo?modestbranding=1&rel=0"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
+                    <div class="video-controls">
+                        <button class="control-btn video-prev">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="control-btn video-next">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
                     </div>
+                </div>
+                <div class="video-nav">
+                    <div class="nav-dot active" data-video="ZGxSXchZNfo"></div>
+                    <div class="nav-dot" data-video="SD3T_Or_mvk"></div>
+                    <div class="nav-dot" data-video="XCW95zjBUK4"></div>
                 </div>
             </div>
         </section>
@@ -524,6 +539,49 @@
             vinyl.style.animationPlayState = 'paused';
             turntable.style.borderColor = '#666666';
             turntable.style.boxShadow = '0 0 20px rgba(0,255,255,0.3)';
+        });
+
+        // Control de videos hexagonales
+        const videoIframe = document.querySelector('.hexagon-video');
+        const navDots = document.querySelectorAll('.nav-dot');
+        const prevBtn = document.querySelector('.video-prev');
+        const nextBtn = document.querySelector('.video-next');
+
+        const videos = [
+            'ZGxSXchZNfo', // Boiler Room
+            'SD3T_Or_mvk', // Tra Tra
+            'XCW95zjBUK4'  // Gats
+        ];
+
+        let currentVideoIndex = 0;
+
+        function updateVideo() {
+            const videoId = videos[currentVideoIndex];
+            videoIframe.src = `https://www.youtube.com/embed/${videoId}?modestbranding=1&rel=0`;
+            
+            // Actualizar dots de navegación
+            navDots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentVideoIndex);
+            });
+        }
+
+        // Navegación por dots
+        navDots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                currentVideoIndex = index;
+                updateVideo();
+            });
+        });
+
+        // Botones anterior/siguiente
+        prevBtn.addEventListener('click', () => {
+            currentVideoIndex = (currentVideoIndex - 1 + videos.length) % videos.length;
+            updateVideo();
+        });
+
+        nextBtn.addEventListener('click', () => {
+            currentVideoIndex = (currentVideoIndex + 1) % videos.length;
+            updateVideo();
         });
 
         // Control de tema
