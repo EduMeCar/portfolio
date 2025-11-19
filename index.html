@@ -72,7 +72,7 @@
         }
 
         .main-title {
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             font-weight: bold;
             text-transform: uppercase;
             letter-spacing: 4px;
@@ -253,11 +253,33 @@
 
         /* SERVICES SECTION */
         .services-section {
-            padding: 30px 0;
+            padding: 40px 0;
             background: var(--panel-gradient);
             border-top: var(--vintage-border);
             border-bottom: var(--vintage-border);
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 3px;
             margin-bottom: 30px;
+            color: var(--primary-white);
+            position: relative;
+            text-align: center;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 2px;
+            background: var(--primary-red);
         }
 
         .services-grid {
@@ -307,28 +329,8 @@
 
         /* PROJECTS SECTION */
         .projects-section {
-            padding: 30px 0;
-            margin-bottom: 30px;
-        }
-
-        .section-title {
-            font-size: 1.5rem;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            margin-bottom: 20px;
-            color: var(--primary-white);
-            position: relative;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -8px;
-            left: 0;
-            width: 60px;
-            height: 2px;
-            background: var(--primary-red);
+            padding: 40px 0;
+            margin-bottom: 40px;
         }
 
         .videos-grid {
@@ -379,8 +381,8 @@
 
         /* SPOTIFY SECTION */
         .spotify-section {
-            padding: 30px 0;
-            margin-bottom: 30px;
+            padding: 40px 0;
+            margin-bottom: 40px;
         }
 
         .spotify-container {
@@ -393,7 +395,7 @@
 
         /* CONTACT SECTION */
         .contact-section {
-            padding: 40px 0;
+            padding: 50px 0;
             text-align: center;
             background: var(--panel-gradient);
             border-top: var(--vintage-border);
@@ -468,6 +470,7 @@
             opacity: 0.7;
             font-size: 0.9rem;
             border-top: var(--vintage-border);
+            margin-top: 40px;
         }
 
         /* RESPONSIVE DESIGN */
@@ -548,6 +551,9 @@
                         <button class="control-btn" id="prevBtn">
                             <i class="fas fa-backward"></i>
                         </button>
+                        <button class="control-btn" id="stopBtn">
+                            <i class="fas fa-stop"></i>
+                        </button>
                         <button class="control-btn play-btn" id="playBtn">
                             <i class="fas fa-play"></i>
                         </button>
@@ -566,6 +572,7 @@
 
     <!-- SERVICES SECTION -->
     <section class="services-section">
+        <h2 class="section-title" data-es="SERVICIOS" data-en="SERVICES">SERVICES</h2>
         <div class="services-grid">
             <div class="service-module">
                 <div class="service-icon">⟷</div>
@@ -651,7 +658,6 @@
 
     <!-- SPOTIFY SECTION -->
     <section class="spotify-section">
-        <h2 class="section-title" data-es="SONIDO" data-en="SOUND">SOUND</h2>
         <div class="spotify-container">
             <iframe style="border-radius: 8px; border: none;" 
                     src="https://open.spotify.com/embed/playlist/26qaG2E3bW6ZNIk5mvPpjr?utm_source=generator&theme=0" 
@@ -772,6 +778,7 @@
             setupPlayerControls() {
                 const logo = document.getElementById('logo');
                 const playBtn = document.getElementById('playBtn');
+                const stopBtn = document.getElementById('stopBtn');
                 const prevBtn = document.getElementById('prevBtn');
                 const nextBtn = document.getElementById('nextBtn');
                 
@@ -781,6 +788,10 @@
                     } else {
                         this.playTrack();
                     }
+                });
+                
+                stopBtn.addEventListener('click', () => {
+                    this.stopTrack();
                 });
                 
                 prevBtn.addEventListener('click', () => {
@@ -820,6 +831,14 @@
             
             pauseTrack() {
                 this.audioPlayer.pause();
+            }
+            
+            stopTrack() {
+                this.audioPlayer.pause();
+                this.audioPlayer.currentTime = 0;
+                this.isPlaying = false;
+                document.getElementById('playBtn').innerHTML = '<i class="fas fa-play"></i>';
+                document.getElementById('logo').classList.remove('playing');
             }
             
             previousTrack() {
