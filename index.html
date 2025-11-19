@@ -54,45 +54,12 @@
             padding: 20px;
         }
 
-        /* HEADER COMPACTO */
-        .header-compact {
+        /* CONTROLES SUPERIORES */
+        .top-controls {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 0;
-            position: relative;
-            border-bottom: var(--vintage-border);
-            margin-bottom: 30px;
-        }
-
-        .title-section {
-            display: flex;
-            align-items: center;
-            gap: 40px;
-        }
-
-        .main-title {
-            font-size: 2.2rem;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            color: var(--primary-white);
-            line-height: 1;
-        }
-
-        .main-title span {
-            color: var(--primary-red);
-        }
-
-        .sound-integrated {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .controls-minimal {
-            display: flex;
+            justify-content: flex-end;
             gap: 12px;
+            margin-bottom: 20px;
         }
 
         .analog-toggle {
@@ -144,66 +111,79 @@
             border-color: var(--primary-red);
         }
 
-        /* REPRODUCTOR COMPACTO */
-        .compact-player {
+        /* HEADER GRANDE */
+        .header-large {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+            padding: 40px 0;
+            margin-bottom: 40px;
+            border-bottom: var(--vintage-border);
+        }
+
+        .main-title-section {
             display: flex;
-            align-items: center;
-            gap: 15px;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .main-title {
+            font-size: 3.5rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 6px;
+            color: var(--primary-white);
+            line-height: 1;
+            margin-bottom: 20px;
+        }
+
+        .subtitle {
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--primary-red);
+            margin-bottom: 15px;
+        }
+
+        .description {
+            font-size: 1rem;
+            color: var(--primary-white);
+            opacity: 0.9;
+            line-height: 1.6;
+            max-width: 600px;
+        }
+
+        /* SECCIÓN DE SONIDO */
+        .sound-section {
             background: var(--panel-gradient);
             border: 1px solid var(--primary-gray);
             border-radius: 8px;
-            padding: 12px 20px;
-            transition: all 0.3s ease;
-        }
-
-        .compact-player:hover {
-            border-color: var(--primary-red);
-        }
-
-        .logo-giratorio {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: var(--primary-black);
-            border: 3px solid var(--primary-gray);
-            position: relative;
+            padding: 25px;
             display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.4s ease;
+            flex-direction: column;
+            gap: 20px;
         }
 
-        .logo-giratorio.playing {
-            border-color: var(--primary-red);
-            animation: spin 20s linear infinite;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .logo-em {
-            font-size: 1rem;
+        .sound-title {
+            font-size: 1.5rem;
             font-weight: bold;
-            color: var(--primary-white);
             text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .logo-em span {
-            color: var(--primary-red);
+            letter-spacing: 3px;
+            color: var(--primary-white);
+            margin-bottom: 10px;
         }
 
         .player-controls {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 15px;
+            margin-bottom: 20px;
         }
 
         .control-btn {
-            width: 35px;
-            height: 35px;
+            width: 45px;
+            height: 45px;
             border-radius: 50%;
             background: var(--primary-black);
             border: 2px solid var(--primary-gray);
@@ -213,7 +193,7 @@
             justify-content: center;
             cursor: pointer;
             transition: all 0.3s ease;
-            font-size: 0.9rem;
+            font-size: 1.1rem;
         }
 
         .control-btn:hover {
@@ -222,8 +202,8 @@
         }
 
         .play-btn {
-            width: 40px;
-            height: 40px;
+            width: 55px;
+            height: 55px;
             background: var(--primary-red);
             border-color: var(--primary-red);
         }
@@ -232,32 +212,75 @@
             background: transparent;
         }
 
-        .track-info {
-            text-align: left;
-            min-width: 180px;
+        .track-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 20px;
         }
 
-        .track-title {
+        .track-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 12px;
+            background: transparent;
+            border: 1px solid transparent;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
             font-size: 0.9rem;
-            font-weight: bold;
-            color: var(--primary-white);
-            text-transform: uppercase;
-            margin-bottom: 2px;
         }
 
-        .track-artist {
-            font-size: 0.75rem;
+        .track-item:hover {
+            border-color: var(--primary-orange);
+        }
+
+        .track-number {
+            color: var(--primary-red);
+            font-weight: bold;
+            min-width: 20px;
+        }
+
+        .track-active {
+            border-color: var(--primary-red);
+            background: rgba(204, 0, 0, 0.1);
+        }
+
+        .track-info-compact {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+            padding-top: 15px;
+            border-top: var(--vintage-border);
+        }
+
+        .current-track {
+            font-size: 0.9rem;
             color: var(--primary-cyan);
             text-transform: uppercase;
         }
 
+        .current-artist {
+            font-size: 0.8rem;
+            color: var(--primary-white);
+            opacity: 0.7;
+        }
+
+        /* MAIN CONTENT GRID */
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
         /* SERVICES SECTION */
         .services-section {
-            padding: 40px 0;
-            background: var(--panel-gradient);
-            border-top: var(--vintage-border);
-            border-bottom: var(--vintage-border);
-            margin-bottom: 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
         }
 
         .section-title {
@@ -265,56 +288,45 @@
             font-weight: bold;
             text-transform: uppercase;
             letter-spacing: 3px;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             color: var(--primary-white);
             position: relative;
-            text-align: center;
         }
 
         .section-title::after {
             content: '';
             position: absolute;
             bottom: -8px;
-            left: 50%;
-            transform: translateX(-50%);
+            left: 0;
             width: 60px;
             height: 2px;
             background: var(--primary-red);
         }
 
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
+        .services-list {
+            display: flex;
+            flex-direction: column;
             gap: 25px;
-            max-width: 1200px;
-            margin: 0 auto;
         }
 
-        .service-module {
-            background: var(--primary-dark);
+        .service-item {
+            background: var(--panel-gradient);
             border: 1px solid var(--primary-gray);
             border-radius: 8px;
-            padding: 30px 25px;
-            text-align: center;
+            padding: 25px;
             transition: all 0.4s ease;
         }
 
-        .service-module:hover {
+        .service-item:hover {
             border-color: var(--primary-red);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-        }
-
-        .service-icon {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            color: var(--primary-red);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
         }
 
         .service-name {
             font-size: 1.2rem;
             font-weight: bold;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             color: var(--primary-white);
             text-transform: uppercase;
             letter-spacing: 2px;
@@ -329,13 +341,14 @@
 
         /* PROJECTS SECTION */
         .projects-section {
-            padding: 40px 0;
-            margin-bottom: 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
         }
 
         .videos-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(2, 1fr);
             gap: 25px;
         }
 
@@ -381,7 +394,6 @@
 
         /* SPOTIFY SECTION */
         .spotify-section {
-            padding: 40px 0;
             margin-bottom: 40px;
         }
 
@@ -475,34 +487,28 @@
 
         /* RESPONSIVE DESIGN */
         @media (max-width: 1024px) {
-            .title-section {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 20px;
+            .header-large {
+                grid-template-columns: 1fr;
+                gap: 30px;
             }
             
-            .services-grid {
-                grid-template-columns: repeat(2, 1fr);
+            .main-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
             }
             
             .videos-grid {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: 1fr;
             }
         }
 
         @media (max-width: 768px) {
-            .header-compact {
-                flex-direction: column;
-                gap: 15px;
-                text-align: center;
+            .main-title {
+                font-size: 2.5rem;
             }
             
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .videos-grid {
-                grid-template-columns: 1fr;
+            .subtitle {
+                font-size: 1.4rem;
             }
             
             .contact-buttons {
@@ -518,143 +524,143 @@
 
         @media (max-width: 480px) {
             .main-title {
-                font-size: 1.8rem;
+                font-size: 2rem;
             }
             
-            .compact-player {
-                flex-direction: column;
-                gap: 10px;
-            }
-            
-            .track-info {
-                text-align: center;
+            .subtitle {
+                font-size: 1.2rem;
             }
         }
     </style>
 </head>
 <body>
-    <!-- HEADER COMPACTO -->
-    <header class="header-compact">
-        <div class="title-section">
-            <h1 class="main-title">MUSICAL <span>PROJECT MANAGER</span></h1>
-            <div class="sound-integrated">
-                <!-- REPRODUCTOR COMPACTO -->
-                <div class="compact-player">
-                    <div class="logo-giratorio" id="logo">
-                        <div class="logo-em">E<span>M</span></div>
-                    </div>
-                    <div class="track-info">
-                        <div class="track-title" id="currentTrackTitle">TURBOBOYZ SELECTION</div>
-                        <div class="track-artist" id="currentTrackArtist">EDUARDO MEJÍA</div>
-                    </div>
-                    <div class="player-controls">
-                        <button class="control-btn" id="prevBtn">
-                            <i class="fas fa-backward"></i>
-                        </button>
-                        <button class="control-btn" id="stopBtn">
-                            <i class="fas fa-stop"></i>
-                        </button>
-                        <button class="control-btn play-btn" id="playBtn">
-                            <i class="fas fa-play"></i>
-                        </button>
-                        <button class="control-btn" id="nextBtn">
-                            <i class="fas fa-forward"></i>
-                        </button>
-                    </div>
+    <!-- CONTROLES SUPERIORES -->
+    <div class="top-controls">
+        <div class="analog-toggle" id="themeToggle"></div>
+        <button class="language-toggle" id="languageToggle">ES/EN</button>
+    </div>
+
+    <!-- HEADER GRANDE -->
+    <header class="header-large">
+        <div class="main-title-section">
+            <h1 class="main-title">MUSICAL PROJECT MANAGER</h1>
+            <div class="subtitle">ARCHITECTURE & STRATEGY</div>
+            <p class="description">
+                Designing sound structures and strategic frameworks for artists and labels. 
+                From vinyl to digital, creating cohesive musical ecosystems.
+            </p>
+        </div>
+        
+        <!-- SECCIÓN DE SONIDO -->
+        <div class="sound-section">
+            <h2 class="sound-title">SOUND</h2>
+            
+            <div class="player-controls">
+                <button class="control-btn play-btn" id="playBtn">
+                    <i class="fas fa-play"></i>
+                </button>
+                <button class="control-btn" id="stopBtn">
+                    <i class="fas fa-stop"></i>
+                </button>
+            </div>
+            
+            <div class="track-list">
+                <div class="track-item track-active">
+                    <span class="track-number">1</span>
+                    <span class="track-name">Piedras al Rio . Vanillamilkshake</span>
+                </div>
+                <div class="track-item">
+                    <span class="track-number">2</span>
+                    <span class="track-name">Agave . Gats.B</span>
+                </div>
+                <div class="track-item">
+                    <span class="track-number">3</span>
+                    <span class="track-name">Hábitos . Gats.B</span>
+                </div>
+                <div class="track-item">
+                    <span class="track-number">4</span>
+                    <span class="track-name">VILMENA DACHEKA | VisualGuard</span>
                 </div>
             </div>
-        </div>
-        <div class="controls-minimal">
-            <div class="analog-toggle" id="themeToggle"></div>
-            <button class="language-toggle" id="languageToggle">ES/EN</button>
+            
+            <div class="track-info-compact">
+                <div>
+                    <div class="current-track">TurboBooz · Eduardo Mejía</div>
+                    <div class="current-artist">Muestra</div>
+                </div>
+            </div>
         </div>
     </header>
 
-    <!-- SERVICES SECTION -->
-    <section class="services-section">
-        <h2 class="section-title" data-es="SERVICIOS" data-en="SERVICES">SERVICES</h2>
-        <div class="services-grid">
-            <div class="service-module">
-                <div class="service-icon">⟷</div>
-                <h3 class="service-name" data-es="BOOKING & GIRAS" data-en="BOOKING & TOURS">BOOKING & TOURS</h3>
-                <p class="service-desc" data-es="Circuitos de presentación en vivo estratégicos y gestión de giras internacionales" 
-                   data-en="Strategic live performance circuits and international tour management">
-                    Strategic live performance circuits and international tour management
-                </p>
+    <!-- MAIN CONTENT GRID -->
+    <div class="main-content">
+        <!-- SERVICES SECTION -->
+        <section class="services-section">
+            <h2 class="section-title" data-es="SERVICIOS" data-en="SERVICES">SERVICES</h2>
+            <div class="services-list">
+                <div class="service-item">
+                    <h3 class="service-name" data-es="BOOKING & GIRAS" data-en="BOOKING & TOURS">BOOKING & TOURS</h3>
+                    <p class="service-desc" data-es="Circuitos de presentación en vivo estratégicos y gestión de giras internacionales" 
+                       data-en="Strategic live performance circuits and international tour management">
+                        Strategic live performance circuits and international tour management
+                    </p>
+                </div>
+                <div class="service-item">
+                    <h3 class="service-name" data-es="GESTIÓN EDITORIAL" data-en="PUBLISHING">PUBLISHING</h3>
+                    <p class="service-desc" data-es="Protección de derechos y estrategia editorial para obras musicales" 
+                       data-en="Rights management and editorial strategy for musical works">
+                        Rights management and editorial strategy for musical works
+                    </p>
+                </div>
+                <div class="service-item">
+                    <h3 class="service-name" data-es="DISTRIBUCIÓN DIGITAL" data-en="DIGITAL DISTRO">DIGITAL DISTRO</h3>
+                    <p class="service-desc" data-es="Estrategias de lanzamiento multiplataforma y desarrollo de ecosistemas digitales" 
+                       data-en="Multi-platform release strategies and digital ecosystem development">
+                        Multi-platform release strategies and digital ecosystem development
+                    </p>
+                </div>
             </div>
-            <div class="service-module">
-                <div class="service-icon">⎗</div>
-                <h3 class="service-name" data-es="GESTIÓN EDITORIAL" data-en="PUBLISHING">PUBLISHING</h3>
-                <p class="service-desc" data-es="Protección de derechos y estrategia editorial para obras musicales" 
-                   data-en="Rights protection and editorial strategy for musical works">
-                    Rights protection and editorial strategy for musical works
-                </p>
-            </div>
-            <div class="service-module">
-                <div class="service-icon">⤨</div>
-                <h3 class="service-name" data-es="DISTRIBUCIÓN DIGITAL" data-en="DIGITAL DISTRO">DIGITAL DISTRO</h3>
-                <p class="service-desc" data-es="Estrategias de lanzamiento multiplataforma y desarrollo de ecosistemas digitales" 
-                   data-en="Multi-platform release strategies and digital ecosystem development">
-                    Multi-platform release strategies and digital ecosystem development
-                </p>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- PROJECTS SECTION -->
-    <section class="projects-section">
-        <h2 class="section-title" data-es="PROYECTOS" data-en="PROJECTS">PROJECTS</h2>
-        <div class="videos-grid">
-            <div class="video-card">
-                <iframe class="video-player" src="https://www.youtube.com/embed/ZGxSXchZNfo?start=0" 
-                        title="Boiler Room" allowfullscreen></iframe>
-                <div class="video-info">
-                    <div class="video-role" data-es="PRODUCCIÓN" data-en="PRODUCTION">PRODUCTION</div>
-                    <div class="video-name" data-es="BOILER ROOM" data-en="BOILER ROOM">BOILER ROOM</div>
+        <!-- PROJECTS SECTION -->
+        <section class="projects-section">
+            <h2 class="section-title" data-es="PROYECTOS" data-en="PROJECTS">PROJECTS</h2>
+            <div class="videos-grid">
+                <div class="video-card">
+                    <iframe class="video-player" src="https://www.youtube.com/embed/ZGxSXchZNfo?start=0" 
+                            title="Boiler Room" allowfullscreen></iframe>
+                    <div class="video-info">
+                        <div class="video-role" data-es="PRODUCCIÓN" data-en="PRODUCTION">PRODUCTION</div>
+                        <div class="video-name" data-es="BOILER ROOM" data-en="BOILER ROOM">BOILER ROOM</div>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <iframe class="video-player" src="https://www.youtube.com/embed/SD3T_Or_mvk?start=3" 
+                            title="Tra Tra" allowfullscreen></iframe>
+                    <div class="video-info">
+                        <div class="video-role" data-es="COORDINACIÓN" data-en="COORDINATION">COORDINATION</div>
+                        <div class="video-name" data-es="REMIX PROJECT" data-en="REMIX PROJECT">REMIX PROJECT</div>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <iframe class="video-player" src="https://www.youtube.com/embed/XCW95zjBUK4" 
+                            title="Gats" allowfullscreen></iframe>
+                    <div class="video-info">
+                        <div class="video-role" data-es="DESARROLLO" data-en="DEVELOPMENT">DEVELOPMENT</div>
+                        <div class="video-name" data-es="ARTISTA EMERGENTE" data-en="EMERGING ARTIST">EMERGING ARTIST</div>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <iframe class="video-player" src="https://www.youtube.com/embed/ZGxSXchZNfo?start=0" 
+                            title="Boiler Room" allowfullscreen></iframe>
+                    <div class="video-info">
+                        <div class="video-role" data-es="PRODUCCIÓN" data-en="PRODUCTION">PRODUCTION</div>
+                        <div class="video-name" data-es="BOILER ROOM" data-en="BOILER ROOM">BOILER ROOM</div>
+                    </div>
                 </div>
             </div>
-            <div class="video-card">
-                <iframe class="video-player" src="https://www.youtube.com/embed/SD3T_Or_mvk?start=3" 
-                        title="Tra Tra" allowfullscreen></iframe>
-                <div class="video-info">
-                    <div class="video-role" data-es="COORDINACIÓN" data-en="COORDINATION">COORDINATION</div>
-                    <div class="video-name" data-es="REMIX PROJECT" data-en="REMIX PROJECT">REMIX PROJECT</div>
-                </div>
-            </div>
-            <div class="video-card">
-                <iframe class="video-player" src="https://www.youtube.com/embed/XCW95zjBUK4" 
-                        title="Gats" allowfullscreen></iframe>
-                <div class="video-info">
-                    <div class="video-role" data-es="DESARROLLO" data-en="DEVELOPMENT">DEVELOPMENT</div>
-                    <div class="video-name" data-es="ARTISTA EMERGENTE" data-en="EMERGING ARTIST">EMERGING ARTIST</div>
-                </div>
-            </div>
-            <div class="video-card">
-                <iframe class="video-player" src="https://www.youtube.com/embed/ZGxSXchZNfo?start=0" 
-                        title="Boiler Room" allowfullscreen></iframe>
-                <div class="video-info">
-                    <div class="video-role" data-es="PRODUCCIÓN" data-en="PRODUCTION">PRODUCTION</div>
-                    <div class="video-name" data-es="BOILER ROOM" data-en="BOILER ROOM">BOILER ROOM</div>
-                </div>
-            </div>
-            <div class="video-card">
-                <iframe class="video-player" src="https://www.youtube.com/embed/SD3T_Or_mvk?start=3" 
-                        title="Tra Tra" allowfullscreen></iframe>
-                <div class="video-info">
-                    <div class="video-role" data-es="COORDINACIÓN" data-en="COORDINATION">COORDINATION</div>
-                    <div class="video-name" data-es="REMIX PROJECT" data-en="REMIX PROJECT">REMIX PROJECT</div>
-                </div>
-            </div>
-            <div class="video-card">
-                <iframe class="video-player" src="https://www.youtube.com/embed/XCW95zjBUK4" 
-                        title="Gats" allowfullscreen></iframe>
-                <div class="video-info">
-                    <div class="video-role" data-es="DESARROLLO" data-en="DEVELOPMENT">DEVELOPMENT</div>
-                    <div class="video-name" data-es="ARTISTA EMERGENTE" data-en="EMERGING ARTIST">EMERGING ARTIST</div>
-                </div>
-            </div>
-        </div>
-    </section>
+        </section>
+    </div>
 
     <!-- SPOTIFY SECTION -->
     <section class="spotify-section">
@@ -709,18 +715,23 @@
                 this.currentTrackIndex = 0;
                 this.tracks = [
                     {
-                        title: "TURBOBOYZ SELECTION",
-                        artist: "EDUARDO MEJÍA",
+                        title: "Piedras al Rio",
+                        artist: "Vanillamilkshake",
                         src: "https://www.soundjay.com/button/beep-07.wav" // Ejemplo - reemplazar con tus archivos
                     },
                     {
-                        title: "DETROIT VIBES",
-                        artist: "EDUARDO MEJÍA",
+                        title: "Agave",
+                        artist: "Gats.B",
                         src: "https://www.soundjay.com/button/beep-07.wav" // Ejemplo - reemplazar con tus archivos
                     },
                     {
-                        title: "POST-PUNK SESSIONS",
-                        artist: "EDUARDO MEJÍA",
+                        title: "Hábitos",
+                        artist: "Gats.B",
+                        src: "https://www.soundjay.com/button/beep-07.wav" // Ejemplo - reemplazar con tus archivos
+                    },
+                    {
+                        title: "VILMENA DACHEKA",
+                        artist: "VisualGuard",
                         src: "https://www.soundjay.com/button/beep-07.wav" // Ejemplo - reemplazar con tus archivos
                     }
                 ];
@@ -732,6 +743,7 @@
                 this.setupThemeToggle();
                 this.setupLanguageToggle();
                 this.setupPlayerControls();
+                this.setupTrackList();
                 this.loadTrack(this.currentTrackIndex);
             }
             
@@ -767,8 +779,6 @@
                 const track = this.tracks[index];
                 
                 this.audioPlayer.src = track.src;
-                document.getElementById('currentTrackTitle').textContent = track.title;
-                document.getElementById('currentTrackArtist').textContent = track.artist;
                 
                 if (this.isPlaying) {
                     this.playTrack();
@@ -776,11 +786,8 @@
             }
             
             setupPlayerControls() {
-                const logo = document.getElementById('logo');
                 const playBtn = document.getElementById('playBtn');
                 const stopBtn = document.getElementById('stopBtn');
-                const prevBtn = document.getElementById('prevBtn');
-                const nextBtn = document.getElementById('nextBtn');
                 
                 playBtn.addEventListener('click', () => {
                     if (this.isPlaying) {
@@ -794,28 +801,34 @@
                     this.stopTrack();
                 });
                 
-                prevBtn.addEventListener('click', () => {
-                    this.previousTrack();
-                });
-                
-                nextBtn.addEventListener('click', () => {
-                    this.nextTrack();
-                });
-                
                 this.audioPlayer.addEventListener('play', () => {
                     this.isPlaying = true;
                     playBtn.innerHTML = '<i class="fas fa-pause"></i>';
-                    logo.classList.add('playing');
                 });
                 
                 this.audioPlayer.addEventListener('pause', () => {
                     this.isPlaying = false;
                     playBtn.innerHTML = '<i class="fas fa-play"></i>';
-                    logo.classList.remove('playing');
                 });
                 
                 this.audioPlayer.addEventListener('ended', () => {
                     this.nextTrack();
+                });
+            }
+            
+            setupTrackList() {
+                const trackItems = document.querySelectorAll('.track-item');
+                trackItems.forEach((item, index) => {
+                    item.addEventListener('click', () => {
+                        this.loadTrack(index);
+                        if (this.isPlaying) {
+                            this.playTrack();
+                        }
+                        
+                        // Update active track
+                        trackItems.forEach(t => t.classList.remove('track-active'));
+                        item.classList.add('track-active');
+                    });
                 });
             }
             
@@ -825,7 +838,6 @@
                     // Simulación de reproducción si falla la carga de audio
                     this.isPlaying = true;
                     document.getElementById('playBtn').innerHTML = '<i class="fas fa-pause"></i>';
-                    document.getElementById('logo').classList.add('playing');
                 });
             }
             
@@ -838,19 +850,17 @@
                 this.audioPlayer.currentTime = 0;
                 this.isPlaying = false;
                 document.getElementById('playBtn').innerHTML = '<i class="fas fa-play"></i>';
-                document.getElementById('logo').classList.remove('playing');
-            }
-            
-            previousTrack() {
-                let newIndex = this.currentTrackIndex - 1;
-                if (newIndex < 0) newIndex = this.tracks.length - 1;
-                this.loadTrack(newIndex);
             }
             
             nextTrack() {
                 let newIndex = this.currentTrackIndex + 1;
                 if (newIndex >= this.tracks.length) newIndex = 0;
                 this.loadTrack(newIndex);
+                
+                // Update active track
+                const trackItems = document.querySelectorAll('.track-item');
+                trackItems.forEach(t => t.classList.remove('track-active'));
+                trackItems[newIndex].classList.add('track-active');
             }
         }
         
