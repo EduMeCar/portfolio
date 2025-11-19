@@ -288,7 +288,7 @@
             gap: 20px;
         }
 
-        .turntable-analog {
+        .logo-giratorio {
             width: 180px;
             height: 180px;
             border-radius: 50%;
@@ -304,25 +304,26 @@
             transition: all 0.4s ease;
         }
 
-        .turntable-analog.playing {
+        .logo-giratorio.playing {
             border-color: var(--roland-red);
-        }
-
-        .vinyl-analog {
-            width: 140px;
-            height: 140px;
-            border-radius: 50%;
-            background: 
-                radial-gradient(circle at center, #333 0%, #333 10%, transparent 10.1%),
-                radial-gradient(circle at center, #111 0%, #111 40%, #333 40.1%, #333 45%, transparent 45.1%),
-                repeating-radial-gradient(circle at center, #111 0%, #111 2%, #333 2.1%, #333 4%);
             animation: spin 20s linear infinite;
-            animation-play-state: paused;
         }
 
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
+        }
+
+        .logo-em {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--roland-white);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .logo-em span {
+            color: var(--roland-red);
         }
 
         .player-controls {
@@ -378,37 +379,6 @@
             font-size: 0.9rem;
             color: var(--roland-cyan);
             text-transform: uppercase;
-        }
-
-        .track-list {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            max-height: 150px;
-            overflow-y: auto;
-            padding: 10px;
-            background: var(--roland-dark);
-            border-radius: 4px;
-            border: 1px solid var(--roland-gray);
-        }
-
-        .track-item {
-            padding: 8px 12px;
-            background: transparent;
-            border: 1px solid transparent;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 0.85rem;
-        }
-
-        .track-item:hover {
-            border-color: var(--roland-orange);
-        }
-
-        .track-active {
-            border-color: var(--roland-red);
-            background: rgba(204, 0, 0, 0.1);
         }
 
         .spotify-container {
@@ -536,14 +506,13 @@
                 font-size: 1.1rem;
             }
             
-            .turntable-analog {
+            .logo-giratorio {
                 width: 150px;
                 height: 150px;
             }
             
-            .vinyl-analog {
-                width: 120px;
-                height: 120px;
+            .logo-em {
+                font-size: 2.5rem;
             }
         }
     </style>
@@ -628,8 +597,8 @@
             <!-- REPRODUCTOR PERSONAL -->
             <div class="player-container">
                 <div class="turntable-setup">
-                    <div class="turntable-analog" id="turntable">
-                        <div class="vinyl-analog" id="vinyl"></div>
+                    <div class="logo-giratorio" id="logo">
+                        <div class="logo-em">E<span>M</span></div>
                     </div>
                     <div class="track-info">
                         <div class="track-title" id="currentTrackTitle">TURBOBOYZ SELECTION</div>
@@ -639,25 +608,15 @@
                         <button class="control-btn" id="prevBtn">
                             <i class="fas fa-backward"></i>
                         </button>
+                        <button class="control-btn" id="stopBtn">
+                            <i class="fas fa-stop"></i>
+                        </button>
                         <button class="control-btn play-btn" id="playBtn">
                             <i class="fas fa-play"></i>
                         </button>
                         <button class="control-btn" id="nextBtn">
                             <i class="fas fa-forward"></i>
                         </button>
-                    </div>
-                    <audio id="audioPlayer"></audio>
-                </div>
-                
-                <div class="track-list">
-                    <div class="track-item track-active" data-src="cancion1.mp3" data-title="TURBOBOYZ SELECTION" data-artist="EDUARDO MEJÍA">
-                        <span data-es="Selección TurboBoyz" data-en="TurboBoyz Selection">TurboBoyz Selection</span>
-                    </div>
-                    <div class="track-item" data-src="cancion2.mp3" data-title="DETROIT VIBES" data-artist="EDUARDO MEJÍA">
-                        <span data-es="Vibraciones Detroit" data-en="Detroit Vibes">Detroit Vibes</span>
-                    </div>
-                    <div class="track-item" data-src="cancion3.mp3" data-title="POST-PUNK SESSIONS" data-artist="EDUARDO MEJÍA">
-                        <span data-es="Sesiones Post-Punk" data-en="Post-Punk Sessions">Post-Punk Sessions</span>
                     </div>
                 </div>
             </div>
@@ -700,9 +659,9 @@
 
     <!-- FOOTER -->
     <footer class="footer">
-        <div data-es="&copy; 2024 Eduardo Mejía - Arquitectura Musical" 
-             data-en="&copy; 2024 Eduardo Mejía - Musical Architecture">
-            &copy; 2024 Eduardo Mejía - Musical Architecture
+        <div data-es="&copy; 2024 Eduardo Mejía - Todos los derechos reservados" 
+             data-en="&copy; 2024 Eduardo Mejía - All rights reserved">
+            &copy; 2024 Eduardo Mejía - All rights reserved
         </div>
     </footer>
 
@@ -713,8 +672,24 @@
                 this.currentLanguage = 'es';
                 this.isPlaying = false;
                 this.currentTrackIndex = 0;
-                this.audioPlayer = document.getElementById('audioPlayer');
-                this.tracks = [];
+                this.tracks = [
+                    {
+                        title: "TURBOBOYZ SELECTION",
+                        artist: "EDUARDO MEJÍA",
+                        src: "https://www.soundjay.com/button/beep-07.wav" // Ejemplo - reemplazar con tus archivos
+                    },
+                    {
+                        title: "DETROIT VIBES",
+                        artist: "EDUARDO MEJÍA",
+                        src: "https://www.soundjay.com/button/beep-07.wav" // Ejemplo - reemplazar con tus archivos
+                    },
+                    {
+                        title: "POST-PUNK SESSIONS",
+                        artist: "EDUARDO MEJÍA",
+                        src: "https://www.soundjay.com/button/beep-07.wav" // Ejemplo - reemplazar con tus archivos
+                    }
+                ];
+                this.audioPlayer = new Audio();
                 this.init();
             }
             
@@ -722,8 +697,7 @@
                 this.setupThemeToggle();
                 this.setupLanguageToggle();
                 this.setupPlayerControls();
-                this.setupTrackList();
-                this.loadTracks();
+                this.loadTrack(this.currentTrackIndex);
             }
             
             setupThemeToggle() {
@@ -751,20 +725,6 @@
                 });
             }
             
-            loadTracks() {
-                const trackItems = document.querySelectorAll('.track-item');
-                this.tracks = Array.from(trackItems).map((item, index) => {
-                    return {
-                        src: item.getAttribute('data-src'),
-                        title: item.getAttribute('data-title'),
-                        artist: item.getAttribute('data-artist'),
-                        element: item
-                    };
-                });
-                
-                this.loadTrack(this.currentTrackIndex);
-            }
-            
             loadTrack(index) {
                 if (index < 0 || index >= this.tracks.length) return;
                 
@@ -775,21 +735,15 @@
                 document.getElementById('currentTrackTitle').textContent = track.title;
                 document.getElementById('currentTrackArtist').textContent = track.artist;
                 
-                this.tracks.forEach((t, i) => {
-                    t.element.classList.toggle('track-active', i === index);
-                });
-                
                 if (this.isPlaying) {
-                    this.audioPlayer.play().catch(e => {
-                        console.log('Audio play failed:', e);
-                    });
+                    this.playTrack();
                 }
             }
             
             setupPlayerControls() {
-                const turntable = document.getElementById('turntable');
-                const vinyl = document.getElementById('vinyl');
+                const logo = document.getElementById('logo');
                 const playBtn = document.getElementById('playBtn');
+                const stopBtn = document.getElementById('stopBtn');
                 const prevBtn = document.getElementById('prevBtn');
                 const nextBtn = document.getElementById('nextBtn');
                 
@@ -799,6 +753,10 @@
                     } else {
                         this.playTrack();
                     }
+                });
+                
+                stopBtn.addEventListener('click', () => {
+                    this.stopTrack();
                 });
                 
                 prevBtn.addEventListener('click', () => {
@@ -812,15 +770,13 @@
                 this.audioPlayer.addEventListener('play', () => {
                     this.isPlaying = true;
                     playBtn.innerHTML = '<i class="fas fa-pause"></i>';
-                    vinyl.style.animationPlayState = 'running';
-                    turntable.classList.add('playing');
+                    logo.classList.add('playing');
                 });
                 
                 this.audioPlayer.addEventListener('pause', () => {
                     this.isPlaying = false;
                     playBtn.innerHTML = '<i class="fas fa-play"></i>';
-                    vinyl.style.animationPlayState = 'paused';
-                    turntable.classList.remove('playing');
+                    logo.classList.remove('playing');
                 });
                 
                 this.audioPlayer.addEventListener('ended', () => {
@@ -828,27 +784,26 @@
                 });
             }
             
-            setupTrackList() {
-                const trackItems = document.querySelectorAll('.track-item');
-                trackItems.forEach((item, index) => {
-                    item.addEventListener('click', () => {
-                        this.loadTrack(index);
-                        if (this.isPlaying) {
-                            this.playTrack();
-                        }
-                    });
-                });
-            }
-            
             playTrack() {
                 this.audioPlayer.play().catch(e => {
                     console.log('Audio play failed:', e);
-                    alert('Haz clic en PLAY nuevamente para reproducir el audio');
+                    // Simulación de reproducción si falla la carga de audio
+                    this.isPlaying = true;
+                    document.getElementById('playBtn').innerHTML = '<i class="fas fa-pause"></i>';
+                    document.getElementById('logo').classList.add('playing');
                 });
             }
             
             pauseTrack() {
                 this.audioPlayer.pause();
+            }
+            
+            stopTrack() {
+                this.audioPlayer.pause();
+                this.audioPlayer.currentTime = 0;
+                this.isPlaying = false;
+                document.getElementById('playBtn').innerHTML = '<i class="fas fa-play"></i>';
+                document.getElementById('logo').classList.remove('playing');
             }
             
             previousTrack() {
