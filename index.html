@@ -23,6 +23,18 @@
             --panel-gradient: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
         }
 
+        /* Light mode variables */
+        .light-mode {
+            --roland-red: #CC0000;
+            --roland-black: #FFFFFF;
+            --roland-gray: #CCCCCC;
+            --roland-light: #999999;
+            --roland-white: #000000;
+            --roland-orange: #FF6600;
+            --roland-yellow: #FFCC00;
+            --panel-gradient: linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%);
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -38,6 +50,7 @@
             background-image: 
                 radial-gradient(circle at 20% 80%, rgba(204,0,0,0.1) 0%, transparent 50%),
                 radial-gradient(circle at 80% 20%, rgba(255,102,0,0.1) 0%, transparent 50%);
+            transition: all 0.3s ease;
         }
 
         /* DASHBOARD CONTAINER */
@@ -126,8 +139,8 @@
             border-color: var(--roland-red);
         }
 
-        /* HERO SECTION - VU METER STYLE */
-        .hero-vu {
+        /* HERO SECTION - PROJECT COUNTER STYLE */
+        .hero-counter {
             grid-column: 1 / -1;
             display: grid;
             grid-template-columns: 2fr 1fr;
@@ -181,40 +194,52 @@
             max-width: 500px;
         }
 
-        .vu-meter {
+        .project-counter {
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            gap: 10px;
+            gap: 15px;
         }
 
-        .vu-display {
-            width: 100%;
+        .counter-display {
+            width: 200px;
             height: 200px;
             background: var(--roland-black);
             border: 2px solid var(--roland-gray);
-            border-radius: 4px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             position: relative;
             overflow: hidden;
         }
 
-        .vu-level {
+        .counter-number {
+            font-size: 4rem;
+            font-weight: bold;
+            color: var(--roland-red);
+            z-index: 2;
+        }
+
+        .counter-fill {
             position: absolute;
             bottom: 0;
             left: 0;
             width: 100%;
             height: 75%;
-            background: linear-gradient(to top, var(--roland-red), var(--roland-orange), var(--roland-yellow));
-            animation: vuPulse 2s ease-in-out infinite alternate;
+            background: linear-gradient(to top, var(--roland-red), var(--roland-orange));
+            border-radius: 50% 50% 0 0;
+            transform: rotate(180deg);
+            animation: counterFill 3s ease-in-out infinite alternate;
         }
 
-        @keyframes vuPulse {
+        @keyframes counterFill {
             0% { height: 65%; }
             100% { height: 85%; }
         }
 
-        .vu-label {
+        .counter-label {
             font-size: 0.9rem;
             color: var(--roland-white);
             text-transform: uppercase;
@@ -224,8 +249,8 @@
         /* SERVICES - MIXER CHANNELS */
         .services-mixer {
             grid-column: 1;
-            display: flex;
-            flex-direction: column;
+            display: grid;
+            grid-template-columns: 1fr;
             gap: 15px;
             padding: 20px;
             background: var(--panel-gradient);
@@ -258,9 +283,12 @@
             background: var(--roland-black);
             border: 1px solid var(--roland-gray);
             border-radius: 4px;
-            padding: 15px;
+            padding: 20px;
             transition: all 0.3s ease;
             cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
         }
 
         .mixer-channel:hover {
@@ -272,26 +300,25 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 10px;
         }
 
         .channel-name {
-            font-size: 1rem;
+            font-size: 1.1rem;
             font-weight: bold;
             color: var(--roland-white);
             text-transform: uppercase;
         }
 
         .channel-led {
-            width: 10px;
-            height: 10px;
+            width: 12px;
+            height: 12px;
             border-radius: 50%;
             background: var(--roland-red);
             box-shadow: var(--led-glow);
         }
 
         .channel-desc {
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             color: var(--roland-white);
             opacity: 0.8;
             line-height: 1.4;
@@ -313,23 +340,25 @@
         .sequencer-grid {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 10px;
+            gap: 12px;
         }
 
         .sequence-track {
             display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-columns: 1fr;
             gap: 8px;
         }
 
         .sequence-step {
-            height: 80px;
+            height: 100px;
             background: var(--roland-black);
             border: 1px solid var(--roland-gray);
             border-radius: 4px;
             overflow: hidden;
             transition: all 0.3s ease;
             cursor: pointer;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
         }
 
         .sequence-step:hover {
@@ -347,20 +376,25 @@
         }
 
         .step-info {
-            padding: 5px;
-            text-align: center;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         .step-role {
-            font-size: 0.7rem;
+            font-size: 0.75rem;
             color: var(--roland-red);
             text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
         }
 
         .step-name {
-            font-size: 0.8rem;
+            font-size: 0.9rem;
             color: var(--roland-white);
             font-weight: bold;
+            text-transform: uppercase;
         }
 
         /* SOUND - TURNTABLE SECTION */
@@ -394,6 +428,7 @@
             align-items: center;
             justify-content: center;
             box-shadow: var(--knob-shadow);
+            transition: all 0.3s ease;
         }
 
         .turntable::before {
@@ -414,6 +449,7 @@
                 radial-gradient(circle at center, #111 0%, #111 40%, #333 40.1%, #333 45%, transparent 45.1%),
                 repeating-radial-gradient(circle at center, #111 0%, #111 2%, #333 2.1%, #333 4%);
             animation: spin 20s linear infinite;
+            animation-play-state: paused;
         }
 
         @keyframes spin {
@@ -454,8 +490,8 @@
         /* FOOTER - PATCH BAY */
         .footer-patchbay {
             grid-column: 1 / -1;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
+            display: flex;
+            flex-direction: column;
             gap: 20px;
             padding: 20px;
             background: var(--panel-gradient);
@@ -472,12 +508,12 @@
 
         .patch-ports {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 15px;
         }
 
         .patch-port {
-            padding: 12px 15px;
+            padding: 15px 20px;
             background: var(--roland-black);
             border: 1px solid var(--roland-gray);
             border-radius: 4px;
@@ -487,6 +523,8 @@
             transition: all 0.3s ease;
             text-transform: uppercase;
             font-size: 0.9rem;
+            font-weight: bold;
+            letter-spacing: 1px;
         }
 
         .patch-port:hover {
@@ -535,15 +573,6 @@
             
             .sound-turntable {
                 grid-column: 1 / -1;
-                grid-template-columns: 1fr 1fr;
-            }
-            
-            .turntable-container {
-                grid-column: 1;
-            }
-            
-            .player-container {
-                grid-column: 2;
             }
         }
 
@@ -554,19 +583,15 @@
                 gap: 15px;
             }
             
-            .hero-vu {
+            .hero-counter {
                 grid-template-columns: 1fr;
             }
             
-            .vu-meter {
+            .project-counter {
                 order: -1;
             }
             
-            .sequence-track {
-                grid-template-columns: 1fr;
-            }
-            
-            .footer-patchbay {
+            .sequence-step {
                 grid-template-columns: 1fr;
             }
             
@@ -596,6 +621,15 @@
                 height: 40px;
                 font-size: 1rem;
             }
+            
+            .counter-number {
+                font-size: 3rem;
+            }
+            
+            .counter-display {
+                width: 150px;
+                height: 150px;
+            }
         }
     </style>
 </head>
@@ -621,51 +655,55 @@
             </div>
         </header>
 
-        <!-- HERO VU METER -->
-        <section class="hero-vu">
+        <!-- HERO PROJECT COUNTER -->
+        <section class="hero-counter">
             <div class="hero-content">
-                <h1 class="hero-title">MUSICAL PROJECT MANAGER</h1>
-                <div class="hero-subtitle">ARCHITECTURE & STRATEGY</div>
-                <p class="hero-description">
-                    Designing sound structures and strategic frameworks for artists and labels. 
-                    From vinyl to digital, creating cohesive musical ecosystems.
+                <h1 class="hero-title" data-es="GESTOR DE PROYECTOS MUSICALES" data-en="MUSICAL PROJECT MANAGER">MUSICAL PROJECT MANAGER</h1>
+                <div class="hero-subtitle" data-es="ARQUITECTURA & ESTRATEGIA" data-en="ARCHITECTURE & STRATEGY">ARCHITECTURE & STRATEGY</div>
+                <p class="hero-description" data-es="Diseñando estructuras sonoras y frameworks estratégicos para artistas y sellos. Desde el vinilo a lo digital, creando ecosistemas musicales cohesivos." 
+                   data-en="Designing sound structures and strategic frameworks for artists and labels. From vinyl to digital, creating cohesive musical ecosystems.">
+                    Designing sound structures and strategic frameworks for artists and labels. From vinyl to digital, creating cohesive musical ecosystems.
                 </p>
             </div>
-            <div class="vu-meter">
-                <div class="vu-display">
-                    <div class="vu-level"></div>
+            <div class="project-counter">
+                <div class="counter-display">
+                    <div class="counter-fill"></div>
+                    <div class="counter-number">47</div>
                 </div>
-                <div class="vu-label">CREATIVE OUTPUT</div>
+                <div class="counter-label" data-es="PROYECTOS ACTIVOS" data-en="ACTIVE PROJECTS">ACTIVE PROJECTS</div>
             </div>
         </section>
 
         <!-- SERVICES MIXER -->
         <section class="services-mixer">
-            <h2 class="section-title">SERVICES</h2>
+            <h2 class="section-title" data-es="SERVICIOS" data-en="SERVICES">SERVICES</h2>
             <div class="mixer-channel">
                 <div class="channel-header">
-                    <div class="channel-name">BOOKING & TOURS</div>
+                    <div class="channel-name" data-es="BOOKING & GIRAS" data-en="BOOKING & TOURS">BOOKING & TOURS</div>
                     <div class="channel-led"></div>
                 </div>
-                <p class="channel-desc">
+                <p class="channel-desc" data-es="Circuitos de presentación en vivo y gestión de giras internacionales" 
+                   data-en="Strategic live performance circuits and international tour management">
                     Strategic live performance circuits and international tour management
                 </p>
             </div>
             <div class="mixer-channel">
                 <div class="channel-header">
-                    <div class="channel-name">PUBLISHING</div>
+                    <div class="channel-name" data-es="GESTIÓN EDITORIAL" data-en="PUBLISHING">PUBLISHING</div>
                     <div class="channel-led"></div>
                 </div>
-                <p class="channel-desc">
+                <p class="channel-desc" data-es="Gestión de derechos y estrategia editorial para obras musicales" 
+                   data-en="Rights management and editorial strategy for musical works">
                     Rights management and editorial strategy for musical works
                 </p>
             </div>
             <div class="mixer-channel">
                 <div class="channel-header">
-                    <div class="channel-name">DIGITAL DISTRO</div>
+                    <div class="channel-name" data-es="DISTRIBUCIÓN DIGITAL" data-en="DIGITAL DISTRO">DIGITAL DISTRO</div>
                     <div class="channel-led"></div>
                 </div>
-                <p class="channel-desc">
+                <p class="channel-desc" data-es="Estrategias de lanzamiento multiplataforma y desarrollo de ecosistemas digitales" 
+                   data-en="Multi-platform release strategies and digital ecosystem development">
                     Multi-platform release strategies and digital ecosystem development
                 </p>
             </div>
@@ -673,15 +711,15 @@
 
         <!-- PROJECTS SEQUENCER -->
         <section class="projects-sequencer">
-            <h2 class="section-title">PROJECTS</h2>
+            <h2 class="section-title" data-es="PROYECTOS" data-en="PROJECTS">PROJECTS</h2>
             <div class="sequencer-grid">
                 <div class="sequence-track">
                     <div class="sequence-step step-active">
                         <iframe class="step-media" src="https://www.youtube.com/embed/ZGxSXchZNfo?start=0" 
                                 title="Boiler Room" allowfullscreen></iframe>
                         <div class="step-info">
-                            <div class="step-role">PRODUCTION</div>
-                            <div class="step-name">BOILER ROOM</div>
+                            <div class="step-role" data-es="PRODUCCIÓN" data-en="PRODUCTION">PRODUCTION</div>
+                            <div class="step-name" data-es="BOILER ROOM" data-en="BOILER ROOM">BOILER ROOM</div>
                         </div>
                     </div>
                 </div>
@@ -690,8 +728,8 @@
                         <iframe class="step-media" src="https://www.youtube.com/embed/SD3T_Or_mvk?start=3" 
                                 title="Tra Tra" allowfullscreen></iframe>
                         <div class="step-info">
-                            <div class="step-role">COORDINATION</div>
-                            <div class="step-name">REMIX PROJECT</div>
+                            <div class="step-role" data-es="COORDINACIÓN" data-en="COORDINATION">COORDINATION</div>
+                            <div class="step-name" data-es="REMIX PROJECT" data-en="REMIX PROJECT">REMIX PROJECT</div>
                         </div>
                     </div>
                 </div>
@@ -700,8 +738,8 @@
                         <iframe class="step-media" src="https://www.youtube.com/embed/XCW95zjBUK4" 
                                 title="Gats" allowfullscreen></iframe>
                         <div class="step-info">
-                            <div class="step-role">DEVELOPMENT</div>
-                            <div class="step-name">EMERGING ARTIST</div>
+                            <div class="step-role" data-es="DESARROLLO" data-en="DEVELOPMENT">DEVELOPMENT</div>
+                            <div class="step-name" data-es="ARTISTA EMERGENTE" data-en="EMERGING ARTIST">EMERGING ARTIST</div>
                         </div>
                     </div>
                 </div>
@@ -710,15 +748,19 @@
 
         <!-- SOUND TURNTABLE -->
         <section class="sound-turntable">
-            <h2 class="section-title">SOUND</h2>
+            <h2 class="section-title" data-es="SONIDO" data-en="SOUND">SOUND</h2>
             <div class="turntable-container">
                 <div class="turntable">
                     <div class="vinyl"></div>
                 </div>
                 <div class="turntable-controls">
-                    <button class="turntable-btn">PLAY</button>
-                    <button class="turntable-btn">STOP</button>
+                    <button class="turntable-btn" id="playBtn">PLAY</button>
+                    <button class="turntable-btn" id="stopBtn">STOP</button>
                 </div>
+                <audio id="audioPlayer" loop>
+                    <source src="micancion.mp3" type="audio/mpeg">
+                    Tu navegador no soporta el elemento de audio.
+                </audio>
             </div>
             <div class="player-container">
                 <iframe style="border-radius:4px" 
@@ -736,19 +778,16 @@
         <!-- FOOTER PATCHBAY -->
         <footer class="footer-patchbay">
             <div class="contact-patch">
-                <h2 class="section-title">CONNECT</h2>
+                <h2 class="section-title" data-es="CONECTAR" data-en="CONNECT">CONNECT</h2>
                 <div class="patch-ports">
                     <a href="mailto:emc121091@me.com?subject=Musical Project Inquiry" class="patch-port port-primary">
-                        START PROJECT
+                        <span data-es="INICIAR PROYECTO" data-en="START PROJECT">START PROJECT</span>
                     </a>
                     <a href="https://edumecar.github.io/Book/" target="_blank" class="patch-port">
-                        BOOKING PLANS
+                        <span data-es="PLANES DE BOOKING" data-en="BOOKING PLANS">BOOKING PLANS</span>
                     </a>
                     <a href="https://www.linkedin.com/in/edumecar" target="_blank" class="patch-port">
-                        LINKEDIN
-                    </a>
-                    <a href="#" class="patch-port">
-                        CASE STUDIES
+                        <span data-es="LINKEDIN" data-en="LINKEDIN">LINKEDIN</span>
                     </a>
                 </div>
             </div>
@@ -766,6 +805,8 @@
         class RolandDashboard {
             constructor() {
                 this.currentLanguage = 'es';
+                this.isPlaying = false;
+                this.audioPlayer = document.getElementById('audioPlayer');
                 this.init();
             }
             
@@ -774,6 +815,7 @@
                 this.setupLanguageToggle();
                 this.setupTurntableControls();
                 this.setupSequenceSteps();
+                this.setupProjectCounter();
             }
             
             setupThemeToggle() {
@@ -783,8 +825,10 @@
                     const icon = themeToggle.querySelector('i');
                     if (document.body.classList.contains('light-mode')) {
                         icon.className = 'fas fa-sun';
+                        icon.style.color = '#FF6600';
                     } else {
                         icon.className = 'fas fa-adjust';
+                        icon.style.color = '';
                     }
                 });
             }
@@ -799,24 +843,44 @@
             }
             
             updateLanguage() {
-                // Implement language switching if needed
-                console.log('Language switched to:', this.currentLanguage);
+                document.querySelectorAll('[data-es]').forEach(element => {
+                    const text = element.getAttribute(`data-${this.currentLanguage}`);
+                    if (text) {
+                        element.textContent = text;
+                    }
+                });
             }
             
             setupTurntableControls() {
                 const turntable = document.querySelector('.turntable');
                 const vinyl = document.querySelector('.vinyl');
-                const playBtn = document.querySelector('.turntable-btn:nth-child(1)');
-                const stopBtn = document.querySelector('.turntable-btn:nth-child(2)');
+                const playBtn = document.getElementById('playBtn');
+                const stopBtn = document.getElementById('stopBtn');
                 
                 playBtn.addEventListener('click', () => {
-                    vinyl.style.animationPlayState = 'running';
-                    turntable.style.borderColor = '#FF6600';
+                    if (this.isPlaying) {
+                        this.audioPlayer.pause();
+                        vinyl.style.animationPlayState = 'paused';
+                        turntable.style.borderColor = '#666666';
+                        this.isPlaying = false;
+                    } else {
+                        this.audioPlayer.play().catch(e => {
+                            console.log('Audio play failed:', e);
+                            // Fallback: try to play through user interaction
+                            alert('Haz clic en PLAY nuevamente para reproducir el audio');
+                        });
+                        vinyl.style.animationPlayState = 'running';
+                        turntable.style.borderColor = '#FF6600';
+                        this.isPlaying = true;
+                    }
                 });
                 
                 stopBtn.addEventListener('click', () => {
+                    this.audioPlayer.pause();
+                    this.audioPlayer.currentTime = 0;
                     vinyl.style.animationPlayState = 'paused';
                     turntable.style.borderColor = '#666666';
+                    this.isPlaying = false;
                 });
             }
             
@@ -829,6 +893,25 @@
                         step.classList.add('step-active');
                     });
                 });
+            }
+
+            setupProjectCounter() {
+                // Animate counter number
+                const counterNumber = document.querySelector('.counter-number');
+                let count = 0;
+                const target = 47;
+                const duration = 2000;
+                const increment = target / (duration / 16);
+                
+                const timer = setInterval(() => {
+                    count += increment;
+                    if (count >= target) {
+                        counterNumber.textContent = target;
+                        clearInterval(timer);
+                    } else {
+                        counterNumber.textContent = Math.floor(count);
+                    }
+                }, 16);
             }
         }
         
