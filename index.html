@@ -2,140 +2,197 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
+  <title>Eduardo Mejía // Portfolio Groove Fusion</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EDUARDO MEJÍA // SISTEMA NERVIOSO MUSICAL</title>
+  <!-- Font Awesome CDNs, porque industrial y punk -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     :root {
-      --roland-core: #CC0000;
-      --digital-cyan: #00FFFF;
-      --glitch-magenta: #FF00FF;
-      --orange-roland: #FF6600;
-      --black-absolute: #090A12;
-      --gray-dark: #181929;
-      --gray-soft: #232440;
-      --white-soft: #F7FAFF;
-      --contact-bg: #15192C;
+      --bg-dark: #171921;
+      --bg-card: #181B2E;
+      --cyan: #00FFD7;
+      --naranja: #FF6600;
+      --magenta: #EC008C;
+      --roland-red: #FF3A19;
+      --text: #F8F8F8;
+      --subtitle: #C7FCF7;
+      --glitch: #FA12C5;
+      --accent: #11bff0;
+      --led: #9bf0e2;
     }
-    body { background: var(--black-absolute); color: var(--white-soft); font-family: 'Courier New', monospace; margin: 0; padding: 0; min-height: 100vh;}
-    .container { max-width: 1380px; margin: 0 auto; padding: 42px 32px 22px 32px;}
-    @media (max-width:1400px) {.container{padding-left:2vw;padding-right:2vw;}}
-    /* HERO 2-columnas */
-    .hero-grid {
-      display: grid; grid-template-columns: 1.1fr 1.4fr; gap: 60px; align-items: center;
-      background: var(--gray-soft); border-radius: 28px;
-      box-shadow: 0 7px 56px #00e9a826, 0 1px 32px #443bff16;
-      margin-bottom: 65px; padding: 65px 50px;
-      min-height: 410px;
+    body {
+      background: var(--bg-dark) url('https://grainy-gradients.vercel.app/noise.svg') repeat;
+      color: var(--text);
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      font-family: 'Courier New', monospace;
+      letter-spacing: 0.02em;
     }
-    @media (max-width:900px) { .hero-grid { grid-template-columns: 1fr; padding: 30px 10px; gap:35px; } }
-    .hero-left { display: flex; flex-direction: column; gap: 11px; justify-content: center;}
-    .main-title { font-size: 2.6rem; font-weight: bold; text-transform: uppercase; letter-spacing: 0.13em; margin-bottom: 0; color: var(--digital-cyan); font-family: 'Arial Black', Arial, sans-serif;}
-    .subtitle { color: var(--roland-core); font-size: 1.17rem; margin-bottom: 2px; text-transform: uppercase; letter-spacing: .09em;}
-    .description { font-size: 1.05rem; color: var(--white-soft); font-family: inherit; line-height: 1.6; margin-bottom:0; letter-spacing:.02em;}
-    .hero-right { display: flex; flex-direction: column; align-items: center; justify-content: center; width:100%; }
-    /* VINILO deck */
-    .turntable { width: 220px; height: 220px; border-radius: 50%; background: var(--black-absolute); border: 14px solid var(--gray-dark); box-shadow: 0 4px 44px var(--digital-cyan)2a; margin:0 auto 22px auto; display: flex; align-items: center; justify-content: center; position: relative; }
-    .vinyl { width: 143px; height: 143px; border-radius: 50%; background: radial-gradient(circle at 52% 54%,#24294c 45%,#0d0e14 100%); animation: vinylSpin 15s linear infinite; animation-play-state: paused; position:relative; }
+    .main-wrapper {
+      max-width: 1250px; margin: 0 auto; padding: 44px 28px 12px 28px;
+      display: flex; flex-direction: column; gap:58px;
+    }
+    /* HERO Layout */
+    .hero-block {
+      display: flex; flex-direction: row; gap: 64px; align-items: center;
+      min-height: 455px; /* visual air */
+    }
+    @media (max-width:950px) {.hero-block{flex-direction: column; gap:38px;align-items:stretch;padding:0;}}
+    .hero-text {
+      flex: 1.03; display: flex; flex-direction: column; gap:18px;
+      justify-content: center; min-width: 287px;
+    }
+    .hero-title {
+      font-size: 2.8rem; font-family: 'Arial Black', Arial, sans-serif;
+      color: var(--cyan); font-weight: bold; text-transform: uppercase;
+      line-height: 1.1; margin-bottom: 0;
+      letter-spacing: 0.12em;
+      user-select: all;
+    }
+    .hero-sub {
+      color: var(--roland-red);
+      font-size: 1.19rem; font-weight: bold;
+      letter-spacing: 0.10em; text-shadow: 0 0 6px #ff57003a;
+    }
+    .hero-desc {
+      color: var(--subtitle);
+      font-size: 1.05rem; line-height: 1.6;
+      font-family: inherit;
+      margin-bottom:8px;
+    }
+    .hero-tip {
+      color: #FF6600cc; font-size: 0.97em; background: #142119ad;
+      padding: 7px 15px; border-radius: 12px; font-family: inherit;
+      max-width: 420px;box-shadow:0 1.8px 9px #ffba6d21;
+      margin: 8px 0 0 0;letter-spacing:.09em;
+    }
+    /* VINYL deck */
+    .music-block {
+      flex:1.2; display: flex; flex-direction: column; align-items: center;gap:0px;
+      position:relative; z-index:2;
+    }
+    .vinyl-deck-box {
+      display: flex; flex-direction: column; align-items: center; gap:9px;
+      background: var(--bg-card);border-radius:21px;padding:32px 30px 26px 30px;box-shadow: 0 4px 38px #13bfbf25;
+      min-width:270px;
+      position:relative;
+    }
+    /* A bit of lo-fi */
+    .deck-sticker {position:absolute;top:11px;right:22px;z-index:20;}
+    .deck-sticker img {width:35px;height:35px;filter:grayscale(11%) contrast(1.2) drop-shadow(0 2px 7px #fa4b9c7a);border-radius:8px;}
+    /* Vinyl/Plato anim */
+    .vinyl-wrap { position: relative; }
+    .vinyl { width: 140px; height: 140px; border-radius: 50%; background: radial-gradient(circle at 48% 56%,#242834 52%,#060702 100%); animation: vinylSpin 13s linear infinite; animation-play-state: paused; box-shadow:0 3.5px 20px #00fff777; position:relative; }
     @keyframes vinylSpin {0%{transform:rotate(0deg);}100%{transform:rotate(360deg);}}
-    .vinyl-logo { position: absolute; left: 50%; top: 50%; width: 54px; height: 54px; transform:translate(-50%,-50%); border-radius: 50%; background: var(--white-soft); box-shadow: 0 2px 12px #00000035;}
-    .led-dot { width:13px;height:13px;background:var(--digital-cyan);border-radius:50%;position:absolute;left:51.5%;top:7%;z-index:4;box-shadow:0 0 10px var(--digital-cyan);}
-    .led-dot.off{background:#232440; box-shadow:none;}
-    /* Botonera y EQ */
-    .controls-deck { display: flex; gap: 18px; margin:8px auto 2px auto; justify-content: center; align-items: center;}
-    .roland-btn { width: 46px; height: 46px; border-radius: 13px; background: var(--gray-dark); display: flex; align-items: center; justify-content: center; font-size: 1.17em; color: var(--digital-cyan); border: 3px solid var(--orange-roland); box-shadow: 0 2px 14px #00faff36,0 1px 2px #23298f44; cursor:pointer; transition: background .14s, color .13s, box-shadow .13s, border-color .16s, transform .12s;}
-    .roland-btn:active, .roland-btn:focus { background: #111c24; color: #fffbb3; border-color: var(--digital-cyan);}
-    .roland-btn.active { background: var(--orange-roland); color: var(--black-absolute); border-color: var(--digital-cyan);}
-    .audio-track-label { font-size:1em; color:var(--digital-cyan); margin-left: 12px; font-family:inherit; letter-spacing:.8px;}
-    .eq-bar { margin: 8px auto 14px auto; width: 188px; height: 38px; background: #071521; border-radius: 13px; display: flex; align-items: flex-end; overflow: hidden; gap:3.5px;padding:3px; box-shadow: 0 1.5px 14px #11f8f6a7; border:2.2px solid var(--digital-cyan);}
-    .eq-bar-seg { width: 13px; border-radius: 7px 7px 5px 5px; background:var(--digital-cyan); height:10px; transition: height .13s, background .17s;}
+    .vinyl-logo { position: absolute; left: 50%; top: 50%; width: 53px; height: 53px; transform:translate(-50%,-50%); filter: drop-shadow(0 3px 12px #00FFD733);}
+    .deck-led { width:11px;height:11px;background:var(--led);border-radius:50%;position:absolute;left:70%;top:14%;box-shadow:0 0 11px var(--led); transition: opacity .15s;}
+    .deck-led.off{opacity:.33;background:#18283a;box-shadow: none;}
+    .deck-controls {
+      display: flex; gap: 14px; margin:18px auto 4px auto; justify-content: center; align-items: center;
+    }
+    .deck-btn {
+      width: 39px; height: 39px; border-radius: 12px; background: #22242b; box-shadow: 0 1px 8px #1bfcfc19,0 1.5px 8px #f400ff21,0 1.1px 4px #ff660025;
+      border:2.5px solid var(--roland-red);
+      font-size: 1.12em; color: var(--digital-cyan);
+      display: flex; align-items: center; justify-content: center;
+      cursor:pointer; transition: background .15s, border-color .18s, color .14s, transform .10s;
+    }
+    .deck-btn:active { background: var(--glitch); border-color: var(--digital-cyan); color: #fff;}
+    .deck-btn.playing { background: var(--digital-cyan); color: var(--black-absolute);}
+    .track-label { font-size:.97em; color:var(--cyan); margin-left:10px; letter-spacing:.07em; }
+    /* Animated VU/EQ */
+    .eq-collage {
+      width: 136px;display:flex;gap:4px;
+      align-items:flex-end;justify-content:center;margin:12px auto 2px auto;
+      height:29px;overflow:hidden;
+      background:linear-gradient(90deg,#0f2d43 94%,#ffeeea03 100%);
+      border-radius:7px;box-shadow:0 1.2px 13px #00ffd742,inset 0 -4px 12px #ff00ff15;
+      border:1.8px solid var(--digital-cyan);
+    }
+    .eq-bar {
+      transition: height .09s, background .14s; width: 12px; border-radius:6px 6px 5px 5px;
+      background: linear-gradient(180deg,var(--digital-cyan) 85%,var(--naranja) 100%);
+      opacity:.83;
+    }
     /* Spotify */
-    .spotify-frame { border-radius:8px;border:none;width:100%;max-width:330px;min-height:82px;margin:10px auto 0 auto;box-shadow:0 1.5px 9px #00faff33;}
-    /* Secciones */
-    .section-services { margin:52px 0 28px 0;}
-    .services-title { color:var(--digital-cyan); font-size:1.09rem; font-weight:800; letter-spacing:1.1px; text-transform:uppercase; margin-bottom:13px;}
-    .services-grid{ display: grid; grid-template-columns: repeat(3,1fr); gap: 30px; width: 100%;}
-    .service-card{ background: var(--gray-dark); border:2.2px solid var(--digital-cyan); border-radius:15px; box-shadow:0 3.5px 18px #00fff13b; padding:30px 15px 15px 15px; transition: box-shadow .14s, border-color .15s; display: flex; flex-direction: column; align-items: center; min-width: 0;}
-    .service-card:hover{ border-color:var(--glitch-magenta); box-shadow:0 2px 22px #ff009966;}
-    .service-header{ display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:12px;}
-    .service-icon{ color: var(--roland-core); font-size:1.9rem; }
-    .service-name{ font-size:1.04rem;font-weight:700;color:var(--digital-cyan);text-transform:uppercase;letter-spacing:.62px;}
-    .service-desc{ color:var(--white-soft);line-height:1.33;font-size:.98rem; margin-top:2px;text-align:center;}
-    @media(max-width:980px){ .services-grid { grid-template-columns: 1fr; } }
+    .spotify-embed { width:100%;max-width:320px;margin:17px auto 0 auto;display:block;border-radius:8px;box-shadow:0 1px 3px #02949417;}
+    /* Servicios */
+    .services-block{margin:22px 0 19px 0;}
+    .services-title{color:var(--digital-cyan); font-size:1.06rem;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;margin-bottom:16px;}
+    .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;width:100%;}
+    .service-card{background: var(--bg-card);border:2.2px solid var(--naranja);border-radius:16px;box-shadow:0 3px 13px #ff660043;padding:27px 13px 15px 13px;transition:box-shadow .14s,border-color .13s;display:flex;flex-direction:column;align-items:center;min-width: 0;}
+    .service-card:hover{border-color:var(--glitch-magenta);box-shadow:0 2px 22px #ff00ff52;}
+    .service-header{display:flex;align-items:center;justify-content:center;gap:13px;margin-bottom:10px;}
+    .service-icon{color: var(--roland-red); font-size:1.8rem;}
+    .service-name{font-size:.96rem;font-weight:700;color:var(--digital-cyan);text-transform:uppercase;letter-spacing:.62px;}
+    .service-desc{color:var(--subtitle);line-height:1.36;font-size:0.95rem;margin-top:1px;text-align:center;}
+    @media(max-width:930px){.services-grid{grid-template-columns:1fr;}}
     /* Videos */
-    .section-2 {margin-bottom: 46px;}
-    .video-player-frame { display: flex; justify-content: center; align-items: center; background: var(--gray-dark); border-radius: 13px; border: 2.3px solid var(--digital-cyan); margin: 0 auto 0 auto; box-shadow: 0 4px 17px #00f8ff11; max-width: 960px; overflow: hidden; min-height: 190px;}
-    .video-title{ color: var(--glitch-magenta); text-align:center; font-size: 1.1rem; margin:13px 0 11px 0;}
-    .miniaturenav{ display:flex;justify-content:center;margin-top:2px;}
-    .video-thumbs{ display:flex; gap:14px; margin:0 auto 8px auto; flex-wrap:wrap;justify-content:center;}
-    .video-thumb{ width:47px;height:32px;border-radius:6px;border:2.2px solid var(--digital-cyan);overflow:hidden;cursor:pointer;transition:border-color .13s,box-shadow .12s;opacity:.8;}
-    .video-thumb.active{ border-color:var(--roland-core); opacity:1; box-shadow:0 1.5px 9px #ff3a79b0;}
+    .videos-section{margin:44px 0 30px 0;}
+    .video-player-frame{background:#181230;border-radius:11px;border:2.3px solid var(--magenta);margin:0 auto 0 auto;box-shadow:0 4px 17px #ff00ff12;max-width:99vw;min-height:184px;}
+    .video-title{color: var(--magenta); text-align:center; font-size: 1.06rem; margin:9px 0 12px 0;}
+    .miniaturenav{ display:flex;justify-content:center;margin-top:1.5px;}
+    .video-thumbs{ display:flex; gap:13px; margin:0 auto 7px auto; flex-wrap:wrap;justify-content:center;}
+    .video-thumb{ width:46px;height:28px;border-radius:7px;border:2px solid var(--digital-cyan);overflow:hidden;cursor:pointer;transition:border-color .13s,box-shadow .12s;opacity:.85;}
+    .video-thumb.active{ border-color:var(--roland-core); opacity:1; box-shadow:0 1.5px 7px #FF0080b0;}
     .video-thumb img{ width:100%;height:100%;object-fit:cover;display:block;}
     .video-dots{ display:flex;gap:7px;align-items:center;justify-content:center;margin-bottom:3px;}
-    .video-dot{width:13px;height:13px;border-radius:50%;background:var(--gray-dark);border:2px solid var(--digital-cyan);cursor:pointer;transition:background .13s,border-color .13s;}
+    .video-dot{width:12px;height:12px;border-radius:50%;background:#1e2333;border:2px solid var(--cyan);cursor:pointer;transition:background .13s,border-color .13s;}
     .video-dot.active{ background:var(--glitch-magenta); border-color:var(--roland-core);}
     /* Contacto */
-    .section-3{ margin-top:23px;background:var(--contact-bg);border-radius:11px;padding:24px 0 20px 0;}
-    .contact-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:21px; max-width:1060px; margin:0 auto;}
-    .contact-port{ padding:20px; background: var(--gray-dark); border:1.6px solid var(--digital-cyan); border-radius:7px; text-align:center; text-decoration:none; color:var(--digital-cyan); transition:all 0.18s; text-transform:uppercase; font-family:inherit; font-weight:600; font-size:1em; letter-spacing:.8px;}
-    .contact-port:hover{ border-color:var(--glitch-magenta); background: #191a39;}
-    .port-primary{ background: var(--roland-core); border-color: var(--roland-core); color:#fff;}
-    .port-primary:hover{ background: transparent; color:var(--roland-core);}
-    .footer{ margin-top:16px;text-align:center;color:#aaa9bb;font-size:1em;letter-spacing:.75px;}
-    .whatsapp-float{ position:fixed;bottom:20px;right:20px;background:var(--digital-cyan);color:var(--black-absolute);width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 4px 20px #00faff26;z-index:1000;}
-    @media(max-width: 1200px){.container{padding-left:1vw;padding-right:1vw;} .hero-grid{padding:35px 2vw;}}
-    @media(max-width: 700px){ .hero-grid{padding:14px 0;}.services-grid,.contact-grid{grid-template-columns:1fr;}}
+    .contact-block{margin: 28px 0 12px 0;}
+    .contact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:930px;margin:0 auto;}
+    .contact-port{padding:18px;background: var(--bg-card);border:1.4px solid var(--cyan);border-radius:6px;text-align:center;text-decoration:none;color:var(--cyan);transition:all 0.16s;text-transform:uppercase;font-family:inherit;font-weight:600;font-size:1em;}
+    .contact-port:hover{border-color:var(--glitch-magenta);background: #1a1e2e;}
+    .port-primary{background: var(--roland-red); border-color: var(--roland-red); color:#fff;}
+    .port-primary:hover{ background: transparent; color:var(--roland-red);}
+    .collage-footer{margin-top:19px;text-align:center;color:#97d8ffb6;font-size:1em;letter-spacing:.74px;}
+    /* WhatsApp */
+    .whatsapp-float{position:fixed;bottom:19px;right:19px;background:var(--digital-cyan);color:#0b0b24;width:53px;height:53px;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 4px 16px #10fffa1c;z-index:9999;}
   </style>
 </head>
 <body>
-  <div class="container">
-    <!-- Topbar switches -->
-    <div class="top-bar">
-      <div class="toggle-switch" id="themeSwitch" title="Tema oscuro / claro">
-        <div class="toggle-slider"><i class="fas fa-moon"></i></div>
-        <span class="toggle-label" id="themeLabel">Oscuro</span>
-      </div>
-      <div class="toggle-switch" id="langSwitch" title="Idioma">
-        <div class="toggle-slider"><i class="fas fa-language"></i></div>
-        <span class="toggle-label" id="langLabel">ES</span>
-      </div>
-    </div>
-
-    <!-- HERO -->
-    <section class="hero-grid">
-      <div class="hero-left">
-        <h1 class="main-title">EDUARDO MEJÍA // SISTEMA NERVIOSO MUSICAL</h1>
-        <div class="subtitle">VOLTAJE → STREAM → ALGORITMO</div>
-        <div class="description">
-          Siente la calidez del groove. Dale play.<br>
-          Booking, creatividad y arquitectura sónica fusionadas.<br>
-          <span style="color:var(--orange-roland);font-weight:bold;">Esto es más que música, es espacio, emoción y memoria eléctrica.</span>
+  <div class="main-wrapper">
+    <!-- HERO (title, claim, vinyl deck) -->
+    <section class="hero-block">
+      <div class="hero-text">
+        <div class="hero-title">Eduardo Mejía<br>// Portfolio Groove Fusion</div>
+        <div class="hero-sub">Booking // Synths // Data // Cassette // Club</div>
+        <div class="hero-desc">
+          Aquí no hay plantillas.<br>
+          <span style="color: var(--orange);font-weight:bold;">Vinilo, luz y alma cuando tú das play</span>.<br>
+          Booking, arquitectura sónica & distribución para sonidos mongrel, global, club y raíz.
         </div>
+        <div class="hero-tip">[translate:Pon play. No busques plantilla. Esto es un collage, una onda, un groove, un caos ordenado, como mi música.]</div>
       </div>
-      <div class="hero-right">
-        <div class="turntable" id="turntable">
-          <div class="vinyl" id="vinyl">
-            <img src="logo.svg" alt="logo" class="vinyl-logo">
-            <div class="led-dot off" id="ledDot"></div>
+      <div class="music-block">
+        <div class="vinyl-deck-box">
+          <div class="deck-sticker"><img src="https://upload.wikimedia.org/wikipedia/commons/0/0f/WinampLogoOld.png" alt="winamp"></div>
+          <div class="vinyl-wrap">
+            <div class="vinyl" id="vinyl">
+              <img src="logo.svg" alt="logo" class="vinyl-logo">
+              <div class="deck-led off" id="deckLed"></div>
+            </div>
           </div>
+          <div class="deck-controls">
+            <button class="deck-btn" id="backSong"><i class="fas fa-backward"></i></button>
+            <button class="deck-btn" id="playBtn"><i class="fas fa-play"></i></button>
+            <button class="deck-btn" id="stopBtn"><i class="fas fa-stop"></i></button>
+            <button class="deck-btn" id="nextSong"><i class="fas fa-forward"></i></button>
+            <span class="track-label" id="audioTrackLabel">track 1/5</span>
+          </div>
+          <div class="eq-collage" id="eqBar">
+            <div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div>
+            <div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div>
+            <div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div>
+          </div>
+          <iframe class="spotify-embed" id="spotifyFrame" src="https://open.spotify.com/embed/playlist/26qaG2E3bW6ZNIk5mvPpjr?utm_source=generator" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" height="84"></iframe>
         </div>
-        <div class="controls-deck">
-          <button class="roland-btn" id="backSong" aria-label="Anterior"><i class="fas fa-backward"></i></button>
-          <button class="roland-btn" id="playBtn" aria-label="Play"><i class="fas fa-play"></i></button>
-          <button class="roland-btn" id="stopBtn" aria-label="Stop"><i class="fas fa-stop"></i></button>
-          <button class="roland-btn" id="nextSong" aria-label="Siguiente"><i class="fas fa-forward"></i></button>
-          <span class="audio-track-label" id="audioTrackLabel">track 1/5</span>
-        </div>
-        <div class="eq-bar" id="eqBar">
-          <div class="eq-bar-seg"></div><div class="eq-bar-seg"></div><div class="eq-bar-seg"></div>
-          <div class="eq-bar-seg"></div><div class="eq-bar-seg"></div><div class="eq-bar-seg"></div>
-          <div class="eq-bar-seg"></div><div class="eq-bar-seg"></div><div class="eq-bar-seg"></div><div class="eq-bar-seg"></div>
-        </div>
-        <iframe class="spotify-frame" id="spotifyFrame" src="https://open.spotify.com/embed/playlist/26qaG2E3bW6ZNIk5mvPpjr?utm_source=generator" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" height="84"></iframe>
       </div>
     </section>
 
-    <section class="section-services">
+    <section class="services-block">
       <div class="services-title">Servicios</div>
       <div class="services-grid">
         <div class="service-card">
@@ -143,34 +200,34 @@
             <span class="service-icon"><i class="fas fa-route"></i></span>
             <span class="service-name">BOOKING & TOURS</span>
           </div>
-          <p class="service-desc">
-            Circuitos de performance y gestión neuronal de giras internacionales.
-          </p>
+          <div class="service-desc">
+            Giras internacionales, circuitos con flujo humano y digital.
+          </div>
         </div>
         <div class="service-card">
           <div class="service-header">
             <span class="service-icon"><i class="fas fa-network-wired"></i></span>
             <span class="service-name">DIGITAL FLOW</span>
           </div>
-          <p class="service-desc">
-            Estrategias multiplataforma y desarrollo de ecosistemas digitales.
-          </p>
+          <div class="service-desc">
+            Estrategias multiplataforma fusionando código, ritmo y comunidad.
+          </div>
         </div>
         <div class="service-card">
           <div class="service-header">
             <span class="service-icon"><i class="fas fa-wave-square"></i></span>
             <span class="service-name">SYNTH STRATEGY</span>
           </div>
-          <p class="service-desc">
-            Arquitectura de sonido y frameworks estratégicos para artistas.
-          </p>
+          <div class="service-desc">
+            Arquitecturas de sonido, frameworks disruptivos para artistas híbridos.
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="section-2">
+    <section class="videos-section">
       <div class="video-player-frame">
-        <iframe id="singleVideo" width="100%" height="360" src="https://www.youtube.com/embed/ZGxSXchZNfo?modestbranding=1&rel=0" frameborder="0" allowfullscreen></iframe>
+        <iframe id="singleVideo" width="100%" height="340" src="https://www.youtube.com/embed/ZGxSXchZNfo?modestbranding=1&rel=0" frameborder="0" allowfullscreen></iframe>
       </div>
       <div id="videoTitle" class="video-title"></div>
       <div class="miniaturenav">
@@ -179,15 +236,15 @@
       <div id="videoDots" class="video-dots"></div>
     </section>
 
-    <section class="section-3">
+    <section class="contact-block">
       <div class="contact-grid">
         <a href="mailto:emc121091@me.com?subject=PROYECTO MUSICAL" class="contact-port port-primary">INICIAR PROYECTO</a>
         <a href="https://edumecar.github.io/Book/" target="_blank" class="contact-port">PLANES BOOKING</a>
         <a href="https://www.linkedin.com/in/edumecar" target="_blank" class="contact-port">LINKEDIN</a>
       </div>
     </section>
-    <div class="footer">
-      Portfolio de Eduardo Mejía – Booking, groove, data, club, futuro synth.
+    <div class="collage-footer">
+      Portfolio de Eduardo Mejía // creado como un set: con glitches, errores y alma.
     </div>
   </div>
   <a href="https://wa.me/525512478139?text=Hi,%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20discuss%20a%20music%20project." class="whatsapp-float" target="_blank">
@@ -198,23 +255,7 @@
     Tu navegador no soporta el elemento audio.
   </audio>
   <script>
-    // DARK/LIGHT SWITCH
-    const themeSwitch = document.getElementById('themeSwitch');
-    let darkTheme = true;
-    themeSwitch.onclick = () => {
-      darkTheme = !darkTheme;
-      document.body.classList.toggle('light-theme', !darkTheme);
-      themeSwitch.classList.toggle('on', !darkTheme);
-      themeSwitch.querySelector('.toggle-slider i').className = darkTheme ? 'fas fa-moon' : 'fas fa-sun';
-      document.getElementById('themeLabel').textContent = darkTheme ? 'Oscuro' : 'Claro';
-    };
-    // ES/EN SWITCH MAQUETA
-    const langSwitch = document.getElementById('langSwitch');
-    langSwitch.onclick = () => {
-      langSwitch.classList.toggle('on');
-      document.getElementById('langLabel').textContent = langSwitch.classList.contains('on') ? 'EN' : 'ES';
-    };
-    // ----------- VINYL & AUDIO -------------
+    // ------- VINYL & AUDIO ----------
     let currentTrack = 1, totalTracks = 5;
     const audio = document.getElementById('localAudio');
     const audioSource = document.getElementById('audioSource');
@@ -223,12 +264,9 @@
     const backSong = document.getElementById('backSong');
     const nextSong = document.getElementById('nextSong');
     const vinyl = document.getElementById('vinyl');
-    const turntable = document.getElementById('turntable');
-    const led = document.getElementById('ledDot');
+    const led = document.getElementById('deckLed');
     const audioTrackLabel = document.getElementById('audioTrackLabel');
-    function updateTrackLabel() {
-      audioTrackLabel.textContent = `track ${currentTrack}/5`;
-    }
+    function updateTrackLabel() { audioTrackLabel.textContent = `track ${currentTrack}/5`; }
     function setTrack(num) {
       if(num<1) num = totalTracks;
       if(num>totalTracks) num = 1;
@@ -236,7 +274,7 @@
       audio.pause(); audio.currentTime=0;
       vinyl.style.animationPlayState='paused';
       led.classList.add('off');
-      playBtn.classList.remove("active");
+      playBtn.classList.remove("playing");
       audioSource.src = `micancion${currentTrack===1?"":currentTrack}.mp3`;
       audio.load();
       updateTrackLabel();
@@ -244,9 +282,10 @@
     backSong.onclick = ()=>{ setTrack(currentTrack-1);}
     nextSong.onclick = ()=>{ setTrack(currentTrack+1);}
     setTrack(1);
-    // EQ BAR ANIMATION
-    let eqLoop = null; let audioCtx, analyser, src, dataArray;
-    const eqBarSeg = document.querySelectorAll('.eq-bar-seg');
+
+    // EQ STYLE
+    let eqLoop = null, audioCtx, analyser, src, dataArray;
+    const eqBarSeg = document.querySelectorAll('.eq-bar');
     function setupEQ(){
       audioCtx = new (window.AudioContext||window.webkitAudioContext)();
       src = audioCtx.createMediaElementSource(audio);
@@ -258,10 +297,10 @@
     function animateEQ(){
       analyser.getByteFrequencyData(dataArray);
       for(let i=0;i<eqBarSeg.length;i++){
-        let val = (dataArray[i]||4)/2.15+8;
+        let val = (dataArray[i]||8)/2 + 10 + (Math.random()*6);
         eqBarSeg[i].style.height = val+"px";
-        eqBarSeg[i].style.background = `linear-gradient(180deg, var(--digital-cyan) 85%, var(--orange-roland) 100%)`;
-        eqBarSeg[i].style.opacity = 0.84+0.13*Math.random();
+        eqBarSeg[i].style.background = `linear-gradient(180deg, var(--cyan) 75%, var(--magenta) 100%)`;
+        eqBarSeg[i].style.opacity = .81 + .17*Math.random();
       }
       eqLoop = requestAnimationFrame(animateEQ);
     }
@@ -270,18 +309,18 @@
       audio.play();
       vinyl.style.animationPlayState='running';
       led.classList.remove('off');
-      playBtn.classList.add("active");
+      playBtn.classList.add("playing");
       animateEQ();
     };
     stopBtn.onclick = ()=>{
       audio.pause(); audio.currentTime=0;
       vinyl.style.animationPlayState='paused';
       led.classList.add('off');
-      playBtn.classList.remove("active");
+      playBtn.classList.remove("playing");
       if(eqLoop) cancelAnimationFrame(eqLoop);
       eqBarSeg.forEach(el => el.style.height='10px');
     };
-    // -------- VIDEOS (no se tocan) --------
+    // -------- VIDEOS --------
     const videos = [
       {id: "ZGxSXchZNfo", title: "Boiler Room 1"},
       {id: "SD3T_Or_mvk", title: "Tra Tra Live"},
