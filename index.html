@@ -51,13 +51,9 @@
       font-size: 1.2rem; color: var(--roland-core); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 15px;
     }
     .description { font-size: 1rem; line-height: 1.6; color: rgba(255,255,255,0.9); margin-bottom: 20px;}
-    .onda-detroit {
-      margin-top: 12px;
+    #eqCanvas {
+      width: 90%; max-width: 420px; margin: 20px auto 0 auto; display: none; background: transparent; border: none;
       display: block;
-      width: 100%;
-      background: transparent;
-      border: none;
-      filter: drop-shadow(0 0 10px var(--digital-cyan));
     }
 
     .sound-module {
@@ -78,6 +74,15 @@
         repeating-radial-gradient(circle at center, var(--black-absolute) 0%, var(--black-absolute) 2%, var(--grid-gray) 2.1%, var(--grid-gray) 4%);
       animation: quantumSpin 15s linear infinite;
       animation-play-state: paused;
+      position: relative;
+    }
+    /* Logo centrado del vinilo */
+    .vinyl-logo {
+      position: absolute;
+      left: 50%; top: 50%; width: 65px; height: 65px;
+      transform: translate(-50%,-50%);
+      pointer-events: none; z-index: 3;
+      filter: drop-shadow(0 0 8px #00FFFF66);
     }
     @keyframes quantumSpin { 0% { transform: rotate(0deg);} 100% {transform: rotate(360deg);} }
     .player-controls { display: flex; gap: 10px; justify-content: center; }
@@ -140,6 +145,11 @@
       margin-top:16px;text-align:center;color:rgba(255,255,255,0.5);font-size:0.98em;letter-spacing:1px;
     }
 
+    /* Separador SVG cable/onda */
+    .svg-separator {
+      margin:32px auto 28px;width:99%;
+    }
+
     /* WhatsApp Floating */
     .whatsapp-float {
       position: fixed; bottom: 20px; right: 20px;
@@ -171,7 +181,7 @@
       <button class="theme-btn" id="themeToggle"><i class="fas fa-adjust"></i></button>
     </div>
 
-    <!-- SECCIÓN 1: Hero, onda animada, Turntable, Spotify -->
+    <!-- SECCIÓN 1: Hero, EQ, Vinilo, Spotify -->
     <section class="section-1">
       <div class="title-content">
         <h1 class="main-title">ROLAND CORE × CLOUD FLOW</h1>
@@ -181,12 +191,15 @@
           Arquitecturas sónicas, frameworks analógicos, y creatividad iluminando cada cable.<br>
           <span style="color:var(--digital-cyan);font-size:1.05em;">Diseñado para sellos, artistas, promotores y soñadores eléctricos.</span>
         </p>
-        <canvas class="onda-detroit" id="waveform" width="415" height="65"></canvas>
+        <canvas id="eqCanvas" width="260" height="44"></canvas>
       </div>
       <div class="sound-module">
         <div class="turntable-container">
           <div class="hologram-turntable">
-            <div class="quantum-vinyl"></div>
+            <div class="quantum-vinyl">
+              <!-- Logo SVG centrado, girando con el vinilo -->
+              <img src="logo.svg" alt="logo" class="vinyl-logo">
+            </div>
           </div>
           <div class="player-controls">
             <button class="control-btn" id="playBtn">PLAY</button>
@@ -202,6 +215,15 @@
         </div>
       </div>
     </section>
+
+    <!-- SVG cable separador techno -->
+    <div class="svg-separator">
+      <svg width="100%" height="40" viewBox="0 0 900 41" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 20 Q 150 0 300 20 T 600 20 T 900 20" stroke="#00FFFF" stroke-width="4" fill="transparent"/>
+        <circle cx="0" cy="20" r="7" fill="#FF00FF"/>
+        <circle cx="900" cy="20" r="7" fill="#CC0000"/>
+      </svg>
+    </div>
 
     <!-- SECCIÓN 2: Galería de Videos techno-cool -->
     <section class="section-2">
@@ -263,43 +285,55 @@
     <i class="fab fa-whatsapp" style="font-size: 1.7rem;"></i>
   </a>
   <script>
-    // Onda visual animada
-    const canvas = document.getElementById('waveform');
-    const ctx = canvas.getContext('2d');
-    let t = 0;
-    function drawWave() {
-      ctx.clearRect(0,0,canvas.width,canvas.height);
-      ctx.beginPath();
-      for(let x=0;x<canvas.width;x++){
-        let y = 32 + Math.sin((x/20)+t)*18 + Math.sin((x/8)-t)*5;
-        ctx.lineTo(x, y);
-      }
-      ctx.strokeStyle = '#00FFFF';
-      ctx.lineWidth = 2;
-      ctx.shadowColor = '#FF00FF';
-      ctx.shadowBlur = 7;
-      ctx.stroke();
-      t+=0.07;
-      requestAnimationFrame(drawWave);
-    }
-    drawWave();
-
-    // Audio, Turntable, Vinyl animado
+    // Ecualizador animado solo con audio
     const audio = document.getElementById('localAudio');
     const playBtn = document.getElementById('playBtn');
     const stopBtn = document.getElementById('stopBtn');
     const vinyl = document.querySelector('.quantum-vinyl');
     const turntable = document.querySelector('.hologram-turntable');
+    const eqCanvas = document.getElementById('eqCanvas');
+    const eqCtx = eqCanvas.getContext('2d');
+    let eqAnim = null, analyser, src, dataArray, audioCtx;
+
+    function setupEQ(){
+      audioCtx = new (window.AudioContext||window.webkitAudioContext)();
+      src = audioCtx.createMediaElementSource(audio);
+      analyser = audioCtx.createAnalyser();
+      src.connect(analyser);
+      analyser.connect(audioCtx.destination);
+      analyser.fftSize = 32;
+      dataArray = new Uint8Array(analyser.frequencyBinCount);
+    }
+
+    function drawEQ(){
+      eqCtx.clearRect(0,0,eqCanvas.width,eqCanvas.height);
+      analyser.getByteFrequencyData(dataArray);
+      let bars = dataArray.length, barW = (eqCanvas.width / bars)-1;
+      for(let i=0;i<bars;i++){
+        let val = dataArray[i]/2;
+        eqCtx.fillStyle = `hsl(${180+(i*12)},100%,60%)`;
+        eqCtx.fillRect(i*(barW+1),eqCanvas.height-val, barW, val);
+        eqCtx.shadowColor = '#00ffffCC';
+        eqCtx.shadowBlur = 6;
+      }
+      eqAnim = requestAnimationFrame(drawEQ);
+    }
+
     playBtn.addEventListener('click',()=>{
+      if(!audioCtx){ setupEQ(); }
+      eqCanvas.style.display='block';
       audio.play(); vinyl.style.animationPlayState='running';
       turntable.style.borderColor='#FF6600';
-      turntable.style.boxShadow='0 0 25px rgba(255,102,0,0.7)';
+      turntable.style.boxShadow='0 0 25px #ff660088';
+      drawEQ();
     });
     stopBtn.addEventListener('click',()=>{
       audio.pause(); audio.currentTime=0;
       vinyl.style.animationPlayState='paused';
       turntable.style.borderColor='#666';
-      turntable.style.boxShadow='0 0 20px rgba(0,255,255,0.3)';
+      turntable.style.boxShadow='0 0 20px #00ffff55';
+      if(eqAnim) cancelAnimationFrame(eqAnim);
+      eqCanvas.style.display='none';
     });
 
     // Video grid y modal
@@ -320,7 +354,7 @@
       if(e.target === modal){ modal.classList.remove('active'); player.src=''; }
     });
 
-    // Theme toggle (opcional future)
+    // Theme toggle (opcional futuro)
     const themeToggle = document.getElementById('themeToggle');
     themeToggle.addEventListener('click',()=>{
       document.body.classList.toggle('light-theme');
