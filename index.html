@@ -8,181 +8,199 @@
   <style>
     :root {
       --roland-core: #CC0000;
-      --black-absolute: #000000;
-      --grid-gray: #1a1a1a;
+      --black-absolute: #10141a;
+      --grid-gray: #1F232a;
       --digital-cyan: #00FFFF;
       --glitch-magenta: #FF00FF;
-      --panel-deep: linear-gradient(160deg, #0a0a0a 0%, #1a1a1a 50%, #000000 100%);
-      --hologram-glow: 0 0 20px rgba(0,255,255,0.5);
-      --bg-light: #f6f7fa;
-      --text-dark: #101314;
+      --panel-deep: linear-gradient(160deg, #1A202a 0%, #232c35 60%, #12151b 100%);
+      --hologram-glow: 0 0 20px #00f8ffff;
+      --bg-light: #e7ebf1;
+      --text-dark: #24293a;
       --gray-light: #e7e9ed;
     }
-    * {margin:0;padding:0;box-sizing:border-box;}
     body {
-      background: var(--black-absolute);
-      color: white;
+      background: var(--black-absolute); color: white;
       font-family: 'Courier New', monospace;
-      line-height: 1.38;
-      overflow-x: hidden;
-      transition: background 0.4s, color 0.4s;
-      min-height: 100vh;
+      line-height: 1.36;
+      margin:0; padding:0;
+      min-height:100vh;
+      transition: background 0.3s, color 0.3s;
     }
-    .container {max-width:1200px; margin:0 auto; padding:30px 6vw 18px 6vw;}
-    .spacer-top {height:38px; width:100%;}
-    .top-controls-box {
-      position: absolute; top:34px; right:6vw; display:flex; gap:18px; z-index:2; 
-    }
-
-    .knob-btn {
-      width:55px; height:55px; background:transparent; border:none; cursor:pointer;
-      display:flex; align-items:center; justify-content:center; padding:0; margin:0;
-    }
-    .knob-svg {
-      width:45px; height:45px; display:block; filter:drop-shadow(0 2px 9px #00FFFF55);
-      transition: filter .21s;
-    }
-    .knob-label {
-      display:block; text-align:center; font-size:.85em; color:var(--digital-cyan); margin-top:3px; letter-spacing:1.3px;
-      font-family:inherit;
-      user-select: none;
-    }
-    /* Estilos de knob en tema claro */
     body.light-theme {
       background: var(--bg-light);
       color: var(--text-dark);
-      --panel-deep: linear-gradient(155deg, #e5e7ea 0%, #f4f4f6 60%, #c7d6ed 100%);
-      --black-absolute: #f6f7fa;
-      --grid-gray: #b2b2b2;
-      --hologram-glow: 0 0 14px #00b6dd44;
-      --text-dark: #24293a;
+      --panel-deep: linear-gradient(160deg, #f2f5f9 0%, #eef2f4 60%, #e3e8ed 100%);
+      --black-absolute: #e6eaf0;
+      --grid-gray: #b1b4b8;
+      --hologram-glow: 0 0 12px #00b3cc44;
+      --digital-cyan: #23b8ff;
+      --glitch-magenta: #CB1DF8;
     }
-    body.light-theme .main-title {
-      filter: none;
+    .container {
+      max-width: 970px;
+      margin: 0 auto;
+      padding: 46px 2vw 14px 2vw;
+      min-width: 320px;
     }
-    body.light-theme .service-card,
-    body.light-theme .sound-module { background: var(--panel-deep); }
-    body.light-theme .gallery-thumb { border-color: var(--text-dark);}
-    body.light-theme .video-player-frame, body.light-theme .section-3 { background: var(--panel-deep);}
-    body.light-theme .contact-port { background: var(--bg-light); color: var(--text-dark);}
-    body.light-theme .footer { color:#636465;}
-    /* Hero Section */
+    .spacer-top {
+      height: 35px;
+      width: 100%;
+      min-height: 35px;
+    }
+    /* === SWITCHES === */
+    .top-controls-box {
+      position: absolute; top: 36px; right: 2vw; display: flex; gap: 26px; z-index: 2;
+    }
+    .switch-amp {
+      width: 55px; height: 32px; background: var(--grid-gray);
+      border-radius: 18px; border: 2px solid var(--digital-cyan);
+      display: flex; align-items: center; position: relative;
+      cursor: pointer; transition: border-color .22s, background .2s;
+      box-shadow: 0 2px 12px #00faff33;
+    }
+    .switch-knob {
+      width: 28px; height: 28px; border-radius: 50%;
+      background: white; border: 2.4px solid var(--digital-cyan);
+      position: absolute; left: 2px; top: 1px;
+      box-shadow: 0 2px 12px #00faff33;
+      transition: left .19s cubic-bezier(.8,0,.4,1.13), border-color .19s;
+      display: flex; justify-content: center; align-items: center;
+    }
+    .switch-amp.on { border-color: var(--glitch-magenta); background: var(--digital-cyan);}
+    .switch-amp.on .switch-knob { left: 24px; border-color: var(--glitch-magenta); }
+    .switch-label {
+      position: absolute; right: 9px; top: 50%; transform: translateY(-50%);
+      font-size: .98em; color: var(--glitch-magenta); font-weight: bold; letter-spacing: .7px; pointer-events: none;
+    }
+    .switch-label.left { right: auto; left: 9px; color: var(--digital-cyan);}
+    /* Modo claro: label y fondo */
+    body.light-theme .switch-label { color: #09679D;}
+    body.light-theme .switch-label.left { color: #2E7DB8;}
+    body.light-theme .switch-knob { background: #e2e6ec;}
+    /* HERO/Deck */
     .section-1 {
-      display:grid; grid-template-columns:1fr 1fr; gap:46px;
-      margin-bottom:48px; min-height:50vh; align-items:center;
+      background: var(--panel-deep); border-radius: 18px; box-shadow: 0 4px 48px #00e9a80d, 0 1px 26px #443bff0d;
+      padding: 40px 44px 38px 44px;
+      margin-bottom: 44px;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
     }
-    .title-content {display:flex;flex-direction:column;justify-content:center;padding-right:16px;}
-    .main-title {
-      font-size:2.8rem;font-weight:bold;text-transform:uppercase;letter-spacing:3px;margin-bottom:20px;
-      background:linear-gradient(45deg,white,var(--digital-cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1.08;
-      filter:drop-shadow(0 2px 10px var(--digital-cyan));animation:title-glitch 2s infinite steps(2,jump-none);
+    .deck-box {
+      display: flex; align-items: flex-end; justify-content: center; gap: 38px; width: 100%; margin-top: 25px;
+      flex-wrap: wrap;
     }
-    @keyframes title-glitch {0%{filter:none;}50%{filter:drop-shadow(0 0 8px var(--glitch-magenta));}}
-    .subtitle {
-      font-size:1.11rem;color:var(--roland-core);text-transform:uppercase;letter-spacing:2px;margin-bottom:14px;
-    }
-    .description {font-size:.99rem;line-height:1.6;color:rgba(255,255,255,0.9);margin-bottom:17px;}
-    .audio-controls-box {
-      display:flex;align-items:center;justify-content:center;gap:12px;margin-top:14px;margin-bottom:2px;
-    }
-    .audio-track-label {
-      font-size:.97em;color:var(--digital-cyan);margin:0 0 0 7px; user-select:none;
-    }
-    #eqCanvas {
-      width:95%; max-width:340px; margin:13px auto 9px auto;display:block; background:transparent;border:none; height:44px;
-    }
-    /* Vinilo */
-    .sound-module {
-      background:var(--panel-deep);border:1px solid var(--grid-gray);border-radius:8px;
-      padding:26px 19px 26px 19px;display:flex;flex-direction:column;gap:22px;
-    }
-    .turntable-container {display:flex;flex-direction:column;align-items:center;gap:13px;}
+    .vinyl-module { display: flex; flex-direction: column; align-items: center; gap: 11px;}
     .hologram-turntable {
-      width:200px;height:200px;border-radius:50%;background:var(--black-absolute);
-      border:15px solid var(--grid-gray);position:relative;display:flex;align-items:center;justify-content:center;
-      box-shadow:var(--hologram-glow);transition:border-color .2s,box-shadow .2s;
+      width: 160px; height: 160px; border-radius: 50%; background: var(--black-absolute);
+      border: 12px solid var(--grid-gray);
+      box-shadow: var(--hologram-glow);
+      position: relative; display: flex; align-items: center; justify-content: center;
+      transition: border-color .2s, box-shadow .2s;
     }
     .quantum-vinyl {
-      width:150px;height:150px;border-radius:50%;
-      background:
-        radial-gradient(circle at center,var(--grid-gray) 0%,var(--grid-gray) 8%,transparent 8.1%),
-        radial-gradient(circle at center,var(--black-absolute) 0%,var(--black-absolute) 35%,var(--grid-gray) 35.1%,var(--grid-gray) 38%,transparent 38.1%),
-        repeating-radial-gradient(circle at center,var(--black-absolute) 0%,var(--black-absolute) 2%,var(--grid-gray) 2.1%,var(--grid-gray) 4%);
-      animation:quantumSpin 15s linear infinite; animation-play-state:paused; position:relative;
+      width: 120px; height: 120px; border-radius: 50%;
+      background: radial-gradient(circle at center,var(--grid-gray) 0%,var(--grid-gray) 8%,transparent 8.1%),
+                  radial-gradient(circle at center,var(--black-absolute) 0%,var(--black-absolute) 35%,var(--grid-gray) 35.1%,var(--grid-gray) 38%,transparent 38.1%),
+                  repeating-radial-gradient(circle at center,var(--black-absolute) 0%,var(--black-absolute) 2%,var(--grid-gray) 2.1%,var(--grid-gray) 4%);
+      animation: quantumSpin 15s linear infinite; animation-play-state: paused; position: relative;
     }
-    .vinyl-logo {position:absolute;left:50%;top:50%;width:65px;height:65px;transform:translate(-50%,-50%);pointer-events:none;z-index:3;filter:drop-shadow(0 0 8px #00FFFF66);}
-    @keyframes quantumSpin {0%{transform:rotate(0deg);}100%{transform:rotate(360deg);}}
-    .player-controls {display:flex;gap:7px;justify-content:center;}
-    .control-btn {padding:8px 15px; background:var(--black-absolute); border:1px solid var(--grid-gray); color:white; border-radius:4px; cursor:pointer;
-      transition:all 0.3s ease; text-transform:uppercase; font-family:'Courier New',monospace;}
-    .control-btn:hover {border-color:var(--digital-cyan);background:var(--digital-cyan);color:var(--black-absolute);}
-    /* Sección servicios */
-    .section-services {margin:28px 0 38px 0;text-align:center;}
-    .services-title {color:var(--digital-cyan);font-size:1.28rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:23px;}
-    .services-grid {display:grid;grid-template-columns:repeat(3,1fr);gap:29px;max-width:900px;margin:0 auto;}
-    .service-card {background:var(--panel-deep);border:2px solid var(--grid-gray);border-radius:14px;padding:28px 14px 18px 14px;box-shadow:0 4px 18px rgba(0,0,0,0.12);cursor:pointer;transition:border-color .24s, box-shadow .19s, transform .18s;position:relative;}
-    .service-card:hover {border-color:var(--digital-cyan);box-shadow:0 0 24px var(--glitch-magenta);transform:translateY(-6px) scale(1.04);}
-    .service-header {display:flex;align-items:center;justify-content:center;gap:13px;margin-bottom:15px;}
-    .service-icon {color:var(--digital-cyan);font-size:2.1rem;filter:drop-shadow(0 0 7px #00fff966);}
-    .service-name {font-size:1.03rem;font-weight:bold;color:white;letter-spacing:1px;text-transform:uppercase;}
-    .service-desc {color:rgba(255,255,255,0.84);line-height:1.5;font-size:.98rem;}
+    .vinyl-logo { position: absolute; left: 50%; top: 50%; width: 52px; height: 52px; transform: translate(-50%,-50%); pointer-events: none; z-index: 3; filter: drop-shadow(0 0 8px #00FFFF56);}
+    @keyframes quantumSpin { 0% {transform: rotate(0deg);} 100% {transform: rotate(360deg);} }
+    /* Deck+EQ+Btn controls horizontal */
+    .music-deck-eq {
+      display: flex; flex-direction: row; align-items: center; gap: 32px; min-width: 272px;
+    }
+    .player-controls {
+      display: flex; flex-direction: row; align-items: center; gap: 10px; justify-content: center; margin-left: 8px;
+    }
+    .control-btn {
+      padding: 8px 13px; background: var(--black-absolute); border: 1px solid var(--grid-gray); color: white;
+      border-radius: 4px; cursor: pointer; transition: all 0.3s ease; text-transform: uppercase; font-family: inherit; font-size: 1.1em;
+      min-width: 41px;
+    }
+    .control-btn:active, .control-btn:focus { background: var(--digital-cyan); color: var(--black-absolute);}
+    .audio-track-label { font-size: .97em; color: var(--digital-cyan); margin-left: 10px; user-select: none; letter-spacing: 1.2px;}
+    #eqCanvas {
+      width: 170px; max-width: 190px; min-width: 60px; margin: 0; background:transparent; border:none; height:36px; border-radius: 5px; display:block;
+      box-shadow: 0 0 9px #00faff26;
+    }
+    /* HERO content */
+    .title-content { width: 100%; max-width: 520px; margin: 0 auto 12px auto;}
+    .main-title {
+      font-size: 2.33rem; font-weight: bold; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 12px;
+      background: linear-gradient(45deg, white, var(--digital-cyan));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; line-height: 1.05;
+      filter: drop-shadow(0 2px 8px var(--digital-cyan)); animation: title-glitch 2s infinite steps(2, jump-none);
+      text-align: center;
+    }
+    @keyframes title-glitch { 0% {filter: none;} 50% {filter: drop-shadow(0 0 8px var(--glitch-magenta));} }
+    .subtitle {
+      font-size: 1.01rem; color: var(--roland-core); text-transform: uppercase; letter-spacing: 2px;
+      margin-bottom: 10px; text-align: center;}
+    .description { font-size: .99rem; line-height: 1.55; color: rgba(255,255,255,0.9); margin-bottom: 9px; text-align:center; }
+    /* Servicios */
+    .section-services { margin: 40px 0 36px 0; text-align: center; width: 100%;}
+    .services-title { color:var(--digital-cyan); font-size:1.13rem; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:18px;}
+    .services-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 23px; max-width:880px; margin:0 auto;}
+    .service-card { background: var(--panel-deep); border:2px solid var(--grid-gray); border-radius:13px; padding:25px 10px 16px 10px; box-shadow:0 3px 13px #002b2b17; cursor:pointer; transition: border-color .22s, box-shadow .16s, transform .15s; }
+    .service-card:hover { border-color: var(--digital-cyan); box-shadow: 0 0 20px var(--glitch-magenta); transform: translateY(-5px) scale(1.025);}
+    .service-header { display:flex; align-items:center; justify-content: center; gap:13px; margin-bottom:12px;}
+    .service-icon { color: var(--digital-cyan); font-size:2.05rem; filter: drop-shadow(0 0 7px #00fff966);}
+    .service-name { font-size:1rem; font-weight: bold; color: white; letter-spacing:.8px; text-transform: uppercase;}
+    .service-desc { color: rgba(255,255,255,0.8); line-height:1.5; font-size: .97rem;}
     @media (max-width:900px){.services-grid{grid-template-columns:1fr;}}
-    /* Video/Singles */
-    .section-2 {margin-bottom:51px;}
-    .video-player-frame {display:flex;justify-content:center;align-items:center;background:var(--panel-deep);border-radius:13px;border:2px solid var(--grid-gray);margin:0 auto 0 auto;box-shadow:0 4px 15px rgba(0,0,0,0.14);max-width:800px;overflow:hidden;min-height:180px;}
-    .video-title {color:var(--digital-cyan);text-align:center;font-size:1.11rem;margin:13px 0 15px 0;min-height:24px;letter-spacing:.8px;}
-    .miniaturenav {display:flex;justify-content:center;}
-    .video-thumbs {display:flex;gap:13px;margin:0 auto 11px auto;flex-wrap:wrap;justify-content:center;}
-    .video-thumb {width:58px;height:38px;border-radius:8px;border:2.5px solid var(--grid-gray);overflow:hidden;cursor:pointer;transition:border-color .22s,box-shadow .2s;opacity:.8;box-shadow:0 0 7px rgba(0,0,0,0.09);}
-    .video-thumb.active {border-color:var(--digital-cyan);opacity:1;box-shadow:0 2px 18px var(--glitch-magenta);}
-    .video-thumb img {width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(12%) contrast(1.09);}
-    .video-dots {display:flex;gap:7px;align-items:center;justify-content:center;margin-bottom:2px;}
-    .video-dot {width:13px;height:13px;border-radius:50%;background:var(--grid-gray);border:2px solid var(--digital-cyan);cursor:pointer;transition:background .21s, border-color .21s;}
-    .video-dot.active {background:var(--digital-cyan);border-color:var(--glitch-magenta);}
-    /* Sección 3 */
-    .section-3 {margin-top:22px;background:var(--panel-deep);border:1px solid var(--grid-gray);border-radius:8px;padding:30px 0 26px 0;}
-    .contact-grid {display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:800px;margin:0 auto;}
-    .contact-port {padding:18px;background:var(--black-absolute);border:1px solid var(--grid-gray);border-radius:6px;text-align:center;text-decoration:none;color:white;transition:all 0.3s ease;text-transform:uppercase;font-family:'Courier New',monospace;position:relative;font-weight:600;font-size:1.12em;letter-spacing:1.5px;}
-    .contact-port:hover {border-color:var(--digital-cyan);transform:translateY(-3px) scale(1.025);}
-    .port-primary {background:var(--roland-core);border-color:var(--roland-core);font-weight:bold;color:white;}
-    .port-primary:hover {background:transparent;color:var(--roland-core);}
-    .footer {margin-top:19px;text-align:center;color:rgba(255,255,255,0.5);font-size:.98em;letter-spacing:1px;}
-    .whatsapp-float {position:fixed;bottom:20px;right:20px;background:#25D366;color:white;width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 4px 20px rgba(37,211,102,0.4);z-index:1000;animation:float 3s ease-in-out infinite;}
+    /* Videos */
+    .section-2 { margin-bottom: 43px; width: 100%;}
+    .video-player-frame { display: flex; justify-content: center; align-items: center; background: var(--panel-deep); border-radius: 12px; border: 2px solid var(--grid-gray); margin: 0 auto 0 auto; box-shadow: 0 4px 15px #002e3e12; max-width: 790px; overflow: hidden; min-height: 180px;}
+    .video-title { color: var(--digital-cyan); text-align: center; font-size: 1.01rem; margin: 10px 0 10px 0; min-height: 24px; letter-spacing:.8px;}
+    .miniaturenav { display: flex; justify-content: center;}
+    .video-thumbs { display: flex; gap: 13px; margin: 0 auto 5px auto; flex-wrap: wrap; justify-content: center; }
+    .video-thumb { width: 54px; height: 34px; border-radius: 7px; border: 2.2px solid var(--grid-gray); overflow: hidden; cursor: pointer; transition: border-color .19s, box-shadow .16s; opacity:.8; box-shadow:0 0 7px #001c2622;}
+    .video-thumb.active { border-color: var(--digital-cyan); opacity: 1; box-shadow:0 1.5px 12px var(--glitch-magenta);}
+    .video-thumb img { width: 100%; height: 100%; object-fit:cover; display: block; filter: grayscale(12%) contrast(1.07);}
+    .video-dots { display: flex; gap: 7px; align-items: center; justify-content: center; margin-bottom: 2px;}
+    .video-dot { width: 13px; height: 13px; border-radius: 50%; background: var(--grid-gray); border:2px solid var(--digital-cyan); cursor: pointer; transition: background .19s, border-color .18s;}
+    .video-dot.active { background: var(--digital-cyan); border-color: var(--glitch-magenta);}
+    /* Contacto */
+    .section-3 { margin-top: 19px; background:var(--panel-deep); border:1px solid var(--grid-gray); border-radius:9px; padding:28px 0 22px 0;}
+    .contact-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; max-width:770px; margin:0 auto;}
+    .contact-port { padding:17px; background: var(--black-absolute); border:1px solid var(--grid-gray); border-radius:6px; text-align:center; text-decoration:none; color:white; transition:all 0.3s ease; text-transform:uppercase; font-family:inherit; position:relative; font-weight:600; font-size:1.06em; letter-spacing:.95px;}
+    .contact-port:hover { border-color:var(--digital-cyan); transform:translateY(-3px) scale(1.021);}
+    .port-primary { background: var(--roland-core); border-color:var(--roland-core); font-weight:bold; color:white;}
+    .port-primary:hover { background:transparent; color:var(--roland-core);}
+    .footer { margin-top:10px;text-align:center;color:rgba(255,255,255,0.43); font-size:.98em; letter-spacing:.7px;}
+
+    .whatsapp-float { position:fixed; bottom:20px; right:20px; background:#25D366; color:white; width:60px; height:60px; border-radius:50%; display:flex; align-items:center; justify-content:center; text-decoration:none; box-shadow: 0 4px 20px rgba(37,211,102,0.4); z-index: 1000; animation: float 3s ease-in-out infinite;}
     @keyframes float {0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
-    @media (max-width:960px){.section-1{grid-template-columns:1fr;}.top-controls-box{right:3vw;}}
-    @media (max-width:900px){.services-grid{grid-template-columns:1fr;}}
-    @media (max-width:700px){.section-1{margin-bottom:18px;}.section-services{margin-top:18px;}.section-2{margin-bottom:12px;}.contact-grid{grid-template-columns:1fr;}.video-title{font-size:.99rem;}}
-    @media (max-width:520px){.main-title{font-size:1.15rem;}.section-3{padding:11px;}.sound-module{padding:8px 2vw;}.video-thumbs{gap:5px;}.video-thumb{width:29px;height:18px;}}
+    @media (max-width:990px){.container{padding-left:1vw;padding-right:1vw;}.section-1{padding:22px 9vw 25px 9vw;}}
+    @media (max-width:830px){.section-1{padding:15px 3vw 16px 3vw;}.section-services,.section-2,.section-3{padding-left:3vw !important;padding-right:3vw !important;}}
+    @media (max-width:700px){
+      .section-1{padding:10px 0 8px 0;}
+      .contact-grid{grid-template-columns:1fr;}
+      .services-grid{gap:10px;}
+      .video-thumbs{gap:5px;}
+      .video-thumb{width:30px;height:18px;}
+    }
   </style>
 </head>
 <body>
   <div class="spacer-top"></div>
   <div class="container">
-    <!-- Controles superiores -->
+
+    <!-- Controles superiores con switches -->
     <div class="top-controls-box">
-      <button class="knob-btn" id="themeKnob" aria-label="Tema">
-        <!-- SVG perilla dark/light -->
-        <svg class="knob-svg" id="themeKnobSVG" viewBox="0 0 42 42">
-          <circle cx="21" cy="21" r="19" fill="#181d25" stroke="#00FFFF" stroke-width="2"/>
-          <circle cx="21" cy="21" r="13" fill="#242834"/>
-          <rect x="20" y="4" width="2" height="7" rx="1" fill="#FFF"/>
-          <circle id="theme-dot" cx="21" cy="8" r="2.4" fill="#00FFFF"/>
-        </svg>
-        <span class="knob-label" id="themeLabel">Dark</span>
-      </button>
-      <button class="knob-btn" id="langKnob" aria-label="Idioma">
-        <!-- SVG perilla idioma -->
-        <svg class="knob-svg" id="langKnobSVG" viewBox="0 0 42 42">
-          <circle cx="21" cy="21" r="19" fill="#181d25" stroke="#00FFFF" stroke-width="2"/>
-          <circle cx="21" cy="21" r="13" fill="#242834"/>
-          <rect x="20" y="4" width="2" height="7" rx="1" fill="#FFF"/>
-          <circle id="lang-dot" cx="21" cy="8" r="2.4" fill="#FF00FF"/>
-        </svg>
-        <span class="knob-label" id="langLabel">ES</span>
-      </button>
+      <div class="switch-amp" id="themeSwitch" title="Tema">
+        <div class="switch-knob"><i class="fas fa-moon" id="themeIcon"></i></div>
+        <span class="switch-label left">☾</span>
+        <span class="switch-label" id="themeText">☼</span>
+      </div>
+      <div class="switch-amp" id="langSwitch" title="Idioma">
+        <div class="switch-knob"><i class="fas fa-language"></i></div>
+        <span class="switch-label left">ES</span>
+        <span class="switch-label" id="langText">EN</span>
+      </div>
     </div>
 
-    <!-- SECCIÓN 1: Hero, EQ, Vinilo, Spotify -->
+    <!-- HERO/Deck/Music -->
     <section class="section-1">
       <div class="title-content">
         <h1 class="main-title" data-es="ROLAND CORE × CLOUD FLOW" data-en="ROLAND CORE × CLOUD FLOW">ROLAND CORE × CLOUD FLOW</h1>
@@ -192,35 +210,36 @@
           Arquitecturas sónicas, frameworks analógicos, y creatividad iluminando cada cable.<br>
           <span style="color:var(--digital-cyan);font-size:1.05em;">Diseñado para sellos, artistas, promotores y soñadores eléctricos.</span>
         </p>
-        <div class="audio-controls-box">
-          <button class="control-btn" id="backSong"><i class="fas fa-backward"></i></button>
-          <button class="control-btn" id="playBtn">PLAY</button>
-          <button class="control-btn" id="stopBtn">STOP</button>
-          <button class="control-btn" id="nextSong"><i class="fas fa-forward"></i></button>
-          <span class="audio-track-label" id="audioTrackLabel">track 1/5</span>
-        </div>
-        <canvas id="eqCanvas" width="260" height="44"></canvas>
       </div>
-      <div class="sound-module">
-        <div class="turntable-container">
+      <div class="deck-box">
+        <div class="vinyl-module">
           <div class="hologram-turntable">
             <div class="quantum-vinyl">
-              <!-- Logo SVG centrado, girando con el vinilo -->
               <img src="logo.svg" alt="logo" class="vinyl-logo">
             </div>
           </div>
         </div>
-        <audio id="localAudio">
-          <source id="audioSource" src="micancion.mp3" type="audio/mpeg">
-          Tu navegador no soporta el elemento audio.
-        </audio>
-        <div class="stream-player">
-          <iframe style="border-radius:4px;border:none;width:100%;" id="spotifyFrame" src="https://open.spotify.com/embed/playlist/26qaG2E3bW6ZNIk5mvPpjr?utm_source=generator" height="84" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        <div class="music-deck-eq">
+          <canvas id="eqCanvas" width="170" height="36"></canvas>
+          <div class="player-controls">
+            <button class="control-btn" id="backSong"><i class="fas fa-backward"></i></button>
+            <button class="control-btn" id="playBtn"><i class="fas fa-play"></i></button>
+            <button class="control-btn" id="stopBtn"><i class="fas fa-stop"></i></button>
+            <button class="control-btn" id="nextSong"><i class="fas fa-forward"></i></button>
+            <span class="audio-track-label" id="audioTrackLabel">track 1/5</span>
+          </div>
         </div>
+      </div>
+      <audio id="localAudio">
+        <source id="audioSource" src="micancion.mp3" type="audio/mpeg">
+        Tu navegador no soporta el elemento audio.
+      </audio>
+      <div class="stream-player" style="max-width:430px;margin:18px auto 0 auto;">
+        <iframe style="border-radius:4px;border:none;width:100%;" id="spotifyFrame" src="https://open.spotify.com/embed/playlist/26qaG2E3bW6ZNIk5mvPpjr?utm_source=generator" height="84" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
       </div>
     </section>
 
-    <!-- SECCIÓN DE SERVICIOS DESTACADOS -->
+    <!-- Servicios -->
     <section class="section-services">
       <div class="services-title" data-es="Servicios" data-en="Services">Servicios</div>
       <div class="services-grid">
@@ -254,7 +273,7 @@
       </div>
     </section>
 
-    <!-- SECCIÓN VIDEOS ÚNICO CON MINIATURAS Y DOTS -->
+    <!-- Videos -->
     <section class="section-2">
       <div class="video-player-frame">
         <iframe id="singleVideo" width="100%" height="370" src="https://www.youtube.com/embed/ZGxSXchZNfo?modestbranding=1&rel=0" frameborder="0" allowfullscreen></iframe>
@@ -265,8 +284,7 @@
       </div>
       <div id="videoDots" class="video-dots"></div>
     </section>
-
-    <!-- SECCIÓN CONTACTO -->
+    <!-- Contacto -->
     <section class="section-3">
       <div class="contact-grid">
         <a href="mailto:emc121091@me.com?subject=PROYECTO MUSICAL" class="contact-port port-primary" data-es="INICIAR PROYECTO" data-en="START PROJECT">INICIAR PROYECTO</a>
@@ -283,35 +301,32 @@
     <i class="fab fa-whatsapp" style="font-size: 1.7rem;"></i>
   </a>
   <script>
-    // TEMA CLARO/OSCURO con perilla animada
-    const themeKnob = document.getElementById('themeKnob');
-    const themeKnobSVG = document.getElementById('themeKnobSVG');
-    const themeLabel = document.getElementById('themeLabel');
+    /* ========== SWITCHES DARK/LIGHT ========== */
+    const themeSwitch = document.getElementById('themeSwitch');
+    const themeKnob = themeSwitch.querySelector('.switch-knob');
+    const themeText = document.getElementById('themeText');
+    const themeIcon = document.getElementById('themeIcon');
     let darkTheme = true;
-    themeKnob.onclick = () => {
+    themeSwitch.onclick = () => {
       darkTheme = !darkTheme;
       document.body.classList.toggle('light-theme', !darkTheme);
-      // Animación knob: rotate la perilla
-      themeKnobSVG.style.transform = darkTheme ? 'rotate(0deg)' : 'rotate(150deg)';
-      themeLabel.textContent = darkTheme ? "Dark" : "Light";
+      themeSwitch.classList.toggle('on', !darkTheme);
+      themeIcon.className = darkTheme ? 'fas fa-moon' : 'fas fa-sun';
+      themeText.textContent = darkTheme ? '☼' : '☾';
     };
-
-    // IDIOMA con perilla animada
-    const langKnob = document.getElementById('langKnob');
-    const langKnobSVG = document.getElementById('langKnobSVG');
-    const langLabel = document.getElementById('langLabel');
+    /* ========== SWITCH IDIOMA ========== */
+    const langSwitch = document.getElementById('langSwitch');
+    const langText = document.getElementById('langText');
     let lang = "es";
-    langKnob.onclick = () => {
+    langSwitch.onclick = () => {
       lang = (lang === "es") ? "en" : "es";
-      langKnobSVG.style.transform = (lang === "en") ? 'rotate(-120deg)' : 'rotate(0deg)';
-      langLabel.textContent = (lang === "en") ? "EN" : "ES";
-      // Actualizar textos con data-es/data-en
+      langSwitch.classList.toggle('on', lang==="en");
+      langText.textContent = (lang === "en") ? "ES" : "EN";
       document.querySelectorAll("[data-es]").forEach(el => {
         el.innerHTML = el.getAttribute(`data-${lang}`);
       });
     };
-
-    // AUDIO: múltiples tracks y controles
+    /* AUDIO: playlist deck */
     let currentTrack = 1, totalTracks = 5;
     const audio = document.getElementById('localAudio');
     const audioSource = document.getElementById('audioSource');
@@ -325,7 +340,6 @@
     const eqCtx = eqCanvas.getContext('2d');
     const audioTrackLabel = document.getElementById('audioTrackLabel');
     let eqAnim = null, analyser, src, dataArray, audioCtx;
-
     function updateTrackLabel() {
       audioTrackLabel.textContent = `track ${currentTrack}/5`;
     }
@@ -343,7 +357,7 @@
     nextSong.onclick = ()=>{ setTrack(currentTrack+1);}
     setTrack(1);
 
-    // EQ Mejorado (más “pro”)
+    // EQ mejorado minimal pro
     function setupEQ(){
       audioCtx = new (window.AudioContext||window.webkitAudioContext)();
       src = audioCtx.createMediaElementSource(audio);
@@ -357,13 +371,13 @@
       analyser.getByteFrequencyData(dataArray);
       let bars = dataArray.length, barW = (eqCanvas.width / bars)-2;
       for(let i=0;i<bars;i++){
-        let val=dataArray[i]/1.6;
-        let hue=160+Math.floor(80*(i/bars));
-        eqCtx.fillStyle = `hsl(${hue},100%,56%)`;
+        let val=dataArray[i]/1.8;
+        let hue=180+Math.floor(40*(i/bars));
+        eqCtx.fillStyle = `hsl(${hue},96%,66%)`;
         eqCtx.fillRect(i*(barW+2),eqCanvas.height-val, barW, val);
-        if(val>5){
-          eqCtx.shadowColor = '#00ffffCC';
-          eqCtx.shadowBlur = 6;
+        if(val>8){
+          eqCtx.shadowColor = '#00FFFFA9';
+          eqCtx.shadowBlur = 7;
         }
       }
       eqAnim = requestAnimationFrame(drawEQ);
@@ -384,8 +398,7 @@
       turntable.style.boxShadow='0 0 20px #00ffff55';
       if(eqAnim) cancelAnimationFrame(eqAnim); eqCanvas.style.display='none';
     };
-
-    // VIDEOS: thumbnails, dots, título
+    // VIDEOS: thumbs dots título
     const videos = [
       {id: "ZGxSXchZNfo", title: "Boiler Room 1"},
       {id: "SD3T_Or_mvk", title: "Tra Tra Live"},
@@ -426,7 +439,6 @@
       renderThumbs(); renderDots();
     }
     renderThumbs(); renderDots(); updateVideo();
-
   </script>
 </body>
 </html>
