@@ -7,21 +7,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            /* PALETA TURBO MEJORADA */
             --roland-core: #CC0000;
             --black-absolute: #000000;
             --grid-gray: #1a1a1a;
             --digital-cyan: #00FFFF;
             --glitch-magenta: #FF00FF;
-            --stream-orange: #FF6600;
-            --data-yellow: #FFCC00;
-            --quantum-purple: #8B00FF;
-            
-            /* EFECTOS TURBO */
-            --hologram-glow: 0 0 20px rgba(0, 255, 255, 0.5);
-            --neon-shadow: 0 0 15px currentColor;
             --panel-deep: linear-gradient(160deg, #0a0a0a 0%, #1a1a1a 50%, #000000 100%);
-            --data-stream: linear-gradient(90deg, transparent, var(--digital-cyan), transparent);
+            --hologram-glow: 0 0 20px rgba(0, 255, 255, 0.5);
         }
 
         * {
@@ -36,313 +28,186 @@
             font-family: 'Courier New', monospace;
             line-height: 1.4;
             overflow-x: hidden;
-            background-image: 
-                radial-gradient(circle at 10% 20%, rgba(204,0,0,0.15) 0%, transparent 40%),
-                radial-gradient(circle at 90% 80%, rgba(0,255,255,0.1) 0%, transparent 40%),
-                radial-gradient(circle at 50% 50%, rgba(255,0,255,0.05) 0%, transparent 60%);
         }
 
-        /* SISTEMA DE GRID TURBO */
-        .turbo-dashboard {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            grid-template-rows: auto 1fr 1fr auto;
-            gap: 15px;
-            padding: 15px;
-            min-height: 100vh;
-            max-width: 1400px;
+        .container {
+            max-width: 1200px;
             margin: 0 auto;
-        }
-
-        /* HEADER NEURONAL */
-        .header-neural {
-            grid-column: 1 / -1;
-            display: grid;
-            grid-template-columns: auto 1fr auto;
-            align-items: center;
             padding: 20px;
-            background: var(--panel-deep);
-            border: 1px solid var(--grid-gray);
-            border-radius: 4px;
-            position: relative;
-            overflow: hidden;
         }
 
-        .header-neural::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: var(--data-stream);
-            animation: dataFlow 3s linear infinite;
-        }
-
-        @keyframes dataFlow {
-            0% { left: -100%; }
-            100% { left: 100%; }
-        }
-
-        .logo-hologram {
-            width: 60px;
-            height: 60px;
-            background: 
-                radial-gradient(circle at 30% 30%, var(--roland-core), transparent 70%),
-                conic-gradient(from 0deg, var(--digital-cyan), var(--glitch-magenta), var(--roland-core), var(--digital-cyan));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            color: white;
-            font-size: 1.4rem;
-            border: 2px solid var(--digital-cyan);
-            box-shadow: var(--hologram-glow);
-            animation: hologramSpin 8s linear infinite;
-        }
-
-        @keyframes hologramSpin {
-            0% { transform: rotate(0deg) scale(1); }
-            50% { transform: rotate(180deg) scale(1.05); }
-            100% { transform: rotate(360deg) scale(1); }
-        }
-
-        .brand-turbo {
-            text-align: center;
-        }
-
-        .brand-main {
-            font-size: 2rem;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            background: linear-gradient(45deg, var(--roland-core), var(--digital-cyan));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 5px;
-        }
-
-        .brand-sub {
-            font-size: 0.9rem;
-            color: var(--digital-cyan);
-            text-transform: uppercase;
-            letter-spacing: 3px;
-        }
-
-        .neural-controls {
-            display: flex;
-            gap: 10px;
-        }
-
-        .quantum-knob {
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            background: var(--grid-gray);
-            border: 2px solid var(--digital-cyan);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            color: var(--digital-cyan);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .quantum-knob:hover {
-            transform: rotate(45deg);
-            border-color: var(--glitch-magenta);
-            box-shadow: var(--neon-shadow);
-        }
-
-        /* HERO VU TURBO */
-        .hero-turbo {
-            grid-column: 1 / -1;
+        /* SECCIÓN 1 */
+        .section-1 {
             display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 20px;
-            padding: 25px;
-            background: var(--panel-deep);
-            border: 1px solid var(--grid-gray);
-            border-radius: 4px;
-            position: relative;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+            min-height: 60vh;
         }
 
-        .hero-content-turbo {
+        .title-content {
             display: flex;
             flex-direction: column;
             justify-content: center;
+            padding-right: 20px;
         }
 
-        .hero-title-turbo {
-            font-size: 2.5rem;
+        .main-title {
+            font-size: 3rem;
             font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            margin-bottom: 15px;
-            background: linear-gradient(45deg, white, var(--digital-cyan));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            line-height: 1.2;
-        }
-
-        .hero-subtitle-turbo {
-            font-size: 1.1rem;
-            color: var(--roland-core);
             text-transform: uppercase;
             letter-spacing: 3px;
             margin-bottom: 20px;
-            position: relative;
-            display: inline-block;
+            background: linear-gradient(45deg, white, var(--digital-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.1;
         }
 
-        .hero-subtitle-turbo::after {
-            content: '';
-            position: absolute;
-            bottom: -8px;
-            left: 0;
-            width: 80px;
-            height: 2px;
-            background: var(--roland-core);
-            animation: pulseWidth 2s ease-in-out infinite alternate;
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--roland-core);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
         }
 
-        @keyframes pulseWidth {
-            0% { width: 80px; }
-            100% { width: 120px; }
-        }
-
-        .hero-description-turbo {
+        .description {
             font-size: 1rem;
             line-height: 1.6;
             color: rgba(255,255,255,0.9);
-            max-width: 500px;
+            margin-bottom: 20px;
         }
 
-        .vu-turbo {
+        .sound-module {
+            background: var(--panel-deep);
+            border: 1px solid var(--grid-gray);
+            border-radius: 8px;
+            padding: 25px;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            gap: 20px;
+        }
+
+        .turntable-container {
+            display: flex;
+            flex-direction: column;
             align-items: center;
             gap: 15px;
         }
 
-        .vu-container-turbo {
-            width: 100%;
-            height: 180px;
+        .hologram-turntable {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: var(--black-absolute);
+            border: 15px solid var(--grid-gray);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--hologram-glow);
+        }
+
+        .quantum-vinyl {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: 
+                radial-gradient(circle at center, var(--grid-gray) 0%, var(--grid-gray) 8%, transparent 8.1%),
+                radial-gradient(circle at center, var(--black-absolute) 0%, var(--black-absolute) 35%, var(--grid-gray) 35.1%, var(--grid-gray) 38%, transparent 38.1%),
+                repeating-radial-gradient(circle at center, var(--black-absolute) 0%, var(--black-absolute) 2%, var(--grid-gray) 2.1%, var(--grid-gray) 4%);
+            animation: quantumSpin 15s linear infinite;
+        }
+
+        @keyframes quantumSpin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .player-controls {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .control-btn {
+            padding: 10px 20px;
             background: var(--black-absolute);
             border: 1px solid var(--grid-gray);
+            color: white;
             border-radius: 4px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .vu-level-turbo {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 70%;
-            background: linear-gradient(to top, 
-                var(--roland-core), 
-                var(--stream-orange), 
-                var(--data-yellow),
-                var(--digital-cyan));
-            animation: turboPulse 1.5s ease-in-out infinite alternate;
-            filter: brightness(1.2);
-        }
-
-        @keyframes turboPulse {
-            0% { 
-                height: 60%;
-                filter: brightness(1.2) hue-rotate(0deg);
-            }
-            100% { 
-                height: 85%;
-                filter: brightness(1.5) hue-rotate(20deg);
-            }
-        }
-
-        /* HEXAGON GRID - SERVICIOS */
-        .services-hexagon {
-            grid-column: 1;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            padding: 20px;
-            background: var(--panel-deep);
-            border: 1px solid var(--grid-gray);
-            border-radius: 4px;
-        }
-
-        .section-title-turbo {
-            font-size: 1.1rem;
-            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--digital-cyan);
-            margin-bottom: 15px;
-            position: relative;
+            font-family: 'Courier New', monospace;
         }
 
-        .section-title-turbo::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 40px;
-            height: 2px;
+        .control-btn:hover {
+            border-color: var(--digital-cyan);
             background: var(--digital-cyan);
+            color: var(--black-absolute);
         }
 
-        .hex-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
+        .top-controls {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
             gap: 10px;
         }
 
-        .hex-service {
-            background: var(--black-absolute);
+        .theme-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--grid-gray);
+            border: 1px solid var(--digital-cyan);
+            color: var(--digital-cyan);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        /* SECCIÓN 2 */
+        .section-2 {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .services-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .service-card {
+            background: var(--panel-deep);
             border: 1px solid var(--grid-gray);
             border-radius: 6px;
-            padding: 15px;
+            padding: 20px;
             transition: all 0.3s ease;
             cursor: pointer;
-            position: relative;
-            overflow: hidden;
         }
 
-        .hex-service::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0,255,255,0.1), transparent);
-            transition: left 0.5s ease;
-        }
-
-        .hex-service:hover {
+        .service-card:hover {
             border-color: var(--digital-cyan);
             transform: translateY(-3px);
-        }
-
-        .hex-service:hover::before {
-            left: 100%;
         }
 
         .service-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
         }
 
         .service-name {
-            font-size: 0.9rem;
+            font-size: 1rem;
             font-weight: bold;
             color: white;
             text-transform: uppercase;
@@ -354,420 +219,222 @@
             border-radius: 50%;
             background: var(--roland-core);
             box-shadow: 0 0 10px var(--roland-core);
-            animation: ledPulse 2s ease-in-out infinite;
-        }
-
-        @keyframes ledPulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.3; }
         }
 
         .service-desc {
-            font-size: 0.8rem;
+            font-size: 0.9rem;
             color: rgba(255,255,255,0.8);
             line-height: 1.4;
         }
 
-        /* SEQUENCER HEXAGONAL - PROYECTOS */
-        .projects-hex {
-            grid-column: 2;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            padding: 20px;
+        .hexagon-container {
             background: var(--panel-deep);
             border: 1px solid var(--grid-gray);
-            border-radius: 4px;
+            border-radius: 8px;
+            padding: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        .hex-sequencer {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 8px;
-        }
-
-        .hex-step {
-            aspect-ratio: 1;
-            background: var(--black-absolute);
-            border: 1px solid var(--grid-gray);
-            border-radius: 6px;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            position: relative;
+        .main-hexagon {
+            width: 300px;
+            height: 346px;
+            background: conic-gradient(from 0deg, var(--roland-core), var(--digital-cyan), var(--glitch-magenta), var(--roland-core));
             clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            animation: hexagonGlow 3s ease-in-out infinite alternate;
         }
 
-        .hex-step:hover {
-            border-color: var(--digital-cyan);
-            transform: scale(1.05);
-            z-index: 2;
+        @keyframes hexagonGlow {
+            0% { filter: hue-rotate(0deg) brightness(1); }
+            100% { filter: hue-rotate(180deg) brightness(1.2); }
         }
 
-        .hex-step.active {
-            border-color: var(--roland-core);
-            box-shadow: 0 0 15px rgba(204,0,0,0.5);
+        .hexagon-inner {
+            width: 280px;
+            height: 323px;
+            background: var(--black-absolute);
+            clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            padding: 30px;
+            text-align: center;
         }
 
-        .hex-media {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s ease;
+        .hexagon-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--digital-cyan);
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
-        .hex-step:hover .hex-media {
-            transform: scale(1.1);
-        }
-
-        .hex-info {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: rgba(0,0,0,0.8);
-            padding: 5px;
-            transform: translateY(100%);
-            transition: transform 0.3s ease;
-        }
-
-        .hex-step:hover .hex-info {
-            transform: translateY(0);
-        }
-
-        .hex-role {
-            font-size: 0.6rem;
+        .hexagon-subtitle {
+            font-size: 0.9rem;
             color: var(--roland-core);
             text-transform: uppercase;
         }
 
-        .hex-name {
-            font-size: 0.7rem;
-            color: white;
-            font-weight: bold;
-        }
-
-        /* TURNTABLE TURBO */
-        .sound-turbo {
-            grid-column: 3;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            padding: 20px;
+        /* SECCIÓN 3 */
+        .section-3 {
             background: var(--panel-deep);
             border: 1px solid var(--grid-gray);
-            border-radius: 4px;
+            border-radius: 8px;
+            padding: 40px;
         }
 
-        .turntable-turbo {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
             gap: 15px;
         }
 
-        .hologram-turntable {
-            width: 160px;
-            height: 160px;
-            border-radius: 50%;
-            background: var(--black-absolute);
-            border: 12px solid var(--grid-gray);
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 
-                0 0 20px rgba(0,255,255,0.3),
-                inset 0 0 20px rgba(0,0,0,0.5);
-            transition: all 0.3s ease;
-        }
-
-        .hologram-turntable::before {
-            content: '';
-            position: absolute;
-            width: 25px;
-            height: 25px;
-            border-radius: 50%;
-            background: var(--roland-core);
-            box-shadow: 0 0 15px var(--roland-core);
-            z-index: 2;
-        }
-
-        .quantum-vinyl {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            background: 
-                radial-gradient(circle at center, var(--grid-gray) 0%, var(--grid-gray) 8%, transparent 8.1%),
-                radial-gradient(circle at center, var(--black-absolute) 0%, var(--black-absolute) 35%, var(--grid-gray) 35.1%, var(--grid-gray) 38%, transparent 38.1%),
-                repeating-radial-gradient(circle at center, var(--black-absolute) 0%, var(--black-absolute) 2%, var(--grid-gray) 2.1%, var(--grid-gray) 4%);
-            animation: quantumSpin 15s linear infinite;
-            position: relative;
-        }
-
-        .quantum-vinyl::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            border-radius: 50%;
-            background: conic-gradient(transparent, var(--digital-cyan), transparent, var(--glitch-magenta), transparent);
-            opacity: 0.3;
-            animation: hologramSpin 4s linear infinite;
-        }
-
-        @keyframes quantumSpin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .turbo-controls {
-            display: flex;
-            gap: 8px;
-        }
-
-        .control-btn {
-            padding: 8px 15px;
-            background: var(--black-absolute);
-            border: 1px solid var(--grid-gray);
-            color: white;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            font-size: 0.8rem;
-            font-family: 'Courier New', monospace;
-        }
-
-        .control-btn:hover {
-            border-color: var(--digital-cyan);
-            background: var(--digital-cyan);
-            color: var(--black-absolute);
-        }
-
-        .stream-player {
-            width: 100%;
-            background: var(--black-absolute);
-            border: 1px solid var(--grid-gray);
-            border-radius: 4px;
-            overflow: hidden;
-        }
-
-        /* FOOTER NEURONAL */
-        .footer-neural {
-            grid-column: 1 / -1;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
+        .contact-port {
             padding: 20px;
-            background: var(--panel-deep);
-            border: 1px solid var(--grid-gray);
-            border-radius: 4px;
-            position: relative;
-        }
-
-        .neural-connect {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .neural-ports {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 8px;
-        }
-
-        .neural-port {
-            padding: 12px 15px;
             background: var(--black-absolute);
             border: 1px solid var(--grid-gray);
-            border-radius: 4px;
+            border-radius: 6px;
             text-align: center;
             text-decoration: none;
             color: white;
             transition: all 0.3s ease;
             text-transform: uppercase;
-            font-size: 0.8rem;
             font-family: 'Courier New', monospace;
-            position: relative;
-            overflow: hidden;
         }
 
-        .neural-port::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0,255,255,0.2), transparent);
-            transition: left 0.5s ease;
-        }
-
-        .neural-port:hover {
+        .contact-port:hover {
             border-color: var(--digital-cyan);
-            transform: translateY(-2px);
+            transform: translateY(-3px);
         }
 
-        .neural-port:hover::before {
-            left: 100%;
-        }
-
-        .port-turbo {
+        .port-primary {
             background: var(--roland-core);
             border-color: var(--roland-core);
             font-weight: bold;
         }
 
-        .port-turbo:hover {
+        .port-primary:hover {
             background: transparent;
         }
 
-        .whatsapp-quantum {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #25D366;
-            color: white;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
+        .whatsapp-float {
             position: fixed;
             bottom: 20px;
             right: 20px;
+            background: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             text-decoration: none;
-            box-shadow: 
-                0 4px 15px rgba(37, 211, 102, 0.4),
-                0 0 20px rgba(37, 211, 102, 0.3);
-            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
             z-index: 1000;
-            animation: quantumPulse 2s ease-in-out infinite;
+            animation: float 3s ease-in-out infinite;
         }
 
-        @keyframes quantumPulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
 
-        .whatsapp-quantum:hover {
-            transform: scale(1.2) rotate(15deg);
-            animation: none;
-        }
-
-        /* RESPONSIVE TURBO */
-        @media (max-width: 1024px) {
-            .turbo-dashboard {
-                grid-template-columns: 1fr 1fr;
-                grid-template-rows: auto auto 1fr auto;
-            }
-            
-            .sound-turbo {
-                grid-column: 1 / -1;
-            }
-        }
-
+        /* RESPONSIVE */
         @media (max-width: 768px) {
-            .turbo-dashboard {
-                grid-template-columns: 1fr;
-                grid-template-rows: auto;
-                gap: 12px;
-            }
-            
-            .hero-turbo {
+            .section-1 {
                 grid-template-columns: 1fr;
             }
             
-            .vu-turbo {
-                order: -1;
-            }
-            
-            .hex-sequencer {
-                grid-template-columns: repeat(3, 1fr);
-            }
-            
-            .footer-neural {
+            .section-2 {
                 grid-template-columns: 1fr;
             }
             
-            .neural-ports {
-                grid-template-columns: 1fr;
+            .contact-grid {
+                grid-template-columns: 1fr 1fr;
             }
             
-            .whatsapp-quantum {
-                bottom: 15px;
-                right: 15px;
-                width: 45px;
-                height: 45px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero-title-turbo {
-                font-size: 1.8rem;
+            .main-title {
+                font-size: 2rem;
             }
             
-            .brand-main {
-                font-size: 1.5rem;
+            .main-hexagon {
+                width: 250px;
+                height: 288px;
             }
             
-            .logo-hologram {
-                width: 50px;
-                height: 50px;
-                font-size: 1.1rem;
-            }
-            
-            .hex-grid {
-                grid-template-columns: 1fr;
+            .hexagon-inner {
+                width: 230px;
+                height: 265px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- DASHBOARD TURBO -->
-    <div class="turbo-dashboard">
-        <!-- HEADER NEURONAL -->
-        <header class="header-neural">
-            <div class="logo-hologram">TR</div>
-            <div class="brand-turbo">
-                <div class="brand-main">EDUARDO MEJÍA</div>
-                <div class="brand-sub">SISTEMA NERVIOSO MUSICAL</div>
-            </div>
-            <div class="neural-controls">
-                <div class="quantum-knob" id="quantumToggle">
-                    <i class="fas fa-bolt"></i>
-                </div>
-                <div class="quantum-knob" id="streamToggle">
-                    <i class="fas fa-wave-square"></i>
-                </div>
-            </div>
-        </header>
+    <div class="container">
+        <!-- Controles superiores -->
+        <div class="top-controls">
+            <button class="theme-btn" id="themeToggle">
+                <i class="fas fa-adjust"></i>
+            </button>
+            <button class="theme-btn" id="languageToggle">
+                ES/EN
+            </button>
+        </div>
 
-        <!-- HERO TURBO -->
-        <section class="hero-turbo">
-            <div class="hero-content-turbo">
-                <h1 class="hero-title-turbo">ROLAND CORE × CLOUD FLOW</h1>
-                <div class="hero-subtitle-turbo">VOLTAJE → STREAM → ALGORITMO</div>
-                <p class="hero-description-turbo">
+        <!-- SECCIÓN 1 -->
+        <section class="section-1">
+            <div class="title-content">
+                <h1 class="main-title">ROLAND CORE × CLOUD FLOW</h1>
+                <div class="subtitle">VOLTAJE → STREAM → ALGORITMO</div>
+                <p class="description">
                     Sistema nervioso central donde el tacto físico encuentra el flujo digital. 
-                    Arquitectura sonica que convierte streams en voltaje y algoritmos en pulsaciones analógicas.
+                    Arquitectura sónica que convierte streams en voltaje y algoritmos en pulsaciones analógicas.
+                    Diseñando estructuras de sonido y frameworks estratégicos para artistas y sellos.
                 </p>
             </div>
-            <div class="vu-turbo">
-                <div class="vu-container-turbo">
-                    <div class="vu-level-turbo"></div>
+            
+            <div class="sound-module">
+                <div class="turntable-container">
+                    <div class="hologram-turntable">
+                        <div class="quantum-vinyl"></div>
+                    </div>
+                    <div class="player-controls">
+                        <button class="control-btn" id="playBtn">PLAY</button>
+                        <button class="control-btn" id="stopBtn">STOP</button>
+                    </div>
                 </div>
-                <div class="vu-label">OUTPUT NEURONAL</div>
+                
+                <!-- Audio local -->
+                <audio id="localAudio">
+                    <source src="micancion.mp3" type="audio/mpeg">
+                    Tu navegador no soporta el elemento audio.
+                </audio>
+                
+                <!-- Spotify -->
+                <div class="stream-player">
+                    <iframe style="border-radius:4px; border: none; width: 100%;" 
+                            src="https://open.spotify.com/embed/playlist/26qaG2E3bW6ZNIk5mvPpjr?utm_source=generator" 
+                            height="152" 
+                            allowfullscreen="" 
+                            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+                            loading="lazy">
+                    </iframe>
+                </div>
             </div>
         </section>
 
-        <!-- SERVICIOS HEXAGONO -->
-        <section class="services-hexagon">
-            <h2 class="section-title-turbo">SERVICES</h2>
-            <div class="hex-grid">
-                <div class="hex-service">
+        <!-- SECCIÓN 2 -->
+        <section class="section-2">
+            <div class="services-grid">
+                <div class="service-card">
                     <div class="service-header">
                         <div class="service-name">BOOKING & TOURS</div>
                         <div class="service-led"></div>
@@ -776,16 +443,8 @@
                         Circuitos de performance y gestión neuronal de giras internacionales
                     </p>
                 </div>
-                <div class="hex-service">
-                    <div class="service-header">
-                        <div class="service-name">PUBLISHING</div>
-                        <div class="service-led"></div>
-                    </div>
-                    <p class="service-desc">
-                        Gestión de derechos y estrategia editorial para obras sónicas
-                    </p>
-                </div>
-                <div class="hex-service">
+                
+                <div class="service-card">
                     <div class="service-header">
                         <div class="service-name">DIGITAL FLOW</div>
                         <div class="service-led"></div>
@@ -794,7 +453,8 @@
                         Estrategias multiplataforma y desarrollo de ecosistemas digitales
                     </p>
                 </div>
-                <div class="hex-service">
+                
+                <div class="service-card">
                     <div class="service-header">
                         <div class="service-name">SYNTH STRATEGY</div>
                         <div class="service-led"></div>
@@ -804,271 +464,99 @@
                     </p>
                 </div>
             </div>
-        </section>
-
-        <!-- PROYECTOS HEXAGONAL -->
-        <section class="projects-hex">
-            <h2 class="section-title-turbo">PROJECTS</h2>
-            <div class="hex-sequencer">
-                <div class="hex-step active">
-                    <iframe class="hex-media" src="https://www.youtube.com/embed/ZGxSXchZNfo?start=0" 
-                            title="Boiler Room" allowfullscreen></iframe>
-                    <div class="hex-info">
-                        <div class="hex-role">PRODUCTION</div>
-                        <div class="hex-name">BOILER ROOM</div>
-                    </div>
-                </div>
-                <div class="hex-step">
-                    <iframe class="hex-media" src="https://www.youtube.com/embed/SD3T_Or_mvk?start=3" 
-                            title="Tra Tra" allowfullscreen></iframe>
-                    <div class="hex-info">
-                        <div class="hex-role">COORDINATION</div>
-                        <div class="hex-name">REMIX PROJECT</div>
-                    </div>
-                </div>
-                <div class="hex-step">
-                    <iframe class="hex-media" src="https://www.youtube.com/embed/XCW95zjBUK4" 
-                            title="Gats" allowfullscreen></iframe>
-                    <div class="hex-info">
-                        <div class="hex-role">DEVELOPMENT</div>
-                        <div class="hex-name">EMERGING ARTIST</div>
-                    </div>
-                </div>
-                <div class="hex-step">
-                    <div class="hex-media" style="background: var(--grid-gray); display: flex; align-items: center; justify-content: center;">
-                        <i class="fas fa-satellite-dish" style="font-size: 2rem; color: var(--digital-cyan);"></i>
-                    </div>
-                    <div class="hex-info">
-                        <div class="hex-role">INNOVATION</div>
-                        <div class="hex-name">QUANTUM AUDIO</div>
-                    </div>
-                </div>
-                <div class="hex-step">
-                    <div class="hex-media" style="background: var(--grid-gray); display: flex; align-items: center; justify-content: center;">
-                        <i class="fas fa-network-wired" style="font-size: 2rem; color: var(--glitch-magenta);"></i>
-                    </div>
-                    <div class="hex-info">
-                        <div class="hex-role">SYSTEMS</div>
-                        <div class="hex-name">NEURAL NETWORKS</div>
-                    </div>
-                </div>
-                <div class="hex-step">
-                    <div class="hex-media" style="background: var(--grid-gray); display: flex; align-items: center; justify-content: center;">
-                        <i class="fas fa-code-merge" style="font-size: 2rem; color: var(--stream-orange);"></i>
-                    </div>
-                    <div class="hex-info">
-                        <div class="hex-role">TECH</div>
-                        <div class="hex-name">API STREAMING</div>
+            
+            <div class="hexagon-container">
+                <div class="main-hexagon">
+                    <div class="hexagon-inner">
+                        <div class="hexagon-title">SISTEMA NERVIOSO</div>
+                        <div class="hexagon-subtitle">MUSICAL</div>
+                        <p style="font-size: 0.8rem; color: rgba(255,255,255,0.8); line-height: 1.4;">
+                            Conexión perfecta entre hardware analógico y flujos digitales
+                        </p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- SOUND TURBO -->
-        <section class="sound-turbo">
-            <h2 class="section-title-turbo">SOUND</h2>
-            <div class="turntable-turbo">
-                <div class="hologram-turntable">
-                    <div class="quantum-vinyl"></div>
-                </div>
-                <div class="turbo-controls">
-                    <button class="control-btn" id="playQuantum">PLAY</button>
-                    <button class="control-btn" id="stopQuantum">STOP</button>
-                    <button class="control-btn" id="glitchBtn">GLITCH</button>
-                </div>
-            </div>
-            <div class="stream-player">
-                <iframe style="border-radius:4px; border: none;" 
-                        src="https://open.spotify.com/embed/playlist/26qaG2E3bW6ZNIk5mvPpjr?utm_source=generator" 
-                        width="100%" 
-                        height="152" 
-                        allowfullscreen="" 
-                        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
-                        loading="lazy">
-                </iframe>
+        <!-- SECCIÓN 3 -->
+        <section class="section-3">
+            <div class="contact-grid">
+                <a href="mailto:emc121091@me.com?subject=PROYECTO MUSICAL" class="contact-port port-primary">
+                    START PROJECT
+                </a>
+                <a href="https://edumecar.github.io/Book/" target="_blank" class="contact-port">
+                    BOOKING PLANS
+                </a>
+                <a href="https://www.linkedin.com/in/edumecar" target="_blank" class="contact-port">
+                    LINKEDIN
+                </a>
+                <a href="#" class="contact-port">
+                    CASE STUDIES
+                </a>
             </div>
         </section>
-
-        <!-- FOOTER NEURONAL -->
-        <footer class="footer-neural">
-            <div class="neural-connect">
-                <h2 class="section-title-turbo">CONNECT</h2>
-                <div class="neural-ports">
-                    <a href="mailto:emc121091@me.com?subject=QUANTUM PROJECT INQUIRY" class="neural-port port-turbo">
-                        START PROJECT
-                    </a>
-                    <a href="https://edumecar.github.io/Book/" target="_blank" class="neural-port">
-                        BOOKING PLANS
-                    </a>
-                    <a href="https://www.linkedin.com/in/edumecar" target="_blank" class="neural-port">
-                        LINKEDIN
-                    </a>
-                    <a href="#" class="neural-port">
-                        CASE STUDIES
-                    </a>
-                </div>
-            </div>
-        </footer>
-
-        <!-- WHATSAPP QUANTUM -->
-        <a href="https://wa.me/525512478139?text=Hi,%20I%20saw%20your%20quantum%20portfolio%20and%20would%20like%20to%20discuss%20a%20music%20project." 
-           class="whatsapp-quantum" target="_blank" aria-label="Contact on WhatsApp">
-            <i class="fab fa-whatsapp" style="font-size: 1.5rem;"></i>
-        </a>
     </div>
 
+    <!-- WhatsApp -->
+    <a href="https://wa.me/525512478139?text=Hi,%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20discuss%20a%20music%20project." 
+       class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp" style="font-size: 1.5rem;"></i>
+    </a>
+
     <script>
-        // SISTEMA TURBO MEJORADO
-        class TurboSystem {
-            constructor() {
-                this.quantumState = 'active';
-                this.streamState = 'flowing';
-                this.init();
-            }
-            
-            init() {
-                this.setupQuantumToggle();
-                this.setupStreamToggle();
-                this.setupTurntableControls();
-                this.setupHexSteps();
-                this.setupGlitchEffects();
-            }
-            
-            setupQuantumToggle() {
-                const quantumToggle = document.getElementById('quantumToggle');
-                quantumToggle.addEventListener('click', () => {
-                    this.quantumState = this.quantumState === 'active' ? 'hyper' : 'active';
-                    document.body.classList.toggle('quantum-hyper');
-                    quantumToggle.style.borderColor = this.quantumState === 'hyper' ? 
-                        'var(--glitch-magenta)' : 'var(--digital-cyan)';
-                    
-                    // Efecto de pulso cuántico
-                    if (this.quantumState === 'hyper') {
-                        this.quantumPulse();
-                    }
-                });
-            }
-            
-            quantumPulse() {
-                const elements = document.querySelectorAll('.hex-service, .hex-step');
-                elements.forEach((el, index) => {
-                    setTimeout(() => {
-                        el.style.transform = 'scale(1.1)';
-                        setTimeout(() => {
-                            el.style.transform = 'scale(1)';
-                        }, 300);
-                    }, index * 100);
-                });
-            }
-            
-            setupStreamToggle() {
-                const streamToggle = document.getElementById('streamToggle');
-                streamToggle.addEventListener('click', () => {
-                    this.streamState = this.streamState === 'flowing' ? 'glitching' : 'flowing';
-                    const vuLevel = document.querySelector('.vu-level-turbo');
-                    
-                    if (this.streamState === 'glitching') {
-                        vuLevel.style.animation = 'glitchPulse 0.8s steps(2, start) infinite';
-                    } else {
-                        vuLevel.style.animation = 'turboPulse 1.5s ease-in-out infinite alternate';
-                    }
-                });
-            }
-            
-            setupTurntableControls() {
-                const turntable = document.querySelector('.hologram-turntable');
-                const vinyl = document.querySelector('.quantum-vinyl');
-                const playBtn = document.getElementById('playQuantum');
-                const stopBtn = document.getElementById('stopQuantum');
-                
-                playBtn.addEventListener('click', () => {
-                    vinyl.style.animationPlayState = 'running';
-                    turntable.style.borderColor = 'var(--stream-orange)';
-                    turntable.style.boxShadow = '0 0 25px rgba(255,102,0,0.5)';
-                });
-                
-                stopBtn.addEventListener('click', () => {
-                    vinyl.style.animationPlayState = 'paused';
-                    turntable.style.borderColor = 'var(--grid-gray)';
-                    turntable.style.boxShadow = '0 0 20px rgba(0,255,255,0.3)';
-                });
-            }
-            
-            setupHexSteps() {
-                const steps = document.querySelectorAll('.hex-step');
-                
-                steps.forEach(step => {
-                    step.addEventListener('click', () => {
-                        steps.forEach(s => s.classList.remove('active'));
-                        step.classList.add('active');
-                        
-                        // Efecto de resonancia
-                        step.style.animation = 'resonance 0.5s ease';
-                        setTimeout(() => {
-                            step.style.animation = '';
-                        }, 500);
-                    });
-                });
-            }
-            
-            setupGlitchEffects() {
-                const glitchBtn = document.getElementById('glitchBtn');
-                glitchBtn.addEventListener('click', () => {
-                    document.body.style.animation = 'glitch 0.3s linear';
-                    setTimeout(() => {
-                        document.body.style.animation = '';
-                    }, 300);
-                });
-            }
-        }
-        
-        // Inicializar el sistema turbo
-        document.addEventListener('DOMContentLoaded', () => {
-            new TurboSystem();
+        // Control del audio local
+        const audio = document.getElementById('localAudio');
+        const playBtn = document.getElementById('playBtn');
+        const stopBtn = document.getElementById('stopBtn');
+        const vinyl = document.querySelector('.quantum-vinyl');
+        const turntable = document.querySelector('.hologram-turntable');
+
+        playBtn.addEventListener('click', () => {
+            audio.play();
+            vinyl.style.animationPlayState = 'running';
+            turntable.style.borderColor = '#FF6600';
+            turntable.style.boxShadow = '0 0 25px rgba(255,102,0,0.5)';
         });
 
-        // Añadir keyframes para efectos adicionales
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes glitchPulse {
-                0%, 100% { 
-                    height: 60%;
-                    filter: brightness(1.2) hue-rotate(0deg);
-                }
-                25% { 
-                    height: 85%;
-                    filter: brightness(1.5) hue-rotate(90deg);
-                }
-                50% { 
-                    height: 40%;
-                    filter: brightness(0.8) hue-rotate(180deg);
-                }
-                75% { 
-                    height: 95%;
-                    filter: brightness(2) hue-rotate(270deg);
-                }
+        stopBtn.addEventListener('click', () => {
+            audio.pause();
+            audio.currentTime = 0;
+            vinyl.style.animationPlayState = 'paused';
+            turntable.style.borderColor = '#666666';
+            turntable.style.boxShadow = '0 0 20px rgba(0,255,255,0.3)';
+        });
+
+        // Control de tema
+        const themeToggle = document.getElementById('themeToggle');
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('light-theme');
+            const icon = themeToggle.querySelector('i');
+            if (document.body.classList.contains('light-theme')) {
+                icon.className = 'fas fa-moon';
+            } else {
+                icon.className = 'fas fa-adjust';
             }
-            
-            @keyframes resonance {
-                0% { transform: scale(1); }
-                50% { transform: scale(1.1); }
-                100% { transform: scale(1); }
-            }
-            
-            @keyframes glitch {
-                0% { transform: translateX(0); }
-                25% { transform: translateX(-5px); }
-                50% { transform: translateX(5px); }
-                75% { transform: translateX(-5px); }
-                100% { transform: translateX(0); }
-            }
-            
-            .quantum-hyper .logo-hologram {
-                animation-duration: 2s;
-                filter: hue-rotate(180deg);
-            }
-        `;
-        document.head.appendChild(style);
+        });
+
+        // Control de idioma
+        const languageToggle = document.getElementById('languageToggle');
+        languageToggle.addEventListener('click', () => {
+            const currentLang = languageToggle.textContent;
+            languageToggle.textContent = currentLang === 'ES/EN' ? 'EN/ES' : 'ES/EN';
+            // Aquí puedes agregar la lógica para cambiar el idioma
+        });
+
+        // Efectos hover para las tarjetas de servicio
+        const serviceCards = document.querySelectorAll('.service-card');
+        serviceCards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                const led = card.querySelector('.service-led');
+                led.style.animation = 'pulse 0.5s ease-in-out';
+                setTimeout(() => {
+                    led.style.animation = '';
+                }, 500);
+            });
+        });
     </script>
 </body>
 </html>
