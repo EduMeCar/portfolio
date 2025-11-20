@@ -2,141 +2,112 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>SISTEMA NERVIOSO MUSICAL // SERVICIOS Y VIDEO PANEL</title>
+  <title>EDUARDO MEJÍA // SISTEMA NERVIOSO MUSICAL</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Share Tech Mono: efecto hardware -->
+  <!-- Share Tech Mono for hardware style -->
   <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    :root {
-      --roland-orange: #ff6600;
-      --panel-bg: #15191d;
-      --panel-dark: #20232c;
-      --panel-border: #23242b;
-      --white-soft: #f5f5f5;
-      --font-panel: 'Share Tech Mono', 'Courier New', Courier, monospace;
-      --area-width: 1320px;
-    }
-    html, body {
-      background: #0E1014;
-      color: var(--white-soft);
-      font-family: var(--font-panel);
-      margin: 0; padding: 0; min-height:100vh;
-    }
-    .main-wrap {
-      max-width: var(--area-width);
-      margin: 46px auto 0 auto;
-      padding: 0 0 80px 0;
-    }
-    .panel-row {
-      display: grid;
-      grid-template-columns: 360px 1fr;
-      gap: 46px;
-      width: 100%;
-      background: var(--panel-bg);
-      border-radius: 14px;
-      border: 2.5px solid var(--panel-border);
-      box-shadow: 0 3.5px 28px #181a1d34;
-      min-height: 470px; align-items: stretch;
-      overflow: hidden;
-    }
-    @media (max-width: 1100px) {
-      .panel-row {grid-template-columns: 1fr;}
-      .services-col, .video-col {min-height: unset;}
-    }
-    .services-col {
-      display: flex; flex-direction: column; justify-content: center;
-      align-items: stretch; gap: 32px; padding:56px 34px 56px 38px;
-      background:var(--panel-dark);border-right:2px solid var(--panel-border);
-      min-height: 470px;
-    }
-    .service-xl {
-      background: none;
-      border: none;
-      border-left: 5px solid var(--roland-orange);
-      padding: 22px 5px 22px 23px;
-      margin: 0;
-      font-family: var(--font-panel);
-      font-size: 1.17rem;
-      font-weight: bold;
-      color: var(--white-soft);
-      text-transform: uppercase;
-      letter-spacing: 0.21em;
-      margin-bottom: 0;
-      transition: background .18s;
-      line-height:1.24;
-      position:relative;
-      /* gentle serigrafía */
-      filter:saturate(0.88) contrast(1.13);
-    }
-    .service-xl .service-title {
-      display:block;
-      font-size: 1.18em;
-      font-weight: 900;
-      color: var(--roland-orange);
-      letter-spacing:.18em;
-      margin-bottom:7px;
-      font-family: var(--font-panel);
-    }
-    .service-xl .service-desc {
-      color: #d3d4d4;
-      font-size:1.02em;
-      margin-left:2px;
-      letter-spacing:.08em;
-      font-family: var(--font-panel);
-      text-transform:uppercase;
-      font-weight: 700;
-    }
-    .service-xl:hover,
-    .service-xl:focus-within {
-      background: #181a20;
-    }
-    /* VIDEO COL */
-    .video-col {
-      display: flex; flex-direction: column; justify-content: center; align-items: center;
-      min-height: 470px; padding:46px 38px 46px 34px;
-    }
-    .video-card {
-      width: 100%; max-width: 610px; background: #191c25;
-      border-radius:11px; border:2px solid var(--panel-border);
-      box-shadow: 0 2px 14px #181a1d18; overflow: hidden;
-      display:flex;flex-direction:column;align-items:center;
-      margin-bottom: 26px;
-    }
-    .video-player-frame {
-      width:100%;height:344px; background:var(--panel-dark);display:flex;align-items:center;justify-content:center;
-    }
-    .video-player-frame iframe {width:100%;height:100%;border:none;}
-    .video-label {
-      width: 100%; padding: 16px 0 0 0;
-      text-align:center; color: var(--roland-orange);
-      font-size: 1.06rem; font-family: var(--font-panel);
-      text-transform: uppercase; font-weight:900; letter-spacing:.19em;
-    }
-    .dots-nav {
-      display:flex;justify-content:center;gap:11px;margin:19px 0 2px 0;
-    }
-    .video-dot {
-      width:14px;height:14px;border-radius:50%;background:var(--panel-dark);
-      border:2px solid var(--roland-orange);cursor:pointer;
-      transition:background .11s,border-color .11s;
-    }
-    .video-dot.active{background:var(--roland-orange);border-color:var(--white-soft);}
-    /* Responsive ajusta paddings */
-    @media (max-width:900px){
-      .panel-row {gap: 0;}
-      .services-col, .video-col {padding: 24px 8vw;}
-      .video-card{max-width:99vw;}
-    }
-    /* WhatsApp */
-    .whatsapp-float {position:fixed;bottom:23px;right:27px;background:var(--roland-orange);color:#fff;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:1000;}
-    .whatsapp-float:hover{background:var(--white-soft);color:var(--roland-orange);}
+  :root {
+    --roland-orange: #ff6600;
+    --roland-red: #CC0000;
+    --panel-bg: #131418;
+    --panel-dark: #191b22;
+    --panel-border: #20232c;
+    --panel-divider: #26292f;
+    --white-soft: #f5f5f5;
+    --font-panel: 'Share Tech Mono', 'Courier New', Courier, monospace;
+    --area-width: 1350px;
+    --card-radius: 13px;
+  }
+  * {margin:0; padding:0; box-sizing:border-box;}
+  body {background: #0c0d0f; color: var(--white-soft); font-family: var(--font-panel); letter-spacing:.01em;}
+  .main-wrap {width:100vw;display:flex;flex-direction:column;align-items:center; padding:56px 0 44px 0;}
+  .area {
+    width:100%; max-width:var(--area-width);
+    background:var(--panel-bg);border-radius:var(--card-radius);border:2px solid var(--panel-border);
+    box-shadow:0 3px 21px #13141834;margin:0 auto 48px auto;padding:60px 5vw 44px 5vw;
+    display:flex; flex-direction:column; align-items:center;
+  }
+  /* HERO */
+  .hero-flex {
+    width:100%; display:flex; gap:80px; align-items:center; justify-content: center; max-width:1320px;
+  }
+  @media (max-width:1100px){ .hero-flex{flex-direction:column;gap:24px;}}
+  .hero-text { flex:1.15; display:flex; flex-direction:column; align-items: flex-start; gap:24px; min-width:340px;}
+  .main-title { font-size:2.8rem; font-weight:900; letter-spacing:.18em; text-transform:uppercase; color:var(--roland-orange); margin-bottom:8px;}
+  .subtitle { font-size:1.12rem; color:var(--roland-red); font-weight:800; text-transform:uppercase; letter-spacing:.22em; margin-bottom:19px;}
+  .description { font-size:1.09rem; color:#fff; font-weight:600; line-height:1.35; max-width:600px; text-align:left; opacity:.98; letter-spacing:.06em;}
+  .deck-controls-wrap { flex:1.07; display:flex; flex-direction:column;align-items:center;}
+  .turntable { width:200px; height:200px; border-radius:50%; background:#17171c; border:13px solid var(--panel-divider);position:relative;display:flex;align-items:center;justify-content:center;margin-bottom:28px;}
+  .vinyl { width:137px; height:137px; border-radius:50%; background:radial-gradient(circle 90px at 51% 58%,#333 60%,#14171f 100%); position:relative; animation:spin 11s linear infinite; animation-play-state:paused;}
+  .vinyl-logo {position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:59px;height:59px;}
+  .player-controls {display:flex;gap:15px;margin-top:14px;}
+  .control-btn {padding:14px 20px; background:#1f1f25; border:2.2px solid var(--roland-orange); color:var(--white-soft); border-radius:6px; cursor:pointer; font-family:var(--font-panel); font-size:1.15rem; font-weight:bold; text-transform:uppercase; transition:background .14s, border .19s, color .14s; letter-spacing:.17em;}
+  .control-btn:active, .control-btn:focus {background:var(--roland-orange);color:#fff;}
+  #eqCanvas {width:260px;max-width:96vw;height:34px;display:block;background:transparent;border:none;margin-top:13px;border-radius:21px;}
+  .deck-stream { margin-top:28px; border-radius:8px; background:#23232a;border:none;overflow:hidden;}
+  /* PANEL ROW (SERVICIOS+VIDEO) */
+  .panel-row {
+    display: grid; grid-template-columns: 370px 1fr; gap:44px; width:100%;
+    background:var(--panel-bg);border-radius:var(--card-radius);border:2px solid var(--panel-border);box-shadow:0 3px 22px #181a1d39;min-height:480px;align-items:stretch;overflow:hidden;
+  }
+  @media(max-width:1100px){.panel-row{grid-template-columns:1fr;gap:0;}}
+  .services-col { display:flex;flex-direction:column;justify-content:center;align-items:stretch;gap:33px;padding:54px 37px 54px 37px;background:var(--panel-dark);border-right:2px solid var(--panel-border);min-height:480px;}
+  .service-xl {background: none;border: none;border-left: 5px solid var(--roland-orange);padding: 17px 8px 17px 25px;margin: 0;font-family: var(--font-panel);font-size: 1.17rem;font-weight: bold;color: var(--white-soft);text-transform: uppercase;letter-spacing: 0.21em;line-height:1.21;filter:saturate(0.88) contrast(1.14);}
+  .service-xl .service-title {display:block; font-size:1.18em; font-weight:900; color:var(--roland-orange); letter-spacing:.18em; margin-bottom:7px;}
+  .service-xl .service-desc {color: #d3d4d4; font-size:1.02em; margin-left:2px; letter-spacing:.08em; font-family: var(--font-panel); text-transform:uppercase; font-weight: 700;}
+  .video-col {display:flex;flex-direction:column;justify-content:center;align-items:center;min-height:480px;padding:40px 39px 40px 32px;}
+  .video-card {width:100%;max-width:613px;background:#191c25;border-radius:11px;border:2px solid var(--panel-border);box-shadow:0 2px 13px #181a1d18;overflow:hidden;display:flex;flex-direction:column;align-items:center;margin-bottom:22px;}
+  .video-player-frame {width:100%;height:342px;background:var(--panel-dark);display:flex;align-items:center;justify-content:center;}
+  .video-player-frame iframe {width:100%;height:100%;border:none;}
+  .video-label {width:100%;padding:17px 0 0 0;text-align:center;color:var(--roland-orange);font-size:1.07rem;font-family:var(--font-panel);text-transform:uppercase;font-weight:900;letter-spacing:.17em;}
+  .dots-nav {display:flex;justify-content:center;gap:14px;margin:17px 0 2px 0;}
+  .video-dot {width:15px;height:15px;border-radius:50%;background:var(--panel-dark);border:2px solid var(--roland-orange);cursor:pointer;transition:background .13s,border-color .13s;}
+  .video-dot.active {background:var(--roland-orange);border-color:var(--white-soft);}
+  /* CONTACTO */
+  .area.contact-panel {padding:40px 5vw 40px 5vw;}
+  .contact-title {font-family:var(--font-panel);color:var(--roland-orange);font-size:1.11rem;font-weight:900;text-align:center;letter-spacing:.21em;text-transform:uppercase;margin-bottom:19px;}
+  .contact-grid {display:grid;grid-template-columns:repeat(3,1fr);gap:22px;width:100%;}
+  .contact-port {padding:22px;border-radius:8px;background:var(--panel-dark);border:1.7px solid var(--panel-border);color:var(--roland-orange);text-align:center;text-decoration:none;font-family:var(--font-panel);font-weight:900;font-size:1.07em;text-transform:uppercase;letter-spacing:.09em;transition:all .1s;}
+  .contact-port:hover {background:var(--roland-orange);color:#fff;}
+  .port-primary {background:var(--roland-orange);color:#fff;}
+  .footer {margin-top:14px;text-align:center;color:#a9adb0;letter-spacing:.09em;font-size:1em;}
+  .whatsapp-float {position:fixed;bottom:23px;right:32px;background:var(--roland-orange);color:#fff;width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:1111;}
+  .whatsapp-float:hover{background:var(--white-soft);color:var(--roland-orange);}
+  @keyframes spin {0%{transform:rotate(0deg);}100%{transform:rotate(360deg);}}
   </style>
 </head>
 <body>
   <div class="main-wrap">
+    <!-- HERO -->
+    <section class="area" style="padding-bottom:32px;">
+      <div class="hero-flex">
+        <div class="hero-text">
+          <div class="main-title">EDUARDO MEJÍA // SISTEMA NERVIOSO MUSICAL</div>
+          <div class="subtitle">ESTRATEGIA · ANALÓGICO · CLUB · DATASOUL</div>
+          <div class="description">
+            PORTFOLIO PANEL – BOOKING, CLUB, ARQUITECTURA DIGITAL Y SONIDO.<br>
+            COORDINACIÓN, SERVICIO Y CLUB FUSIÓN CON EL FLOW DE UN SINTETIZADOR.<br>
+            ROLAND × KORG, TODA LA PIEL DEL HARDWARE, NADA DE NEÓN NI PLANTILLA.
+          </div>
+        </div>
+        <div class="deck-controls-wrap">
+          <div class="turntable" id="turntable"><div class="vinyl" id="vinyl"><img src="logo.svg" class="vinyl-logo"></div></div>
+          <canvas id="eqCanvas" width="260" height="34"></canvas>
+          <div class="player-controls">
+            <button class="control-btn" id="playBtn">PLAY</button>
+            <button class="control-btn" id="stopBtn">STOP</button>
+          </div>
+          <audio id="localAudio"><source src="micancion.mp3" type="audio/mpeg"></audio>
+          <div class="deck-stream">
+            <iframe src="https://open.spotify.com/embed/playlist/26qaG2E3bW6ZNIk5mvPpjr?utm_source=generator" width="340" height="81" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- PANEL: SERVICIOS + VIDEO -->
     <section class="panel-row">
-      <!-- Servicios: columna izquierda -->
       <div class="services-col">
         <div class="service-xl">
           <span class="service-title">BOOKING & TOURS</span>
@@ -151,7 +122,6 @@
           <span class="service-desc">FRAMEWORKS · ARTIST DEV · SONIDO</span>
         </div>
       </div>
-      <!-- Video: gran card derecha -->
       <div class="video-col">
         <div class="video-card">
           <div class="video-player-frame">
@@ -162,10 +132,50 @@
         <div class="dots-nav" id="videoDots"></div>
       </div>
     </section>
+    <!-- CONTACTO -->
+    <section class="area contact-panel">
+      <div class="contact-title">CONECTEMOS</div>
+      <div class="contact-grid">
+        <a href="mailto:emc121091@me.com?subject=PROYECTO%20MUSICAL" class="contact-port port-primary">START PROJECT</a>
+        <a href="https://edumecar.github.io/Book/" target="_blank" class="contact-port">BOOKING PLANS</a>
+        <a href="https://www.linkedin.com/in/edumecar" target="_blank" class="contact-port">LINKEDIN</a>
+      </div>
+    </section>
+    <div class="footer">
+      PORTFOLIO ANALÓGICO: SIN NEÓN, SÓLO MÚSICA & PANEL. ©EDUARDO MEJÍA
+    </div>
     <a href="https://wa.me/525512478139" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp" style="font-size:1.7rem;"></i></a>
   </div>
 <script>
-// Videos data
+// Deck
+const audio = document.getElementById('localAudio');
+const playBtn = document.getElementById('playBtn');
+const stopBtn = document.getElementById('stopBtn');
+const vinyl = document.getElementById('vinyl');
+const eqCanvas = document.getElementById('eqCanvas');
+const eqCtx = eqCanvas.getContext('2d');
+let audioCtx, analyser, dataArray;
+function setupEQ() {
+  audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  let src = audioCtx.createMediaElementSource(audio);
+  analyser = audioCtx.createAnalyser();
+  src.connect(analyser); analyser.connect(audioCtx.destination);
+  analyser.fftSize = 32; dataArray = new Uint8Array(analyser.frequencyBinCount);
+}
+function drawEQ() {
+  eqCtx.clearRect(0,0,eqCanvas.width,eqCanvas.height);
+  analyser.getByteFrequencyData(dataArray);
+  const barWidth=12; let x=0;
+  for(let i=0;i<dataArray.length;i++){
+    let barHeight=Math.max(3,dataArray[i]/2.7); eqCtx.fillStyle= '#ff6600';
+    eqCtx.fillRect(x,eqCanvas.height-barHeight,barWidth,barHeight); x+=barWidth+3;
+  }
+  requestAnimationFrame(drawEQ);
+}
+playBtn.onclick=()=>{ if(!audioCtx)setupEQ(); audio.play();vinyl.style.animationPlayState="running";drawEQ();}
+stopBtn.onclick=()=>{audio.pause();audio.currentTime=0;vinyl.style.animationPlayState="paused";};
+
+// Videos panel
 const videos = [
   { id:"ZGxSXchZNfo", title:"PERFORMANCE LIVE 001" },
   { id:"kXYiU_JCYtU", title:"SOUND DESIGN SESSION" },
