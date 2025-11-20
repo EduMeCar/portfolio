@@ -2,9 +2,9 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>EDUARDO MEJÍA // CONSOLA DE MANAGEMENT</title>
+  <title data-lang-key="title_es">EDUARDO MEJÍA // CONSOLA DE MANAGEMENT</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Michroma&family=Montserrat:wght@400;600;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
   :root {
@@ -15,9 +15,8 @@
     --panel-border: #20232c;
     --panel-divider: #26292f;
     --white-soft: #f5f5f5;
-    --font-tech: 'Michroma', sans-serif; /* Nuevo para títulos */
-    --font-body: 'Montserrat', sans-serif; /* Nuevo para legibilidad */
-    --font-panel: 'Share Tech Mono', 'Courier New', Courier, monospace;
+    --font-tech: 'Share Tech Mono', 'Courier New', Courier, monospace;
+    --font-body: 'Montserrat', sans-serif;
     --area-width: 1350px;
     --card-radius: 13px;
   }
@@ -30,52 +29,49 @@
     width:100%; max-width:var(--area-width);
     background:var(--panel-bg);border-radius:var(--card-radius);border:2px solid var(--panel-border);
     box-shadow:0 3px 21px #13141834;margin:0 auto 48px auto;padding:60px 5vw 44px 5vw;
-    display:flex; flex-direction:column; align-items:center; position:relative; /* Para el idioma */
+    display:flex; flex-direction:column; align-items:center; position:relative;
   }
-  /* HERO - Consola de Management */
-  .hero-flex {
-    width:100%; display:flex; gap:80px; align-items:flex-start; justify-content: center; max-width:1320px;
-  }
+  
+  /* HERO - Reorganizado y más limpio */
+  .hero-flex {width:100%; display:flex; gap:80px; align-items:flex-start; justify-content: center; max-width:1320px;}
   @media (max-width:1100px){ .hero-flex{flex-direction:column;gap:40px;align-items:center;}}
-  .hero-text { flex:1.15; display:flex; flex-direction:column; align-items: flex-start; gap:24px; min-width:340px;}
+  .hero-text { flex:1.15; display:flex; flex-direction:column; align-items: flex-start; gap:18px; min-width:340px;}
   @media (max-width:1100px){ .hero-text{align-items:center; text-align:center;}}
   
-  /* Tipografía Mejorada: Michroma para impacto, Montserrat para legibilidad */
-  .main-title { font-size:2.8rem; font-weight:900; letter-spacing:.1em; text-transform:uppercase; color:var(--roland-orange); margin-bottom:8px; font-family:var(--font-tech);}
-  .subtitle { font-size:1.12rem; color:var(--roland-red); font-weight:800; text-transform:uppercase; letter-spacing:.22em; margin-bottom:19px; font-family:var(--font-tech);}
+  .main-title { font-size:2.6rem; font-weight:900; letter-spacing:.1em; text-transform:uppercase; color:var(--roland-orange); margin-bottom:4px; font-family:var(--font-tech);}
+  .subtitle { font-size:1.1rem; color:var(--roland-red); font-weight:600; text-transform:uppercase; letter-spacing:.22em; margin-bottom:15px; font-family:var(--font-tech);}
   .description { font-size:1.05rem; color:#fff; font-weight:400; line-height:1.45; max-width:600px; text-align:left; opacity:.95; letter-spacing:.03em; font-family:var(--font-body);}
   @media (max-width:1100px){ .description{text-align:center;}}
 
-  /* Audio Deck - Ahora un Panel de Casetera Digital */
+  /* Audio Deck - Casetera Digital Limpia */
   .deck-controls-wrap { flex:1.07; display:flex; flex-direction:column;align-items:center; min-width:340px;}
-  .cassette-deck { width:320px; height:200px; background:var(--panel-dark); border:3px solid var(--panel-border); border-radius:8px; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:15px; margin-bottom:28px; box-shadow:inset 0 0 10px #000;}
+  .cassette-deck { 
+    width:320px; height:200px; background:var(--panel-dark); border:3px solid var(--panel-border); border-radius:8px; 
+    display:flex; flex-direction:column; align-items:center; justify-content:center; padding:15px; margin-bottom:28px;
+  }
   .deck-display-row { display:flex; justify-content:space-between; align-items:center; width:100%; margin-bottom:15px;}
   .turntable { width:100px; height:100px; border-radius:50%; background:#17171c; border:8px solid var(--panel-divider);position:relative;display:flex;align-items:center;justify-content:center; animation:spin 11s linear infinite; animation-play-state:paused; margin-right:20px;}
   .vinyl { width:65px; height:65px; border-radius:50%; background:radial-gradient(circle 40px at 51% 58%,#333 60%,#14171f 100%); position:relative;}
   .vinyl-logo {position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:25px;height:25px;}
 
-  /* Nueva Pantalla de Track LCD */
+  /* Pantalla de Track LCD */
   #trackDisplay {
-    background: #000; color: var(--roland-orange); border: 2px inset var(--panel-border); padding: 8px 12px; font-size: 1.0rem; font-family: 'Share Tech Mono', monospace; text-align: right; letter-spacing: 0.1em; border-radius: 4px; flex-grow: 1; min-height: 40px; display: flex; flex-direction: column; justify-content: center;
+    background: #000; color: var(--roland-orange); border: 2px solid var(--panel-border); padding: 8px 12px; font-size: 1.0rem; font-family: var(--font-tech); text-align: right; letter-spacing: 0.1em; border-radius: 4px; flex-grow: 1; min-height: 40px; display: flex; flex-direction: column; justify-content: center;
   }
-  .track-num {color: #CC0000; font-weight: bold;}
+  .track-num {color: var(--roland-red); font-weight: bold;}
 
   .deck-controls-row { display:flex; gap:10px;}
-  /* Botones estilo Casetera/Pioneer */
+  /* Botones limpios estilo Hardware */
   .control-btn {
-    padding: 12px 18px; background: #2f2f36; border: none; color: var(--white-soft); border-radius: 4px; cursor: pointer; font-family: var(--font-tech); font-size: 0.85rem; font-weight: bold; text-transform: uppercase; transition: background .14s, box-shadow .1s; letter-spacing: .12em;
-    box-shadow: 0 4px #0a0a0c, inset 0 2px 3px rgba(255, 255, 255, 0.1); /* Sombra 3D */
+    padding: 10px 16px; background: #2f2f36; border: 2px solid #000; color: var(--white-soft); border-radius: 4px; cursor: pointer; font-family: var(--font-tech); font-size: 0.85rem; font-weight: bold; text-transform: uppercase; transition: background .14s, color .1s; letter-spacing: .12em;
   }
-  .control-btn:active {
-    transform: translateY(2px); background: var(--roland-orange); color: #000; box-shadow: 0 2px #0a0a0c, inset 0 1px 2px rgba(0, 0, 0, 0.3);
-  }
-  .control-btn.active {
-    background: var(--roland-orange); color: #000;
+  .control-btn:active, .control-btn.active {
+    background: var(--roland-orange); color: #000; border-color: var(--white-soft);
   }
 
   .deck-stream { margin-top:20px; border-radius:8px; background:#23232a;border:none;overflow:hidden;}
   
-  /* Panel Row (SERVICIOS+VIDEO) */
+  /* PANEL: SERVICIOS ESTRATÉGICOS */
   .panel-area {
     width:100%; max-width:var(--area-width);margin:0 auto 48px auto;
     background:var(--panel-bg);border-radius:var(--card-radius);border:2px solid var(--panel-border);
@@ -85,11 +81,11 @@
   @media(max-width:1100px){.panel-area{grid-template-columns:1fr;gap:0;}}
   .services-col { display:flex;flex-direction:column;justify-content:center;align-items:stretch;gap:33px;padding:54px 37px 54px 37px;background:var(--panel-dark);border-right:2px solid var(--panel-border);min-height:480px;}
   
-  /* Estilo de Servicio (Más legible) */
-  .service-xl {background: none;border: none;border-left: 5px solid var(--roland-orange);padding: 17px 8px 17px 25px;margin: 0;font-family: var(--font-body); /* Cambio aquí */ font-size: 1.15rem;font-weight: 600;color: var(--white-soft);text-transform: uppercase;letter-spacing: 0.1em;line-height:1.21;}
+  .service-xl {background: none;border: none;border-left: 5px solid var(--roland-orange);padding: 17px 8px 17px 25px;margin: 0;font-family: var(--font-body); font-size: 1.15rem;font-weight: 600;color: var(--white-soft);text-transform: uppercase;letter-spacing: 0.1em;line-height:1.21;}
   .service-xl .service-title {display:block; font-size:1.18em; font-weight:900; color:var(--roland-orange); letter-spacing:.12em; margin-bottom:7px; font-family:var(--font-tech);}
-  .service-xl .service-desc {color: #d3d4d4; font-size:0.95em; margin-left:2px; letter-spacing:.05em; font-family: var(--font-body); text-transform:none; /* No todo debe ser mayúsculas */ font-weight: 400;}
+  .service-xl .service-desc {color: #d3d4d4; font-size:0.95em; margin-left:2px; letter-spacing:.05em; font-family: var(--font-body); text-transform:none; font-weight: 400;}
   
+  /* Video Col y Contacto se mantienen para evitar roturas de layout */
   .video-col {display:flex;flex-direction:column;justify-content:center;align-items:center;min-height:480px;padding:40px 39px 40px 32px;}
   .video-card {width:100%;max-width:613px;background:#191c25;border-radius:11px;border:2px solid var(--panel-border);box-shadow:0 2px 13px #181a1d18;overflow:hidden;display:flex;flex-direction:column;align-items:center;margin-bottom:22px;}
   .video-player-frame {width:100%;height:342px;background:var(--panel-dark);display:flex;align-items:center;justify-content:center;}
@@ -98,7 +94,7 @@
   .dots-nav {display:flex;justify-content:center;gap:14px;margin:17px 0 2px 0;}
   .video-dot {width:15px;height:15px;border-radius:50%;background:var(--panel-dark);border:2px solid var(--roland-orange);cursor:pointer;transition:background .13s,border-color .13s;}
   .video-dot.active {background:var(--roland-orange);border-color:var(--white-soft);}
-  /* Contacto */
+  
   .area.contact-panel {padding:40px 5vw 40px 5vw;margin-top:48px;}
   .panel-divider {height:2.2px;width:100%;max-width:var(--area-width);background:var(--roland-orange);border:none;opacity:.7;margin:0 auto 46px auto;}
   .contact-title {font-family:var(--font-tech);color:var(--roland-orange);font-size:1.11rem;font-weight:900;text-align:center;letter-spacing:.21em;text-transform:uppercase;margin-bottom:19px;}
@@ -112,9 +108,13 @@
   .whatsapp-float:hover{background:var(--white-soft);color:var(--roland-orange);}
   
   @keyframes spin {0%{transform:rotate(0deg);}100%{transform:rotate(360deg);}}
-  /* Toggle de Idioma */
-  #lang-toggle {position:absolute; top:20px; right:20px; background:var(--panel-dark); border:1px solid var(--panel-border); border-radius:4px; padding:5px 10px; font-family:var(--font-panel); font-size:0.9rem; cursor:pointer; color:var(--roland-orange);}
+
+  /* Toggle de Idioma Limpio */
+  #lang-toggle {position:absolute; top:20px; right:20px; background:var(--panel-dark); border:1px solid var(--panel-border); border-radius:4px; padding:5px 10px; font-family:var(--font-tech); font-size:0.9rem; cursor:pointer; color:var(--roland-orange);}
   #lang-toggle:hover {background:#2b2b34;}
+  
+  /* Clases de Idioma: Por defecto ES, EN oculto */
+  .lang-en { display: none; }
   </style>
 </head>
 <body>
@@ -123,24 +123,20 @@
       <div id="lang-toggle">ES / EN</div>
       <div class="hero-flex">
         <div class="hero-text">
-          <div class="main-title data-lang-es">EDUARDO MEJÍA // SISTEMA NERVIOSO MUSICAL</div>
-          <div class="main-title data-lang-en" style="display:none;">EDUARDO MEJÍA // MUSICAL NERVOUS SYSTEM</div>
-          <div class="subtitle data-lang-es">MANAGER · BOOKING · EDITORIAL</div>
-          <div class="subtitle data-lang-en" style="display:none;">MANAGER · BOOKING · PUBLISHING</div>
-          <div class="description data-lang-es">
-            Arquitectura de Giras y Estrategia de Contenido. Conectando talento con el mercado global a través de Distribución, Booking Estratégico y Gestión Editorial. La precisión del hardware al servicio del artista.
-          </div>
-          <div class="description data-lang-en" style="display:none;">
-            Tour Architecture and Content Strategy. Connecting talent with the global market through Distribution, Strategic Booking, and Publishing Management. Hardware precision at the service of the artist.
+          <div class="main-title"><span class="lang-es">EDUARDO MEJÍA // SISTEMA NERVIOSO MUSICAL</span><span class="lang-en">EDUARDO MEJÍA // MUSICAL NERVOUS SYSTEM</span></div>
+          <div class="subtitle"><span class="lang-es">MANAGER · BOOKING · EDITORIAL</span><span class="lang-en">MANAGER · BOOKING · PUBLISHING</span></div>
+          <div class="description">
+            <span class="lang-es">Arquitectura de Giras y Estrategia de Contenido. Conectando talento con el mercado global a través de Distribución, Booking Estratégico y Gestión Editorial. La precisión del hardware al servicio del artista.</span>
+            <span class="lang-en">Tour Architecture and Content Strategy. Connecting talent with the global market through Distribution, Strategic Booking, and Publishing Management. Hardware precision at the service of the artist.</span>
           </div>
         </div>
         <div class="deck-controls-wrap">
           <div class="cassette-deck">
             <div class="deck-display-row">
-                            <div class="turntable" id="turntable" style="animation-play-state:paused;"><div class="vinyl"><img src="logo.svg" class="vinyl-logo"></div></div>
+                            <div class="turntable" id="turntable"><div class="vinyl"><img src="logo.svg" class="vinyl-logo"></div></div>
                             <div id="trackDisplay">
                 <span class="track-num">TRK [01/05]</span>
-                <span id="currentTrackName">Cargando...</span>
+                <span id="currentTrackName"></span>
               </div>
             </div>
                         <div class="deck-controls-row">
@@ -161,22 +157,19 @@
         <div class="panel-area">
       <div class="services-col">
         <div class="service-xl">
-          <span class="service-title data-lang-es">REPRESENTACIÓN Y TOURING</span>
-          <span class="service-title data-lang-en" style="display:none;">REPRESENTATION & TOURING</span>
-          <span class="service-desc data-lang-es">Giras Nacionales e Internacionales, Negociación de Contratos, Circuitos de Clubes y Festivales.</span>
-          <span class="service-desc data-lang-en" style="display:none;">National and International Tours, Contract Negotiation, Club Circuits and Festival Placement.</span>
+          <span class="service-title lang-es">REPRESENTACIÓN Y TOURING</span><span class="service-title lang-en">REPRESENTATION & TOURING</span>
+          <span class="service-desc lang-es">Giras Nacionales e Internacionales, Negociación de Contratos, Circuitos de Clubes y Festivales.</span>
+          <span class="service-desc lang-en">National and International Tours, Contract Negotiation, Club Circuits and Festival Placement.</span>
         </div>
         <div class="service-xl">
-          <span class="service-title data-lang-es">DISTRIBUCIÓN Y ESTRATEGIA</span>
-          <span class="service-title data-lang-en" style="display:none;">DISTRIBUTION & STRATEGY</span>
-          <span class="service-desc data-lang-es">Estrategia de Lanzamientos (Data-Driven), Optimización de Metadata, Performance Digital y Audiencias.</span>
-          <span class="service-desc data-lang-en" style="display:none;">Release Strategy (Data-Driven), Metadata Optimization, Digital Performance and Audience Growth.</span>
+          <span class="service-title lang-es">DISTRIBUCIÓN Y ESTRATEGIA</span><span class="service-title lang-en">DISTRIBUTION & STRATEGY</span>
+          <span class="service-desc lang-es">Estrategia de Lanzamientos (Data-Driven), Optimización de Metadata, Performance Digital y Audiencias.</span>
+          <span class="service-desc lang-en">Release Strategy (Data-Driven), Metadata Optimization, Digital Performance and Audience Growth.</span>
         </div>
         <div class="service-xl">
-          <span class="service-title data-lang-es">GESTIÓN EDITORIAL Y A&R</span>
-          <span class="service-title data-lang-en" style="display:none;">PUBLISHING MANAGEMENT & A&R</span>
-          <span class="service-desc data-lang-es">Administración de Derechos de Autor, Licenciamiento, Sincronización, Desarrollo de Artistas (A&R).</span>
-          <span class="service-desc data-lang-en" style="display:none;">Copyright Administration, Licensing, Sync Placement, Artist Development (A&R).</span>
+          <span class="service-title lang-es">GESTIÓN EDITORIAL Y A&R</span><span class="service-title lang-en">PUBLISHING MANAGEMENT & A&R</span>
+          <span class="service-desc lang-es">Administración de Derechos de Autor, Licenciamiento, Sincronización, Desarrollo de Artistas (A&R).</span>
+          <span class="service-desc lang-en">Copyright Administration, Licensing, Sync Placement, Artist Development (A&R).</span>
         </div>
       </div>
       <div class="video-col">
@@ -191,26 +184,21 @@
     </div>
     <hr class="panel-divider">
         <section class="area contact-panel">
-      <div class="contact-title data-lang-es">CONECTEMOS</div>
-      <div class="contact-title data-lang-en" style="display:none;">CONNECT WITH ME</div>
+      <div class="contact-title"><span class="lang-es">CONECTEMOS</span><span class="lang-en">CONNECT WITH ME</span></div>
       <div class="contact-grid">
-        <a href="mailto:emc121091@me.com?subject=PROYECTO%20MUSICAL" class="contact-port port-primary data-lang-es">START PROJECT</a>
-        <a href="mailto:emc121091@me.com?subject=MUSICAL%20PROJECT" class="contact-port port-primary data-lang-en" style="display:none;">START PROJECT</a>
-        <a href="https://edumecar.github.io/Book/" target="_blank" class="contact-port data-lang-es">BOOKING PLANS</a>
-        <a href="https://edumecar.github.io/Book/" target="_blank" class="contact-port data-lang-en" style="display:none;">BOOKING PLANS</a>
+        <a href="mailto:emc121091@me.com?subject=PROYECTO%20MUSICAL" class="contact-port port-primary"><span class="lang-es">START PROJECT</span><span class="lang-en">START PROJECT</span></a>
+        <a href="https://edumecar.github.io/Book/" target="_blank" class="contact-port"><span class="lang-es">BOOKING PLANS</span><span class="lang-en">BOOKING PLANS</span></a>
         <a href="https://www.linkedin.com/in/edumecar" target="_blank" class="contact-port">LINKEDIN</a>
       </div>
     </section>
-    <div class="footer data-lang-es">
-      CONSOLA ANALÓGICA: SÓLO DATA, ESTRATEGIA Y MÚSICA. ©EDUARDO MEJÍA
-    </div>
-    <div class="footer data-lang-en" style="display:none;">
-      ANALOG CONSOLE: ONLY DATA, STRATEGY, AND MUSIC. ©EDUARDO MEJÍA
+    <div class="footer">
+      <span class="lang-es">CONSOLA ANALÓGICA: SÓLO DATA, ESTRATEGIA Y MÚSICA. ©EDUARDO MEJÍA</span>
+      <span class="lang-en">ANALOG CONSOLE: ONLY DATA, STRATEGY, AND MUSIC. ©EDUARDO MEJÍA</span>
     </div>
     <a href="https://wa.me/525512478139" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp" style="font-size:1.7rem;"></i></a>
   </div>
 <script>
-// --- CONFIGURACIÓN DE AUDIO (Casetera Digital) ---
+// --- CONFIGURACIÓN DE AUDIO (Casetera Digital Robusta) ---
 const audio = document.getElementById('localAudio');
 const playBtn = document.getElementById('playBtn');
 const stopBtn = document.getElementById('stopBtn');
@@ -221,22 +209,28 @@ const currentTrackName = document.getElementById('currentTrackName');
 const trackDisplay = document.querySelector('.track-num');
 
 const tracks = [
-  { name: "TRACK INÉDITO 01: ARCANA", src: "micancion1.mp3" },
-  { name: "TRACK INÉDITO 02: SYNC FLOW", src: "micancion2.mp3" },
-  { name: "TRACK INÉDITO 03: MODULATION", src: "micancion3.mp3" },
-  { name: "TRACK INÉDITO 04: DATASOUL", src: "micancion4.mp3" },
-  { name: "TRACK INÉDITO 05: A&R BEAT", src: "micancion5.mp3" },
+  { name_es: "TRACK INÉDITO 01: ARCANA", name_en: "UNRELEASED 01: ARCANA", src: "micancion1.mp3" },
+  { name_es: "TRACK INÉDITO 02: SYNC FLOW", name_en: "UNRELEASED 02: SYNC FLOW", src: "micancion2.mp3" },
+  { name_es: "TRACK INÉDITO 03: MODULATION", name_en: "UNRELEASED 03: MODULATION", src: "micancion3.mp3" },
+  { name_es: "TRACK INÉDITO 04: DATASOUL", name_en: "UNRELEASED 04: DATASOUL", src: "micancion4.mp3" },
+  { name_es: "TRACK INÉDITO 05: A&R BEAT", name_en: "UNRELEASED 05: A&R BEAT", src: "micancion5.mp3" },
 ];
 let currentTrackIndex = 0;
+let currentLang = 'es'; // Global para sincronizar con el audio display
 
 function updateTrackDisplay() {
+  const trackNameKey = `name_${currentLang}`;
   trackDisplay.textContent = `TRK [${currentTrackIndex + 1}/${tracks.length}]`;
-  currentTrackName.textContent = tracks[currentTrackIndex].name;
+  currentTrackName.textContent = tracks[currentTrackIndex][trackNameKey];
   audio.src = tracks[currentTrackIndex].src;
   
-  // Reiniciar animación del tocadiscos (si la canción cambia mientras está pausado)
+  // Asegurarse de que el botón de play refleje el estado
   if (audio.paused) {
+    playBtn.classList.remove('active');
     turntable.style.animationPlayState = "paused";
+  } else {
+    playBtn.classList.add('active');
+    turntable.style.animationPlayState = "running";
   }
 }
 
@@ -245,14 +239,12 @@ function stopAll() {
   audio.currentTime = 0;
   turntable.style.animationPlayState = "paused";
   playBtn.classList.remove('active');
-  stopBtn.classList.add('active'); // Mostrar el botón STOP como 'enganchado'
 }
 
 function playTrack() {
-  audio.play();
+  audio.play().catch(e => console.error("Error al intentar reproducir audio:", e));
   turntable.style.animationPlayState = "running";
   playBtn.classList.add('active');
-  stopBtn.classList.remove('active');
 }
 
 playBtn.onclick = () => {
@@ -270,66 +262,69 @@ stopBtn.onclick = () => stopAll();
 ffBtn.onclick = () => {
   currentTrackIndex = (currentTrackIndex + 1) % tracks.length;
   updateTrackDisplay();
-  playTrack(); // Reproducir automáticamente la siguiente
+  playTrack();
 };
 
 rewBtn.onclick = () => {
   currentTrackIndex = (currentTrackIndex - 1 + tracks.length) % tracks.length;
   updateTrackDisplay();
-  playTrack(); // Reproducir automáticamente la anterior
+  playTrack();
 };
 
 audio.onended = () => {
-  ffBtn.onclick(); // Pasa al siguiente track automáticamente
+  ffBtn.onclick();
 };
 
 // --- CONFIGURACIÓN DE VIDEO (Módulo de Ejecución) ---
 const videos = [
-  { id:"ZGxSXchZNfo", title:"LIVE PERFORMANCE: ARTE & DATA" },
-  { id:"kXYiU_JCYtU", title:"SOUND DESIGN: FRAMEWORKS PARA MARCA" },
-  { id:"ktvTqknDobU", title:"CLOUD FLOW ARCHITECTURE: LANZAMIENTOS" }
+  { id:"ZGxSXchZNfo", title_es:"LIVE PERFORMANCE: ARTE & DATA", title_en: "LIVE PERFORMANCE: ART & DATA" },
+  { id:"kXYiU_JCYtU", title_es:"SOUND DESIGN: FRAMEWORKS PARA MARCA", title_en: "SOUND DESIGN: BRAND FRAMEWORKS" },
+  { id:"ktvTqknDobU", title_es:"CLOUD FLOW ARCHITECTURE: LANZAMIENTOS", title_en: "CLOUD FLOW ARCHITECTURE: RELEASES" }
 ];
 const mainVideo=document.getElementById("mainVideo");
 const videoTitle=document.getElementById("videoTitle");
 const videoDots=document.getElementById("videoDots");
 
-function loadVideo(i) {
+function loadVideo(i, lang) {
   const v=videos[i];
+  const titleKey = `title_${lang}`;
   mainVideo.src=`https://www.youtube.com/embed/${v.id}?modestbranding=1&rel=0&autoplay=0`;
-  videoTitle.textContent=v.title;
+  videoTitle.textContent=v[titleKey];
   document.querySelectorAll(".video-dot").forEach((dot,idx)=>dot.classList.toggle("active",idx===i));
 }
 
 videos.forEach((v,i)=>{
   const dot=document.createElement("div");
   dot.className="video-dot";
-  dot.onclick=()=>loadVideo(i);
+  dot.onclick=()=>loadVideo(i, currentLang);
   videoDots.appendChild(dot);
 });
 
-// --- INICIALIZACIÓN ---
-updateTrackDisplay(); // Cargar Track 1 al inicio
-loadVideo(0);
 
-// --- TOGGLE DE IDIOMA ---
+// --- TOGGLE DE IDIOMA (Funcionalidad Mejorada) ---
 const langToggle = document.getElementById('lang-toggle');
-let currentLang = 'es';
 
 langToggle.onclick = () => {
+  // Cambiar el idioma global
   currentLang = currentLang === 'es' ? 'en' : 'es';
+  const otherLang = currentLang === 'es' ? 'en' : 'es';
+
+  // 1. Ocultar el idioma anterior y mostrar el nuevo
+  document.querySelectorAll(`.lang-${otherLang}`).forEach(el => el.style.display = 'none');
+  document.querySelectorAll(`.lang-${currentLang}`).forEach(el => el.style.display = 'block');
   
-  document.querySelectorAll('[class^="data-lang-"]').forEach(el => {
-    // Ocultar todos los elementos de idioma
-    el.style.display = 'none';
-  });
+  // 2. Actualizar el display de audio y video
+  updateTrackDisplay();
+  loadVideo(document.querySelector(".video-dot.active") ? Array.from(videoDots.children).findIndex(dot => dot.classList.contains("active")) : 0, currentLang);
   
-  document.querySelectorAll(`.data-lang-${currentLang}`).forEach(el => {
-    // Mostrar solo los elementos del idioma actual
-    el.style.display = el.tagName === 'DIV' ? 'flex' : 'block'; // Mantiene 'flex' para hero-text
-  });
-  
-  langToggle.textContent = currentLang === 'es' ? 'ES / EN' : 'EN / ES';
+  // 3. Actualizar el toggle (opcional)
+  langToggle.textContent = `${currentLang.toUpperCase()} / ${otherLang.toUpperCase()}`;
 };
+
+
+// --- INICIALIZACIÓN ---
+updateTrackDisplay(); 
+loadVideo(0, currentLang); // Cargar video y título inicial
 </script>
 </body>
 </html>
