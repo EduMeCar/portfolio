@@ -1,330 +1,1282 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title data-lang-key="title_es">EDUARDO MEJÍA // CONSOLA DE MANAGEMENT</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <style>
-  :root {
-    --roland-orange: #ff6600;
-    --roland-red: #CC0000;
-    --panel-bg: #131418;
-    --panel-dark: #191b22;
-    --panel-border: #20232c;
-    --panel-divider: #26292f;
-    --white-soft: #f5f5f5;
-    --font-tech: 'Share Tech Mono', 'Courier New', Courier, monospace;
-    --font-body: 'Montserrat', sans-serif;
-    --area-width: 1350px;
-    --card-radius: 13px;
-  }
-  * {margin:0; padding:0; box-sizing:border-box;}
-  body {
-    background: #0c0d0f; color: var(--white-soft); font-family: var(--font-body); letter-spacing:.02em;
-  }
-  .main-wrap {width:100vw;display:flex;flex-direction:column;align-items:center; padding:56px 0 44px 0;}
-  .area {
-    width:100%; max-width:var(--area-width);
-    background:var(--panel-bg);border-radius:var(--card-radius);border:2px solid var(--panel-border);
-    box-shadow:0 3px 21px #13141834;margin:0 auto 48px auto;padding:60px 5vw 44px 5vw;
-    display:flex; flex-direction:column; align-items:center; position:relative;
-  }
-  
-  /* HERO - Reorganizado y más limpio */
-  .hero-flex {width:100%; display:flex; gap:80px; align-items:flex-start; justify-content: center; max-width:1320px;}
-  @media (max-width:1100px){ .hero-flex{flex-direction:column;gap:40px;align-items:center;}}
-  .hero-text { flex:1.15; display:flex; flex-direction:column; align-items: flex-start; gap:18px; min-width:340px;}
-  @media (max-width:1100px){ .hero-text{align-items:center; text-align:center;}}
-  
-  .main-title { font-size:2.6rem; font-weight:900; letter-spacing:.1em; text-transform:uppercase; color:var(--roland-orange); margin-bottom:4px; font-family:var(--font-tech);}
-  .subtitle { font-size:1.1rem; color:var(--roland-red); font-weight:600; text-transform:uppercase; letter-spacing:.22em; margin-bottom:15px; font-family:var(--font-tech);}
-  .description { font-size:1.05rem; color:#fff; font-weight:400; line-height:1.45; max-width:600px; text-align:left; opacity:.95; letter-spacing:.03em; font-family:var(--font-body);}
-  @media (max-width:1100px){ .description{text-align:center;}}
-
-  /* Audio Deck - Casetera Digital Limpia */
-  .deck-controls-wrap { flex:1.07; display:flex; flex-direction:column;align-items:center; min-width:340px;}
-  .cassette-deck { 
-    width:320px; height:200px; background:var(--panel-dark); border:3px solid var(--panel-border); border-radius:8px; 
-    display:flex; flex-direction:column; align-items:center; justify-content:center; padding:15px; margin-bottom:28px;
-  }
-  .deck-display-row { display:flex; justify-content:space-between; align-items:center; width:100%; margin-bottom:15px;}
-  .turntable { width:100px; height:100px; border-radius:50%; background:#17171c; border:8px solid var(--panel-divider);position:relative;display:flex;align-items:center;justify-content:center; animation:spin 11s linear infinite; animation-play-state:paused; margin-right:20px;}
-  .vinyl { width:65px; height:65px; border-radius:50%; background:radial-gradient(circle 40px at 51% 58%,#333 60%,#14171f 100%); position:relative;}
-  .vinyl-logo {position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:25px;height:25px;}
-
-  /* Pantalla de Track LCD */
-  #trackDisplay {
-    background: #000; color: var(--roland-orange); border: 2px solid var(--panel-border); padding: 8px 12px; font-size: 1.0rem; font-family: var(--font-tech); text-align: right; letter-spacing: 0.1em; border-radius: 4px; flex-grow: 1; min-height: 40px; display: flex; flex-direction: column; justify-content: center;
-  }
-  .track-num {color: var(--roland-red); font-weight: bold;}
-
-  .deck-controls-row { display:flex; gap:10px;}
-  /* Botones limpios estilo Hardware */
-  .control-btn {
-    padding: 10px 16px; background: #2f2f36; border: 2px solid #000; color: var(--white-soft); border-radius: 4px; cursor: pointer; font-family: var(--font-tech); font-size: 0.85rem; font-weight: bold; text-transform: uppercase; transition: background .14s, color .1s; letter-spacing: .12em;
-  }
-  .control-btn:active, .control-btn.active {
-    background: var(--roland-orange); color: #000; border-color: var(--white-soft);
-  }
-
-  .deck-stream { margin-top:20px; border-radius:8px; background:#23232a;border:none;overflow:hidden;}
-  
-  /* PANEL: SERVICIOS ESTRATÉGICOS */
-  .panel-area {
-    width:100%; max-width:var(--area-width);margin:0 auto 48px auto;
-    background:var(--panel-bg);border-radius:var(--card-radius);border:2px solid var(--panel-border);
-    box-shadow:0 3px 21px #13141834;display:grid;grid-template-columns:420px 1fr;gap:44px;align-items:stretch;overflow:hidden;
-    padding:0;
-  }
-  @media(max-width:1100px){.panel-area{grid-template-columns:1fr;gap:0;}}
-  .services-col { display:flex;flex-direction:column;justify-content:center;align-items:stretch;gap:33px;padding:54px 37px 54px 37px;background:var(--panel-dark);border-right:2px solid var(--panel-border);min-height:480px;}
-  
-  .service-xl {background: none;border: none;border-left: 5px solid var(--roland-orange);padding: 17px 8px 17px 25px;margin: 0;font-family: var(--font-body); font-size: 1.15rem;font-weight: 600;color: var(--white-soft);text-transform: uppercase;letter-spacing: 0.1em;line-height:1.21;}
-  .service-xl .service-title {display:block; font-size:1.18em; font-weight:900; color:var(--roland-orange); letter-spacing:.12em; margin-bottom:7px; font-family:var(--font-tech);}
-  .service-xl .service-desc {color: #d3d4d4; font-size:0.95em; margin-left:2px; letter-spacing:.05em; font-family: var(--font-body); text-transform:none; font-weight: 400;}
-  
-  /* Video Col y Contacto se mantienen para evitar roturas de layout */
-  .video-col {display:flex;flex-direction:column;justify-content:center;align-items:center;min-height:480px;padding:40px 39px 40px 32px;}
-  .video-card {width:100%;max-width:613px;background:#191c25;border-radius:11px;border:2px solid var(--panel-border);box-shadow:0 2px 13px #181a1d18;overflow:hidden;display:flex;flex-direction:column;align-items:center;margin-bottom:22px;}
-  .video-player-frame {width:100%;height:342px;background:var(--panel-dark);display:flex;align-items:center;justify-content:center;}
-  .video-player-frame iframe {width:100%;height:100%;border:none;}
-  .video-label {width:100%;padding:17px 0 0 0;text-align:center;color:var(--roland-orange);font-size:1.07rem;font-family:var(--font-tech);text-transform:uppercase;font-weight:900;letter-spacing:.17em;}
-  .dots-nav {display:flex;justify-content:center;gap:14px;margin:17px 0 2px 0;}
-  .video-dot {width:15px;height:15px;border-radius:50%;background:var(--panel-dark);border:2px solid var(--roland-orange);cursor:pointer;transition:background .13s,border-color .13s;}
-  .video-dot.active {background:var(--roland-orange);border-color:var(--white-soft);}
-  
-  .area.contact-panel {padding:40px 5vw 40px 5vw;margin-top:48px;}
-  .panel-divider {height:2.2px;width:100%;max-width:var(--area-width);background:var(--roland-orange);border:none;opacity:.7;margin:0 auto 46px auto;}
-  .contact-title {font-family:var(--font-tech);color:var(--roland-orange);font-size:1.11rem;font-weight:900;text-align:center;letter-spacing:.21em;text-transform:uppercase;margin-bottom:19px;}
-  .contact-grid {display:grid;grid-template-columns:repeat(3,1fr);gap:22px;width:100%;}
-  @media(max-width:600px){.contact-grid{grid-template-columns:1fr;}}
-  .contact-port {padding:22px;border-radius:8px;background:var(--panel-dark);border:1.7px solid var(--panel-border);color:var(--roland-orange);text-align:center;text-decoration:none;font-family:var(--font-tech);font-weight:900;font-size:1.07em;text-transform:uppercase;letter-spacing:.09em;transition:all .1s;}
-  .contact-port:hover {background:var(--roland-orange);color:#fff;}
-  .port-primary {background:var(--roland-orange);color:#fff;}
-  .footer {margin-top:14px;text-align:center;color:#a9adb0;letter-spacing:.05em;font-size:0.9em; font-family: var(--font-body);}
-  .whatsapp-float {position:fixed;bottom:23px;right:32px;background:var(--roland-orange);color:#fff;width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:1111;transition:background .1s;}
-  .whatsapp-float:hover{background:var(--white-soft);color:var(--roland-orange);}
-  
-  @keyframes spin {0%{transform:rotate(0deg);}100%{transform:rotate(360deg);}}
-
-  /* Toggle de Idioma Limpio */
-  #lang-toggle {position:absolute; top:20px; right:20px; background:var(--panel-dark); border:1px solid var(--panel-border); border-radius:4px; padding:5px 10px; font-family:var(--font-tech); font-size:0.9rem; cursor:pointer; color:var(--roland-orange);}
-  #lang-toggle:hover {background:#2b2b34;}
-  
-  /* Clases de Idioma: Por defecto ES, EN oculto */
-  .lang-en { display: none; }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- SEO Meta Tags -->
+  <title>Eduardo Mejía | Music Manager, Booking & Publishing</title>
+  <meta name="description" content="Tour architecture and content strategy for artists. Strategic booking, distribution management, and publishing services connecting talent with the global market.">
+  <meta name="keywords" content="music manager, booking agent, music publishing, tour management, A&R, music distribution">
+  <meta name="author" content="Eduardo Mejía">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://eduardomejia.com/">
+  <meta property="og:title" content="Eduardo Mejía | Music Manager & Booking Agent">
+  <meta property="og:description" content="Professional music management, booking, and publishing services. Data-driven strategy for artists.">
+  <meta property="og:image" content="https://eduardomejia.com/og-image.jpg">
+  
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://eduardomejia.com/">
+  <meta property="twitter:title" content="Eduardo Mejía | Music Manager">
+  <meta property="twitter:description" content="Professional music management and booking services.">
+  <meta property="twitter:image" content="https://eduardomejia.com/twitter-image.jpg">
+  
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  
+  <!-- Fonts with display=swap -->
+  <link href="https://fonts.googleapis.com/css2?family=Michroma&family=Montserrat:wght@400;600;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Schema.org markup -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Eduardo Mejía",
+    "jobTitle": "Music Manager & Booking Agent",
+    "description": "Professional music manager specializing in touring, booking, and publishing management",
+    "url": "https://eduardomejia.com",
+    "sameAs": [
+      "https://www.linkedin.com/in/edumecar"
+    ],
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+52-55-1247-8139",
+      "contactType": "Business",
+      "availableLanguage": ["Spanish", "English"]
+    }
+  }
+  </script>
+  
+  <style>
+  :root {
+    --roland-orange: #ff6600;
+    --roland-red: #CC0000;
+    --panel-bg: #131418;
+    --panel-dark: #191b22;
+    --panel-border: #20232c;
+    --panel-divider: #26292f;
+    --white-soft: #f5f5f5;
+    --font-tech: 'Michroma', sans-serif;
+    --font-body: 'Montserrat', sans-serif;
+    --font-panel: 'Share Tech Mono', 'Courier New', Courier, monospace;
+    --area-width: 1350px;
+    --card-radius: 13px;
+    --transition-speed: 0.2s;
+  }
+  
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+  
+  body, h1, h2, h3, p, ul {
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    background: #0c0d0f;
+    color: var(--white-soft);
+    font-family: var(--font-body);
+    letter-spacing: 0.02em;
+    line-height: 1.5;
+    min-height: 100vh;
+  }
+  
+  .skip-to-content {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--roland-orange);
+    color: #000;
+    padding: 8px;
+    text-decoration: none;
+    z-index: 9999;
+  }
+  
+  .skip-to-content:focus {
+    top: 0;
+  }
+  
+  .main-wrap {
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 56px 20px 44px;
+  }
+  
+  .area {
+    width: 100%;
+    max-width: var(--area-width);
+    background: var(--panel-bg);
+    border-radius: var(--card-radius);
+    border: 2px solid var(--panel-border);
+    box-shadow: 0 3px 21px rgba(19, 20, 24, 0.2);
+    margin: 0 auto 48px;
+    padding: 60px 5vw 44px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+  }
+  
+  /* Language Toggle */
+  .lang-toggle {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: var(--panel-dark);
+    border: 1px solid var(--panel-border);
+    border-radius: 4px;
+    padding: 8px 12px;
+    font-family: var(--font-panel);
+    font-size: 0.9rem;
+    cursor: pointer;
+    color: var(--roland-orange);
+    transition: background var(--transition-speed);
+  }
+  
+  .lang-toggle:hover,
+  .lang-toggle:focus {
+    background: #2b2b34;
+    outline: 2px solid var(--roland-orange);
+    outline-offset: 2px;
+  }
+  
+  /* Hero Section */
+  .hero-flex {
+    width: 100%;
+    display: flex;
+    gap: 80px;
+    align-items: flex-start;
+    justify-content: center;
+    max-width: 1320px;
+  }
+  
+  .hero-text {
+    flex: 1.15;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    min-width: 340px;
+  }
+  
+  .main-title {
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 900;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--roland-orange);
+    margin-bottom: 8px;
+    font-family: var(--font-tech);
+    line-height: 1.2;
+  }
+  
+  .subtitle {
+    font-size: clamp(0.95rem, 2vw, 1.12rem);
+    color: var(--roland-red);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    margin-bottom: 19px;
+    font-family: var(--font-tech);
+  }
+  
+  .description {
+    font-size: clamp(0.95rem, 1.8vw, 1.05rem);
+    color: #fff;
+    font-weight: 400;
+    line-height: 1.6;
+    max-width: 600px;
+    opacity: 0.95;
+    letter-spacing: 0.03em;
+  }
+  
+  /* Audio Deck */
+  .deck-controls-wrap {
+    flex: 1.07;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 340px;
+  }
+  
+  .cassette-deck {
+    width: 100%;
+    max-width: 340px;
+    min-height: 200px;
+    background: var(--panel-dark);
+    border: 3px solid var(--panel-border);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    margin-bottom: 28px;
+    box-shadow: inset 0 0 10px #000;
+  }
+  
+  .deck-display-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 15px;
+    gap: 15px;
+  }
+  
+  .turntable {
+    width: 100px;
+    height: 100px;
+    min-width: 100px;
+    border-radius: 50%;
+    background: #17171c;
+    border: 8px solid var(--panel-divider);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: border-color var(--transition-speed);
+  }
+  
+  .turntable.spinning {
+    animation: spin 1.8s linear infinite;
+    border-color: var(--roland-orange);
+  }
+  
+  .vinyl {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    background: radial-gradient(circle 40px at 51% 58%, #333 60%, #14171f 100%);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .vinyl-center {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: var(--roland-orange);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: bold;
+    color: #000;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  .track-display {
+    background: #000;
+    color: var(--roland-orange);
+    border: 2px inset var(--panel-border);
+    padding: 8px 12px;
+    font-size: clamp(0.85rem, 1.5vw, 1rem);
+    font-family: var(--font-panel);
+    text-align: right;
+    letter-spacing: 0.1em;
+    border-radius: 4px;
+    flex-grow: 1;
+    min-height: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px;
+  }
+  
+  .track-num {
+    color: var(--roland-red);
+    font-weight: bold;
+    font-size: 0.9em;
+  }
+  
+  .track-name {
+    font-size: 0.85em;
+    color: var(--roland-orange);
+  }
+  
+  .track-error {
+    color: #ff3333;
+    font-size: 0.75em;
+  }
+  
+  .deck-controls-row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .control-btn {
+    padding: 12px 16px;
+    background: linear-gradient(180deg, #3a3a42 0%, #2f2f36 100%);
+    border: none;
+    color: var(--white-soft);
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: var(--font-tech);
+    font-size: 0.75rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: all 0.15s ease;
+    letter-spacing: 0.12em;
+    box-shadow: 0 4px #0a0a0c, inset 0 2px 3px rgba(255, 255, 255, 0.1);
+    position: relative;
+    top: 0;
+  }
+  
+  .control-btn:hover:not(:disabled) {
+    background: linear-gradient(180deg, #4a4a52 0%, #3f3f46 100%);
+  }
+  
+  .control-btn:active:not(:disabled) {
+    transform: translateY(2px);
+    box-shadow: 0 2px #0a0a0c, inset 0 1px 2px rgba(0, 0, 0, 0.3);
+  }
+  
+  .control-btn:focus {
+    outline: 2px solid var(--roland-orange);
+    outline-offset: 2px;
+  }
+  
+  .control-btn.active {
+    background: var(--roland-orange);
+    color: #000;
+    box-shadow: 0 4px var(--roland-red), inset 0 2px 3px rgba(255, 255, 255, 0.3);
+  }
+  
+  .control-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  
+  .deck-stream {
+    margin-top: 20px;
+    border-radius: 8px;
+    background: #23232a;
+    border: 2px solid var(--panel-border);
+    overflow: hidden;
+    width: 100%;
+    max-width: 340px;
+  }
+  
+  .deck-stream iframe {
+    width: 100%;
+    height: 81px;
+    border: none;
+  }
+  
+  /* Services Panel */
+  .panel-area {
+    width: 100%;
+    max-width: var(--area-width);
+    margin: 0 auto 48px;
+    background: var(--panel-bg);
+    border-radius: var(--card-radius);
+    border: 2px solid var(--panel-border);
+    box-shadow: 0 3px 21px rgba(19, 20, 24, 0.2);
+    display: grid;
+    grid-template-columns: 420px 1fr;
+    gap: 44px;
+    align-items: stretch;
+    overflow: hidden;
+    padding: 0;
+  }
+  
+  .services-col {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 33px;
+    padding: 54px 37px;
+    background: var(--panel-dark);
+    border-right: 2px solid var(--panel-border);
+    min-height: 480px;
+  }
+  
+  .service-xl {
+    background: none;
+    border: none;
+    border-left: 5px solid var(--roland-orange);
+    padding: 17px 8px 17px 25px;
+    margin: 0;
+    transition: border-color var(--transition-speed);
+  }
+  
+  .service-xl:hover {
+    border-left-color: var(--roland-red);
+  }
+  
+  .service-title {
+    display: block;
+    font-size: 1.18em;
+    font-weight: 900;
+    color: var(--roland-orange);
+    letter-spacing: 0.12em;
+    margin-bottom: 7px;
+    font-family: var(--font-tech);
+    text-transform: uppercase;
+  }
+  
+  .service-desc {
+    display: block;
+    color: #d3d4d4;
+    font-size: 0.95em;
+    letter-spacing: 0.05em;
+    font-family: var(--font-body);
+    font-weight: 400;
+    line-height: 1.5;
+  }
+  
+  /* Video Section */
+  .video-col {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 480px;
+    padding: 40px 39px 40px 32px;
+  }
+  
+  .video-card {
+    width: 100%;
+    max-width: 613px;
+    background: #191c25;
+    border-radius: 11px;
+    border: 2px solid var(--panel-border);
+    box-shadow: 0 2px 13px rgba(24, 26, 29, 0.1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 22px;
+  }
+  
+  .video-player-frame {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: var(--panel-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .video-player-frame iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+  
+  .video-label {
+    width: 100%;
+    padding: 17px 12px;
+    text-align: center;
+    color: var(--roland-orange);
+    font-size: clamp(0.9rem, 1.5vw, 1.07rem);
+    font-family: var(--font-tech);
+    text-transform: uppercase;
+    font-weight: 900;
+    letter-spacing: 0.17em;
+  }
+  
+  .dots-nav {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    margin: 17px 0 2px;
+  }
+  
+  .video-dot {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: var(--panel-dark);
+    border: 2px solid var(--roland-orange);
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  
+  .video-dot:hover,
+  .video-dot:focus {
+    transform: scale(1.2);
+    outline: 2px solid var(--roland-orange);
+    outline-offset: 2px;
+  }
+  
+  .video-dot.active {
+    background: var(--roland-orange);
+    border-color: var(--white-soft);
+  }
+  
+  /* Contact Section */
+  .contact-panel {
+    padding: 40px 5vw;
+    margin-top: 48px;
+  }
+  
+  .panel-divider {
+    height: 2.2px;
+    width: 100%;
+    max-width: var(--area-width);
+    background: var(--roland-orange);
+    border: none;
+    opacity: 0.7;
+    margin: 0 auto 46px;
+  }
+  
+  .contact-title {
+    font-family: var(--font-tech);
+    color: var(--roland-orange);
+    font-size: clamp(1rem, 2vw, 1.11rem);
+    font-weight: 900;
+    text-align: center;
+    letter-spacing: 0.21em;
+    text-transform: uppercase;
+    margin-bottom: 19px;
+  }
+  
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 22px;
+    width: 100%;
+  }
+  
+  .contact-port {
+    padding: 22px;
+    border-radius: 8px;
+    background: var(--panel-dark);
+    border: 1.7px solid var(--panel-border);
+    color: var(--roland-orange);
+    text-align: center;
+    text-decoration: none;
+    font-family: var(--font-tech);
+    font-weight: 900;
+    font-size: 1.07em;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    transition: all 0.2s;
+    display: inline-block;
+  }
+  
+  .contact-port:hover,
+  .contact-port:focus {
+    background: var(--roland-orange);
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 102, 0, 0.3);
+    outline: 2px solid var(--roland-orange);
+    outline-offset: 2px;
+  }
+  
+  .port-primary {
+    background: var(--roland-orange);
+    color: #fff;
+  }
+  
+  .port-primary:hover,
+  .port-primary:focus {
+    background: var(--roland-red);
+  }
+  
+  .footer {
+    margin-top: 14px;
+    text-align: center;
+    color: #a9adb0;
+    letter-spacing: 0.05em;
+    font-size: 0.9em;
+    font-family: var(--font-body);
+    padding: 20px;
+  }
+  
+  .whatsapp-float {
+    position: fixed;
+    bottom: 23px;
+    right: 32px;
+    background: var(--roland-orange);
+    color: #fff;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1111;
+    transition: all 0.2s;
+    text-decoration: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+  
+  .whatsapp-float:hover,
+  .whatsapp-float:focus {
+    background: #25D366;
+    transform: scale(1.1);
+    outline: 2px solid var(--roland-orange);
+    outline-offset: 2px;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 1100px) {
+    .hero-flex {
+      flex-direction: column;
+      gap: 40px;
+      align-items: center;
+    }
+    
+    .hero-text {
+      align-items: center;
+      text-align: center;
+    }
+    
+    .description {
+      text-align: center;
+    }
+    
+    .panel-area {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+    
+    .services-col {
+      border-right: none;
+      border-bottom: 2px solid var(--panel-border);
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .main-wrap {
+      padding: 40px 16px 32px;
+    }
+    
+    .area {
+      padding: 40px 24px 32px;
+      margin-bottom: 32px;
+    }
+    
+    .cassette-deck {
+      max-width: 100%;
+    }
+    
+    .deck-display-row {
+      flex-direction: column;
+      gap: 12px;
+    }
+    
+    .turntable {
+      margin-bottom: 12px;
+    }
+    
+    .track-display {
+      text-align: center;
+    }
+    
+    .control-btn {
+      padding: 10px 14px;
+      font-size: 0.7rem;
+    }
+    
+    .whatsapp-float {
+      width: 50px;
+      height: 50px;
+      bottom: 16px;
+      right: 16px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .contact-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .deck-controls-row {
+      gap: 8px;
+    }
+    
+    .control-btn {
+      padding: 8px 12px;
+      font-size: 0.65rem;
+    }
+  }
+  
+  /* Print styles */
+  @media print {
+    .whatsapp-float,
+    .deck-controls-wrap,
+    .video-col {
+      display: none;
+    }
+  }
+  </style>
 </head>
 <body>
-  <div class="main-wrap">
-        <section class="area" style="padding-bottom:32px;">
-      <div id="lang-toggle">ES / EN</div>
-      <div class="hero-flex">
-        <div class="hero-text">
-          <div class="main-title"><span class="lang-es">EDUARDO MEJÍA // SISTEMA NERVIOSO MUSICAL</span><span class="lang-en">EDUARDO MEJÍA // MUSICAL NERVOUS SYSTEM</span></div>
-          <div class="subtitle"><span class="lang-es">MANAGER · BOOKING · EDITORIAL</span><span class="lang-en">MANAGER · BOOKING · PUBLISHING</span></div>
-          <div class="description">
-            <span class="lang-es">Arquitectura de Giras y Estrategia de Contenido. Conectando talento con el mercado global a través de Distribución, Booking Estratégico y Gestión Editorial. La precisión del hardware al servicio del artista.</span>
-            <span class="lang-en">Tour Architecture and Content Strategy. Connecting talent with the global market through Distribution, Strategic Booking, and Publishing Management. Hardware precision at the service of the artist.</span>
-          </div>
-        </div>
-        <div class="deck-controls-wrap">
-          <div class="cassette-deck">
-            <div class="deck-display-row">
-                            <div class="turntable" id="turntable"><div class="vinyl"><img src="logo.svg" class="vinyl-logo"></div></div>
-                            <div id="trackDisplay">
-                <span class="track-num">TRK [01/05]</span>
-                <span id="currentTrackName"></span>
-              </div>
-            </div>
-                        <div class="deck-controls-row">
-              <button class="control-btn" id="rewBtn"><i class="fas fa-backward"></i> REW</button>
-              <button class="control-btn" id="playBtn"><i class="fas fa-play"></i> PLAY</button>
-              <button class="control-btn" id="stopBtn"><i class="fas fa-stop"></i> STOP</button>
-              <button class="control-btn" id="ffBtn">FF <i class="fas fa-forward"></i></button>
-            </div>
-          </div>
-          
-                    <audio id="localAudio" src="micancion1.mp3"></audio>
-          <div class="deck-stream">
-                        <iframe src="https://open.spotify.com/embed/playlist/37i9dQZF1DXcBWIGoYBM5M?utm_source=generator" width="340" height="81" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-          </div>
-        </div>
-      </div>
-    </section>
-        <div class="panel-area">
-      <div class="services-col">
-        <div class="service-xl">
-          <span class="service-title lang-es">REPRESENTACIÓN Y TOURING</span><span class="service-title lang-en">REPRESENTATION & TOURING</span>
-          <span class="service-desc lang-es">Giras Nacionales e Internacionales, Negociación de Contratos, Circuitos de Clubes y Festivales.</span>
-          <span class="service-desc lang-en">National and International Tours, Contract Negotiation, Club Circuits and Festival Placement.</span>
-        </div>
-        <div class="service-xl">
-          <span class="service-title lang-es">DISTRIBUCIÓN Y ESTRATEGIA</span><span class="service-title lang-en">DISTRIBUTION & STRATEGY</span>
-          <span class="service-desc lang-es">Estrategia de Lanzamientos (Data-Driven), Optimización de Metadata, Performance Digital y Audiencias.</span>
-          <span class="service-desc lang-en">Release Strategy (Data-Driven), Metadata Optimization, Digital Performance and Audience Growth.</span>
-        </div>
-        <div class="service-xl">
-          <span class="service-title lang-es">GESTIÓN EDITORIAL Y A&R</span><span class="service-title lang-en">PUBLISHING MANAGEMENT & A&R</span>
-          <span class="service-desc lang-es">Administración de Derechos de Autor, Licenciamiento, Sincronización, Desarrollo de Artistas (A&R).</span>
-          <span class="service-desc lang-en">Copyright Administration, Licensing, Sync Placement, Artist Development (A&R).</span>
-        </div>
-      </div>
-      <div class="video-col">
-        <div class="video-card">
-          <div class="video-player-frame">
-            <iframe id="mainVideo" src="https://www.youtube.com/embed/ZGxSXchZNfo?modestbranding=1&rel=0&autoplay=0"></iframe>
-          </div>
-          <div class="video-label" id="videoTitle"></div>
-        </div>
-        <div class="dots-nav" id="videoDots"></div>
-      </div>
-    </div>
-    <hr class="panel-divider">
-        <section class="area contact-panel">
-      <div class="contact-title"><span class="lang-es">CONECTEMOS</span><span class="lang-en">CONNECT WITH ME</span></div>
-      <div class="contact-grid">
-        <a href="mailto:emc121091@me.com?subject=PROYECTO%20MUSICAL" class="contact-port port-primary"><span class="lang-es">START PROJECT</span><span class="lang-en">START PROJECT</span></a>
-        <a href="https://edumecar.github.io/Book/" target="_blank" class="contact-port"><span class="lang-es">BOOKING PLANS</span><span class="lang-en">BOOKING PLANS</span></a>
-        <a href="https://www.linkedin.com/in/edumecar" target="_blank" class="contact-port">LINKEDIN</a>
-      </div>
-    </section>
-    <div class="footer">
-      <span class="lang-es">CONSOLA ANALÓGICA: SÓLO DATA, ESTRATEGIA Y MÚSICA. ©EDUARDO MEJÍA</span>
-      <span class="lang-en">ANALOG CONSOLE: ONLY DATA, STRATEGY, AND MUSIC. ©EDUARDO MEJÍA</span>
-    </div>
-    <a href="https://wa.me/525512478139" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp" style="font-size:1.7rem;"></i></a>
-  </div>
-<script>
-// --- CONFIGURACIÓN DE AUDIO (Casetera Digital Robusta) ---
-const audio = document.getElementById('localAudio');
-const playBtn = document.getElementById('playBtn');
-const stopBtn = document.getElementById('stopBtn');
-const ffBtn = document.getElementById('ffBtn');
-const rewBtn = document.getElementById('rewBtn');
-const turntable = document.getElementById('turntable');
-const currentTrackName = document.getElementById('currentTrackName');
-const trackDisplay = document.querySelector('.track-num');
+  <a href="#main-content" class="skip-to-content">Skip to main content</a>
+  
+  <div class="main-wrap">
+    <main id="main-content">
+      <section class="area" aria-labelledby="hero-title">
+        <button 
+          class="lang-toggle" 
+          id="langToggle"
+          aria-label="Switch language between Spanish and English"
+          type="button">
+          ES / EN
+        </button>
+        
+        <div class="hero-flex">
+          <div class="hero-text">
+            <h1 class="main-title" id="hero-title" data-i18n="mainTitle">
+              EDUARDO MEJÍA // SISTEMA NERVIOSO MUSICAL
+            </h1>
+            <h2 class="subtitle" data-i18n="subtitle">
+              MANAGER · BOOKING · EDITORIAL
+            </h2>
+            <p class="description" data-i18n="description">
+              Arquitectura de Giras y Estrategia de Contenido. Conectando talento con el mercado global a través de Distribución, Booking Estratégico y Gestión Editorial. La precisión del hardware al servicio del artista.
+            </p>
+          </div>
+          
+          <div class="deck-controls-wrap">
+            <div class="cassette-deck" role="region" aria-label="Audio player">
+              <div class="deck-display-row">
+                <div class="turntable" id="turntable" aria-hidden="true">
+                  <div class="vinyl">
+                    <div class="vinyl-center">EM</div>
+                  </div>
+                </div>
+                
+                <div class="track-display" role="status" aria-live="polite" aria-atomic="true">
+                  <span class="track-num" id="trackNum">TRK [--/--]</span>
+                  <span class="track-name" id="trackName" data-i18n="trackLoading">Cargando...</span>
+                  <span class="track-error" id="trackError" style="display:none;"></span>
+                </div>
+              </div>
+              
+              <div class="deck-controls-row" role="group" aria-label="Audio controls">
+                <button 
+                  class="control-btn" 
+                  id="rewBtn"
+                  aria-label="Previous track"
+                  type="button">
+                  <i class="fas fa-backward" aria-hidden="true"></i> REW
+                </button>
+                <button 
+                  class="control-btn" 
+                  id="playBtn"
+                  aria-label="Play or pause track"
+                  aria-pressed="false"
+                  type="button">
+                  <i class="fas fa-play" aria-hidden="true"></i> PLAY
+                </button>
+                <button 
+                  class="control-btn" 
+                  id="stopBtn"
+                  aria-label="Stop playback"
+                  type="button">
+                  <i class="fas fa-stop" aria-hidden="true"></i> STOP
+                </button>
+                <button 
+                  class="control-btn" 
+                  id="ffBtn"
+                  aria-label="Next track"
+                  type="button">
+                  FF <i class="fas fa-forward" aria-hidden="true"></i>
+                </button>
+              </div>
+            </div>
+            
+            <audio id="localAudio" preload="metadata" aria-label="Audio player"></audio>
+            
+            <div class="deck-stream">
+              <iframe 
+                src="https://open.spotify.com/embed/playlist/37i9dQZF1DXcBWIGoYBM5M?utm_source=generator&theme=0" 
+                title="Spotify playlist"
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+                loading="lazy"
+                sandbox="allow-scripts allow-same-origin allow-popups">
+              </iframe>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <div class="panel-area">
+        <aside class="services-col" aria-labelledby="services-title">
+          <h2 id="services-title" class="sr-only">Services</h2>
+          
+          <article class="service-xl">
+            <h3 class="service-title" data-i18n="service1Title">
+              REPRESENTACIÓN Y TOURING
+            </h3>
+            <p class="service-desc" data-i18n="service1Desc">
+              Giras Nacionales e Internacionales, Negociación de Contratos, Circuitos de Clubes y Festivales.
+            </p>
+          </article>
+          
+          <article class="service-xl">
+            <h3 class="service-title" data-i18n="service2Title">
+              DISTRIBUCIÓN Y ESTRATEGIA
+            </h3>
+            <p class="service-desc" data-i18n="service2Desc">
+              Estrategia de Lanzamientos (Data-Driven), Optimización de Metadata, Performance Digital y Audiencias.
+            </p>
+          </article>
+          
+          <article class="service-xl">
+            <h3 class="service-title" data-i18n="service3Title">
+              GESTIÓN EDITORIAL Y A&R
+            </h3>
+            <p class="service-desc" data-i18n="service3Desc">
+              Administración de Derechos de Autor, Licenciamiento, Sincronización, Desarrollo de Artistas (A&R).
+            </p>
+          </article>
+        </aside>
+        
+        <section class="video-col" aria-labelledby="video-title">
+          <h2 id="video-title" class="sr-only">Featured videos</h2>
+          
+          <div class="video-card">
+            <div class="video-player-frame">
+              <iframe 
+                id="mainVideo" 
+                src="https://www.youtube.com/embed/ZGxSXchZNfo?modestbranding=1&rel=0"
+                title="Featured video"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+                loading="lazy"
+                sandbox="allow-scripts allow-same-origin allow-presentation">
+              </iframe>
+            </div>
+            <div class="video-label" id="videoTitle" role="heading" aria-level="3">
+              LIVE PERFORMANCE: ARTE & DATA
+            </div>
+          </div>
+          
+          <nav class="dots-nav" aria-label="Video navigation">
+            <button 
+              class="video-dot active" 
+              data-video="0"
+              aria-label="Video 1"
+              type="button">
+            </button>
+            <button 
+              class="video-dot" 
+              data-video="1"
+              aria-label="Video 2"
+              type="button">
+            </button>
+            <button 
+              class="video-dot" 
+              data-video="2"
+              aria-label="Video 3"
+              type="button">
+            </button>
+          </nav>
+        </section>
+      </div>
+      
+      <hr class="panel-divider" aria-hidden="true">
+      
+      <section class="area contact-panel" aria-labelledby="contact-title">
+        <h2 class="contact-title" id="contact-title" data-i18n="contactTitle">
+          CONECTEMOS
+        </h2>
+        
+        <nav class="contact-grid" aria-label="Contact options">
+          <a 
+            href="mailto:emc121091@me.com?subject=PROYECTO%20MUSICAL" 
+            class="contact-port port-primary"
+            data-i18n="contactCTA"
+            aria-label="Start a new musical project via email">
+            START PROJECT
+          </a>
+          <a 
+            href="https://edumecar.github.io/Book/" 
+            target="_blank"
+            rel="noopener noreferrer"
+            class="contact-port"
+            data-i18n="bookingPlans"
+            aria-label="View booking plans (opens in new tab)">
+            BOOKING PLANS
+          </a>
+          <a 
+            href="https://www.linkedin.com/in/edumecar" 
+            target="_blank"
+            rel="noopener noreferrer"
+            class="contact-port"
+            aria-label="Connect on LinkedIn (opens in new tab)">
+            LINKEDIN
+          </a>
+        </nav>
+      </section>
+      
+      <footer class="footer" role="contentinfo">
+        <p data-i18n="footerText">
+          CONSOLA ANALÓGICA: SÓLO DATA, ESTRATEGIA Y MÚSICA. ©EDUARDO MEJÍA
+        </p>
+      </footer>
+    </main>
+    
+    <a 
+      href="https://wa.me/525512478139" 
+      class="whatsapp-float" 
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Contact via WhatsApp (opens in new tab)">
+      <i class="fab fa-whatsapp" style="font-size:1.7rem;" aria-hidden="true"></i>
+    </a>
+  </div>
 
-const tracks = [
-  { name_es: "TRACK INÉDITO 01: ARCANA", name_en: "UNRELEASED 01: ARCANA", src: "micancion1.mp3" },
-  { name_es: "TRACK INÉDITO 02: SYNC FLOW", name_en: "UNRELEASED 02: SYNC FLOW", src: "micancion2.mp3" },
-  { name_es: "TRACK INÉDITO 03: MODULATION", name_en: "UNRELEASED 03: MODULATION", src: "micancion3.mp3" },
-  { name_es: "TRACK INÉDITO 04: DATASOUL", name_en: "UNRELEASED 04: DATASOUL", src: "micancion4.mp3" },
-  { name_es: "TRACK INÉDITO 05: A&R BEAT", name_en: "UNRELEASED 05: A&R BEAT", src: "micancion5.mp3" },
-];
-let currentTrackIndex = 0;
-let currentLang = 'es'; // Global para sincronizar con el audio display
+  <script>
+  // ============================================
+  // INTERNATIONALIZATION SYSTEM
+  // ============================================
+  const translations = {
+    es: {
+      mainTitle: "EDUARDO MEJÍA // SISTEMA NERVIOSO MUSICAL",
+      subtitle: "MANAGER · BOOKING · EDITORIAL",
+      description: "Arquitectura de Giras y Estrategia de Contenido. Conectando talento con el mercado global a través de Distribución, Booking Estratégico y Gestión Editorial. La precisión del hardware al servicio del artista.",
+      trackLoading: "Cargando...",
+      trackError: "Error al cargar",
+      service1Title: "REPRESENTACIÓN Y TOURING",
+      service1Desc: "Giras Nacionales e Internacionales, Negociación de Contratos, Circuitos de Clubes y Festivales.",
+      service2Title: "DISTRIBUCIÓN Y ESTRATEGIA",
+      service2Desc: "Estrategia de Lanzamientos (Data-Driven), Optimización de Metadata, Performance Digital y Audiencias.",
+      service3Title: "GESTIÓN EDITORIAL Y A&R",
+      service3Desc: "Administración de Derechos de Autor, Licenciamiento, Sincronización, Desarrollo de Artistas (A&R).",
+      contactTitle: "CONECTEMOS",
+      contactCTA: "START PROJECT",
+      bookingPlans: "BOOKING PLANS",
+      footerText: "CONSOLA ANALÓGICA: SÓLO DATA, ESTRATEGIA Y MÚSICA. ©EDUARDO MEJÍA"
+    },
+    en: {
+      mainTitle: "EDUARDO MEJÍA // MUSICAL NERVOUS SYSTEM",
+      subtitle: "MANAGER · BOOKING · PUBLISHING",
+      description: "Tour Architecture and Content Strategy. Connecting talent with the global market through Distribution, Strategic Booking, and Publishing Management. Hardware precision at the service of the artist.",
+      trackLoading: "Loading...",
+      trackError: "Loading error",
+      service1Title: "REPRESENTATION & TOURING",
+      service1Desc: "National and International Tours, Contract Negotiation, Club Circuits and Festival Placement.",
+      service2Title: "DISTRIBUTION & STRATEGY",
+      service2Desc: "Release Strategy (Data-Driven), Metadata Optimization, Digital Performance and Audience Growth.",
+      service3Title: "PUBLISHING MANAGEMENT & A&R",
+      service3Desc: "Copyright Administration, Licensing, Sync Placement, Artist Development (A&R).",
+      contactTitle: "CONNECT WITH ME",
+      contactCTA: "START PROJECT",
+      bookingPlans: "BOOKING PLANS",
+      footerText: "ANALOG CONSOLE: ONLY DATA, STRATEGY, AND MUSIC. ©EDUARDO MEJÍA"
+    }
+  };
 
-function updateTrackDisplay() {
-  const trackNameKey = `name_${currentLang}`;
-  trackDisplay.textContent = `TRK [${currentTrackIndex + 1}/${tracks.length}]`;
-  currentTrackName.textContent = tracks[currentTrackIndex][trackNameKey];
-  audio.src = tracks[currentTrackIndex].src;
-  
-  // Asegurarse de que el botón de play refleje el estado
-  if (audio.paused) {
-    playBtn.classList.remove('active');
-    turntable.style.animationPlayState = "paused";
-  } else {
-    playBtn.classList.add('active');
-    turntable.style.animationPlayState = "running";
-  }
-}
+  class LanguageManager {
+    constructor() {
+      this.currentLang = localStorage.getItem('preferred_lang') || 'es';
+      this.toggle = document.getElementById('langToggle');
+      this.init();
+    }
 
-function stopAll() {
-  audio.pause();
-  audio.currentTime = 0;
-  turntable.style.animationPlayState = "paused";
-  playBtn.classList.remove('active');
-}
+    init() {
+      this.applyLanguage(this.currentLang);
+      this.toggle.addEventListener('click', () => this.switchLanguage());
+      document.documentElement.lang = this.currentLang;
+    }
 
-function playTrack() {
-  audio.play().catch(e => console.error("Error al intentar reproducir audio:", e));
-  turntable.style.animationPlayState = "running";
-  playBtn.classList.add('active');
-}
+    switchLanguage() {
+      this.currentLang = this.currentLang === 'es' ? 'en' : 'es';
+      this.applyLanguage(this.currentLang);
+      localStorage.setItem('preferred_lang', this.currentLang);
+      document.documentElement.lang = this.currentLang;
+    }
 
-playBtn.onclick = () => {
-  if (audio.paused) {
-    playTrack();
-  } else {
-    audio.pause();
-    turntable.style.animationPlayState = "paused";
-    playBtn.classList.remove('active');
-  }
-};
+    applyLanguage(lang) {
+      const texts = translations[lang];
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (texts[key]) {
+          el.textContent = texts[key];
+        }
+      });
+      this.toggle.textContent = lang === 'es' ? 'ES / EN' : 'EN / ES';
+      
+      // Update email subject based on language
+      const emailLink = document.querySelector('.contact-port.port-primary');
+      if (emailLink) {
+        const subject = lang === 'es' ? 'PROYECTO MUSICAL' : 'MUSICAL PROJECT';
+        emailLink.href = `mailto:emc121091@me.com?subject=${encodeURIComponent(subject)}`;
+      }
+    }
+  }
 
-stopBtn.onclick = () => stopAll();
+  // ============================================
+  // AUDIO DECK SYSTEM
+  // ============================================
+  class AudioDeck {
+    constructor() {
+      this.audio = document.getElementById('localAudio');
+      this.playBtn = document.getElementById('playBtn');
+      this.stopBtn = document.getElementById('stopBtn');
+      this.ffBtn = document.getElementById('ffBtn');
+      this.rewBtn = document.getElementById('rewBtn');
+      this.turntable = document.getElementById('turntable');
+      this.trackName = document.getElementById('trackName');
+      this.trackNum = document.getElementById('trackNum');
+      this.trackError = document.getElementById('trackError');
+      
+      this.tracks = [
+        { name: "DEMO TRACK 01: ARCANA", src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" },
+        { name: "DEMO TRACK 02: SYNC FLOW", src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" },
+        { name: "DEMO TRACK 03: MODULATION", src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3" },
+        { name: "DEMO TRACK 04: DATASOUL", src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3" },
+        { name: "DEMO TRACK 05: A&R BEAT", src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3" }
+      ];
+      
+      this.currentIndex = 0;
+      this.isPlaying = false;
+      
+      this.init();
+    }
 
-ffBtn.onclick = () => {
-  currentTrackIndex = (currentTrackIndex + 1) % tracks.length;
-  updateTrackDisplay();
-  playTrack();
-};
+    init() {
+      this.updateDisplay();
+      this.attachEventListeners();
+      
+      // Audio events
+      this.audio.addEventListener('ended', () => this.next());
+      this.audio.addEventListener('play', () => this.handlePlayState());
+      this.audio.addEventListener('pause', () => this.handlePauseState());
+      this.audio.addEventListener('error', (e) => this.handleError(e));
+      this.audio.addEventListener('loadstart', () => this.handleLoading());
+    }
 
-rewBtn.onclick = () => {
-  currentTrackIndex = (currentTrackIndex - 1 + tracks.length) % tracks.length;
-  updateTrackDisplay();
-  playTrack();
-};
+    attachEventListeners() {
+      this.playBtn.addEventListener('click', () => this.togglePlay());
+      this.stopBtn.addEventListener('click', () => this.stop());
+      this.ffBtn.addEventListener('click', () => this.next());
+      this.rewBtn.addEventListener('click', () => this.previous());
+      
+      // Keyboard shortcuts
+      document.addEventListener('keydown', (e) => {
+        if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+        
+        switch(e.key) {
+          case ' ':
+            e.preventDefault();
+            this.togglePlay();
+            break;
+          case 'ArrowRight':
+            this.next();
+            break;
+          case 'ArrowLeft':
+            this.previous();
+            break;
+        }
+      });
+    }
 
-audio.onended = () => {
-  ffBtn.onclick();
-};
+    updateDisplay() {
+      const track = this.tracks[this.currentIndex];
+      this.trackNum.textContent = `TRK [${String(this.currentIndex + 1).padStart(2, '0')}/${String(this.tracks.length).padStart(2, '0')}]`;
+      this.trackName.textContent = track.name;
+      this.audio.src = track.src;
+      this.trackError.style.display = 'none';
+    }
 
-// --- CONFIGURACIÓN DE VIDEO (Módulo de Ejecución) ---
-const videos = [
-  { id:"ZGxSXchZNfo", title_es:"LIVE PERFORMANCE: ARTE & DATA", title_en: "LIVE PERFORMANCE: ART & DATA" },
-  { id:"kXYiU_JCYtU", title_es:"SOUND DESIGN: FRAMEWORKS PARA MARCA", title_en: "SOUND DESIGN: BRAND FRAMEWORKS" },
-  { id:"ktvTqknDobU", title_es:"CLOUD FLOW ARCHITECTURE: LANZAMIENTOS", title_en: "CLOUD FLOW ARCHITECTURE: RELEASES" }
-];
-const mainVideo=document.getElementById("mainVideo");
-const videoTitle=document.getElementById("videoTitle");
-const videoDots=document.getElementById("videoDots");
+    handleLoading() {
+      const lang = localStorage.getItem('preferred_lang') || 'es';
+      this.trackName.textContent = translations[lang].trackLoading;
+    }
 
-function loadVideo(i, lang) {
-  const v=videos[i];
-  const titleKey = `title_${lang}`;
-  mainVideo.src=`https://www.youtube.com/embed/${v.id}?modestbranding=1&rel=0&autoplay=0`;
-  videoTitle.textContent=v[titleKey];
-  document.querySelectorAll(".video-dot").forEach((dot,idx)=>dot.classList.toggle("active",idx===i));
-}
+    handleError(e) {
+      console.error('Audio error:', e);
+      const lang = localStorage.getItem('preferred_lang') || 'es';
+      this.trackError.textContent = translations[lang].trackError;
+      this.trackError.style.display = 'block';
+      this.handlePauseState();
+    }
 
-videos.forEach((v,i)=>{
-  const dot=document.createElement("div");
-  dot.className="video-dot";
-  dot.onclick=()=>loadVideo(i, currentLang);
-  videoDots.appendChild(dot);
-});
+    async togglePlay() {
+      try {
+        if (this.isPlaying) {
+          this.audio.pause();
+        } else {
+          await this.audio.play();
+        }
+      } catch (error) {
+        console.error('Playback error:', error);
+        this.handleError(error);
+      }
+    }
 
+    stop() {
+      this.audio.pause();
+      this.audio.currentTime = 0;
+      this.handlePauseState();
+    }
 
-// --- TOGGLE DE IDIOMA (Funcionalidad Mejorada) ---
-const langToggle = document.getElementById('lang-toggle');
+    async next() {
+      this.currentIndex = (this.currentIndex + 1) % this.tracks.length;
+      this.updateDisplay();
+      if (this.isPlaying) {
+        try {
+          await this.audio.play();
+        } catch (error) {
+          console.error('Playback error:', error);
+        }
+      }
+    }
 
-langToggle.onclick = () => {
-  // Cambiar el idioma global
-  currentLang = currentLang === 'es' ? 'en' : 'es';
-  const otherLang = currentLang === 'es' ? 'en' : 'es';
+    async previous() {
+      this.currentIndex = (this.currentIndex - 1 + this.tracks.length) % this.tracks.length;
+      this.updateDisplay();
+      if (this.isPlaying) {
+        try {
+          await this.audio.play();
+        } catch (error) {
+          console.error('Playback error:', error);
+        }
+      }
+    }
 
-  // 1. Ocultar el idioma anterior y mostrar el nuevo
-  document.querySelectorAll(`.lang-${otherLang}`).forEach(el => el.style.display = 'none');
-  document.querySelectorAll(`.lang-${currentLang}`).forEach(el => el.style.display = 'block');
-  
-  // 2. Actualizar el display de audio y video
-  updateTrackDisplay();
-  loadVideo(document.querySelector(".video-dot.active") ? Array.from(videoDots.children).findIndex(dot => dot.classList.contains("active")) : 0, currentLang);
-  
-  // 3. Actualizar el toggle (opcional)
-  langToggle.textContent = `${currentLang.toUpperCase()} / ${otherLang.toUpperCase()}`;
-};
+    handlePlayState() {
+      this.isPlaying = true;
+      this.turntable.classList.add('spinning');
+      this.playBtn.classList.add('active');
+      this.playBtn.setAttribute('aria-pressed', 'true');
+      this.stopBtn.classList.remove('active');
+      
+      // Update icon
+      const icon = this.playBtn.querySelector('i');
+      icon.className = 'fas fa-pause';
+      this.playBtn.setAttribute('aria-label', 'Pause track');
+    }
 
+    handlePauseState() {
+      this.isPlaying = false;
+      this.turntable.classList.remove('spinning');
+      this.playBtn.classList.remove('active');
+      this.playBtn.setAttribute('aria-pressed', 'false');
+      
+      // Update icon
+      const icon = this.playBtn.querySelector('i');
+      icon.className = 'fas fa-play';
+      this.playBtn.setAttribute('aria-label', 'Play track');
+    }
+  }
 
-// --- INICIALIZACIÓN ---
-updateTrackDisplay(); 
-loadVideo(0, currentLang); // Cargar video y título inicial
-</script>
+  // ============================================
+  // VIDEO CAROUSEL SYSTEM
+  // ============================================
+  class VideoCarousel {
+    constructor() {
+      this.videos = [
+        { id: "ZGxSXchZNfo", title: "LIVE PERFORMANCE: ARTE & DATA" },
+        { id: "kXYiU_JCYtU", title: "SOUND DESIGN: FRAMEWORKS PARA MARCA" },
+        { id: "ktvTqknDobU", title: "CLOUD FLOW ARCHITECTURE: LANZAMIENTOS" }
+      ];
+      
+      this.mainVideo = document.getElementById('mainVideo');
+      this.videoTitle = document.getElementById('videoTitle');
+      this.currentIndex = 0;
+      
+      this.init();
+    }
+
+    init() {
+      this.createDots();
+      this.loadVideo(0);
+    }
+
+    createDots() {
+      const dots = document.querySelectorAll('.video-dot');
+      dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => this.loadVideo(index));
+        dot.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            this.loadVideo(index);
+          }
+        });
+      });
+    }
+
+    loadVideo(index) {
+      this.currentIndex = index;
+      const video = this.videos[index];
+      
+      this.mainVideo.src = `https://www.youtube.com/embed/${video.id}?modestbranding=1&rel=0&autoplay=0`;
+      this.videoTitle.textContent = video.title;
+      
+      // Update dots
+      document.querySelectorAll('.video-dot').forEach((dot, idx) => {
+        dot.classList.toggle('active', idx === index);
+        dot.setAttribute('aria-current', idx === index ? 'true' : 'false');
+      });
+    }
+  }
+
+  // ============================================
+  // INITIALIZATION
+  // ============================================
+  document.addEventListener('DOMContentLoaded', () => {
+    const langManager = new LanguageManager();
+    const audioDeck = new AudioDeck();
+    const videoCarousel = new VideoCarousel();
+    
+    // Add smooth scroll behavior
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+    
+    // Performance monitoring (optional)
+    if ('performance' in window) {
+      window.addEventListener('load', () => {
+        const perfData = performance.getEntriesByType('navigation')[0];
+        console.log('Page Load Time:', perfData.loadEventEnd - perfData.fetchStart, 'ms');
+      });
+    }
+  });
+
+  // Service Worker registration (optional - for PWA)
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      // Uncomment to enable service worker
+      // navigator.serviceWorker.register('/sw.js').catch(err => console.log('SW registration failed'));
+    });
+  }
+  </script>
+
+  <!-- Screen reader only styles -->
+  <style>
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border-width: 0;
+    }
+  </style>
 </body>
 </html>
