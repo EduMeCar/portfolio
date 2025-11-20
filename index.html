@@ -1,315 +1,465 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Eduardo Mejía // Portfolio Synth Dashboard</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <style>
-    :root {
-      --tr-red: #CC0000;
-      --tr-orange: #FF6600;
-      --tr-cyan: #00FFF0;
-      --tr-yellow: #FFCC00;
-      --tr-magenta: #FF00A5;
-      --tr-bg: #14161E;
-      --tr-panel: linear-gradient(135deg, #1a1a22 0%, #242439 100%);
-      --tr-gray: #2e2e3d;
-      --tr-black: #000000;
-      --tr-white: #F7F7FF;
-      --led-glow: 0 0 10px var(--tr-cyan), 0 0 13px #00FFF044;
-    }
-    body {
-      background: var(--tr-bg);
-      color: var(--tr-white);
-      font-family: 'Courier New', monospace;
-      margin: 0; min-height: 100vh;
-    }
-    .dashboard {
-      display: grid;
-      grid-template-columns: 1.1fr 1.5fr 1.1fr;
-      grid-template-rows: auto 1fr auto;
-      gap: 30px;
-      padding: 32px 2vw 24px 2vw;
-      max-width: 1500px;
-      margin: 0 auto;
-    }
-    @media (max-width:1100px) { .dashboard { grid-template-columns: 1fr; grid-template-rows:auto; } }
-    /* --- HEADER --- */
-    .header-roland {
-      grid-column: 1 / -1;
-      display: flex;
-      justify-content: space-between; align-items: center;
-      padding: 24px;
-      background: var(--tr-panel);
-      border: 2px solid var(--tr-gray);
-      border-radius: 10px;
-      margin-bottom: 11px;
-      box-shadow: 0 2px 16px #00fff415;
-    }
-    .logo-container { display: flex; align-items: center; gap: 15px;}
-    .roland-logo {
-      width: 55px; height: 55px; background: var(--tr-red);
-      border-radius: 50%; display: flex; align-items: center; justify-content: center;
-      font-weight: bold; color: var(--tr-white); font-size: 1.4rem; border: 2px solid var(--tr-cyan);
-      box-shadow: 0 0 13px #ff5200ad;
-    }
-    .brand-name {
-      font-size: 2.1rem; font-weight: bold; text-transform: uppercase; letter-spacing: 2px;
-      font-family: 'Arial Black', Arial, sans-serif;
-      /* collage human */
-      background: linear-gradient(90deg,var(--tr-cyan),var(--tr-red) 83%);
-      background-clip:text; -webkit-background-clip:text; color:transparent;
-      -webkit-text-fill-color: transparent;
-      filter: drop-shadow(0 0 4px #00fff3b2);
-    }
-    .dashboard-controls { display: flex; gap: 11px; }
-    .control-knob {
-      width: 44px; height: 44px; border-radius: 50%; background: var(--tr-gray); border: 2px solid var(--tr-orange);
-      display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s;
-      color: var(--tr-white); font-size: 1rem; position: relative;
-      box-shadow: 0 4px 11px #00ddd455;
-    }
-    .control-knob:active { transform: rotate(-19deg) scale(0.96);}
-    .control-led {
-      width: 11px; height: 11px; background: var(--tr-cyan); border-radius: 50%; box-shadow: var(--led-glow);
-      position: absolute; right: 2px; top: 2px; transition: filter 0.2s;
-    }
-    .control-knob.inactive .control-led { background: #23252a; box-shadow: none; }
-
-    /* --- HERO/VU --- */
-    .hero-vu {
-      grid-column: 1 / -1;
-      display: grid; grid-template-columns: 2.2fr 1fr; gap: 40px;
-      padding: 35px 27px;
-      background: var(--tr-panel);
-      border: 2.2px solid var(--tr-gray); border-radius: 11px; box-shadow: 0 3px 18px #0ffcff10;
-      margin-bottom: 9px;
-      min-height: 270px;
-    }
-    @media (max-width:900px){ .hero-vu{grid-template-columns:1fr;gap:16px;padding:18px 2vw;}}
-    .hero-content { display: flex; flex-direction: column; justify-content: center;}
-    .hero-title { font-size: 2.4rem; font-weight: bold; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 11px; color: var(--tr-cyan);}
-    .hero-subtitle { font-size: 1.1rem; color: var(--tr-red); text-transform: uppercase; letter-spacing: 4px; margin-bottom: 15px; position:relative;}
-    .hero-description { font-size: 1.03rem; line-height: 1.59; color: var(--tr-white); opacity: 0.93; max-width: 500px;}
-    .vu-meter { display: flex; flex-direction: column;justify-content: flex-end;align-items: center;gap: 12px;}
-    .vu-display { width: 100%; max-width:230px; min-width:130px;height:90px; background: var(--tr-black); border:2px solid var(--tr-gray);border-radius: 4px;position:relative;overflow:hidden;}
-    .vu-level { position: absolute; bottom: 0; left: 0; width: 100%; height: 77%; background: linear-gradient(to top, var(--tr-red), var(--tr-orange), var(--tr-yellow)); animation: vuPulse 2.1s cubic-bezier(.65,0,.38,1) infinite alternate;}
-    @keyframes vuPulse { 0% { height: 51%; } 100% { height: 88%; } }
-    .vu-label { font-size: 0.84rem; color: var(--tr-white); text-transform: uppercase; letter-spacing: 2px; }
-
-    /* SERVICES BLOCK – Mixer style */
-    .services-mixer { grid-column: 1; display: flex; flex-direction: column; gap: 14px; padding: 19px; background: var(--tr-panel); border: 2px solid var(--tr-gray); border-radius: 8px; box-shadow: 0 3px 13px #ff660037; }
-    .section-title { font-size: 1.15rem; font-weight: bold; letter-spacing: 2px; color: var(--tr-cyan); margin-bottom: 9px; text-shadow:0 0 5px #00fff3b0; }
-    .mixer-channel { background: var(--tr-black); border: 1.7px solid var(--tr-gray); border-radius: 5px; padding: 15px; transition: all 0.2s; cursor: pointer;}
-    .mixer-channel:hover { border-color: var(--tr-red); transform: translateY(-2px) scale(1.01);}
-    .channel-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;}
-    .channel-name { font-size: 1.04rem; font-weight: bold; color: var(--tr-yellow); text-shadow:0 0 18px #fffb7d49; letter-spacing:.8px;}
-    .channel-led { width: 11px; height: 11px; border-radius: 50%; background: var(--tr-red); box-shadow: 0 0 11px #ff43009a; }
-    .channel-desc { font-size: 0.87rem; color: var(--tr-white); opacity: 0.78; line-height: 1.4; font-family: inherit;}
-    /* PROJECTS - SEQUENCER */
-    .projects-sequencer { grid-column: 2; display: flex; flex-direction: column; gap: 15px; padding: 19px; background: var(--tr-panel); border: 2px solid var(--tr-gray); border-radius: 8px; box-shadow: 0 4px 21px #4e4df921; }
-    .sequencer-grid { display: flex; flex-direction: column; gap: 11px;}
-    .sequence-track { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px;}
-    @media(max-width:950px){ .projects-sequencer { grid-column: 1; }}
-    .sequence-step { height: 90px; background: var(--tr-black); border: 1px solid var(--tr-gray); border-radius: 4px; overflow: hidden; transition: all 0.23s; cursor:pointer;}
-    .sequence-step:hover { border-color: var(--tr-orange);}
-    .step-active { border-color: var(--tr-red)!important; box-shadow:0 0 8px #ff220088;}
-    .step-media { width: 100%; height: 50px; border: none;}
-    .step-info { padding: 5px 2px; text-align: center;}
-    .step-role { font-size: 0.74rem; color: var(--tr-magenta); text-transform: uppercase;}
-    .step-name { font-size: 0.85rem; color: var(--tr-cyan); font-weight: bold;}
-    /* SOUND DECK */
-    .sound-turntable { grid-column: 3; display: flex; flex-direction: column; gap: 15px; padding:19px;background:var(--tr-panel);border:2px solid var(--tr-gray);border-radius:8px;box-shadow:0 1.5px 14px #ff00c5bb;}
-    @media(max-width:1100px){ .sound-turntable{grid-column:1;}}
-    .turntable-container { display: flex; flex-direction: column; align-items: center; gap: 15px;}
-    .turntable { width: 125px; height: 125px; border-radius: 50%; background: var(--tr-black); border: 10px solid var(--tr-gray); position:relative;display:flex;align-items:center;justify-content:center;box-shadow: 0 2px 16px #00ccd970; }
-    .turntable .vinyl { width: 98px; height: 98px; border-radius: 50%; background: repeating-radial-gradient(#222 0%, #333 40%, #111 42%, #333 46%, transparent 50%); animation: spin 17s linear infinite; transition: filter .16s; animation-play-state: paused;}
-    .turntable.playing .vinyl { animation-play-state: running; filter: drop-shadow(0 0 10px var(--tr-cyan)); }
-    .turntable-controls { display: flex; gap: 10px; margin-top:8px;}
-    .turntable-btn { padding: 6px 18px; background: var(--tr-black); border: 1.4px solid var(--tr-cyan); color: var(--tr-cyan); border-radius: 5px; cursor:pointer; transition: border-color .19s, color .14s,background .15s; font-size: 1em; }
-    .turntable-btn:active { border-color: var(--tr-red); color: var(--tr-yellow); background:var(--tr-magenta); }
-    .player-container { width: 100%; background: var(--tr-black); border: 1px solid var(--tr-gray); border-radius: 4px; overflow: hidden;}
-    /* --- FOOTER PATCHBAY --- */
-    .footer-patchbay { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; gap: 30px; padding: 22px; background: var(--tr-panel); border: 2px solid var(--tr-gray); border-radius: 8px; box-shadow: 0 3px 14px #00fff419;}
-    @media(max-width:900px){.footer-patchbay{grid-template-columns:1fr;}}
-    .contact-patch { display: flex; flex-direction: column; gap: 9px;}
-    .patch-ports { display: grid; grid-template-columns: repeat(2,1fr); gap: 10px;}
-    .patch-port { padding: 12px 9px; background: var(--tr-black); border: 1.6px solid var(--tr-cyan); color: var(--tr-cyan); border-radius: 4px; text-align: center; text-decoration: none; text-transform: uppercase; font-size: 1em; transition: all 0.22s;}
-    .patch-port:hover { border-color: var(--tr-red); background: #22001e;}
-    .port-primary { background: var(--tr-red); border-color: var(--tr-red); color:#fff;}
-    .port-primary:hover { background: transparent; color:var(--tr-red);}
-    /* WhatsApp */
-    .whatsapp-patch { display: flex; align-items: center; justify-content: center; background: #25D366; color: white; border-radius: 50%; width: 48px; height: 48px; position: fixed; bottom: 20px; right: 20px; text-decoration: none; box-shadow: 0 3px 14px #25D36655; z-index: 1000;}
-    .whatsapp-patch:hover { transform: scale(1.07) rotate(15deg);}
-  </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Eduardo Mejía — Sistema Nervioso Club</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%2314161E'/%3E%3Ctext x='50' y='55' font-size='34' text-anchor='middle' fill='%23FF00A5' font-family='Arial'>EM</text%3E%3C/svg%3E">
+<style>
+  :root{
+    --bg:#0f1116;
+    --panel:#1a1a22;
+    --cyan:#00FFF0;
+    --red:#FF3366;
+    --orange:#FF8A00;
+    --yellow:#FFCC00;
+    --muted:#bfc3d6;
+    --glass: rgba(255,255,255,0.03);
+    --mono: 'Courier New', monospace;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%;margin:0;background:linear-gradient(180deg,var(--bg) 0%, #0b0c10 100%);color:var(--muted);font-family:var(--mono);-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1200px;margin:30px auto;padding:22px;display:grid;grid-template-columns:1fr 420px;gap:22px}
+  @media(max-width:980px){.wrap{grid-template-columns:1fr;padding:14px}}
+  /* HEADER */
+  header{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px;border-radius:10px;background:linear-gradient(135deg,#15161b, #20202a);border:1px solid rgba(255,255,255,0.03)}
+  .brand{display:flex;align-items:center;gap:14px}
+  .logo{width:64px;height:64px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#191919,#2b0000);border:3px solid rgba(0,255,240,0.12);box-shadow:0 4px 18px rgba(0,255,240,0.06)}
+  .logo span{font-weight:900;color:#fff;letter-spacing:1px}
+  .title{line-height:1}
+  .title h1{margin:0;font-size:18px;color:var(--cyan);letter-spacing:2px}
+  .title p{margin:0;font-size:12px;color:#ffccaa;opacity:0.9}
+  .controls{display:flex;gap:8px;align-items:center}
+  .btn{background:var(--glass);border:1px solid rgba(255,255,255,0.03);padding:8px 12px;border-radius:7px;color:var(--muted);cursor:pointer;font-size:13px}
+  .btn i{margin-right:8px}
+  /* MAIN LEFT */
+  .left{display:grid;grid-template-rows:auto auto 1fr;gap:18px}
+  .hero{padding:18px;border-radius:10px;background:linear-gradient(180deg,#0f1116,#15151b);border:1px solid rgba(255,255,255,0.03);display:flex;gap:16px;align-items:center}
+  .hero .meta{flex:1}
+  .hero h2{margin:0;color:var(--cyan);font-size:20px;letter-spacing:2px}
+  .hero .sub{color:#ff6b6b;font-weight:700;letter-spacing:3px;text-transform:uppercase;font-size:11px;margin-top:6px}
+  .hero p{margin-top:10px;font-size:13px;line-height:1.5;color:#d7dbef;opacity:0.95}
+  .vu{width:140px;text-align:center}
+  .vu .meter{height:86px;background:#000;border:1px solid rgba(255,255,255,0.03);border-radius:6px;position:relative;overflow:hidden}
+  .vu .bar{position:absolute;left:0;bottom:0;width:100%;height:40%;background:linear-gradient(to top,var(--red),var(--orange),var(--yellow));transition:height 180ms linear}
+  .vu small{display:block;margin-top:8px;font-size:11px;color:#b8c8ff}
+  /* Mixer channels */
+  .mixer{display:flex;gap:12px}
+  .channel{flex:1;background:linear-gradient(180deg,#0c0c0e,#15151a);padding:12px;border-radius:8px;border:1px solid rgba(255,255,255,0.03)}
+  .channel h3{margin:0;font-size:13px;color:var(--yellow);letter-spacing:1px}
+  .channel p{margin:8px 0 12px;font-size:12px;color:#c8d1ff;opacity:0.9}
+  .fader{height:120px;background:linear-gradient(180deg,#0b0b0d,#121217);border-radius:6px;display:flex;align-items:flex-end;padding:8px}
+  .knob{width:100%;height:6px;background:linear-gradient(90deg,#222,#333);border-radius:3px;position:relative}
+  .knob input[type=range]{transform:rotate(-90deg);width:120px;position:absolute;left:-30px;top:-48px;background:transparent}
+  .meta-row{display:flex;justify-content:space-between;font-size:11px;color:#9fb1ff}
+  /* Sequencer */
+  .sequencer{padding:12px;border-radius:10px;background:linear-gradient(180deg,#0e0f13,#14151a);border:1px solid rgba(255,255,255,0.03)}
+  .seq-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+  .step{background:#070708;border:1px solid rgba(255,255,255,0.02);height:90px;border-radius:6px;display:flex;flex-direction:column;justify-content:space-between;padding:8px;cursor:pointer;transition:transform .12s,box-shadow .12s}
+  .step:hover{transform:translateY(-6px);box-shadow:0 12px 30px rgba(0,0,0,0.5)}
+  .step.active{border:1px solid var(--red);box-shadow:0 0 12px rgba(255,51,102,0.14)}
+  .step .role{font-size:11px;color:#ff7ad1;text-transform:uppercase;letter-spacing:1px}
+  .step .name{font-size:13px;color:var(--cyan);font-weight:700}
+  /* Turntable */
+  .deck{padding:12px;border-radius:10px;background:linear-gradient(180deg,#0e0f13,#121217);border:1px solid rgba(255,255,255,0.03);display:flex;flex-direction:column;align-items:center;gap:12px}
+  .turn{width:170px;height:170px;border-radius:50%;background:radial-gradient(circle at 40% 30%, #111 0%, #0b0b0b 40%, #111 60%);display:grid;place-items:center;border:12px solid #23232a;position:relative;box-shadow:0 10px 30px rgba(0,0,0,0.6)}
+  .vinyl{width:128px;height:128px;border-radius:50%;background:repeating-radial-gradient(circle,#111 0 6px,#222 6px 12px,#111 12px 18px);display:grid;place-items:center;transition:transform 0.4s linear;transform:rotate(0deg)}
+  .label{width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,#FF00A5,#00FFF0);display:grid;place-items:center;color:#fff;font-weight:900;letter-spacing:1px;box-shadow:inset 0 4px 10px rgba(0,0,0,0.2)}
+  .deck-controls{display:flex;gap:8px}
+  .play{padding:8px 14px;border-radius:7px;background:linear-gradient(90deg,#001 0%,#033 100%);border:1px solid rgba(0,255,240,0.12);cursor:pointer;color:var(--cyan)}
+  .stop{padding:8px 14px;border-radius:7px;background:linear-gradient(90deg,#220 0%,#440 100%);border:1px solid rgba(255,100,0,0.12);cursor:pointer;color:var(--orange)}
+  /* Manifesto CRT */
+  .manifest{padding:14px;border-radius:8px;background:#050505;border:4px solid #141414;color:#f6f6e8;font-family:monospace;line-height:1.35;box-shadow:0 8px 30px rgba(0,255,240,0.03)}
+  .crt{background:linear-gradient(90deg,#0b0f0f,#081010);padding:12px;border-radius:6px;border:1px solid rgba(255,255,255,0.02);color:#ffd88a}
+  .manifest h3{margin:6px 0;color:#ffcc66}
+  /* Right column (sidebar) */
+  .sidebar{display:flex;flex-direction:column;gap:16px}
+  .patch{padding:12px;border-radius:10px;background:linear-gradient(180deg,#0e0f13,#14151a);border:1px solid rgba(255,255,255,0.03)}
+  .ports{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .port{padding:10px;border-radius:8px;text-align:center;background:#060607;border:1px solid rgba(0,255,240,0.06);cursor:pointer}
+  .port.primary{background:linear-gradient(90deg,#aa0011,#ff3366);color:#fff;border:1px solid rgba(255,255,255,0.04)}
+  footer{margin-top:8px;text-align:center;color:#9096ad;font-size:12px}
+  /* small helpers */
+  .small{font-size:12px;color:#9fb1ff}
+  .meta-tag{font-size:11px;color:#a7c6ff;display:inline-block;padding:4px 8px;border-radius:999px;background:rgba(255,255,255,0.02)}
+  /* tiny responsive */
+  @media(max-width:520px){ .seq-grid{grid-template-columns:1fr} .mixer{flex-direction:column} .channel{padding:10px} .left{gap:12px} }
+</style>
 </head>
 <body>
-  <div class="dashboard">
-    <!-- HEADER -->
-    <header class="header-roland">
-      <div class="logo-container">
-        <div class="roland-logo">TR</div>
-        <span class="brand-name">EDUARDO MEJÍA</span>
-      </div>
-      <div class="dashboard-controls">
-        <div class="control-knob" id="themeToggle">
-          <i class="fas fa-adjust"></i>
-          <span class="control-led"></span>
-        </div>
-        <div class="control-knob" id="languageToggle">
-          <span style="font-size:0.91em;font-family:inherit;">ES/EN</span>
-          <span class="control-led inactive"></span>
-        </div>
-      </div>
-    </header>
-
-    <!-- HERO / VU -->
-    <section class="hero-vu">
-      <div class="hero-content">
-        <h1 class="hero-title">MUSICAL PROJECT MANAGER</h1>
-        <div class="hero-subtitle">SISTEMA NERVIOSO CLUB</div>
-        <p class="hero-description">
-          <b>[translate:Pon play, programa y experimenta.]</b><br>
-          Booking, arquitectura y estrategia para proyectos híbridos. Roadmaps análogos y digitales con groove.<br>
-          <span style="color: var(--tr-red);opacity:.7;">Siempre hay glitch, y eso hace única la mezcla.</span>
-        </p>
-      </div>
-      <div class="vu-meter">
-        <div class="vu-display">
-          <div class="vu-level"></div>
-        </div>
-        <div class="vu-label">CREATIVE OUTPUT</div>
-      </div>
-    </section>
-
-    <!-- SERVICES MIXER -->
-    <section class="services-mixer">
-      <div class="section-title">SERVICIOS</div>
-      <div class="mixer-channel">
-        <div class="channel-header">
-          <div class="channel-name">BOOKING & TOURS</div>
-          <div class="channel-led"></div>
-        </div>
-        <div class="channel-desc">
-          Giras gestionadas como loops: circuitos, ﬂujo inteligente y calor humano de club.
-        </div>
-      </div>
-      <div class="mixer-channel">
-        <div class="channel-header">
-          <div class="channel-name">PUBLISHING</div>
-          <div class="channel-led"></div>
-        </div>
-        <div class="channel-desc">
-          Gestión de derechos, sincronía y edición para obras con futuro y raíz.
-        </div>
-      </div>
-      <div class="mixer-channel">
-        <div class="channel-header">
-          <div class="channel-name">DIGITAL DISTRO</div>
-          <div class="channel-led"></div>
-        </div>
-        <div class="channel-desc">
-          Estrategias multiplataforma, releases orgánicos y narrativa digital sin robot.
-        </div>
-      </div>
-    </section>
-
-    <!-- PROJECTS SEQUENCER -->
-    <section class="projects-sequencer">
-      <div class="section-title">PROYECTOS</div>
-      <div class="sequencer-grid">
-        <div class="sequence-track">
-          <div class="sequence-step step-active">
-            <iframe class="step-media" src="https://www.youtube.com/embed/ZGxSXchZNfo" title="Boiler Room" allowfullscreen></iframe>
-            <div class="step-info">
-              <div class="step-role">PRODUCCIÓN</div>
-              <div class="step-name">BOILER ROOM</div>
-            </div>
-          </div>
-          <div class="sequence-step">
-            <iframe class="step-media" src="https://www.youtube.com/embed/SD3T_Or_mvk" title="Tra Tra" allowfullscreen></iframe>
-            <div class="step-info">
-              <div class="step-role">REMIX</div>
-              <div class="step-name">TRA TRA</div>
-            </div>
-          </div>
-          <div class="sequence-step">
-            <iframe class="step-media" src="https://www.youtube.com/embed/XCW95zjBUK4" title="Gats" allowfullscreen></iframe>
-            <div class="step-info">
-              <div class="step-role">A&R</div>
-              <div class="step-name">GATS</div>
-            </div>
+  <div class="wrap">
+    <div class="left">
+      <header>
+        <div class="brand">
+          <div class="logo"><span>EM</span></div>
+          <div class="title">
+            <h1>EDUARDO MEJÍA</h1>
+            <p>Club Systems Architect — Sistema Nervioso Club</p>
           </div>
         </div>
-      </div>
-    </section>
+        <div class="controls">
+          <button class="btn" id="toneToggle"><i>🔊</i>Sonido</button>
+          <button class="btn" id="themeBtn"><i>🎚️</i>CRT</button>
+        </div>
+      </header>
 
-    <!-- SOUND TURNTABLE -->
-    <section class="sound-turntable">
-      <div class="section-title">SONIDO & DECK</div>
-      <div class="turntable-container">
-        <div class="turntable" id="turntable">
-          <div class="vinyl"></div>
+      <section class="hero" aria-label="Hero">
+        <div class="meta">
+          <h2>MUSICAL PROJECT MACHINE</h2>
+          <div class="sub">SISTEMA NERVIOSO CLUB</div>
+          <p>
+            Orquesto rutas, releases y habitaciones de sonido.  
+            Trabajo con artistas que entienden que el pasado no vuelve —lo convertimos en textura.
+            <br><span class="small">Siempre hay glitch. Esa es la firma.</span>
+          </p>
+          <div style="margin-top:12px" class="meta-row"><div class="meta-tag">Vintage</div><div class="meta-tag">Tecno</div><div class="meta-tag">Urbano</div></div>
         </div>
-        <div class="turntable-controls">
-          <button class="turntable-btn" id="playBtn">PLAY</button>
-          <button class="turntable-btn" id="stopBtn">STOP</button>
+        <div class="vu" aria-hidden="true">
+          <div class="meter"><div class="bar" id="vuBar"></div></div>
+          <small>Creative Output</small>
         </div>
-      </div>
-      <div class="player-container">
-        <iframe style="border-radius:6px;" src="https://open.spotify.com/embed/playlist/26qaG2E3bW6ZNIk5mvPpjr?utm_source=generator" width="100%" height="99" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-      </div>
-    </section>
+      </section>
 
-    <!-- FOOTER PATCHBAY -->
-    <footer class="footer-patchbay">
-      <div class="contact-patch">
-        <div class="section-title">CONNECT</div>
-        <div class="patch-ports">
-          <a href="mailto:emc121091@me.com?subject=Musical Project Inquiry" class="patch-port port-primary">
-            START PROJECT
-          </a>
-          <a href="https://edumecar.github.io/Book/" target="_blank" class="patch-port">
-            BOOKING PLANS
-          </a>
-          <a href="https://www.linkedin.com/in/edumecar" target="_blank" class="patch-port">
-            LINKEDIN
-          </a>
-          <a href="#" class="patch-port">
-            CASE STUDIES
-          </a>
+      <section class="mixer" aria-label="Mixer">
+        <div class="channel" id="chBooking">
+          <h3>BOOKING & TOURS</h3>
+          <p>Giras como loops: circuitos inteligentes y calor humano.</p>
+          <div class="fader">
+            <div class="knob">
+              <input type="range" min="0" max="100" value="62" id="f1" />
+            </div>
+          </div>
+          <div class="meta-row"><span>BPM focus</span><span id="val1">62</span></div>
+        </div>
+
+        <div class="channel" id="chPublishing">
+          <h3>PUBLISHING</h3>
+          <p>Registros, sincronía y protección para obras con raíz.</p>
+          <div class="fader">
+            <div class="knob">
+              <input type="range" min="0" max="100" value="78" id="f2" />
+            </div>
+          </div>
+          <div class="meta-row"><span>Rights</span><span id="val2">78</span></div>
+        </div>
+
+        <div class="channel" id="chDigital">
+          <h3>DIGITAL DISTRO</h3>
+          <p>Releases orgánicos y narrativa digital con groove.</p>
+          <div class="fader">
+            <div class="knob">
+              <input type="range" min="0" max="100" value="48" id="f3" />
+            </div>
+          </div>
+          <div class="meta-row"><span>Reach</span><span id="val3">48</span></div>
+        </div>
+      </section>
+
+      <section class="sequencer" aria-label="Proyectos">
+        <h3 style="margin:0 0 10px 0;color:var(--cyan)">PROYECTOS — SECUENCIADOR</h3>
+        <div class="seq-grid" id="seqGrid">
+          <div class="step active" data-role="PRODUCCIÓN" data-name="BOILER ROOM" tabindex="0">
+            <div class="role">PRODUCCIÓN</div>
+            <div class="name">BOILER ROOM</div>
+            <div class="small">BPM: 126 · Raw club</div>
+          </div>
+          <div class="step" data-role="REMIX" data-name="TRA TRA" tabindex="0">
+            <div class="role">REMIX</div>
+            <div class="name">TRA TRA</div>
+            <div class="small">BPM: 120 · Remix urbano</div>
+          </div>
+          <div class="step" data-role="A&R" data-name="GATS" tabindex="0">
+            <div class="role">A&R</div>
+            <div class="name">GATS</div>
+            <div class="small">BPM: 114 · Story-driven</div>
+          </div>
+        </div>
+        <div style="margin-top:10px;display:flex;gap:8px;align-items:center">
+          <button class="btn" id="previewAll">Preview Chain</button>
+          <div class="small">Haz click en un proyecto para activarlo; cada activación suena como un click+pad.</div>
+        </div>
+      </section>
+
+      <section class="deck" aria-label="Deck">
+        <div class="turn" id="turntable" aria-hidden="true">
+          <div class="vinyl" id="vinyl">
+            <div class="label" id="labelText">EDU</div>
+          </div>
+        </div>
+        <div class="deck-controls">
+          <button class="play" id="play">PLAY</button>
+          <button class="stop" id="stop">STOP</button>
+          <button class="btn" id="spinToggle">Loop</button>
+        </div>
+        <div style="width:100%;">
+          <div class="small">La pista central es una textura generativa —crackle + pad analógico — firma sonora propia.</div>
+        </div>
+      </section>
+
+      <section class="manifest" aria-label="Manifesto">
+        <div class="crt">
+          <h3>MANIFIESTO — SISTEMA NERVIOSO CLUB</h3>
+          <p>
+            Trabajo con artistas que entienden que el pasado no vuelve, pero puede convertirse en energía.
+            <br><br>
+            Me muevo entre cables, escenas, clubes y geografías. Si hay glitch, lo usamos. Si hay ruido, lo convertimos en textura.
+            <br><br>
+            No gestiono proyectos. <strong style="color:#ffd88a">Orquesto sistemas.</strong>
+          </p>
+        </div>
+      </section>
+    </div>
+
+    <aside class="sidebar">
+      <div class="patch">
+        <h3 style="color:var(--cyan);margin:0 0 8px 0">PATCHBAY — CONEXIONES</h3>
+        <div class="ports">
+          <div class="port primary" id="startProject">START PROJECT</div>
+          <div class="port" id="bookingPlans">BOOKING PLANS</div>
+          <div class="port" id="linkedin">LINKEDIN</div>
+          <div class="port" id="caseStudies">CASE STUDIES</div>
+        </div>
+        <div style="margin-top:10px" class="small">Preferencias: demos en 24-bit. Mensajes directos: "Fast Line — Club Mode".</div>
+      </div>
+
+      <div class="patch">
+        <h3 style="color:var(--cyan);margin:0 0 8px 0">SIGNAL MONITOR</h3>
+        <div style="display:flex;gap:8px;align-items:center">
+          <div style="flex:1">
+            <div class="small">Latency</div>
+            <div style="height:8px;background:#060607;border-radius:4px;margin-top:6px;overflow:hidden">
+              <div id="latBar" style="width:8%;height:100%;background:linear-gradient(90deg,#00FFF0,#00a6ff)"></div>
+            </div>
+          </div>
+          <div style="width:80px;text-align:center"><div class="small">Live</div><div id="liveDot" style="width:12px;height:12px;border-radius:50%;background:#111;margin:8px auto"></div></div>
         </div>
       </div>
-    </footer>
-    <a href="https://wa.me/525512478139?text=Hola%2C%20vi%20tu%20portfolio%20y%20quiero%20hablar%20de%20un%20proyecto%20musical." class="whatsapp-patch" target="_blank" aria-label="WhatsApp">
-      <i class="fab fa-whatsapp"></i>
-    </a>
+
+      <div class="patch">
+        <h3 style="color:var(--cyan);margin:0 0 8px 0">CONTACT</h3>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <a class="port" href="mailto:emc121091@me.com?subject=Proyecto%20musical" target="_blank">Email</a>
+          <a class="port" href="https://wa.me/525512478139?text=Hola%2C%20vi%20tu%20portfolio%20y%20quiero%20hablar%20de%20un%20proyecto%20musical." target="_blank">WhatsApp</a>
+          <a class="port" href="https://www.linkedin.com/in/edumecar" target="_blank">LinkedIn</a>
+        </div>
+      </div>
+
+      <footer>
+        © Eduardo Mejía — Sistema Nervioso Club · Interactive demo
+      </footer>
+    </aside>
   </div>
-  <script>
-    // Theme toggle
-    const themeToggle = document.getElementById('themeToggle');
-    let dark = true;
-    themeToggle.onclick = ()=>{
-      document.body.classList.toggle('light-mode'); dark = !dark;
-      const led = themeToggle.querySelector('.control-led');
-      led.classList.toggle('inactive', !dark);
-      themeToggle.querySelector('i').className = dark ? 'fas fa-adjust':'fas fa-sun';
-    };
-    // Deck
-    const deck = document.getElementById('turntable');
-    const vinyl = deck.querySelector('.vinyl');
-    const playBtn = document.getElementById('playBtn');
-    const stopBtn = document.getElementById('stopBtn');
-    playBtn.onclick = ()=>{ deck.classList.add('playing'); }
-    stopBtn.onclick = ()=>{ deck.classList.remove('playing'); }
-    // Secuenciador - highlight al click
-    document.querySelectorAll('.sequence-step').forEach(step=>{
-      step.onclick=()=>{
-        document.querySelectorAll('.sequence-step').forEach(s=>s.classList.remove('step-active'));
-        step.classList.add('step-active');
-      }
-    });
-  </script>
+
+<script>
+/* ======= WebAudio & Interactions ======= */
+const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+let masterGain = audioCtx.createGain(); masterGain.gain.value = 0.75; masterGain.connect(audioCtx.destination);
+
+/* Vinyl noise (hiss + crackle) */
+function createNoiseBuffer(durationSec=4){
+  const sr = audioCtx.sampleRate;
+  const len = sr * durationSec;
+  const buffer = audioCtx.createBuffer(1,len,sr);
+  const data = buffer.getChannelData(0);
+  for(let i=0;i<len;i++){
+    // filtered white noise for hiss + occasional crackle spikes
+    const white = (Math.random()*2-1)*0.25;
+    // occasional crackle
+    const crack = (Math.random() > 0.998) ? (Math.random()*2-1) * 0.9 : 0;
+    data[i] = white + crack;
+  }
+  return buffer;
+}
+let noiseNode, noiseGain;
+function startNoiseLoop(){
+  noiseNode = audioCtx.createBufferSource();
+  noiseNode.buffer = createNoiseBuffer(6);
+  noiseNode.loop = true;
+  noiseGain = audioCtx.createGain(); noiseGain.gain.value = 0.08;
+  const lowpass = audioCtx.createBiquadFilter(); lowpass.type = 'lowpass'; lowpass.frequency.value = 6000;
+  noiseNode.connect(lowpass); lowpass.connect(noiseGain); noiseGain.connect(masterGain);
+  noiseNode.start();
+}
+function stopNoise(){ if(noiseNode) { try{noiseNode.stop()}catch(e){} noiseNode=null } }
+
+/* generative pad (warm analog-ish) */
+let padOsc1, padOsc2, padGain;
+function startPad(){
+  padOsc1 = audioCtx.createOscillator(); padOsc2 = audioCtx.createOscillator();
+  padOsc1.type='saw'; padOsc2.type='triangle';
+  padOsc1.frequency.value = 110; padOsc2.frequency.value = 220;
+  padGain = audioCtx.createGain(); padGain.gain.value = 0.0;
+  const lp = audioCtx.createBiquadFilter(); lp.type='lowpass'; lp.frequency.value = 1200;
+  padOsc1.connect(padGain); padOsc2.connect(padGain); padGain.connect(lp); lp.connect(masterGain);
+  padOsc1.start(); padOsc2.start();
+  // slow amplitude movement
+  let t=0; setInterval(()=>{ if(!padGain) return; padGain.gain.value = 0.03 + 0.02*Math.sin(t); t+=0.04 }, 80);
+}
+function stopPad(){
+  try{ padOsc1.stop(); padOsc2.stop(); }catch(e){} padOsc1=null; padOsc2=null; padGain=null;
+}
+
+/* small click + pluck for sequencer/project preview */
+function playClick(time){
+  const g = audioCtx.createGain(); g.gain.value = 0.001;
+  const osc = audioCtx.createOscillator(); osc.type='square'; osc.frequency.value = 1200;
+  const env = audioCtx.createGain();
+  const filter = audioCtx.createBiquadFilter(); filter.type='highpass'; filter.frequency.value = 900;
+  osc.connect(env); env.connect(filter); filter.connect(g); g.connect(masterGain);
+  env.gain.setValueAtTime(0.001, time);
+  env.gain.exponentialRampToValueAtTime(0.12, time + 0.003);
+  env.gain.exponentialRampToValueAtTime(0.001, time + 0.09);
+  osc.start(time); osc.stop(time + 0.12);
+}
+
+/* turntable: spinning synth "groove" */
+let spinning=false, vinylEl=document.getElementById('vinyl'), spinInterval, spinAngle=0;
+let spinOsc;
+function startSpinSound(){
+  if(spinOsc) return;
+  spinOsc = audioCtx.createOscillator(); spinOsc.type='sine'; spinOsc.frequency.value = 55;
+  const g = audioCtx.createGain(); g.gain.value = 0.0015;
+  spinOsc.connect(g); g.connect(masterGain);
+  spinOsc.start();
+  // slow slight wobble on frequency
+  let t=0; setInterval(()=>{ if(!spinOsc) return; spinOsc.frequency.value = 52 + 3*Math.sin(t); t+=0.05 }, 180);
+}
+function stopSpinSound(){ try{ spinOsc.stop(); }catch(e){} spinOsc=null }
+
+/* UI wiring */
+document.getElementById('f1').addEventListener('input',e=>{
+  document.getElementById('val1').textContent = e.target.value;
+});
+document.getElementById('f2').addEventListener('input',e=>{
+  document.getElementById('val2').textContent = e.target.value;
+});
+document.getElementById('f3').addEventListener('input',e=>{
+  document.getElementById('val3').textContent = e.target.value;
+});
+
+/* Sequencer interactions */
+const steps = Array.from(document.querySelectorAll('.step'));
+steps.forEach(s=>{
+  s.addEventListener('click',()=>{
+    steps.forEach(x=>x.classList.remove('active'));
+    s.classList.add('active');
+    // sound
+    const now = audioCtx.currentTime;
+    playClick(now + 0.01);
+    // VU bounce
+    const bar = document.getElementById('vuBar');
+    bar.style.height = (30 + Math.random()*40)+'%';
+    setTimeout(()=>{ bar.style.height = '40%' },220);
+  });
+});
+
+/* preview chain */
+document.getElementById('previewAll').addEventListener('click',()=>{
+  // iterate active sequence with small rhythmic clicks
+  const now = audioCtx.currentTime;
+  for(let i=0;i<6;i++){
+    playClick(now + i*0.12);
+  }
+  // small live indicator
+  const liveDot = document.getElementById('liveDot');
+  liveDot.style.background = 'lime';
+  setTimeout(()=>liveDot.style.background = '#111',800);
+});
+
+/* Turntable play / stop */
+document.getElementById('play').addEventListener('click', async ()=>{
+  if(audioCtx.state === 'suspended') await audioCtx.resume();
+  if(!noiseNode) startNoiseLoop();
+  startPad();
+  startSpinSound();
+  spinning = true;
+  vinylEl.style.transition = 'transform 0.4s linear';
+  spinInterval = setInterval(()=>{ spinAngle += 1.5; vinylEl.style.transform = 'rotate('+spinAngle+'deg)'; }, 30);
+});
+document.getElementById('stop').addEventListener('click', ()=>{
+  // stop pad & noise softly
+  stopPad(); stopNoise(); stopSpinSound();
+  spinning=false;
+  clearInterval(spinInterval);
+  vinylEl.style.transform = 'rotate(0deg)';
+});
+
+/* loop toggle */
+let loop=false;
+document.getElementById('spinToggle').addEventListener('click', ()=>{
+  loop = !loop;
+  document.getElementById('spinToggle').classList.toggle('active', loop);
+  if(loop){
+    // small subtle continuous click chain
+    window.loopInterval = setInterval(()=>{ playClick(audioCtx.currentTime + 0.01); }, 6000);
+  } else {
+    clearInterval(window.loopInterval);
+  }
+});
+
+/* patchbay actions */
+document.getElementById('startProject').addEventListener('click', ()=>{
+  location.href = 'mailto:emc121091@me.com?subject=Start%20Project%20—%20Sistema%20Nervioso%20Club';
+});
+document.getElementById('bookingPlans').addEventListener('click', ()=>{ window.open('https://edumecar.github.io/Book/','_blank') });
+document.getElementById('linkedin').addEventListener('click', ()=>{ window.open('https://www.linkedin.com/in/edumecar','_blank') });
+document.getElementById('caseStudies').addEventListener('click', ()=>{ alert('Case studies: pronto. Pide un dossier por email.') });
+
+/* Tone toggle (mute/unmute) */
+let soundOn=true;
+const toneToggle = document.getElementById('toneToggle');
+toneToggle.addEventListener('click', async ()=>{
+  if(audioCtx.state === 'suspended') await audioCtx.resume();
+  soundOn = !soundOn;
+  masterGain.gain.value = soundOn ? 0.75 : 0.0001;
+  toneToggle.textContent = (soundOn ? '🔊 Sonido' : '🔇 Mudo');
+});
+
+/* theme / CRT toggle visual - toggles a subtle filter */
+document.getElementById('themeBtn').addEventListener('click', ()=>{
+  document.body.classList.toggle('crtMode');
+  if(document.body.classList.contains('crtMode')){
+    document.body.style.background = 'radial-gradient(circle at 10% 10%, #071215 0%, #05060a 35%, #07060a 100%)';
+    document.querySelectorAll('.crt').forEach(c=>c.style.boxShadow='0 0 20px rgba(255,204,102,0.06)');
+  } else {
+    document.body.style.background = 'linear-gradient(180deg,var(--bg) 0%, #0b0c10 100%)';
+  }
+});
+
+/* small live latency animation */
+setInterval(()=>{
+  const el = document.getElementById('latBar');
+  const w = 6 + Math.floor(Math.random()*60);
+  el.style.width = w + '%';
+}, 1000);
+
+/* initial audio resume on first user gesture required by browsers */
+['click','touchstart','mousemove','keydown'].forEach(evt=>{
+  window.addEventListener(evt, async function resumeOnce(){
+    if(audioCtx && audioCtx.state === 'suspended') try{ await audioCtx.resume(); }catch(e){}
+    window.removeEventListener(evt, resumeOnce);
+  });
+});
+
+/* accessibility keyboard: activate step with Enter */
+steps.forEach(s=>{
+  s.addEventListener('keydown', e=>{
+    if(e.key === 'Enter') s.click();
+  });
+});
+
+/* tiny UX: show which step is active in console (for later instrumentation) */
+setInterval(()=>{
+  const a = document.querySelector('.step.active');
+  if(a){
+    // push a micro-telemetry to console (undo later)
+    // console.log('Active project:', a.dataset.name, a.dataset.role);
+    // VU subtle breathing while active
+    const bar = document.getElementById('vuBar');
+    bar.style.height = (42 + Math.sin(Date.now()/800)*8) + '%';
+  }
+}, 300);
+
+</script>
 </body>
 </html>
