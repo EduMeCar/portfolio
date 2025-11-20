@@ -21,7 +21,9 @@
     --card-radius: 13px;
   }
   * {margin:0; padding:0; box-sizing:border-box;}
-  body {background: #0c0d0f; color: var(--white-soft); font-family: var(--font-panel); letter-spacing:.01em;}
+  body {
+    background: #0c0d0f; color: var(--white-soft); font-family: var(--font-panel); letter-spacing:.01em;
+  }
   .main-wrap {width:100vw;display:flex;flex-direction:column;align-items:center; padding:56px 0 44px 0;}
   .area {
     width:100%; max-width:var(--area-width);
@@ -48,11 +50,13 @@
   #eqCanvas {width:260px;max-width:96vw;height:34px;display:block;background:transparent;border:none;margin-top:13px;border-radius:21px;}
   .deck-stream { margin-top:28px; border-radius:8px; background:#23232a;border:none;overflow:hidden;}
   /* PANEL ROW (SERVICIOS+VIDEO) */
-  .panel-row {
-    display: grid; grid-template-columns: 370px 1fr; gap:44px; width:100%;
-    background:var(--panel-bg);border-radius:var(--card-radius);border:2px solid var(--panel-border);box-shadow:0 3px 22px #181a1d39;min-height:480px;align-items:stretch;overflow:hidden;
+  .panel-area {
+    width:100%; max-width:var(--area-width);margin:0 auto 48px auto;
+    background:var(--panel-bg);border-radius:var(--card-radius);border:2px solid var(--panel-border);
+    box-shadow:0 3px 21px #13141834;display:grid;grid-template-columns:370px 1fr;gap:44px;align-items:stretch;overflow:hidden;
+    padding:0;
   }
-  @media(max-width:1100px){.panel-row{grid-template-columns:1fr;gap:0;}}
+  @media(max-width:1100px){.panel-area{grid-template-columns:1fr;gap:0;}}
   .services-col { display:flex;flex-direction:column;justify-content:center;align-items:stretch;gap:33px;padding:54px 37px 54px 37px;background:var(--panel-dark);border-right:2px solid var(--panel-border);min-height:480px;}
   .service-xl {background: none;border: none;border-left: 5px solid var(--roland-orange);padding: 17px 8px 17px 25px;margin: 0;font-family: var(--font-panel);font-size: 1.17rem;font-weight: bold;color: var(--white-soft);text-transform: uppercase;letter-spacing: 0.21em;line-height:1.21;filter:saturate(0.88) contrast(1.14);}
   .service-xl .service-title {display:block; font-size:1.18em; font-weight:900; color:var(--roland-orange); letter-spacing:.18em; margin-bottom:7px;}
@@ -66,7 +70,8 @@
   .video-dot {width:15px;height:15px;border-radius:50%;background:var(--panel-dark);border:2px solid var(--roland-orange);cursor:pointer;transition:background .13s,border-color .13s;}
   .video-dot.active {background:var(--roland-orange);border-color:var(--white-soft);}
   /* CONTACTO */
-  .area.contact-panel {padding:40px 5vw 40px 5vw;}
+  .area.contact-panel {padding:40px 5vw 40px 5vw;margin-top:48px;}
+  .panel-divider {height:2.2px;width:100%;max-width:1350px;background:var(--roland-orange);border:none;opacity:.7;margin:0 auto 46px auto;}
   .contact-title {font-family:var(--font-panel);color:var(--roland-orange);font-size:1.11rem;font-weight:900;text-align:center;letter-spacing:.21em;text-transform:uppercase;margin-bottom:19px;}
   .contact-grid {display:grid;grid-template-columns:repeat(3,1fr);gap:22px;width:100%;}
   .contact-port {padding:22px;border-radius:8px;background:var(--panel-dark);border:1.7px solid var(--panel-border);color:var(--roland-orange);text-align:center;text-decoration:none;font-family:var(--font-panel);font-weight:900;font-size:1.07em;text-transform:uppercase;letter-spacing:.09em;transition:all .1s;}
@@ -107,7 +112,7 @@
       </div>
     </section>
     <!-- PANEL: SERVICIOS + VIDEO -->
-    <section class="panel-row">
+    <div class="panel-area">
       <div class="services-col">
         <div class="service-xl">
           <span class="service-title">BOOKING & TOURS</span>
@@ -131,7 +136,8 @@
         </div>
         <div class="dots-nav" id="videoDots"></div>
       </div>
-    </section>
+    </div>
+    <hr class="panel-divider">
     <!-- CONTACTO -->
     <section class="area contact-panel">
       <div class="contact-title">CONECTEMOS</div>
@@ -174,7 +180,6 @@ function drawEQ() {
 }
 playBtn.onclick=()=>{ if(!audioCtx)setupEQ(); audio.play();vinyl.style.animationPlayState="running";drawEQ();}
 stopBtn.onclick=()=>{audio.pause();audio.currentTime=0;vinyl.style.animationPlayState="paused";};
-
 // Videos panel
 const videos = [
   { id:"ZGxSXchZNfo", title:"PERFORMANCE LIVE 001" },
