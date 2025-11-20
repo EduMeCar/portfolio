@@ -11,206 +11,192 @@
       --korg-blue: #1DC9FF;
       --roland-orange: #ff6600;
       --roland-cyan: #00fff0;
-      --black-absolute: #0c0d10;
-      --grid-gray: #191b22;
-      --bg-card: #16181e;
-      --border-card: #252831;
-      --white-soft: #eaebec;
+      --black-absolute: #0E1014;
+      --gray-panel: #191d22;
+      --border-card: #22252d;
+      --white-soft: #edf2f7;
+      --bg-card: #181c23;
+      --area-width: 900px;      /* máximo ancho real de todos los contenidos */
+      --card-radius: 14px;
     }
-    * { margin:0; padding:0; box-sizing:border-box; }
+    * {margin:0;padding:0;box-sizing:border-box;}
     body {
-      background: var(--black-absolute); color: var(--white-soft);
-      font-family:'Courier New', Courier, monospace; min-height:100vh;
-      letter-spacing:.01em;
+      background: var(--black-absolute);
+      color: var(--white-soft);
+      font-family: 'Courier New', monospace;
+      min-height:100vh;
+      letter-spacing: .01em;
     }
-    .container { max-width:1220px; margin:0 auto; padding:38px 6vw 18px 6vw; }
+    .main-wrap {
+      display: flex; flex-direction: column; align-items: center; width: 100vw;
+      padding: 38px 0 32px 0;
+    }
+    .area {
+      width: 100%; max-width: var(--area-width); margin: 0 auto 48px auto;
+      background: var(--bg-card); border-radius: var(--card-radius); box-shadow: 0 3px 23px #1a1a1a2a;
+      border: 1.5px solid var(--border-card);
+      padding: 42px 36px 38px 36px;
+      display:flex; flex-direction:column; align-items:center;
+    }
+    @media (max-width:980px) {.area{padding: 38px 6vw 28px 6vw;}}
+    @media (max-width:650px){.area{padding:23px 1vw 18px 1vw;}}
 
-    .top-controls {
-      position: absolute; top: 18px; right: 18px;
-      display: flex; gap:13px; z-index:10;
-    }
-    .theme-btn {
-      width:40px;height:40px;border-radius:50%;background:var(--bg-card);
-      border:1.5px solid var(--korg-blue); color:var(--korg-blue);
-      display:flex;align-items:center;justify-content:center;font-size:1em;cursor:pointer;
-      transition: border .16s, color .13s, transform .15s;background:var(--bg-card);
-    }
-    .theme-btn:hover { border-color:var(--roland-red); color:var(--roland-red); }
-
-    /* SECCIÓN 1 */
-    .section-1 {
-      display: grid; grid-template-columns: 1.1fr 1.16fr; gap:48px;
-      align-items:center; background: var(--bg-card);
-      border-radius: 15px; border:1.5px solid var(--border-card); margin-bottom:52px;
-      box-shadow:0 2px 17px #25283124;
-    }
-    @media (max-width:900px){ .section-1{grid-template-columns:1fr;gap:18px;} }
-    .title-content { display: flex; flex-direction: column; justify-content: center; padding:28px; }
     .main-title {
-      font-size: 2.5rem; font-weight: bold; text-transform: uppercase;
-      letter-spacing: 3px; margin-bottom:14px;
-      color:var(--roland-cyan);
-      background: none; line-height:1.07;
+      font-size: 2.7rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 2.2px;
+      margin-bottom: 10px;
+      color: var(--roland-cyan);
+      text-align: center;
     }
     .subtitle {
-      font-size: 1.09rem; color: var(--roland-orange); font-weight:bold; text-transform:uppercase;
-      letter-spacing: 1.5px; margin-bottom:13px;
+      font-size: 1.07rem;
+      color: var(--roland-orange);
+      text-transform: uppercase;
+      font-weight: bold;
+      letter-spacing: 1.13px;
+      margin-bottom: 21px;
+      text-align: center;
     }
-    .description { font-size:1.05rem; color:var(--white-soft); opacity:0.95; margin-bottom:16px; }
-    #eqCanvas {
-      width:90%;max-width:370px;margin:13px auto 0 auto;display:block;background:transparent;border:none;
+    .description {
+      font-size: 1.05rem;
+      color: var(--white-soft);
+      opacity: 0.95;
+      margin-bottom: 0;
+      max-width: 540px;
+      text-align: center;
     }
-    .sound-module {
-      background: var(--bg-card); border:1.2px solid var(--border-card); border-radius:12px;
-      padding:26px 16px 24px 16px; display:flex;flex-direction:column;gap:19px; align-items:center;
+    /* HERO DECK */
+    .deck-flex {
+      display: flex; gap: 42px; justify-content: center; align-items: center; margin: 40px auto 0 auto;
+      width:100%;
     }
-    .hologram-turntable {
-      width:170px;height:170px;border-radius:50%;background:var(--black-absolute);
-      border:11px solid var(--korg-blue);display:flex;align-items:center;justify-content:center;
-      margin-bottom:11px;
+    @media (max-width:800px){.deck-flex{flex-direction:column;gap:18px;}}
+    .turntable {
+      width: 160px; height: 160px; border-radius:50%; background: var(--black-absolute);
+      border: 13px solid var(--korg-blue); position:relative;
+      display:flex;align-items:center;justify-content:center;
     }
-    .quantum-vinyl {
-      width:120px;height:120px;border-radius:50%;
-      background:radial-gradient(
-        circle at center,#23262b 0%,#23262b 12%,transparent 12.1%),
-        radial-gradient(circle at center, #111 0%,#111 35%,#222 35.1%,#222 38%,transparent 38.1%);
-      animation:quantumSpin 15s linear infinite;animation-play-state:paused; position:relative;
+    .vinyl {
+      width: 117px; height: 117px; border-radius:50%;
+      background:radial-gradient(#373842 70%,#191d22 100%);
+      position:relative;
+      animation:spin 11s linear infinite;
+      animation-play-state:paused;
     }
-    .vinyl-logo {
-      position: absolute;left:50%;top:50%;width:50px;height:50px;transform:translate(-50%,-50%);
-      pointer-events:none;z-index:3;filter:drop-shadow(0 0 4px #12eaf85d);}
-    @keyframes quantumSpin {0%{transform:rotate(0deg);}100%{transform:rotate(360deg);}}
-    .player-controls { display: flex; gap:9px; justify-content:center;}
+    @keyframes spin {0%{transform:rotate(0deg);}100%{transform:rotate(360deg);}}
+    .vinyl-logo { position:absolute; left:50%;top:50%; transform:translate(-50%,-50%); width:47px;height:47px;}
+    .deck-controls {
+      display:flex;flex-direction:column;align-items:center;gap:10px;
+    }
+    .player-controls { display:flex;gap:12px;margin-top:23px;}
     .control-btn {
-      padding:10px 18px;background:var(--grid-gray);border:2px solid var(--korg-blue);
-      color:var(--roland-cyan);border-radius:5px;cursor:pointer;font-weight:700;transition:.13s;
-      font-size:1.02em;
+      padding:11px 20px;background:var(--gray-panel);border:2px solid var(--korg-blue); color:var(--korg-blue); border-radius:5px;
+      cursor:pointer;font-weight:bold;transition:.13s;letter-spacing:.09em;font-size:1em;
     }
-    .control-btn:hover { border-color: var(--roland-orange); color:var(--roland-orange);background:var(--white-soft);}
-    .sound-module iframe {margin-top:6px;border-radius:8px;}
+    .control-btn:active,.control-btn:focus {border-color:var(--roland-orange); color:var(--roland-orange);}
+    #eqCanvas {width:200px;max-width:97vw;height:38px;display:block;background:transparent;border:none;}
+    /* SECCIÓN SERVICIOS */
+    .services-title {color:var(--roland-orange);font-size:1.1rem;font-weight:bold;letter-spacing:.9px;text-transform:uppercase;text-align:center;margin-bottom:30px;}
+    .services-grid {display:grid;grid-template-columns:repeat(3,1fr);gap:22px;width:100%;}
+    @media (max-width:800px) {.services-grid{grid-template-columns:1fr;}}
+    .service-card {background: var(--gray-panel); border:1.1px solid var(--border-card);border-radius:10px;padding:28px 15px 19px 15px;transition:box-shadow .12s;box-shadow:0 1.1px 7px #12ceff18;display:flex;flex-direction:column;align-items:center;}
+    .service-card:hover {box-shadow:0 2.2px 13px #ff660033;}
+    .service-icon {color:var(--korg-blue);font-size:2rem;}
+    .service-name {font-size:1.03rem;font-weight:700;color:var(--roland-cyan);text-transform:uppercase;margin:9px 0 7px 0;}
+    .service-desc {color:#e0eeff;line-height:1.34;font-size:.97rem;text-align:center;}
 
-    /* SERVICIOS */
-    .section-services {margin:31px 0 42px 0; text-align:center;}
-    .services-title {color:var(--roland-orange);font-size:1.06rem;font-weight:bold;letter-spacing:1.1px;text-transform:uppercase;margin-bottom:20px;}
-    .services-grid {display:grid;grid-template-columns:repeat(3,1fr);gap:29px;max-width:860px;margin:0 auto;}
-    @media (max-width:900px){ .services-grid{grid-template-columns:1fr;gap:16px;}}
-    .service-card {
-      background: var(--bg-card); border:1.3px solid var(--korg-blue);
-      border-radius:13px;padding:23px 14px 16px 14px;transition:border .18s,box-shadow .16s;
-      box-shadow:0 1.5px 7px #14e9fe11;
-      display:flex;flex-direction:column;align-items:center;
-    }
-    .service-card:hover { border-color:var(--roland-orange); }
-    .service-header {display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:7px;}
-    .service-icon {color:var(--korg-blue);font-size:1.77rem;}
-    .service-name {font-size:1.03rem;font-weight:700;color:var(--roland-cyan);text-transform:uppercase;letter-spacing:.86px;}
-    .service-desc {color:#afcbe3;line-height:1.36;font-size:.97rem;text-align:center;}
-
-    /* VIDEOS */
-    .section-2 {margin-bottom: 34px;}
-    .video-player-frame {display: flex;justify-content: center;align-items: center;background: var(--bg-card);border-radius: 12px;border: 1.5px solid var(--korg-blue);margin: 0 auto 0 auto;box-shadow: 0 4px 15px #1dcedf18;max-width:700px;overflow: hidden;min-height:150px;}
-    .video-title {color: var(--roland-cyan);text-align:center;font-size:1.04rem;margin:12px 0 13px 0;}
-    .miniaturenav{display:flex;justify-content:center;}
-    .video-thumbs{display:flex;gap:11px;margin:0 auto 7px auto;flex-wrap:wrap;justify-content:center;}
-    .video-thumb{width:43px;height:25px;border-radius:4px;border:1.7px solid var(--grid-gray);overflow:hidden;cursor:pointer;transition:border-color .14s,box-shadow .12s;opacity:.83;}
-    .video-thumb.active{border-color:var(--roland-orange);opacity:1;box-shadow:0 1.5px 7px #f95400af;}
+    /* VIDEO GALLERY */
+    .videos-title{color:var(--roland-cyan);font-size:1.08rem;font-weight:bold;letter-spacing:.8px;text-transform:uppercase;text-align:center;margin-bottom:20px;}
+    .video-player-frame {display:flex;justify-content:center;align-items:center;background:var(--gray-panel);border-radius:10px;border:1.1px solid var(--border-card);overflow:hidden;width:100%;max-width:550px;margin:0 auto;}
+    .video-title {color:var(--roland-cyan);font-size:1rem;margin:13px 0 10px 0;text-align:center;}
+    .miniaturenav{display:flex;justify-content:center;margin:5px 0;}
+    .video-thumbs{display:flex;gap:8px;}
+    .video-thumb{width:35px;height:21px;border-radius:3.5px;border:1px solid var(--grid-gray);overflow:hidden;cursor:pointer;transition:border-color .11s,box-shadow .10s;opacity:.82;}
+    .video-thumb.active{border-color:var(--roland-orange);opacity:1;box-shadow:0 1.2px 6px #ff8d37b0;}
     .video-thumb img{width:100%;height:100%;object-fit:cover;display:block;}
-    .video-dots{display:flex;gap:5px;align-items:center;justify-content:center;margin-bottom:2px;}
-    .video-dot{width:10px;height:10px;border-radius:50%;background:var(--grid-gray);border:1.5px solid var(--korg-blue);cursor:pointer;transition:background .11s,border-color .11s;}
+    .video-dots{display:flex;gap:4px;}
+    .video-dot{width:9px;height:9px;border-radius:50%;background:var(--grid-gray);border:1px solid var(--korg-blue);cursor:pointer;}
     .video-dot.active{background:var(--roland-orange);border-color:var(--roland-core);}
     /* CONTACTO */
-    .section-3{margin-top:12px;background:var(--bg-card);border:1.1px solid var(--border-card);border-radius:9px;padding:19px 0 17px 0;}
-    .contact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:700px;margin:0 auto;}
-    .contact-port{padding:16px;background:var(--grid-gray);border:1px solid var(--korg-blue);border-radius:5px;text-align:center;text-decoration:none;color:var(--korg-blue);transition:all 0.14s;text-transform:uppercase;font-family:inherit;font-weight:600;font-size:1em;}
-    .contact-port:hover{border-color:var(--roland-orange);background: #ffffff16;}
-    .port-primary{background: var(--roland-orange);border-color:var(--roland-orange);color:#fff;}
-    .port-primary:hover{background:transparent;color:var(--roland-orange);}
-    .footer{margin-top:13px;text-align:center;color:#90a1b2;font-size:.98em;letter-spacing:.7px;}
-    .whatsapp-float{position:fixed;bottom:20px;right:20px;background:#25D366;color:white;width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 2.5px 18px #26ccb179;z-index:1000;}
-    .whatsapp-float:hover{transform:scale(1.08);}
+    .contact-title{color:var(--roland-cyan);font-size:1.09rem;font-weight:bold;text-align:center;margin-bottom:26px;text-transform:uppercase;letter-spacing:.8px;}
+    .contact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;width:100%;}
+    .contact-port{padding:17px;border-radius:7px;background:var(--gray-panel);border:1px solid var(--border-card);color:var(--korg-blue);text-align:center;text-decoration:none;font-weight:bold;font-size:1em;transition:.11s;}
+    .contact-port:hover{border-color:var(--roland-orange);color:var(--roland-orange);}
+    .port-primary{background:var(--roland-orange);color:white;}
+    .footer{margin-top:16px;text-align:center;color:#8fa8c7;font-size:.98em;}
+    .whatsapp-float{position:fixed;bottom:19px;right:20px;background:#25D366;color:white;width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;z-index:1000;}
   </style>
 </head>
 <body>
-  <div class="container">
-    <!-- CONTROLES -->
-    <div class="top-controls">
-      <button class="theme-btn" id="themeToggle"><i class="fas fa-circle-half-stroke"></i></button>
-    </div>
-    <!-- HERO/DECK -->
-    <section class="section-1">
-      <div class="title-content">
-        <h1 class="main-title">KORG × ROLAND // SISTEMA NERVIOSO MUSICAL</h1>
-        <div class="subtitle">SYNTH · BOOKING · DATA · CLUB</div>
-        <p class="description">
-          Fusionando cables, microchips y groove. Estrategia y visión analógico-digital para artistas, giras y sellos.
-        </p>
-        <canvas id="eqCanvas" width="270" height="44"></canvas>
+  <div class="main-wrap">
+    <!-- TITULO -->
+    <section class="area">
+      <h1 class="main-title">EDUARDO MEJÍA // SISTEMA NERVIOSO MUSICAL</h1>
+      <div class="subtitle">CLUB · BOOKING · SYNTH · DATASOUL</div>
+      <div class="description">
+        Fusión Roland × Korg. Estrategia y booking global con alma de hardware, groove y data.
       </div>
-      <div class="sound-module">
-        <div class="hologram-turntable">
-          <div class="quantum-vinyl">
-            <img src="logo.svg" alt="logo" class="vinyl-logo">
+      <div class="deck-flex">
+        <div class="turntable" id="turntable"><div class="vinyl" id="vinyl"><img src="logo.svg" class="vinyl-logo"></div></div>
+        <div class="deck-controls">
+          <canvas id="eqCanvas" width="200" height="38"></canvas>
+          <div class="player-controls">
+            <button class="control-btn" id="playBtn">PLAY</button>
+            <button class="control-btn" id="stopBtn">STOP</button>
           </div>
+          <audio id="localAudio"><source src="micancion.mp3" type="audio/mpeg"></audio>
+          <iframe style="margin-top:18px;border-radius:7px;" src="https://open.spotify.com/embed/playlist/26qaG2E3bW6ZNIk5mvPpjr?utm_source=generator" width="100%" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
         </div>
-        <div class="player-controls">
-          <button class="control-btn" id="playBtn">PLAY</button>
-          <button class="control-btn" id="stopBtn">STOP</button>
-        </div>
-        <audio id="localAudio">
-          <source src="micancion.mp3" type="audio/mpeg">
-        </audio>
-        <iframe style="border-radius:6px;border:none;width:100%;margin-top:15px;" src="https://open.spotify.com/embed/playlist/26qaG2E3bW6ZNIk5mvPpjr?utm_source=generator" height="84" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
       </div>
     </section>
     <!-- SERVICIOS -->
-    <section class="section-services">
+    <section class="area">
       <div class="services-title">Servicios</div>
       <div class="services-grid">
         <div class="service-card">
-          <div class="service-header"><span class="service-icon"><i class="fas fa-route"></i></span><span class="service-name">BOOKING & TOURS</span></div>
-          <div class="service-desc">Estrategia y booking. Giras, circuitos y logística creativa.</div>
+          <span class="service-icon"><i class="fas fa-route"></i></span>
+          <div class="service-name">BOOKING & TOURS</div>
+          <div class="service-desc">Giras, club, booking digital y circuitos creativos.</div>
         </div>
         <div class="service-card">
-          <div class="service-header"><span class="service-icon"><i class="fas fa-sliders-h"></i></span><span class="service-name">DIGITAL FLOW</span></div>
-          <div class="service-desc">Multiplataforma, performance y arquitectura digital especializada.</div>
+          <span class="service-icon"><i class="fas fa-sliders-h"></i></span>
+          <div class="service-name">DIGITAL FLOW</div>
+          <div class="service-desc">Performance & estrategia multiplataforma, data & management.</div>
         </div>
         <div class="service-card">
-          <div class="service-header"><span class="service-icon"><i class="fas fa-wave-square"></i></span><span class="service-name">SYNTH STRATEGY</span></div>
-          <div class="service-desc">Frameworks analógicos/modernos para el sonido y la escena.</div>
+          <span class="service-icon"><i class="fas fa-wave-square"></i></span>
+          <div class="service-name">SYNTH STRATEGY</div>
+          <div class="service-desc">Frameworks híbridos, sonido club y acción global.</div>
         </div>
       </div>
     </section>
-    <!-- GALERÍA VIDEO -->
-    <section class="section-2">
-      <div class="video-player-frame">
-        <iframe id="singleVideo" width="100%" height="370" src="https://www.youtube.com/embed/ZGxSXchZNfo?modestbranding=1&rel=0"></iframe>
-      </div>
+    <!-- VIDEOS -->
+    <section class="area">
+      <div class="videos-title">Videos</div>
+      <div class="video-player-frame"><iframe id="singleVideo" width="100%" height="260" src="https://www.youtube.com/embed/ZGxSXchZNfo?modestbranding=1&rel=0"></iframe></div>
       <div id="videoTitle" class="video-title"></div>
-      <div class="miniaturenav">
-        <div id="videoThumbs" class="video-thumbs"></div>
-      </div>
+      <div class="miniaturenav"><div id="videoThumbs" class="video-thumbs"></div></div>
       <div id="videoDots" class="video-dots"></div>
     </section>
     <!-- CONTACTO -->
-    <section class="section-3">
+    <section class="area">
+      <div class="contact-title">Conectemos</div>
       <div class="contact-grid">
         <a href="mailto:emc121091@me.com?subject=PROYECTO%20MUSICAL" class="contact-port port-primary">START PROJECT</a>
         <a href="https://edumecar.github.io/Book/" target="_blank" class="contact-port">BOOKING PLANS</a>
         <a href="https://www.linkedin.com/in/edumecar" target="_blank" class="contact-port">LINKEDIN</a>
       </div>
     </section>
-    <div class="footer">
-      Portfolio de Eduardo Mejía – Estrategia analógica, booking, club y futuro synth.
-    </div>
+    <div class="footer">Portfolio de Eduardo Mejía – Estrategia analógica, booking, club y synth.</div>
   </div>
-  <a href="https://wa.me/525512478139" class="whatsapp-float" target="_blank">
-    <i class="fab fa-whatsapp" style="font-size: 1.7rem;"></i>
-  </a>
+  <a href="https://wa.me/525512478139" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp" style="font-size:1.7rem;"></i></a>
 <script>
 const audio = document.getElementById('localAudio');
 const playBtn = document.getElementById('playBtn');
 const stopBtn = document.getElementById('stopBtn');
-const vinyl = document.querySelector('.quantum-vinyl');
+const vinyl = document.getElementById('vinyl');
 const eqCanvas = document.getElementById('eqCanvas');
 const eqCtx = eqCanvas.getContext('2d');
 let audioCtx, analyser, dataArray;
@@ -219,58 +205,41 @@ function setupEQ() {
   let src = audioCtx.createMediaElementSource(audio);
   analyser = audioCtx.createAnalyser();
   src.connect(analyser); analyser.connect(audioCtx.destination);
-  analyser.fftSize = 32;
-  dataArray = new Uint8Array(analyser.frequencyBinCount);
+  analyser.fftSize = 32; dataArray = new Uint8Array(analyser.frequencyBinCount);
 }
 function drawEQ() {
   eqCtx.clearRect(0,0,eqCanvas.width,eqCanvas.height);
   analyser.getByteFrequencyData(dataArray);
-  const barWidth=13; let x=0;
+  const barWidth=12; let x=0;
   for(let i=0;i<dataArray.length;i++){
-    const barHeight = dataArray[i]/2.1;
-    eqCtx.fillStyle = '#1DC9FF';
+    let barHeight=Math.max(4,dataArray[i]/2.2); eqCtx.fillStyle='#1DC9FF';
     eqCtx.fillRect(x,eqCanvas.height-barHeight,barWidth,barHeight); x+=barWidth+3;
   }
   requestAnimationFrame(drawEQ);
 }
 playBtn.onclick=()=>{ if(!audioCtx)setupEQ(); audio.play();vinyl.style.animationPlayState="running";drawEQ();}
 stopBtn.onclick=()=>{audio.pause();audio.currentTime=0;vinyl.style.animationPlayState="paused";};
-
-// TEMA CLARO/OSCURO
-document.getElementById('themeToggle').onclick = ()=>{document.body.classList.toggle('light');};
-
-// VIDEOS
 const videos = [
-  { id: "ZGxSXchZNfo", title: "Performance Live 001" },
-  { id: "kXYiU_JCYtU", title: "Sound Design Session" },
-  { id: "ktvTqknDobU", title: "Cloud Flow Architecture" }
+  { id:"ZGxSXchZNfo", title:"Performance Live 001" },
+  { id:"kXYiU_JCYtU", title:"Sound Design Session" },
+  { id:"ktvTqknDobU", title:"Cloud Flow Architecture" }
 ];
-const videoEl = document.getElementById("singleVideo");
-const thumbs = document.getElementById("videoThumbs");
-const dots = document.getElementById("videoDots");
-const videoTitle = document.getElementById("videoTitle");
+const videoEl=document.getElementById("singleVideo");
+const thumbs=document.getElementById("videoThumbs");
+const dots=document.getElementById("videoDots");
+const videoTitle=document.getElementById("videoTitle");
 function loadVideo(i) {
-  const v = videos[i];
-  videoEl.src = `https://www.youtube.com/embed/${v.id}?modestbranding=1&rel=0`;
-  videoTitle.textContent = v.title;
-  document.querySelectorAll(".video-thumb").forEach((el, idx) =>
-    idx===i ? el.classList.add("active") : el.classList.remove("active"));
-  document.querySelectorAll(".video-dot").forEach((el, idx)=>
-    idx===i ? el.classList.add("active") : el.classList.remove("active"));
+  const v=videos[i];
+  videoEl.src=`https://www.youtube.com/embed/${v.id}?modestbranding=1&rel=0`;
+  videoTitle.textContent=v.title;
+  document.querySelectorAll(".video-thumb").forEach((el,idx)=>idx===i?el.classList.add("active"):el.classList.remove("active"));
+  document.querySelectorAll(".video-dot").forEach((el,idx)=>idx===i?el.classList.add("active"):el.classList.remove("active"));
 }
 videos.forEach((v,i)=>{
-  const t = document.createElement("div");
-  t.className = "video-thumb";
-  t.innerHTML = `<img src="https://img.youtube.com/vi/${v.id}/hqdefault.jpg">`;
-  t.onclick = () => loadVideo(i);
-  thumbs.appendChild(t);
-
-  const d = document.createElement("div");
-  d.className = "video-dot";
-  d.onclick=()=>loadVideo(i);
-  dots.appendChild(d);
-});
-loadVideo(0);
+  const t=document.createElement("div");t.className="video-thumb";
+  t.innerHTML=`<img src="https://img.youtube.com/vi/${v.id}/hqdefault.jpg">`;t.onclick=()=>loadVideo(i);thumbs.appendChild(t);
+  const d=document.createElement("div");d.className="video-dot";d.onclick=()=>loadVideo(i);dots.appendChild(d);
+});loadVideo(0);
 </script>
 </body>
 </html>
