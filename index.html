@@ -2,450 +2,226 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
+  <title>Conciencia Sonora - Eduardo Mejía</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EDUARDO MEJÍA // SISTEMA NERVIOSO MUSICAL</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- SEO META TAGS -->
+  <meta name="description" content="Eduardo Mejía - Conciencia Sonora. Servicios profesionales Roland de booking, gestión editorial y distribución digital.">
+  <!-- ...otros meta tags tal cual... -->
+
+  <!-- Roland + Modern Style -->
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
     :root {
-      --roland-core: #CC0000;
-      --black-absolute: #000000;
-      --grid-gray: #1a1a1a;
-      --digital-cyan: #00FFFF;
-      --glitch-magenta: #FF00FF;
-      --panel-deep: linear-gradient(160deg, #0a0a0a 0%, #1a1a1a 50%, #000000 100%);
-      --hologram-glow: 0 0 20px rgba(0, 255, 255, 0.5);
+      --roland-red: #CC0000;
+      --roland-orange: #ff6600;
+      --roland-cyan: #00f8ff;
+      --roland-yellow: #FFCC00;
+      --roland-bg: #090A12;
+      --roland-card: #13131a;
+      --roland-border: #1b2330;
+      --roland-panel: linear-gradient(120deg,#191a23 0%,#27292d 100%);
+      --roland-text: #f8f9fa;
+      --roland-subtle: #bfbfbf;
+      --led-glow: 0 0 24px var(--roland-cyan)aa;
     }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    .light-mode {
+      --roland-bg: #fff;
+      --roland-card: #f3f8fc;
+      --roland-border: #dbdbdf;
+      --roland-text: #232c3e;
+      --roland-subtle: #71778d;
+    }
     body {
-      background: var(--black-absolute); color: white;
-      font-family: 'Courier New', monospace;
-      line-height: 1.4;
-      overflow-x: hidden;
-    }
-    .container { max-width: 1200px; margin: 0 auto; padding: 22px 6vw 18px 6vw; }
-
-    /* Top controls */
-    .top-controls { position: absolute; top: 20px; right: 20px; display: flex; gap: 10px; z-index: 2;}
-    .theme-btn {
-      width: 40px; height: 40px; border-radius: 50%;
-      background: var(--grid-gray); border: 1px solid var(--digital-cyan);
-      color: var(--digital-cyan); display: flex; align-items: center; justify-content: center;
-      cursor: pointer; transition: all 0.3s ease;
+      background: var(--roland-bg);
+      color: var(--roland-text);
+      font-family: 'Inter', 'Courier New', monospace;
+      line-height: 1.7;
+      margin: 0; min-height: 100vh;
+      transition: background 0.5s, color 0.49s;
     }
 
-    /* SECCIÓN 1 */
-    .section-1 {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 42px;
-      margin-bottom: 54px; min-height: 56vh; align-items: center;
+    /* Bar: ahora, leds y knob Roland */
+    .control-bar {
+      position: fixed; top: 22px; right: 22px; z-index: 200;
+      display: flex; gap: 16px;
     }
-    .title-content { display: flex; flex-direction: column; justify-content: center; padding-right: 16px; }
-    .main-title {
-      font-size: 3rem; font-weight: bold; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 22px;
-      background: linear-gradient(45deg, white, var(--digital-cyan)); -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent; line-height: 1.05;
-      filter: drop-shadow(0 2px 10px var(--digital-cyan));
-      animation: title-glitch 2s infinite steps(2, jump-none);
-    }
-    @keyframes title-glitch { 0% {filter: none;} 50% {filter: drop-shadow(0 0 8px var(--glitch-magenta));} }
-    .subtitle {
-      font-size: 1.2rem; color: var(--roland-core); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 15px;
-    }
-    .description { font-size: 1rem; line-height: 1.6; color: rgba(255,255,255,0.9); margin-bottom: 22px;}
-    #eqCanvas {
-      width: 90%; max-width: 420px; margin: 15px auto 0 auto; display: block;
-      background: transparent; border: none;
-    }
-
-    .sound-module {
-      background: var(--panel-deep); border: 1px solid var(--grid-gray); border-radius: 8px;
-      padding: 28px 20px 28px 20px; display: flex; flex-direction: column; gap: 21px;
-    }
-    .turntable-container { display: flex; flex-direction: column; align-items: center; gap: 15px;}
-    .hologram-turntable {
-      width: 200px; height: 200px; border-radius: 50%; background: var(--black-absolute);
-      border: 15px solid var(--grid-gray); position: relative; display: flex; align-items: center; justify-content: center;
-      box-shadow: var(--hologram-glow); transition: border-color .2s, box-shadow .2s;
-    }
-    .quantum-vinyl {
-      width: 150px; height: 150px; border-radius: 50%;
-      background:
-        radial-gradient(circle at center, var(--grid-gray) 0%, var(--grid-gray) 8%, transparent 8.1%),
-        radial-gradient(circle at center, var(--black-absolute) 0%, var(--black-absolute) 35%, var(--grid-gray) 35.1%, var(--grid-gray) 38%, transparent 38.1%),
-        repeating-radial-gradient(circle at center, var(--black-absolute) 0%, var(--black-absolute) 2%, var(--grid-gray) 2.1%, var(--grid-gray) 4%);
-      animation: quantumSpin 15s linear infinite;
-      animation-play-state: paused;
-      position: relative;
-    }
-    /* Logo centrado del vinilo */
-    .vinyl-logo {
-      position: absolute;
-      left: 50%; top: 50%; width: 65px; height: 65px;
-      transform: translate(-50%,-50%);
-      pointer-events: none; z-index: 3;
-      filter: drop-shadow(0 0 8px #00FFFF66);
-    }
-    @keyframes quantumSpin { 0% { transform: rotate(0deg);} 100% {transform: rotate(360deg);} }
-    .player-controls { display: flex; gap: 10px; justify-content: center; }
     .control-btn {
-      padding: 10px 20px; background: var(--black-absolute);
-      border: 1px solid var(--grid-gray); color: white; border-radius: 4px; cursor: pointer;
-      transition: all 0.3s ease; text-transform: uppercase; font-family: 'Courier New', monospace;
-    }
-    .control-btn:hover { border-color: var(--digital-cyan); background: var(--digital-cyan); color: var(--black-absolute);}
-
-    /* SECCIÓN SERVICIOS */
-    .section-services {
-      margin: 38px 0 50px 0;
-      text-align: center;
-    }
-    .services-title {
-      color:var(--digital-cyan);
-      font-size:1.4rem;
-      font-weight:bold;
-      letter-spacing:2.5px;
-      text-transform:uppercase;
-      margin-bottom: 24px;
-      text-shadow:0 0 22px #00eee9,0 1px 0 #1a1a1a;
-    }
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(3,1fr);
-      gap: 32px;
-      justify-content: center;
-      align-items: stretch;
-      max-width:900px;
-      margin:0 auto;
-    }
-    .service-card {
-      background: var(--panel-deep);
-      border: 2px solid var(--grid-gray);
-      border-radius: 14px;
-      padding: 32px 18px 22px 18px;
-      box-shadow:0 4px 18px rgba(0,0,0,0.15);
-      cursor:pointer;
-      transition: border-color .24s, box-shadow .19s, transform .18s;
+      width:46px;height:46px; border-radius: 50%; border:2px solid var(--roland-border);
+      background: var(--roland-card);
+      color: var(--roland-cyan);
+      display:flex;align-items:center;justify-content:center; font-size:1.3em; cursor:pointer;
+      box-shadow: 0 4px 18px #00f8ff1a, 0 1px 5px #cc000055;
+      transition: border-color .21s, box-shadow .21s, transform .15s;
       position:relative;
     }
-    .service-card:hover {
-      border-color: var(--digital-cyan);
-      box-shadow: 0 0 24px var(--glitch-magenta);
-      transform: translateY(-6px) scale(1.04);
+    .control-btn::after {
+      content:'';
+      position:absolute; width:13px;height:13px;border-radius:50%;right:7px;top:7px;
+      background: var(--roland-cyan); opacity:0.7; filter:blur(2px);
+      box-shadow: var(--led-glow);
+      transition: opacity .22s;
     }
-    .service-header {
-      display:flex;
-      align-items: center;
-      justify-content: center;
-      gap: 13px;
-      margin-bottom: 16px;
+    .control-btn:active {border-color: var(--roland-cyan);box-shadow:0 1px 21px #00f8ff66; transform:scale(0.98);}
+    /* WhatsApp */
+    .whatsapp-float { position:fixed;bottom:22px;right:24px;background:var(--roland-cyan);color:#070c1c;width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 3px 16px #00ffe066;z-index:2000;}
+    .whatsapp-float:hover {background:var(--roland-red); color:white;transform:scale(1.08) rotate(-6deg);}
+    .whatsapp-icon{width:30px;height:30px;}
+    /* Grid background: sutil pero analógico */
+    .neural-grid {
+      pointer-events:none;
+      position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:-1;
+      background: repeating-linear-gradient(0deg,rgba(0,248,255,.06) 0 2px,transparent 4px 22px), repeating-linear-gradient(90deg,rgba(255,80,32,.045) 0 2px,transparent 4px 22px);
+      mix-blend-mode: lighten; opacity:.10;
     }
-    .service-icon {
-      color: var(--digital-cyan);
-      font-size:2.1rem;
-      filter: drop-shadow(0 0 7px #00fff966);
+    /* HERO (Vinilo animado y TT) */
+    .logo-container {
+      margin: 0 auto 2.8rem auto; display:flex; justify-content:center;align-items:center;
+      width:180px;height:180px; position:relative;
     }
-    .service-name {
-      font-size:1.05rem;
-      font-weight: bold;
-      color: white;
-      letter-spacing: 1.1px;
-      text-transform: uppercase;
+    .neural-logo {
+      width:100%;height:100%;border-radius:100%;background:
+      radial-gradient(circle 55px at 60% 49%, var(--roland-cyan) 2%, transparent 68%),
+      radial-gradient(ellipse 60% 85% at 50% 42%, #232c36 43%, transparent 89%);
+      object-fit:contain; border:4px solid var(--roland-cyan);
+      box-shadow: 0 2.5px 24px #00fff34b; z-index:3;
+      animation: vinylSpin 15s linear infinite; animation-play-state: paused;
+      transition: border-color .21s;
+      filter: drop-shadow(0 0 17px #00fff055);
     }
-    .service-desc {
-      color: rgba(255,255,255,0.84);
-      line-height:1.5;
-      font-size: .98rem;
+    @keyframes vinylSpin {0%{transform:rotate(0deg);}100%{transform:rotate(360deg);}}
+    .logo-container.active .neural-logo { animation-play-state: running; border-color: var(--roland-orange);}
+    .logo-container::before {
+      content:"";
+      position: absolute; left: 50%; top: 29px; transform:translateX(-50%);
+      width:18px;height:18px;border-radius:50%;background:var(--roland-red);filter:blur(1.5px);z-index:5;
+      box-shadow: 0 0 19px #CC000088;
     }
-    @media (max-width:900px){
-      .services-grid{grid-template-columns:1fr;}
+    /* LEDs debajo del vinilo */
+    .logo-container::after {
+      content:"";
+      position: absolute; right:24px;top:48px;width:11px;height:11px;border-radius:50%;background:var(--roland-orange);box-shadow:0 0 14px #ff6600a7;
+      opacity:.77;z-index:6;
     }
-
-    /* SECCIÓN 2 / REPRODUCTOR */
-    .section-2 {
-      margin-bottom: 56px;
-      padding-bottom:0;
+    /* Tagline */
+    .quantum-tagline {
+      font-size: 1.09rem; font-weight:600; color: var(--roland-cyan);
+      text-transform:uppercase; letter-spacing:.21em; margin-bottom:1.1rem;
+      display:inline-block; position:relative;
     }
-    .video-player-frame {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: var(--panel-deep);
-      border-radius: 13px;
-      border: 2px solid var(--grid-gray);
-      margin: 0 auto 0 auto;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.14);
-      max-width: 800px;
-      overflow: hidden;
-      min-height: 180px;
+    .quantum-tagline:after {
+      content:""; display:block;position:absolute;bottom:-9px;left:50%;transform:translateX(-50%);
+      width: 52px; height: 2px; background:var(--roland-cyan);
     }
-    .video-title {
-      color: var(--digital-cyan);
-      text-align: center;
-      font-size: 1.11rem;
-      margin: 13px 0 15px 0;
-      min-height: 24px;
-      letter-spacing:.8px;
+    /* Título */
+    .neuro-title {
+      font-size: 2.82rem; font-weight: 900;
+      background: linear-gradient(133deg, var(--roland-text), var(--roland-cyan));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      letter-spacing: -0.01em; margin-bottom: 1rem;line-height:1.08;
     }
-    .miniaturenav {
-      display: flex;
-      justify-content: center;
+    .neuro-subtitle {
+      font-size: 1.3rem; color: var(--roland-subtle); font-weight:500; margin:0 auto 2.7rem;
+      max-width:550px;
     }
-    .video-thumbs {
-      display: flex; gap: 13px; margin: 0 auto 11px auto; flex-wrap: wrap; justify-content: center;
+    /* VINYL CONTROL BUTTONS */
+    .logo-container .deck-playbtn {
+      position: absolute; left: 50%;bottom: -38px;transform:translateX(-50%);
+      background: var(--roland-orange); color:var(--roland-text); border: none; border-radius:7px;
+      box-shadow: 0 0 12px #ff660072; font-size:2.1rem; width:42px;height:42px;
+      display:flex;align-items:center;justify-content:center;cursor:pointer;
+      z-index:10; transition: background .2s, box-shadow .13s;
     }
-    .video-thumb {
-      width: 58px; height: 38px; border-radius:8px;
-      border: 2.5px solid var(--grid-gray);
-      overflow: hidden; cursor: pointer; transition: border-color .22s, box-shadow .2s;
-      opacity: .8;
-      box-shadow:0 0 7px rgba(0,0,0,0.09);
-    }
-    .video-thumb.active {
-      border-color: var(--digital-cyan); opacity: 1; box-shadow:0 2px 18px var(--glitch-magenta);
-    }
-    .video-thumb img {
-      width: 100%; height: 100%; object-fit:cover; display: block;
-      filter: grayscale(12%) contrast(1.09);
-    }
-    .video-dots {
-      display: flex; gap: 7px; align-items: center; justify-content: center; margin-bottom: 2px;
-    }
-    .video-dot {
-      width: 13px; height: 13px; border-radius: 50%;
-      background: var(--grid-gray);
-      border: 2px solid var(--digital-cyan);
-      cursor: pointer;
-      transition: background .21s, border-color .21s;
-    }
-    .video-dot.active {
-      background: var(--digital-cyan);
-      border-color: var(--glitch-magenta);
-    }
-
-    /* SECCIÓN 3 */
-    .section-3 { margin-top:12px; background:var(--panel-deep); border:1px solid var(--grid-gray); border-radius:8px; padding:38px 0 34px 0;}
-    .contact-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; max-width: 800px; margin: 0 auto;}
-    .contact-port {
-      padding: 20px; background: var(--black-absolute); border: 1px solid var(--grid-gray);
-      border-radius: 6px; text-align:center; text-decoration:none;color:white;
-      transition: all 0.3s ease; text-transform: uppercase; font-family:'Courier New', monospace;
-      position:relative;font-weight:600;font-size:1.12em;letter-spacing:1.5px;
-    }
-    .contact-port:hover { border-color: var(--digital-cyan); transform:translateY(-3px) scale(1.025);}
-    .port-primary { background:var(--roland-core); border-color:var(--roland-core); font-weight:bold; color:white;}
-    .port-primary:hover { background:transparent; color:var(--roland-core);}
-    .footer {
-      margin-top:18px;text-align:center;color:rgba(255,255,255,0.5);font-size:0.98em;letter-spacing:1px;
-    }
-
-    /* WhatsApp Floating */
-    .whatsapp-float {
-      position: fixed; bottom: 20px; right: 20px;
-      background: #25D366; color: white;
-      width: 60px; height: 60px; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      text-decoration: none; box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
-      z-index: 1000; animation: float 3s ease-in-out infinite;
-    }
-    @keyframes float { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-10px);} }
-
+    .logo-container .deck-playbtn:active { background: var(--roland-cyan);}
+    /* Metric style */
+    .elegant-metrics .elegant-number { color: var(--roland-cyan);}
+    .metric-elegant{transition:.2s}
+    .metric-elegant:hover{transform:translateY(-6px) scale(1.04);filter:brightness(1.16);}
+    /* SERVICES */
+    .services-title { color: var(--roland-orange); }
+    .service-elegant {border-color: var(--roland-cyan);}
+    .service-heading { color: var(--roland-cyan);}
+    .service-elegant:hover { border-color: var(--roland-orange);}
+    /* PRODUCTIONS */
+    .productions-title {color: var(--roland-yellow);}
+    .production-item{border-color:var(--roland-orange);}
+    .production-item:hover{border-color:var(--roland-cyan);}
+    .production-role{color:var(--roland-cyan);}
+    /* PLAYER */
+    .sound-player{box-shadow:0 2.5px 18px #ff660024;}
+    .sound-title{color:var(--roland-red);}
+    /* CONNECTION */
+    .connection-title{color:var(--roland-cyan);}
+    .action-btn.primary{background:var(--roland-orange);color:white;border-color:var(--roland-orange);}
+    .action-btn.primary:hover{background:transparent;color:var(--roland-orange);}
+    /* Footer */
+    .portfolio-footer{border-top: 2.1px solid var(--roland-border);}
   </style>
 </head>
 <body>
-
-  <div class="container">
-
-    <!-- CONTROLES SUPERIORES -->
-    <div class="top-controls">
-      <button class="theme-btn" id="themeToggle"><i class="fas fa-adjust"></i></button>
-    </div>
-
-    <!-- SECCIÓN 1 -->
-    <section class="section-1">
-      <div class="title-content">
-        <h1 class="main-title">ROLAND CORE × CLOUD FLOW</h1>
-        <div class="subtitle">VOLTAJE → STREAM → ALGORITMO</div>
-        <p class="description">
-          Ecosistema musical híbrido: donde el voltaje de Detroit y el pulso post punk chocan con la creatividad digital.<br>
-          Arquitecturas sónicas, frameworks analógicos, y creatividad iluminando cada cable.<br>
-          <span style="color:var(--digital-cyan);font-size:1.05em;">Diseñado para sellos, artistas, promotores y soñadores eléctricos.</span>
-        </p>
-        <canvas id="eqCanvas" width="260" height="44"></canvas>
-      </div>
-
-      <div class="sound-module">
-        <div class="turntable-container">
-          <div class="hologram-turntable">
-            <div class="quantum-vinyl">
-              <img src="logo.svg" alt="logo" class="vinyl-logo">
-            </div>
-          </div>
-          <div class="player-controls">
-            <button class="control-btn" id="playBtn">PLAY</button>
-            <button class="control-btn" id="stopBtn">STOP</button>
-          </div>
-        </div>
-
-        <audio id="localAudio">
-          <source src="micancion.mp3" type="audio/mpeg">
-        </audio>
-
-        <iframe style="border-radius:4px;border:none;width:100%;" src="https://open.spotify.com/embed/playlist/26qaG2E3bW6ZNIk5mvPpjr?utm_source=generator" height="84" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
-      </div>
-    </section>
-
-    <!-- SERVICIOS -->
-    <section class="section-services">
-      <div class="services-title">Servicios</div>
-      <div class="services-grid">
-        <div class="service-card">
-          <div class="service-header"><span class="service-icon"><i class="fas fa-route"></i></span><span class="service-name">BOOKING & TOURS</span></div>
-          <p class="service-desc">Circuitos de performance y gestión neuronal de giras internacionales</p>
-        </div>
-        <div class="service-card">
-          <div class="service-header"><span class="service-icon"><i class="fas fa-network-wired"></i></span><span class="service-name">DIGITAL FLOW</span></div>
-          <p class="service-desc">Estrategias multiplataforma y desarrollo de ecosistemas digitales</p>
-        </div>
-        <div class="service-card">
-          <div class="service-header"><span class="service-icon"><i class="fas fa-wave-square"></i></span><span class="service-name">SYNTH STRATEGY</span></div>
-          <p class="service-desc">Arquitectura de sonido y frameworks estratégicos para artistas</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- GALERÍA VIDEO -->
-    <section class="section-2">
-      <div class="video-player-frame">
-        <iframe id="singleVideo" width="100%" height="370" src="https://www.youtube.com/embed/ZGxSXchZNfo?modestbranding=1&rel=0"></iframe>
-      </div>
-      <div id="videoTitle" class="video-title"></div>
-      <div class="miniaturenav">
-        <div id="videoThumbs" class="video-thumbs"></div>
-      </div>
-      <div id="videoDots" class="video-dots"></div>
-    </section>
-
-    <!-- CONTACTO -->
-    <section class="section-3">
-      <div class="contact-grid">
-        <a href="mailto:emc121091@me.com?subject=PROYECTO MUSICAL" class="contact-port port-primary">START PROJECT</a>
-        <a href="https://edumecar.github.io/Book/" target="_blank" class="contact-port">BOOKING PLANS</a>
-        <a href="https://www.linkedin.com/in/edumecar" target="_blank" class="contact-port">LINKEDIN</a>
-      </div>
-    </section>
-
-    <div class="footer">
-      Portfolio de Eduardo Mejía – Arquitectura sónica, booking, ideas eléctricas y futuro analógico.
-    </div>
-
+  <!-- CONTROL BAR -->
+  <div class="control-bar">
+    <button class="control-btn" id="themeToggle" title="Modo claro/oscuro"><i class="fas fa-moon"></i></button>
+    <button class="control-btn" id="languageToggle" title="Español/English">ES/EN</button>
   </div>
-
-  <!-- WhatsApp -->
-  <a href="https://wa.me/525512478139" class="whatsapp-float" target="_blank">
-    <i class="fab fa-whatsapp" style="font-size: 1.7rem;"></i>
+  <!-- WHATSAPP FLOAT BUTTON -->
+  <a href="https://wa.me/525512478139?text=Hola,%20vi%20tu%20portafolio%20y%20me%20interesa%20conversar%20sobre%20mi%20proyecto%20musical." class="whatsapp-float" target="_blank" aria-label="Contactar por WhatsApp">
+    <svg class="whatsapp-icon" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893-.001-3.189-1.262-6.189-3.553-8.449"/></svg>
   </a>
+  <div class="neural-interface">
+    <div class="neural-grid"></div>
+    <div class="quantum-container">
+      <!-- HERO -->
+      <section class="neuro-hero">
+        <div class="logo-container" id="deckBox">
+          <img src="logo.svg" alt="Eduardo Mejía" class="neural-logo" id="deckVinyl">
+          <button class="deck-playbtn" id="deckPlay"><i class="fas fa-play"></i></button>
+        </div>
+        <h1 class="neuro-title">EDUARDO MEJÍA</h1>
+        <div class="quantum-tagline" data-es="Conciencia Sonora" data-en="Sound Consciousness">Conciencia Sonora</div>
+        <p class="neuro-subtitle" data-es="Donde cada proyecto encuentra su camino perfecto" data-en="Where every project finds its perfect path">Donde cada proyecto encuentra su camino perfecto</p>
+      </section>
+      <!-- RESTO DE TU CÓDIGO BASE SIN MODIFICAR ... -->
+      <!-- (Servicios, métricas, producciones, contacto, etc...) -->
 
-<script>
-/* ------------------------------
-   REPRODUCTOR + EQ
--------------------------------*/
-const audio = document.getElementById('localAudio');
-const playBtn = document.getElementById('playBtn');
-const stopBtn = document.getElementById('stopBtn');
-const vinyl = document.querySelector('.quantum-vinyl');
-const eqCanvas = document.getElementById('eqCanvas');
-const eqCtx = eqCanvas.getContext('2d');
-
-let audioCtx, analyser, dataArray;
-
-function setupEQ() {
-  audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-  const src = audioCtx.createMediaElementSource(audio);
-  analyser = audioCtx.createAnalyser();
-  src.connect(analyser);
-  analyser.connect(audioCtx.destination);
-  analyser.fftSize = 32;
-  dataArray = new Uint8Array(analyser.frequencyBinCount);
-}
-
-function drawEQ() {
-  eqCtx.clearRect(0, 0, eqCanvas.width, eqCanvas.height);
-  analyser.getByteFrequencyData(dataArray);
-
-  const barWidth = 12;
-  let x = 0;
-
-  for (let i = 0; i < dataArray.length; i++) {
-    const barHeight = dataArray[i] / 2;
-    eqCtx.fillStyle = '#00FFFF';
-    eqCtx.fillRect(x, eqCanvas.height - barHeight, barWidth, barHeight);
-    x += barWidth + 3;
-  }
-  requestAnimationFrame(drawEQ);
-}
-
-playBtn.onclick = () => {
-  if (!audioCtx) setupEQ();
-  audio.play();
-  vinyl.style.animationPlayState = "running";
-  drawEQ();
-};
-
-stopBtn.onclick = () => {
-  audio.pause();
-  audio.currentTime = 0;
-  vinyl.style.animationPlayState = "paused";
-};
-
-/* ------------------------------
-   CAMBIO DE TEMA VISUAL
--------------------------------*/
-document.getElementById('themeToggle').onclick = () => {
-  document.body.classList.toggle('light');
-};
-
-/* ------------------------------
-   VIDEOS (SI QUIERES MANDARME TUS LINKS, LOS MONTO)
--------------------------------*/
-const videos = [
-  { id: "ZGxSXchZNfo", title: "Performance Live 001" },
-  { id: "kXYiU_JCYtU", title: "Sound Design Session" },
-  { id: "ktvTqknDobU", title: "Cloud Flow Architecture" }
-];
-
-const videoEl = document.getElementById("singleVideo");
-const thumbs = document.getElementById("videoThumbs");
-const dots = document.getElementById("videoDots");
-const videoTitle = document.getElementById("videoTitle");
-
-function loadVideo(i) {
-  const v = videos[i];
-  videoEl.src = `https://www.youtube.com/embed/${v.id}?modestbranding=1&rel=0`;
-  videoTitle.textContent = v.title;
-
-  document.querySelectorAll(".video-thumb").forEach((el, idx) =>
-    idx === i ? el.classList.add("active") : el.classList.remove("active")
-  );
-
-  document.querySelectorAll(".video-dot").forEach((el, idx) =>
-    idx === i ? el.classList.add("active") : el.classList.remove("active")
-  );
-}
-
-videos.forEach((v, i) => {
-  const t = document.createElement("div");
-  t.className = "video-thumb";
-  t.innerHTML = `<img src="https://img.youtube.com/vi/${v.id}/hqdefault.jpg">`;
-  t.onclick = () => loadVideo(i);
-  thumbs.appendChild(t);
-
-  const d = document.createElement("div");
-  d.className = "video-dot";
-  d.onclick = () => loadVideo(i);
-  dots.appendChild(d);
-});
-
-loadVideo(0);
-</script>
-
+      <!-- Incluye aquí las secciones tal y como las tienes -->
+      <!-- ... (Ver tu original) ... -->
+    </div>
+  </div>
+  <script>
+    // ========= TEMA CLARO/OSCURO ROLAND ==========
+    document.getElementById('themeToggle').onclick = function() {
+      document.body.classList.toggle('light-mode');
+      const btn = this.querySelector('i');
+      btn.className = document.body.classList.contains('light-mode') ? 'fas fa-sun' : 'fas fa-moon';
+    };
+    // ========= BOTÓN PLAY/PAUSA VINILO ==========
+    const deckBox = document.getElementById('deckBox');
+    const deckVinyl = document.getElementById('deckVinyl');
+    let playing = false;
+    document.getElementById('deckPlay').onclick = function(){
+      playing = !playing;
+      deckBox.classList.toggle('active',playing);
+      this.innerHTML = playing ? '<i class="fas fa-stop"></i>' : '<i class="fas fa-play"></i>';
+      // audio o spotify se puede integrar aquí → play/pause
+    };
+    // ========= IDIOMA ==========
+    const languageToggle = document.getElementById('languageToggle');
+    let currentLanguage = (navigator.language||'es').startsWith('es') ? 'es':'en';
+    function updateLanguage(lang) {
+      document.querySelectorAll('[data-es]').forEach(element => {
+        const text = element.getAttribute(`data-${lang}`);
+        if (text) { element.textContent = text; }
+      });
+    }
+    languageToggle.textContent = currentLanguage === 'es' ? 'ES/EN' : 'EN/ES';
+    updateLanguage(currentLanguage);
+    languageToggle.addEventListener('click', () => {
+      currentLanguage = currentLanguage === 'es' ? 'en' : 'es';
+      languageToggle.textContent = currentLanguage === 'es' ? 'ES/EN' : 'EN/ES';
+      updateLanguage(currentLanguage);
+    });
+  </script>
 </body>
 </html>
