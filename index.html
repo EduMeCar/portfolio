@@ -527,12 +527,11 @@
     justify-content: center;
     align-items: center;
     min-height: 480px;
-    padding: 40px 39px 40px 32px;
+    padding: 24px;
   }
   
   .video-card {
     width: 100%;
-    max-width: 613px;
     background: #191c25;
     border-radius: 11px;
     border: 2px solid var(--panel-border);
@@ -540,63 +539,49 @@
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    margin-bottom: 22px;
   }
   
   .video-player-frame {
     width: 100%;
     aspect-ratio: 16 / 9;
-    background: var(--panel-dark);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    background: #000;
   }
   
   .video-player-frame iframe {
     width: 100%;
     height: 100%;
     border: none;
+    display: block;
   }
   
-  .video-label {
-    width: 100%;
-    padding: 17px 12px;
-    text-align: center;
-    color: var(--roland-orange);
-    font-size: clamp(0.9rem, 1.5vw, 1.07rem);
-    font-family: var(--font-tech);
-    text-transform: uppercase;
-    font-weight: 900;
-    letter-spacing: 0.17em;
-  }
-  
-  .dots-nav {
+  .video-nav {
     display: flex;
     justify-content: center;
-    gap: 14px;
-    margin: 17px 0 2px;
+    align-items: center;
+    gap: 10px;
+    padding: 16px;
+    background: var(--panel-dark);
   }
   
   .video-dot {
-    width: 15px;
-    height: 15px;
+    width: 12px;
+    height: 12px;
     border-radius: 50%;
-    background: var(--panel-dark);
-    border: 2px solid var(--roland-orange);
+    background: #2a2a32;
+    border: 2px solid #3a3a42;
     cursor: pointer;
-    transition: all 0.15s;
+    transition: all 0.2s;
   }
   
-  .video-dot:hover,
-  .video-dot:focus {
-    transform: scale(1.2);
-    outline: 2px solid var(--roland-orange);
-    outline-offset: 2px;
+  .video-dot:hover {
+    background: #3a3a42;
+    transform: scale(1.15);
   }
   
   .video-dot.active {
     background: var(--roland-orange);
-    border-color: var(--white-soft);
+    border-color: var(--roland-orange);
+    box-shadow: 0 0 8px var(--roland-orange);
   }
   
   /* Contact Section */
@@ -744,26 +729,36 @@
       margin-bottom: 32px;
     }
     
-    .cassette-deck {
+    .dj-console {
       max-width: 100%;
+      padding: 24px 18px 20px;
     }
     
-    .deck-display-row {
-      flex-direction: column;
-      gap: 12px;
+    .platter {
+      width: 160px;
+      height: 160px;
     }
     
-    .turntable {
-      margin-bottom: 12px;
+    .vinyl-label {
+      width: 56px;
+      height: 56px;
     }
     
-    .track-display {
-      text-align: center;
+    .transport-controls {
+      gap: 8px;
     }
     
-    .control-btn {
-      padding: 10px 14px;
-      font-size: 0.7rem;
+    .transport-btn {
+      height: 46px;
+      font-size: 0.55rem;
+    }
+    
+    .transport-btn i {
+      font-size: 0.9rem;
+    }
+    
+    .spotify-container iframe {
+      height: 80px;
     }
     
     .whatsapp-float {
@@ -772,6 +767,10 @@
       bottom: 16px;
       right: 16px;
     }
+    
+    .services-col {
+      padding: 36px 24px;
+    }
   }
   
   @media (max-width: 480px) {
@@ -779,13 +778,33 @@
       grid-template-columns: 1fr;
     }
     
-    .deck-controls-row {
-      gap: 8px;
+    .transport-controls {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
     }
     
-    .control-btn {
-      padding: 8px 12px;
-      font-size: 0.65rem;
+    .transport-btn {
+      height: 44px;
+      padding: 6px 4px;
+    }
+    
+    .transport-btn span {
+      font-size: 0.5rem;
+    }
+    
+    .platter {
+      width: 140px;
+      height: 140px;
+    }
+    
+    .vinyl-label {
+      width: 48px;
+      height: 48px;
+    }
+    
+    .vinyl-label-text {
+      font-size: 0.45rem;
+      top: 14px;
     }
   }
   
@@ -921,35 +940,17 @@
                 title="Featured video"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowfullscreen
-                loading="lazy"
-                sandbox="allow-scripts allow-same-origin allow-presentation">
+                loading="lazy">
               </iframe>
             </div>
-            <div class="video-label" id="videoTitle" role="heading" aria-level="3">
-              LIVE PERFORMANCE: ARTE & DATA
-            </div>
+            <nav class="video-nav" aria-label="Video navigation">
+              <button class="video-dot active" data-index="0" aria-label="Video 1" type="button"></button>
+              <button class="video-dot" data-index="1" aria-label="Video 2" type="button"></button>
+              <button class="video-dot" data-index="2" aria-label="Video 3" type="button"></button>
+              <button class="video-dot" data-index="3" aria-label="Video 4" type="button"></button>
+              <button class="video-dot" data-index="4" aria-label="Video 5" type="button"></button>
+            </nav>
           </div>
-          
-          <nav class="dots-nav" aria-label="Video navigation">
-            <button 
-              class="video-dot active" 
-              data-video="0"
-              aria-label="Video 1"
-              type="button">
-            </button>
-            <button 
-              class="video-dot" 
-              data-video="1"
-              aria-label="Video 2"
-              type="button">
-            </button>
-            <button 
-              class="video-dot" 
-              data-video="2"
-              aria-label="Video 3"
-              type="button">
-            </button>
-          </nav>
         </section>
       </div>
       
@@ -1092,114 +1093,68 @@
     constructor() {
       this.audio = document.getElementById('localAudio');
       this.playBtn = document.getElementById('playBtn');
+      this.playIcon = document.getElementById('playIcon');
+      this.playText = document.getElementById('playText');
       this.stopBtn = document.getElementById('stopBtn');
-      this.ffBtn = document.getElementById('ffBtn');
-      this.rewBtn = document.getElementById('rewBtn');
-      this.turntable = document.getElementById('turntable');
-      this.trackName = document.getElementById('trackName');
-      this.trackNum = document.getElementById('trackNum');
-      this.trackError = document.getElementById('trackError');
+      this.nextBtn = document.getElementById('nextBtn');
+      this.prevBtn = document.getElementById('prevBtn');
+      this.platter = document.getElementById('platter');
+      this.tonearm = document.getElementById('tonearm');
+      this.trackTitle = document.getElementById('trackTitle');
+      this.trackNumber = document.getElementById('trackNumber');
       
       this.tracks = [
-        { name: "DEMO TRACK 01: ARCANA", src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" },
-        { name: "DEMO TRACK 02: SYNC FLOW", src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" },
-        { name: "DEMO TRACK 03: MODULATION", src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3" },
-        { name: "DEMO TRACK 04: DATASOUL", src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3" },
-        { name: "DEMO TRACK 05: A&R BEAT", src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3" }
+        { name: "ARCANA", src: "micancion.mp3" },
+        { name: "SYNC FLOW", src: "micancion1.mp3" },
+        { name: "MODULATION", src: "micancion2.mp3" },
+        { name: "DATASOUL", src: "micancion3.mp3" },
+        { name: "A&R BEAT", src: "micancion4.mp3" }
       ];
       
       this.currentIndex = 0;
       this.isPlaying = false;
-      
       this.init();
     }
 
     init() {
       this.updateDisplay();
-      this.attachEventListeners();
-      
-      // Audio events
-      this.audio.addEventListener('ended', () => this.next());
-      this.audio.addEventListener('play', () => this.handlePlayState());
-      this.audio.addEventListener('pause', () => this.handlePauseState());
-      this.audio.addEventListener('error', (e) => this.handleError(e));
-      this.audio.addEventListener('loadstart', () => this.handleLoading());
-    }
-
-    attachEventListeners() {
       this.playBtn.addEventListener('click', () => this.togglePlay());
       this.stopBtn.addEventListener('click', () => this.stop());
-      this.ffBtn.addEventListener('click', () => this.next());
-      this.rewBtn.addEventListener('click', () => this.previous());
+      this.nextBtn.addEventListener('click', () => this.next());
+      this.prevBtn.addEventListener('click', () => this.previous());
       
-      // Keyboard shortcuts
-      document.addEventListener('keydown', (e) => {
-        if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
-        
-        switch(e.key) {
-          case ' ':
-            e.preventDefault();
-            this.togglePlay();
-            break;
-          case 'ArrowRight':
-            this.next();
-            break;
-          case 'ArrowLeft':
-            this.previous();
-            break;
-        }
-      });
+      this.audio.addEventListener('ended', () => this.next());
+      this.audio.addEventListener('play', () => this.onPlay());
+      this.audio.addEventListener('pause', () => this.onPause());
+      this.audio.addEventListener('error', () => this.onError());
     }
 
     updateDisplay() {
       const track = this.tracks[this.currentIndex];
-      this.trackNum.textContent = `TRK [${String(this.currentIndex + 1).padStart(2, '0')}/${String(this.tracks.length).padStart(2, '0')}]`;
-      this.trackName.textContent = track.name;
+      this.trackNumber.textContent = `TRACK ${String(this.currentIndex + 1).padStart(2, '0')} / ${String(this.tracks.length).padStart(2, '0')}`;
+      this.trackTitle.textContent = track.name;
       this.audio.src = track.src;
-      this.trackError.style.display = 'none';
-    }
-
-    handleLoading() {
-      const lang = localStorage.getItem('preferred_lang') || 'es';
-      this.trackName.textContent = translations[lang].trackLoading;
-    }
-
-    handleError(e) {
-      console.error('Audio error:', e);
-      const lang = localStorage.getItem('preferred_lang') || 'es';
-      this.trackError.textContent = translations[lang].trackError;
-      this.trackError.style.display = 'block';
-      this.handlePauseState();
     }
 
     async togglePlay() {
-      try {
-        if (this.isPlaying) {
-          this.audio.pause();
-        } else {
-          await this.audio.play();
-        }
-      } catch (error) {
-        console.error('Playback error:', error);
-        this.handleError(error);
+      if (this.isPlaying) {
+        this.audio.pause();
+      } else {
+        try { await this.audio.play(); } catch(e) { console.error(e); }
       }
     }
 
     stop() {
       this.audio.pause();
       this.audio.currentTime = 0;
-      this.handlePauseState();
+      this.onPause();
     }
 
     async next() {
       this.currentIndex = (this.currentIndex + 1) % this.tracks.length;
       this.updateDisplay();
       if (this.isPlaying) {
-        try {
-          await this.audio.play();
-        } catch (error) {
-          console.error('Playback error:', error);
-        }
+        try { await this.audio.play(); } catch(e) {}
       }
     }
 
@@ -1207,37 +1162,31 @@
       this.currentIndex = (this.currentIndex - 1 + this.tracks.length) % this.tracks.length;
       this.updateDisplay();
       if (this.isPlaying) {
-        try {
-          await this.audio.play();
-        } catch (error) {
-          console.error('Playback error:', error);
-        }
+        try { await this.audio.play(); } catch(e) {}
       }
     }
 
-    handlePlayState() {
+    onPlay() {
       this.isPlaying = true;
-      this.turntable.classList.add('spinning');
-      this.playBtn.classList.add('active');
-      this.playBtn.setAttribute('aria-pressed', 'true');
-      this.stopBtn.classList.remove('active');
-      
-      // Update icon
-      const icon = this.playBtn.querySelector('i');
-      icon.className = 'fas fa-pause';
-      this.playBtn.setAttribute('aria-label', 'Pause track');
+      this.platter.classList.add('spinning');
+      this.tonearm.classList.add('active');
+      this.playBtn.classList.add('playing');
+      this.playIcon.className = 'fas fa-pause';
+      this.playText.textContent = 'PAUSE';
     }
 
-    handlePauseState() {
+    onPause() {
       this.isPlaying = false;
-      this.turntable.classList.remove('spinning');
-      this.playBtn.classList.remove('active');
-      this.playBtn.setAttribute('aria-pressed', 'false');
-      
-      // Update icon
-      const icon = this.playBtn.querySelector('i');
-      icon.className = 'fas fa-play';
-      this.playBtn.setAttribute('aria-label', 'Play track');
+      this.platter.classList.remove('spinning');
+      this.tonearm.classList.remove('active');
+      this.playBtn.classList.remove('playing');
+      this.playIcon.className = 'fas fa-play';
+      this.playText.textContent = 'PLAY';
+    }
+
+    onError() {
+      this.trackTitle.textContent = 'ERROR - NO AUDIO';
+      this.onPause();
     }
   }
 
@@ -1247,47 +1196,31 @@
   class VideoCarousel {
     constructor() {
       this.videos = [
-        { id: "ZGxSXchZNfo", title: "LIVE PERFORMANCE: ARTE & DATA" },
-        { id: "kXYiU_JCYtU", title: "SOUND DESIGN: FRAMEWORKS PARA MARCA" },
-        { id: "ktvTqknDobU", title: "CLOUD FLOW ARCHITECTURE: LANZAMIENTOS" }
+        "ZGxSXchZNfo",
+        "oglT_tl7TkU", 
+        "2HmVZI4MfkM",
+        "lJE19BWmbGY",
+        "DEjjE4Mv2yQ"
       ];
       
-      this.mainVideo = document.getElementById('mainVideo');
-      this.videoTitle = document.getElementById('videoTitle');
+      this.iframe = document.getElementById('mainVideo');
+      this.dots = document.querySelectorAll('.video-dot');
       this.currentIndex = 0;
-      
       this.init();
     }
 
     init() {
-      this.createDots();
-      this.loadVideo(0);
-    }
-
-    createDots() {
-      const dots = document.querySelectorAll('.video-dot');
-      dots.forEach((dot, index) => {
-        dot.addEventListener('click', () => this.loadVideo(index));
-        dot.addEventListener('keydown', (e) => {
-          if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            this.loadVideo(index);
-          }
-        });
+      this.dots.forEach((dot, i) => {
+        dot.addEventListener('click', () => this.loadVideo(i));
       });
+      this.loadVideo(0);
     }
 
     loadVideo(index) {
       this.currentIndex = index;
-      const video = this.videos[index];
-      
-      this.mainVideo.src = `https://www.youtube.com/embed/${video.id}?modestbranding=1&rel=0&autoplay=0`;
-      this.videoTitle.textContent = video.title;
-      
-      // Update dots
-      document.querySelectorAll('.video-dot').forEach((dot, idx) => {
-        dot.classList.toggle('active', idx === index);
-        dot.setAttribute('aria-current', idx === index ? 'true' : 'false');
+      this.iframe.src = `https://www.youtube.com/embed/${this.videos[index]}?modestbranding=1&rel=0`;
+      this.dots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === index);
       });
     }
   }
