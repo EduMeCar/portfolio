@@ -208,177 +208,254 @@
     min-width: 340px;
   }
   
-  .cassette-deck {
+  /* DJ CONSOLE */
+  .dj-console {
     width: 100%;
-    max-width: 340px;
-    min-height: 200px;
-    background: var(--panel-dark);
-    border: 3px solid var(--panel-border);
-    border-radius: 8px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 15px;
-    margin-bottom: 28px;
-    box-shadow: inset 0 0 10px #000;
-  }
-  
-  .deck-display-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    margin-bottom: 15px;
-    gap: 15px;
-  }
-  
-  .turntable {
-    width: 100px;
-    height: 100px;
-    min-width: 100px;
-    border-radius: 50%;
-    background: #17171c;
-    border: 8px solid var(--panel-divider);
+    max-width: 420px;
+    background: linear-gradient(180deg, #1a1a1f 0%, #0d0d10 100%);
+    border: 3px solid #2a2a32;
+    border-radius: 16px;
+    padding: 28px 24px 24px;
+    box-shadow: 
+      0 20px 60px rgba(0,0,0,0.6),
+      inset 0 1px 0 rgba(255,255,255,0.05),
+      inset 0 -1px 0 rgba(0,0,0,0.3);
     position: relative;
+  }
+  
+  .dj-console::before {
+    content: '';
+    position: absolute;
+    top: 12px;
+    left: 20px;
+    right: 20px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--roland-orange), transparent);
+    opacity: 0.6;
+  }
+  
+  /* PLATTER / JOG WHEEL */
+  .platter-container {
     display: flex;
-    align-items: center;
     justify-content: center;
-    transition: border-color var(--transition-speed);
+    margin-bottom: 24px;
+    perspective: 800px;
   }
   
-  .turntable.spinning {
-    animation: spin 1.8s linear infinite;
-    border-color: var(--roland-orange);
-  }
-  
-  .vinyl {
-    width: 65px;
-    height: 65px;
+  .platter {
+    width: 200px;
+    height: 200px;
     border-radius: 50%;
-    background: radial-gradient(circle 40px at 51% 58%, #333 60%, #14171f 100%);
+    background: 
+      radial-gradient(circle at 50% 50%, #0a0a0c 0%, #0a0a0c 15%, transparent 15%),
+      repeating-radial-gradient(circle at 50% 50%, #111 0px, #111 1px, #1a1a1a 1px, #1a1a1a 3px);
     position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    box-shadow: 
+      0 0 0 8px #1f1f24,
+      0 0 0 12px #15151a,
+      0 8px 30px rgba(0,0,0,0.8),
+      inset 0 0 60px rgba(0,0,0,0.5);
+    transition: box-shadow 0.3s ease;
   }
   
-  .vinyl-center {
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
-    background: var(--roland-orange);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 10px;
-    font-weight: bold;
-    color: #000;
+  .platter.spinning {
+    animation: spin 1.82s linear infinite;
+    box-shadow: 
+      0 0 0 8px #1f1f24,
+      0 0 0 12px #15151a,
+      0 0 25px rgba(255,102,0,0.3),
+      0 8px 30px rgba(0,0,0,0.8),
+      inset 0 0 60px rgba(0,0,0,0.5);
   }
   
   @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
   }
   
-  .track-display {
-    background: #000;
-    color: var(--roland-orange);
-    border: 2px inset var(--panel-border);
-    padding: 8px 12px;
-    font-size: clamp(0.85rem, 1.5vw, 1rem);
+  /* VINYL LABEL */
+  .vinyl-label {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--roland-orange) 0%, var(--roland-red) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+  }
+  
+  .vinyl-label::after {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background: #0a0a0c;
+    border-radius: 50%;
+    box-shadow: inset 0 1px 2px rgba(255,255,255,0.1);
+  }
+  
+  .vinyl-label-text {
+    position: absolute;
+    font-family: var(--font-tech);
+    font-size: 0.55rem;
+    font-weight: 900;
+    color: rgba(0,0,0,0.7);
+    letter-spacing: 0.15em;
+    top: 18px;
+    text-transform: uppercase;
+  }
+  
+  /* TONEARM */
+  .tonearm {
+    position: absolute;
+    top: 25px;
+    right: 15px;
+    width: 80px;
+    height: 6px;
+    background: linear-gradient(180deg, #4a4a52, #2a2a32);
+    border-radius: 3px;
+    transform-origin: right center;
+    transform: rotate(-30deg);
+    transition: transform 0.5s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.4);
+  }
+  
+  .tonearm::before {
+    content: '';
+    position: absolute;
+    right: -8px;
+    top: -7px;
+    width: 20px;
+    height: 20px;
+    background: radial-gradient(circle, #3a3a42, #2a2a32);
+    border-radius: 50%;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+  }
+  
+  .tonearm::after {
+    content: '';
+    position: absolute;
+    left: -4px;
+    top: -2px;
+    width: 12px;
+    height: 10px;
+    background: #1a1a1f;
+    border-radius: 2px;
+  }
+  
+  .platter.spinning + .tonearm,
+  .tonearm.active {
+    transform: rotate(-5deg);
+  }
+  
+  /* TRACK INFO */
+  .track-info {
+    text-align: center;
+    margin-bottom: 20px;
+    min-height: 44px;
+  }
+  
+  .track-number {
     font-family: var(--font-panel);
-    text-align: right;
-    letter-spacing: 0.1em;
-    border-radius: 4px;
-    flex-grow: 1;
-    min-height: 60px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 4px;
-  }
-  
-  .track-num {
+    font-size: 0.75rem;
     color: var(--roland-red);
-    font-weight: bold;
-    font-size: 0.9em;
+    letter-spacing: 0.2em;
+    margin-bottom: 4px;
   }
   
-  .track-name {
-    font-size: 0.85em;
+  .track-title {
+    font-family: var(--font-tech);
+    font-size: 0.85rem;
     color: var(--roland-orange);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
   }
   
-  .track-error {
-    color: #ff3333;
-    font-size: 0.75em;
+  /* TRANSPORT CONTROLS */
+  .transport-controls {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 0;
   }
   
-  .deck-controls-row {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  
-  .control-btn {
-    padding: 12px 16px;
-    background: linear-gradient(180deg, #3a3a42 0%, #2f2f36 100%);
+  .transport-btn {
+    height: 52px;
+    background: linear-gradient(180deg, #2d2d35 0%, #1f1f25 50%, #18181d 100%);
     border: none;
-    color: var(--white-soft);
-    border-radius: 4px;
+    border-radius: 6px;
+    color: #888;
     cursor: pointer;
     font-family: var(--font-tech);
-    font-size: 0.75rem;
+    font-size: 0.6rem;
     font-weight: bold;
     text-transform: uppercase;
-    transition: all 0.15s ease;
-    letter-spacing: 0.12em;
-    box-shadow: 0 4px #0a0a0c, inset 0 2px 3px rgba(255, 255, 255, 0.1);
+    letter-spacing: 0.08em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    box-shadow: 
+      0 4px 0 #0a0a0c,
+      0 6px 12px rgba(0,0,0,0.4),
+      inset 0 1px 0 rgba(255,255,255,0.08);
+    transition: all 0.08s ease;
     position: relative;
     top: 0;
   }
   
-  .control-btn:hover:not(:disabled) {
-    background: linear-gradient(180deg, #4a4a52 0%, #3f3f46 100%);
+  .transport-btn i {
+    font-size: 1rem;
+    transition: color 0.15s;
   }
   
-  .control-btn:active:not(:disabled) {
-    transform: translateY(2px);
-    box-shadow: 0 2px #0a0a0c, inset 0 1px 2px rgba(0, 0, 0, 0.3);
+  .transport-btn:hover {
+    color: var(--white-soft);
+    background: linear-gradient(180deg, #353540 0%, #28282f 50%, #1f1f25 100%);
   }
   
-  .control-btn:focus {
-    outline: 2px solid var(--roland-orange);
-    outline-offset: 2px;
+  .transport-btn:active {
+    top: 3px;
+    box-shadow: 
+      0 1px 0 #0a0a0c,
+      0 2px 4px rgba(0,0,0,0.4),
+      inset 0 1px 0 rgba(255,255,255,0.05);
   }
   
-  .control-btn.active {
-    background: var(--roland-orange);
-    color: #000;
-    box-shadow: 0 4px var(--roland-red), inset 0 2px 3px rgba(255, 255, 255, 0.3);
+  .transport-btn.playing {
+    color: var(--roland-orange);
+    box-shadow: 
+      0 4px 0 #0a0a0c,
+      0 6px 12px rgba(0,0,0,0.4),
+      0 0 20px rgba(255,102,0,0.2),
+      inset 0 1px 0 rgba(255,255,255,0.08);
   }
   
-  .control-btn:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
+  .transport-btn.playing i {
+    color: var(--roland-orange);
+    text-shadow: 0 0 10px var(--roland-orange);
   }
   
-  .deck-stream {
-    margin-top: 20px;
-    border-radius: 8px;
-    background: #23232a;
-    border: 2px solid var(--panel-border);
+  /* SPOTIFY EMBED */
+  .spotify-container {
+    margin-top: 24px;
+    border-radius: 12px;
     overflow: hidden;
+    background: #121212;
     width: 100%;
-    max-width: 340px;
+    max-width: 420px;
   }
   
-  .deck-stream iframe {
+  .spotify-container iframe {
     width: 100%;
-    height: 81px;
+    height: 152px;
     border: none;
+    display: block;
   }
   
   /* Services Panel */
@@ -750,63 +827,51 @@
           </div>
           
           <div class="deck-controls-wrap">
-            <div class="cassette-deck" role="region" aria-label="Audio player">
-              <div class="deck-display-row">
-                <div class="turntable" id="turntable" aria-hidden="true">
-                  <div class="vinyl">
-                    <div class="vinyl-center">EM</div>
+            <!-- DJ CONSOLE -->
+            <div class="dj-console" role="region" aria-label="Audio player">
+              <div class="platter-container">
+                <div class="platter" id="platter">
+                  <div class="vinyl-label">
+                    <span class="vinyl-label-text">EMC</span>
                   </div>
                 </div>
-                
-                <div class="track-display" role="status" aria-live="polite" aria-atomic="true">
-                  <span class="track-num" id="trackNum">TRK [--/--]</span>
-                  <span class="track-name" id="trackName" data-i18n="trackLoading">Cargando...</span>
-                  <span class="track-error" id="trackError" style="display:none;"></span>
-                </div>
+                <div class="tonearm" id="tonearm"></div>
               </div>
               
-              <div class="deck-controls-row" role="group" aria-label="Audio controls">
-                <button 
-                  class="control-btn" 
-                  id="rewBtn"
-                  aria-label="Previous track"
-                  type="button">
-                  <i class="fas fa-backward" aria-hidden="true"></i> REW
+              <div class="track-info">
+                <div class="track-number" id="trackNumber">TRACK 01 / 05</div>
+                <div class="track-title" id="trackTitle">Cargando...</div>
+              </div>
+              
+              <div class="transport-controls">
+                <button class="transport-btn" id="prevBtn" aria-label="Previous track" type="button">
+                  <i class="fas fa-backward-step"></i>
+                  <span>PREV</span>
                 </button>
-                <button 
-                  class="control-btn" 
-                  id="playBtn"
-                  aria-label="Play or pause track"
-                  aria-pressed="false"
-                  type="button">
-                  <i class="fas fa-play" aria-hidden="true"></i> PLAY
+                <button class="transport-btn" id="playBtn" aria-label="Play" aria-pressed="false" type="button">
+                  <i class="fas fa-play" id="playIcon"></i>
+                  <span id="playText">PLAY</span>
                 </button>
-                <button 
-                  class="control-btn" 
-                  id="stopBtn"
-                  aria-label="Stop playback"
-                  type="button">
-                  <i class="fas fa-stop" aria-hidden="true"></i> STOP
+                <button class="transport-btn" id="stopBtn" aria-label="Stop" type="button">
+                  <i class="fas fa-stop"></i>
+                  <span>STOP</span>
                 </button>
-                <button 
-                  class="control-btn" 
-                  id="ffBtn"
-                  aria-label="Next track"
-                  type="button">
-                  FF <i class="fas fa-forward" aria-hidden="true"></i>
+                <button class="transport-btn" id="nextBtn" aria-label="Next track" type="button">
+                  <i class="fas fa-forward-step"></i>
+                  <span>NEXT</span>
                 </button>
               </div>
             </div>
             
-            <audio id="localAudio" preload="metadata" aria-label="Audio player"></audio>
+            <audio id="localAudio" preload="metadata"></audio>
             
-            <div class="deck-stream">
+            <!-- SPOTIFY -->
+            <div class="spotify-container">
               <iframe 
-                src="https://open.spotify.com/embed/playlist/37i9dQZF1DXcBWIGoYBM5M?utm_source=generator&theme=0" 
+                src="https://open.spotify.com/embed/playlist/26qaG2E3bW6ZNIk5mvPpjr?utm_source=generator&theme=0" 
                 title="Spotify playlist"
                 allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
-                loading="lazy"
-                sandbox="allow-scripts allow-same-origin allow-popups">
+                loading="lazy">
               </iframe>
             </div>
           </div>
