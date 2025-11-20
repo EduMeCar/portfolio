@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Eduardo Mejía // Video Lab</title>
+  <title>Eduardo Mejía // Portfolio Groove Fusion</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
@@ -25,100 +25,236 @@
       background: var(--bg-dark) url('https://grainy-gradients.vercel.app/noise.svg') repeat;
       color: var(--text);
       margin: 0;
-      padding: 20px;
+      padding: 0;
       min-height: 100vh;
       font-family: 'Courier New', monospace;
       letter-spacing: 0.02em;
     }
 
-    .lab-container {
-      max-width: 1200px;
-      margin: 0 auto;
+    .main-wrapper {
+      max-width: 1250px; margin: 0 auto; padding: 44px 28px 12px 28px;
+      display: flex; flex-direction: column; gap: 58px;
+    }
+
+    /* HERO - Mejorado con toque de laboratorio */
+    .hero-block {
+      display: flex; flex-direction: row; gap: 64px; align-items: center;
+      min-height: 455px;
+      position: relative;
+    }
+
+    @media (max-width:950px) {
+      .hero-block{flex-direction: column; gap:38px;align-items:stretch;padding:0;}
+    }
+
+    .hero-text {
+      flex: 1.03; display: flex; flex-direction: column; gap:18px;
+      justify-content: center; min-width: 287px;
+    }
+
+    .hero-title {
+      font-size: 2.8rem; font-family: 'Arial Black', Arial, sans-serif;
+      color: var(--cyan); font-weight: bold; text-transform: uppercase;
+      line-height: 1.1; margin-bottom: 0;
+      letter-spacing: 0.12em;
+      user-select: all;
+      position: relative;
+    }
+
+    .hero-title::after {
+      content: "SYSTEM_ACTIVE";
+      position: absolute;
+      bottom: -8px;
+      right: 0;
+      font-size: 0.7rem;
+      color: var(--matrix-green);
+      animation: blink 2s infinite;
+    }
+
+    .hero-sub {
+      color: var(--roland-red);
+      font-size: 1.19rem; font-weight: bold;
+      letter-spacing: 0.10em; text-shadow: 0 0 6px #ff57003a;
+    }
+
+    .hero-desc {
+      color: var(--subtitle);
+      font-size: 1.05rem; line-height: 1.6;
+      font-family: inherit;
+      margin-bottom:8px;
+    }
+
+    .hero-tip {
+      color: #FF6600cc; font-size: 0.97em; background: #142119ad;
+      padding: 7px 15px; border-radius: 12px; font-family: inherit;
+      max-width: 420px;box-shadow:0 1.8px 9px #ffba6d21;
+      margin: 8px 0 0 0;letter-spacing:.09em;
+      border-left: 3px solid var(--matrix-green);
+    }
+
+    /* VINYL deck - Mejorado con elementos de laboratorio */
+    .music-block {
+      flex:1.2; display: flex; flex-direction: column; align-items: center;gap:0px;
+      position:relative; z-index:2;
+    }
+
+    .vinyl-deck-box {
+      display: flex; flex-direction: column; align-items: center; gap:9px;
+      background: var(--bg-card);border-radius:21px;padding:32px 30px 26px 30px;
+      box-shadow: 0 4px 38px #13bfbf25;
+      min-width:270px;
+      position:relative;
+      border: 2px solid var(--cyan);
+    }
+
+    .vinyl-deck-box::before {
+      content: "AUDIO_LAB";
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      font-size: 0.7rem;
+      color: var(--matrix-green);
+      letter-spacing: 1px;
+    }
+
+    .deck-sticker {position:absolute;top:11px;right:22px;z-index:20;}
+    .deck-sticker img {width:35px;height:35px;filter:grayscale(11%) contrast(1.2) drop-shadow(0 2px 7px #fa4b9c7a);border-radius:8px;}
+
+    .vinyl-wrap { position: relative; }
+    .vinyl { width: 140px; height: 140px; border-radius: 50%; background: radial-gradient(circle at 48% 56%,#242834 52%,#060702 100%); animation: vinylSpin 13s linear infinite; animation-play-state: paused; box-shadow:0 3.5px 20px #00fff777; position:relative; }
+    @keyframes vinylSpin {0%{transform:rotate(0deg);}100%{transform:rotate(360deg);}}
+    .vinyl-logo { position: absolute; left: 50%; top: 50%; width: 53px; height: 53px; transform:translate(-50%,-50%); filter: drop-shadow(0 3px 12px #00FFD733);}
+    .deck-led { width:11px;height:11px;background:var(--led);border-radius:50%;position:absolute;left:70%;top:14%;box-shadow:0 0 11px var(--led); transition: opacity .15s;}
+    .deck-led.off{opacity:.33;background:#18283a;box-shadow: none;}
+
+    .deck-controls {
+      display: flex; gap: 14px; margin:18px auto 4px auto; justify-content: center; align-items: center;
+    }
+
+    .deck-btn {
+      width: 39px; height: 39px; border-radius: 12px; background: #22242b; box-shadow: 0 1px 8px #1bfcfc19,0 1.5px 8px #f400ff21,0 1.1px 4px #ff660025;
+      border:2.5px solid var(--roland-red);
+      font-size: 1.12em; color: var(--cyan);
+      display: flex; align-items: center; justify-content: center;
+      cursor:pointer; transition: background .15s, border-color .18s, color .14s, transform .10s;
+    }
+
+    .deck-btn:active { background: var(--glitch); border-color: var(--cyan); color: #fff;}
+    .deck-btn.playing { background: var(--cyan); color: var(--bg-dark);}
+
+    .track-label { 
+      font-size:.97em; 
+      color:var(--cyan); 
+      margin-left:10px; 
+      letter-spacing:.07em; 
+      background: rgba(0,0,0,0.3);
+      padding: 4px 8px;
+      border-radius: 4px;
+      border: 1px solid var(--cyan);
+    }
+
+    /* EQ mejorado */
+    .eq-collage {
+      width: 136px;display:flex;gap:4px;
+      align-items:flex-end;justify-content:center;margin:12px auto 2px auto;
+      height:29px;overflow:hidden;
+      background:linear-gradient(90deg,#0f2d43 94%,#ffeeea03 100%);
+      border-radius:7px;box-shadow:0 1.2px 13px #00ffd742,inset 0 -4px 12px #ff00ff15;
+      border:1.8px solid var(--cyan);
+    }
+
+    .eq-bar {
+      transition: height .09s, background .14s; width: 12px; border-radius:6px 6px 5px 5px;
+      background: linear-gradient(180deg,var(--cyan) 85%,var(--naranja) 100%);
+      opacity:.83;
+    }
+
+    /* Spotify */
+    .spotify-embed { 
+      width:100%;max-width:320px;margin:17px auto 0 auto;display:block;border-radius:8px;
+      box-shadow:0 1px 3px #02949417;
+      border: 1px solid var(--magenta);
+    }
+
+    /* Servicios - Mejorados */
+    .services-block{margin:22px 0 19px 0;}
+    .services-title{
+      color:var(--cyan); 
+      font-size:1.06rem;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;
+      margin-bottom:16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .services-title::before {
+      content: "SERVICES_GRID";
+      font-size: 0.7rem;
+      color: var(--matrix-green);
+      background: rgba(0,255,215,0.1);
+      padding: 2px 6px;
+      border-radius: 4px;
+      border: 1px solid var(--cyan);
+    }
+
+    .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;width:100%;}
+    .service-card{
+      background: var(--bg-card);border:2.2px solid var(--naranja);border-radius:16px;
+      box-shadow:0 3px 13px #ff660043;padding:27px 13px 15px 13px;
+      transition:box-shadow .14s,border-color .13s;display:flex;flex-direction:column;
+      align-items:center;min-width: 0;
+      position: relative;
+    }
+
+    .service-card::before {
+      content: "ACTIVE";
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      font-size: 0.6rem;
+      color: var(--matrix-green);
+      animation: blink 2s infinite;
+    }
+
+    .service-card:hover{border-color:var(--magenta);box-shadow:0 2px 22px #ff00ff52;}
+
+    .service-header{display:flex;align-items:center;justify-content:center;gap:13px;margin-bottom:10px;}
+    .service-icon{color: var(--roland-red); font-size:1.8rem;}
+    .service-name{font-size:.96rem;font-weight:700;color:var(--cyan);text-transform:uppercase;letter-spacing:.62px;}
+    .service-desc{color:var(--subtitle);line-height:1.36;font-size:0.95rem;margin-top:1px;text-align:center;}
+
+    @media(max-width:930px){.services-grid{grid-template-columns:1fr;}}
+
+    /* Videos - Transformado en Laboratorio */
+    .videos-section{
+      margin:44px 0 30px 0;
       background: var(--bg-card);
-      border: 3px solid var(--cyan);
+      border: 2px solid var(--cyan);
       border-radius: 12px;
       padding: 25px;
-      box-shadow: 0 0 40px rgba(0, 255, 215, 0.1);
       position: relative;
       overflow: hidden;
     }
 
-    .lab-container::before {
-      content: "";
+    .videos-section::before {
+      content: "VIDEO_ANALYSIS_LAB";
       position: absolute;
       top: 0;
       left: 0;
       right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, var(--cyan), var(--magenta), var(--roland-red), var(--cyan));
-      animation: scanLine 3s linear infinite;
-    }
-
-    @keyframes scanLine {
-      0% { transform: translateX(-100%); }
-      100% { transform: translateX(100%); }
-    }
-
-    .lab-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 25px;
-      padding-bottom: 15px;
-      border-bottom: 2px solid var(--cyan);
-    }
-
-    .lab-title {
-      font-size: 1.4rem;
-      color: var(--cyan);
-      text-transform: uppercase;
-      letter-spacing: 3px;
+      background: linear-gradient(90deg, var(--cyan), var(--magenta), var(--roland-red));
+      color: var(--bg-dark);
+      font-size: 0.8rem;
       font-weight: bold;
-    }
-
-    .lab-status {
-      display: flex;
-      gap: 15px;
-      align-items: center;
-    }
-
-    .status-indicator {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.9rem;
-    }
-
-    .status-led {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background: var(--matrix-green);
-      box-shadow: 0 0 10px var(--matrix-green);
-      animation: pulse 2s infinite;
-    }
-
-    .status-led.recording {
-      background: var(--roland-red);
-      box-shadow: 0 0 10px var(--roland-red);
-      animation: blink 1s infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 0.7; }
-      50% { opacity: 1; }
-    }
-
-    @keyframes blink {
-      0%, 50% { opacity: 1; }
-      51%, 100% { opacity: 0.3; }
+      padding: 5px 15px;
+      letter-spacing: 1px;
     }
 
     .video-lab-grid {
       display: grid;
       grid-template-columns: 2fr 1fr;
-      gap: 25px;
-      height: 500px;
+      gap: 20px;
+      margin-top: 30px;
     }
 
     .main-monitor {
@@ -127,6 +263,7 @@
       border-radius: 8px;
       position: relative;
       overflow: hidden;
+      min-height: 300px;
     }
 
     .main-monitor iframe {
@@ -146,28 +283,17 @@
     }
 
     .video-title {
-      font-size: 1.3rem;
+      font-size: 1.1rem;
       color: var(--cyan);
-      margin-bottom: 8px;
+      margin-bottom: 5px;
       font-weight: bold;
     }
 
     .video-data {
       display: flex;
-      gap: 20px;
-      font-size: 0.85rem;
+      gap: 15px;
+      font-size: 0.8rem;
       color: var(--matrix-green);
-    }
-
-    .data-item {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-    }
-
-    .data-value {
-      color: var(--text);
-      font-weight: bold;
     }
 
     .analysis-panel {
@@ -181,35 +307,17 @@
       background: #0a0b14;
       border: 2px solid var(--magenta);
       border-radius: 8px;
-      padding: 15px;
+      padding: 10px;
       position: relative;
-      overflow: hidden;
-    }
-
-    .waveform-container {
-      width: 100%;
-      height: 100%;
-      position: relative;
-    }
-
-    .waveform-line {
-      position: absolute;
-      bottom: 0;
-      width: 100%;
-      height: 2px;
-      background: var(--magenta);
-      opacity: 0.5;
+      min-height: 120px;
     }
 
     .waveform-bars {
-      position: absolute;
-      bottom: 0;
       width: 100%;
       height: 100%;
       display: flex;
       align-items: flex-end;
       gap: 2px;
-      padding: 0 5px;
     }
 
     .waveform-bar {
@@ -223,52 +331,33 @@
     .spec-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 15px;
-      height: 150px;
+      gap: 10px;
     }
 
     .spec-item {
       background: #0a0b14;
-      border: 2px solid var(--naranja);
-      border-radius: 8px;
-      padding: 12px;
-      font-size: 0.8rem;
+      border: 1px solid var(--naranja);
+      border-radius: 6px;
+      padding: 8px;
+      font-size: 0.7rem;
     }
 
     .spec-label {
       color: var(--naranja);
-      margin-bottom: 8px;
+      margin-bottom: 5px;
       text-transform: uppercase;
-      font-size: 0.75rem;
-      letter-spacing: 1px;
     }
 
     .spec-value {
       color: var(--text);
       font-weight: bold;
-      font-size: 1.1rem;
-    }
-
-    .spec-bar {
-      height: 8px;
-      background: #1a1c2e;
-      border-radius: 4px;
-      margin-top: 8px;
-      overflow: hidden;
-    }
-
-    .spec-fill {
-      height: 100%;
-      background: linear-gradient(90deg, var(--naranja), var(--roland-red));
-      border-radius: 4px;
-      transition: width 0.5s ease;
     }
 
     .video-thumbnails {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
-      margin-top: 25px;
+      gap: 10px;
+      margin-top: 20px;
     }
 
     .video-thumb {
@@ -283,12 +372,11 @@
 
     .video-thumb:hover {
       border-color: var(--cyan);
-      transform: translateY(-2px);
     }
 
     .video-thumb.active {
       border-color: var(--magenta);
-      box-shadow: 0 0 15px rgba(236, 0, 140, 0.4);
+      box-shadow: 0 0 10px rgba(236, 0, 140, 0.4);
     }
 
     .video-thumb img {
@@ -297,168 +385,320 @@
       object-fit: cover;
     }
 
-    .thumb-overlay {
+    /* Contacto */
+    .contact-block{margin: 28px 0 12px 0;}
+    .contact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:930px;margin:0 auto;}
+    .contact-port{
+      padding:18px;background: var(--bg-card);border:1.4px solid var(--cyan);
+      border-radius:6px;text-align:center;text-decoration:none;color:var(--cyan);
+      transition:all 0.16s;text-transform:uppercase;font-family:inherit;font-weight:600;font-size:1em;
+      position: relative;
+    }
+
+    .contact-port::before {
+      content: "LINK_ACTIVE";
       position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: rgba(0,0,0,0.7);
-      padding: 5px;
-      font-size: 0.7rem;
-      color: var(--text);
+      top: 5px;
+      right: 5px;
+      font-size: 0.5rem;
+      color: var(--matrix-green);
     }
 
-    .control-strip {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      margin-top: 20px;
-      padding: 15px;
-      background: rgba(0,0,0,0.3);
-      border-radius: 8px;
+    .contact-port:hover{border-color:var(--magenta);background: #1a1e2e;}
+    .port-primary{background: var(--roland-red); border-color: var(--roland-red); color:#fff;}
+    .port-primary:hover{ background: transparent; color:var(--roland-red);}
+
+    .collage-footer{
+      margin-top:19px;text-align:center;color:#97d8ffb6;font-size:1em;letter-spacing:.74px;
+      border-top: 1px solid var(--cyan);
+      padding-top: 15px;
     }
 
-    .control-btn {
-      padding: 10px 20px;
-      background: var(--bg-card);
-      border: 2px solid var(--cyan);
-      border-radius: 6px;
-      color: var(--cyan);
-      font-family: 'Courier New', monospace;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      font-weight: bold;
+    /* WhatsApp */
+    .whatsapp-float{
+      position:fixed;bottom:19px;right:19px;background:var(--cyan);color:#0b0b24;
+      width:53px;height:53px;border-radius:50%;display:flex;align-items:center;
+      justify-content:center;text-decoration:none;box-shadow:0 4px 16px #10fffa1c;z-index:9999;
+      transition: transform 0.3s ease;
     }
 
-    .control-btn:hover {
-      background: var(--cyan);
-      color: var(--bg-dark);
+    .whatsapp-float:hover {
+      transform: scale(1.1);
     }
 
-    .control-btn.active {
-      background: var(--magenta);
-      border-color: var(--magenta);
-      color: white;
+    /* Animaciones */
+    @keyframes blink {
+      0%, 50% { opacity: 1; }
+      51%, 100% { opacity: 0.3; }
+    }
+
+    @keyframes scanLine {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .video-lab-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .video-thumbnails {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="lab-container">
-    <div class="lab-header">
-      <div class="lab-title">// VIDEO ANALYSIS LAB</div>
-      <div class="lab-status">
-        <div class="status-indicator">
-          <div class="status-led"></div>
-          <span>SYSTEM ONLINE</span>
+  <div class="main-wrapper">
+    <!-- HERO SECTION -->
+    <section class="hero-block">
+      <div class="hero-text">
+        <div class="hero-title">Eduardo Mejía<br>// Portfolio Groove Fusion</div>
+        <div class="hero-sub">Booking // Synths // Data // Cassette // Club</div>
+        <div class="hero-desc">
+          Aquí no hay plantillas.<br>
+          <span style="color: var(--naranja);font-weight:bold;">Vinilo, luz y alma cuando tú das play</span>.<br>
+          Booking, arquitectura sónica & distribución para sonidos mongrel, global, club y raíz.
         </div>
-        <div class="status-indicator">
-          <div class="status-led recording"></div>
-          <span>RECORDING DATA</span>
+        <div class="hero-tip">[translate:Pon play. No busques plantilla. Esto es un collage, una onda, un groove, un caos ordenado, como mi música.]</div>
+      </div>
+      <div class="music-block">
+        <div class="vinyl-deck-box">
+          <div class="deck-sticker"><img src="https://upload.wikimedia.org/wikipedia/commons/0/0f/WinampLogoOld.png" alt="winamp"></div>
+          <div class="vinyl-wrap">
+            <div class="vinyl" id="vinyl">
+              <!-- Aquí iría tu logo -->
+              <div class="vinyl-logo">EM</div>
+              <div class="deck-led off" id="deckLed"></div>
+            </div>
+          </div>
+          <div class="deck-controls">
+            <button class="deck-btn" id="backSong"><i class="fas fa-backward"></i></button>
+            <button class="deck-btn" id="playBtn"><i class="fas fa-play"></i></button>
+            <button class="deck-btn" id="stopBtn"><i class="fas fa-stop"></i></button>
+            <button class="deck-btn" id="nextSong"><i class="fas fa-forward"></i></button>
+            <span class="track-label" id="audioTrackLabel">track 1/5</span>
+          </div>
+          <div class="eq-collage" id="eqBar">
+            <div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div>
+            <div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div>
+            <div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div>
+          </div>
+          <!-- Spotify Playlist -->
+          <iframe class="spotify-embed" src="https://open.spotify.com/embed/playlist/26qaG2E3bW6ZNIk5mvPpjr?utm_source=generator" height="84" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
         </div>
       </div>
-    </div>
+    </section>
 
-    <div class="video-lab-grid">
-      <div class="main-monitor">
-        <iframe id="mainVideo" src="https://www.youtube.com/embed/ZGxSXchZNfo?modestbranding=1&rel=0" frameborder="0" allowfullscreen></iframe>
-        <div class="monitor-overlay">
-          <div class="video-title" id="currentVideoTitle">BOILER ROOM SESSION</div>
-          <div class="video-data">
-            <div class="data-item">
-              <span>RES:</span>
-              <span class="data-value">1080p</span>
-            </div>
-            <div class="data-item">
-              <span>CODEC:</span>
-              <span class="data-value">H264</span>
-            </div>
-            <div class="data-item">
-              <span>BITRATE:</span>
-              <span class="data-value">4.2 Mbps</span>
-            </div>
-            <div class="data-item">
-              <span>FPS:</span>
-              <span class="data-value">30</span>
-            </div>
+    <!-- SERVICIOS -->
+    <section class="services-block">
+      <div class="services-title">Servicios</div>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-header">
+            <span class="service-icon"><i class="fas fa-route"></i></span>
+            <span class="service-name">BOOKING & TOURS</span>
+          </div>
+          <div class="service-desc">
+            Giras internacionales, circuitos con flujo humano y digital.
+          </div>
+        </div>
+        <div class="service-card">
+          <div class="service-header">
+            <span class="service-icon"><i class="fas fa-network-wired"></i></span>
+            <span class="service-name">DIGITAL FLOW</span>
+          </div>
+          <div class="service-desc">
+            Estrategias multiplataforma fusionando código, ritmo y comunidad.
+          </div>
+        </div>
+        <div class="service-card">
+          <div class="service-header">
+            <span class="service-icon"><i class="fas fa-wave-square"></i></span>
+            <span class="service-name">SYNTH STRATEGY</span>
+          </div>
+          <div class="service-desc">
+            Arquitecturas de sonido, frameworks disruptivos para artistas híbridos.
           </div>
         </div>
       </div>
+    </section>
 
-      <div class="analysis-panel">
-        <div class="waveform-display">
-          <div class="waveform-container">
-            <div class="waveform-line"></div>
+    <!-- VIDEO LAB SECTION -->
+    <section class="videos-section">
+      <div class="video-lab-grid">
+        <div class="main-monitor">
+          <iframe id="mainVideo" src="https://www.youtube.com/embed/ZGxSXchZNfo?modestbranding=1&rel=0" frameborder="0" allowfullscreen></iframe>
+          <div class="monitor-overlay">
+            <div class="video-title" id="currentVideoTitle">BOILER ROOM SESSION</div>
+            <div class="video-data">
+              <div class="data-item">
+                <span>RES:</span>
+                <span class="data-value">1080p</span>
+              </div>
+              <div class="data-item">
+                <span>CODEC:</span>
+                <span class="data-value">H264</span>
+              </div>
+              <div class="data-item">
+                <span>FPS:</span>
+                <span class="data-value">30</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="analysis-panel">
+          <div class="waveform-display">
             <div class="waveform-bars" id="waveformBars">
               <!-- Las barras se generan con JS -->
             </div>
           </div>
-        </div>
-        
-        <div class="spec-grid">
-          <div class="spec-item">
-            <div class="spec-label">AUDIO LEVEL</div>
-            <div class="spec-value" id="audioLevel">-12 dB</div>
-            <div class="spec-bar">
-              <div class="spec-fill" style="width: 65%"></div>
+          
+          <div class="spec-grid">
+            <div class="spec-item">
+              <div class="spec-label">AUDIO LEVEL</div>
+              <div class="spec-value" id="audioLevel">-12 dB</div>
             </div>
-          </div>
-          <div class="spec-item">
-            <div class="spec-label">DYNAMIC RANGE</div>
-            <div class="spec-value" id="dynamicRange">14.2 dB</div>
-            <div class="spec-bar">
-              <div class="spec-fill" style="width: 78%"></div>
-            </div>
-          </div>
-          <div class="spec-item">
-            <div class="spec-label">FREQ RESPONSE</div>
-            <div class="spec-value" id="freqResponse">20-20k Hz</div>
-            <div class="spec-bar">
-              <div class="spec-fill" style="width: 92%"></div>
-            </div>
-          </div>
-          <div class="spec-item">
-            <div class="spec-label">SIGNAL QUALITY</div>
-            <div class="spec-value" id="signalQuality">98.7%</div>
-            <div class="spec-bar">
-              <div class="spec-fill" style="width: 98%"></div>
+            <div class="spec-item">
+              <div class="spec-label">QUALITY</div>
+              <div class="spec-value" id="signalQuality">98.7%</div>
             </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <div class="video-thumbnails" id="videoThumbnails">
-      <!-- Las miniaturas se generan con JS -->
-    </div>
+      <div class="video-thumbnails" id="videoThumbnails">
+        <!-- Las miniaturas se generan con JS -->
+      </div>
+    </section>
 
-    <div class="control-strip">
-      <button class="control-btn active">SPECTRUM</button>
-      <button class="control-btn">WAVEFORM</button>
-      <button class="control-btn">PHASE</button>
-      <button class="control-btn">SPECTROGRAM</button>
+    <!-- CONTACTO -->
+    <section class="contact-block">
+      <div class="contact-grid">
+        <a href="mailto:emc121091@me.com?subject=PROYECTO MUSICAL" class="contact-port port-primary">INICIAR PROYECTO</a>
+        <a href="https://edumecar.github.io/Book/" target="_blank" class="contact-port">PLANES BOOKING</a>
+        <a href="https://www.linkedin.com/in/edumecar" target="_blank" class="contact-port">LINKEDIN</a>
+      </div>
+    </section>
+
+    <div class="collage-footer">
+      Portfolio de Eduardo Mejía // creado como un set: con glitches, errores y alma.
     </div>
   </div>
 
+  <!-- WhatsApp Float -->
+  <a href="https://wa.me/525512478139?text=Hi,%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20discuss%20a%20music%20project." class="whatsapp-float" target="_blank">
+    <i class="fab fa-whatsapp" style="font-size: 1.7rem;"></i>
+  </a>
+
+  <!-- Audio para los tracks -->
+  <audio id="localAudio">
+    <source id="audioSource" src="micancion1.mp3" type="audio/mpeg">
+    Tu navegador no soporta el elemento audio.
+  </audio>
+
   <script>
-    // Datos de videos
+    // ===== VINYL & AUDIO PLAYER =====
+    let currentTrack = 1, totalTracks = 5;
+    const audio = document.getElementById('localAudio');
+    const audioSource = document.getElementById('audioSource');
+    const playBtn = document.getElementById('playBtn');
+    const stopBtn = document.getElementById('stopBtn');
+    const backSong = document.getElementById('backSong');
+    const nextSong = document.getElementById('nextSong');
+    const vinyl = document.getElementById('vinyl');
+    const led = document.getElementById('deckLed');
+    const audioTrackLabel = document.getElementById('audioTrackLabel');
+
+    function updateTrackLabel() { 
+      audioTrackLabel.textContent = `track ${currentTrack}/5`; 
+    }
+
+    function setTrack(num) {
+      if(num<1) num = totalTracks;
+      if(num>totalTracks) num = 1;
+      currentTrack = num;
+      audio.pause(); 
+      audio.currentTime=0;
+      vinyl.style.animationPlayState='paused';
+      led.classList.add('off');
+      playBtn.classList.remove("playing");
+      audioSource.src = `micancion${currentTrack===1?"":currentTrack}.mp3`;
+      audio.load();
+      updateTrackLabel();
+    }
+
+    backSong.onclick = ()=>{ setTrack(currentTrack-1); }
+    nextSong.onclick = ()=>{ setTrack(currentTrack+1); }
+    setTrack(1);
+
+    // EQ Animation
+    let eqLoop = null, audioCtx, analyser, src, dataArray;
+    const eqBarSeg = document.querySelectorAll('.eq-bar');
+
+    function setupEQ(){
+      audioCtx = new (window.AudioContext||window.webkitAudioContext)();
+      src = audioCtx.createMediaElementSource(audio);
+      analyser = audioCtx.createAnalyser();
+      src.connect(analyser); 
+      analyser.connect(audioCtx.destination);
+      analyser.fftSize = 64;
+      dataArray = new Uint8Array(analyser.frequencyBinCount);
+    }
+
+    function animateEQ(){
+      analyser.getByteFrequencyData(dataArray);
+      for(let i=0;i<eqBarSeg.length;i++){
+        let val = (dataArray[i]||8)/2 + 10 + (Math.random()*6);
+        eqBarSeg[i].style.height = val+"px";
+        eqBarSeg[i].style.background = `linear-gradient(180deg, var(--cyan) 75%, var(--magenta) 100%)`;
+        eqBarSeg[i].style.opacity = .81 + .17*Math.random();
+      }
+      eqLoop = requestAnimationFrame(animateEQ);
+    }
+
+    playBtn.onclick = ()=>{
+      if(!audioCtx){ setupEQ(); }
+      audio.play();
+      vinyl.style.animationPlayState='running';
+      led.classList.remove('off');
+      playBtn.classList.add("playing");
+      animateEQ();
+    };
+
+    stopBtn.onclick = ()=>{
+      audio.pause(); 
+      audio.currentTime=0;
+      vinyl.style.animationPlayState='paused';
+      led.classList.add('off');
+      playBtn.classList.remove("playing");
+      if(eqLoop) cancelAnimationFrame(eqLoop);
+      eqBarSeg.forEach(el => el.style.height='10px');
+    };
+
+    // ===== VIDEO LAB =====
     const videos = [
-      { id: "ZGxSXchZNfo", title: "BOILER ROOM SESSION", specs: { res: "1080p", bitrate: "4.2 Mbps", fps: "30" } },
-      { id: "SD3T_Or_mvk", title: "TRA TRA LIVE SET", specs: { res: "1080p", bitrate: "3.8 Mbps", fps: "30" } },
-      { id: "XCW95zjBUK4", title: "GATS B2B SET", specs: { res: "720p", bitrate: "2.5 Mbps", fps: "30" } },
-      { id: "fIbo4pFaNgQ", title: "DETROIT FLOW", specs: { res: "1080p", bitrate: "4.5 Mbps", fps: "60" } },
-      { id: "K6ACbb5p2A0", title: "ROLAND JAM", specs: { res: "1080p", bitrate: "4.1 Mbps", fps: "30" } },
-      { id: "2Vv-BfVoq4g", title: "PUNK SESSION", specs: { res: "720p", bitrate: "2.8 Mbps", fps: "30" } },
-      { id: "oHg5SJYRHA0", title: "VINYL ROUTINE", specs: { res: "1080p", bitrate: "4.3 Mbps", fps: "30" } },
-      { id: "kXYiU_JCYtU", title: "ENGINE SYNTH", specs: { res: "1080p", bitrate: "4.0 Mbps", fps: "30" } }
+      { id: "ZGxSXchZNfo", title: "BOILER ROOM SESSION", specs: { res: "1080p", fps: "30" } },
+      { id: "SD3T_Or_mvk", title: "TRA TRA LIVE SET", specs: { res: "1080p", fps: "30" } },
+      { id: "XCW95zjBUK4", title: "GATS B2B SET", specs: { res: "720p", fps: "30" } },
+      { id: "fIbo4pFaNgQ", title: "DETROIT FLOW", specs: { res: "1080p", fps: "60" } },
+      { id: "K6ACbb5p2A0", title: "ROLAND JAM", specs: { res: "1080p", fps: "30" } },
+      { id: "2Vv-BfVoq4g", title: "PUNK SESSION", specs: { res: "720p", fps: "30" } },
+      { id: "oHg5SJYRHA0", title: "VINYL ROUTINE", specs: { res: "1080p", fps: "30" } },
+      { id: "kXYiU_JCYtU", title: "ENGINE SYNTH", specs: { res: "1080p", fps: "30" } }
     ];
 
     let currentVideoIndex = 0;
 
     // Generar waveform bars
     const waveformBars = document.getElementById('waveformBars');
-    for (let i = 0; i < 64; i++) {
+    for (let i = 0; i < 32; i++) {
       const bar = document.createElement('div');
       bar.className = 'waveform-bar';
       bar.style.height = `${Math.random() * 80 + 10}%`;
@@ -472,7 +712,6 @@
       thumb.className = `video-thumb ${index === 0 ? 'active' : ''}`;
       thumb.innerHTML = `
         <img src="https://img.youtube.com/vi/${video.id}/hqdefault.jpg" alt="${video.title}">
-        <div class="thumb-overlay">${video.title.split(' ')[0]}</div>
       `;
       thumb.addEventListener('click', () => switchVideo(index));
       thumbnailsContainer.appendChild(thumb);
@@ -509,16 +748,6 @@
       document.querySelectorAll('.video-thumb').forEach((thumb, i) => {
         thumb.classList.toggle('active', i === index);
       });
-      
-      // Simular cambio en datos técnicos
-      updateTechnicalData(video.specs);
-    }
-
-    // Actualizar datos técnicos (simulado)
-    function updateTechnicalData(specs) {
-      document.querySelector('[data-item="RES"] .data-value').textContent = specs.res;
-      document.querySelector('[data-item="BITRATE"] .data-value').textContent = specs.bitrate;
-      document.querySelector('[data-item="FPS"] .data-value').textContent = specs.fps;
     }
 
     // Iniciar animaciones
@@ -526,24 +755,11 @@
     setInterval(() => {
       // Simular cambios aleatorios en las especificaciones
       document.getElementById('audioLevel').textContent = `${-(Math.random() * 20 + 5).toFixed(1)} dB`;
-      document.getElementById('dynamicRange').textContent = `${(Math.random() * 5 + 12).toFixed(1)} dB`;
       document.getElementById('signalQuality').textContent = `${(Math.random() * 2 + 97).toFixed(1)}%`;
     }, 2000);
 
-    // Control buttons
-    document.querySelectorAll('.control-btn').forEach(btn => {
-      btn.addEventListener('click', function() {
-        document.querySelectorAll('.control-btn').forEach(b => b.classList.remove('active'));
-        this.classList.add('active');
-      });
-    });
-
-    // Inicializar datos técnicos
-    const dataItems = document.querySelectorAll('.data-item');
-    dataItems[0].setAttribute('data-item', 'RES');
-    dataItems[1].setAttribute('data-item', 'CODEC'); 
-    dataItems[2].setAttribute('data-item', 'BITRATE');
-    dataItems[3].setAttribute('data-item', 'FPS');
+    // Inicializar el primer video
+    switchVideo(0);
   </script>
 </body>
 </html>
