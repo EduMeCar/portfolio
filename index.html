@@ -4,192 +4,230 @@
   <meta charset="UTF-8">
   <title>EDUARDO MEJÍA // SISTEMA NERVIOSO MUSICAL</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Google Fonts: Share Tech Mono -->
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
   <style>
     :root {
-      --roland-red: #CC0000;
-      --korg-blue: #1DC9FF;
       --roland-orange: #ff6600;
-      --roland-cyan: #00fff0;
-      --black-absolute: #0E1014;
-      --gray-panel: #191d22;
-      --border-card: #22252d;
-      --white-soft: #edf2f7;
-      --bg-card: #181c23;
-      --area-width: 900px;      /* máximo ancho real de todos los contenidos */
-      --card-radius: 14px;
+      --roland-red: #CC0000;
+      --panel-bg: #131418;
+      --panel-darker: #191b22;
+      --panel-border: #20232c;
+      --panel-divider: #26292f;
+      --white-soft: #f5f5f5;
+      --gray-soft: #e7e7e7;
+      --font-panel: 'Share Tech Mono', 'Courier New', Courier, monospace;
+      --area-width: 1350px;
+      --card-radius: 12px;
     }
-    * {margin:0;padding:0;box-sizing:border-box;}
+    * { margin:0; padding:0; box-sizing:border-box; }
     body {
-      background: var(--black-absolute);
+      background: #0c0d0f;
       color: var(--white-soft);
-      font-family: 'Courier New', monospace;
-      min-height:100vh;
-      letter-spacing: .01em;
+      font-family: var(--font-panel);
+      min-height: 100vh;
+      letter-spacing: 0.006em;
     }
     .main-wrap {
-      display: flex; flex-direction: column; align-items: center; width: 100vw;
-      padding: 38px 0 32px 0;
+      width: 100vw;
+      display: flex; flex-direction: column; align-items: center; padding:70px 0 38px 0;
     }
     .area {
-      width: 100%; max-width: var(--area-width); margin: 0 auto 48px auto;
-      background: var(--bg-card); border-radius: var(--card-radius); box-shadow: 0 3px 23px #1a1a1a2a;
-      border: 1.5px solid var(--border-card);
-      padding: 42px 36px 38px 36px;
-      display:flex; flex-direction:column; align-items:center;
+      width:100%; max-width:var(--area-width);
+      background: var(--panel-bg);
+      border-radius: var(--card-radius);
+      border: 2.5px solid var(--panel-border);
+      box-shadow:0 3.5px 28px #13141832;
+      margin: 0 auto 54px auto;
+      padding: 60px 5vw 50px 5vw;
+      display: flex; flex-direction: column; align-items: center;
     }
-    @media (max-width:980px) {.area{padding: 38px 6vw 28px 6vw;}}
-    @media (max-width:650px){.area{padding:23px 1vw 18px 1vw;}}
-
+    @media(max-width:1280px){.area{max-width:99vw;}}
+    @media(max-width:800px){.area{padding: 36px 2vw 20px 2vw;}}
+    /* PANEL SERIGRAFIADO */
+    .panel-divider {
+      width: 100%; max-width: 1400px; height: 2.7px; margin: 55px auto 55px auto;
+      background: var(--roland-orange);
+      opacity:.80;border-radius:1.5px;border:none;
+    }
+    /* HERO + DECK */
+    .hero-flex {
+      width: 100%; display: flex; gap: 86px; align-items: center; justify-content: center;
+      max-width: 1340px;
+    }
+    @media (max-width:1050px){.hero-flex{flex-direction:column;gap:30px;}}
+    .hero-text {
+      flex: 1.15; display: flex; flex-direction: column; align-items: flex-start; gap:24px;
+      justify-content: center; min-width: 328px;
+    }
     .main-title {
-      font-size: 2.7rem;
-      font-weight: bold;
-      text-transform: uppercase;
-      letter-spacing: 2.2px;
-      margin-bottom: 10px;
-      color: var(--roland-cyan);
-      text-align: center;
+      font-family: var(--font-panel); font-size: 3rem; font-weight: 900;
+      letter-spacing: 0.142em; text-transform: uppercase;
+      color: var(--roland-orange);
+      margin-bottom:9px; margin-top:0;
+      text-align:left; line-height:1.06;
     }
     .subtitle {
-      font-size: 1.07rem;
-      color: var(--roland-orange);
-      text-transform: uppercase;
-      font-weight: bold;
-      letter-spacing: 1.13px;
-      margin-bottom: 21px;
-      text-align: center;
+      font-family: var(--font-panel); font-size:1.2rem; font-weight:700; letter-spacing:.24em;
+      color: var(--roland-red); text-transform: uppercase; margin-bottom:23px; margin-top:-2px;
+      text-align:left;
     }
     .description {
-      font-size: 1.05rem;
-      color: var(--white-soft);
-      opacity: 0.95;
-      margin-bottom: 0;
-      max-width: 540px;
-      text-align: center;
+      font-family: var(--font-panel); font-size:1.06rem; letter-spacing:.02em;
+      color: var(--gray-soft); font-weight:600; line-height:1.44;
+      max-width:600px; text-align:left;opacity:0.96;
     }
-    /* HERO DECK */
-    .deck-flex {
-      display: flex; gap: 42px; justify-content: center; align-items: center; margin: 40px auto 0 auto;
-      width:100%;
+    .deck-controls-wrap {
+      flex: 1.18; display:flex; flex-direction: column; align-items: center;
     }
-    @media (max-width:800px){.deck-flex{flex-direction:column;gap:18px;}}
     .turntable {
-      width: 160px; height: 160px; border-radius:50%; background: var(--black-absolute);
-      border: 13px solid var(--korg-blue); position:relative;
-      display:flex;align-items:center;justify-content:center;
+      width: 200px; height: 200px; border-radius:50%; background: #17171c;
+      border:13px solid var(--panel-divider); position:relative;
+      display:flex;align-items:center;justify-content:center;margin-bottom:36px;
     }
     .vinyl {
-      width: 117px; height: 117px; border-radius:50%;
-      background:radial-gradient(#373842 70%,#191d22 100%);
-      position:relative;
-      animation:spin 11s linear infinite;
-      animation-play-state:paused;
+      width: 137px; height: 137px; border-radius:50%;
+      background:radial-gradient(circle 90px at 51% 58%,#333 60%,#14171f 100%);
+      position:relative; animation:spin 11s linear infinite; animation-play-state:paused;
     }
-    @keyframes spin {0%{transform:rotate(0deg);}100%{transform:rotate(360deg);}}
-    .vinyl-logo { position:absolute; left:50%;top:50%; transform:translate(-50%,-50%); width:47px;height:47px;}
-    .deck-controls {
-      display:flex;flex-direction:column;align-items:center;gap:10px;
-    }
-    .player-controls { display:flex;gap:12px;margin-top:23px;}
+    .vinyl-logo {position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:59px;height:59px;}
+    .player-controls {display:flex;gap:15px;margin-top:14px;}
     .control-btn {
-      padding:11px 20px;background:var(--gray-panel);border:2px solid var(--korg-blue); color:var(--korg-blue); border-radius:5px;
-      cursor:pointer;font-weight:bold;transition:.13s;letter-spacing:.09em;font-size:1em;
+      padding:14px 20px;background:#1f1f25;border:2.2px solid var(--roland-orange);
+      color:var(--white-soft);border-radius:6px;cursor:pointer;
+      font-family:var(--font-panel);font-size:1.15rem;font-weight:bold;text-transform:uppercase;
+      transition:background .14s, border .19s, color .14s;
+      letter-spacing:.17em;
     }
-    .control-btn:active,.control-btn:focus {border-color:var(--roland-orange); color:var(--roland-orange);}
-    #eqCanvas {width:200px;max-width:97vw;height:38px;display:block;background:transparent;border:none;}
-    /* SECCIÓN SERVICIOS */
-    .services-title {color:var(--roland-orange);font-size:1.1rem;font-weight:bold;letter-spacing:.9px;text-transform:uppercase;text-align:center;margin-bottom:30px;}
-    .services-grid {display:grid;grid-template-columns:repeat(3,1fr);gap:22px;width:100%;}
-    @media (max-width:800px) {.services-grid{grid-template-columns:1fr;}}
-    .service-card {background: var(--gray-panel); border:1.1px solid var(--border-card);border-radius:10px;padding:28px 15px 19px 15px;transition:box-shadow .12s;box-shadow:0 1.1px 7px #12ceff18;display:flex;flex-direction:column;align-items:center;}
-    .service-card:hover {box-shadow:0 2.2px 13px #ff660033;}
-    .service-icon {color:var(--korg-blue);font-size:2rem;}
-    .service-name {font-size:1.03rem;font-weight:700;color:var(--roland-cyan);text-transform:uppercase;margin:9px 0 7px 0;}
-    .service-desc {color:#e0eeff;line-height:1.34;font-size:.97rem;text-align:center;}
+    .control-btn:active, .control-btn:focus {background:var(--roland-orange);color:#fff;}
+    .deck-stream {
+      margin-top:28px; border-radius:8px; background:#23232a;border:none;overflow:hidden;
+    }
+    #eqCanvas {width:260px;max-width:95vw;height:34px;display:block;background:transparent;border:none;margin-top:13px;border-radius:21px;}
 
-    /* VIDEO GALLERY */
-    .videos-title{color:var(--roland-cyan);font-size:1.08rem;font-weight:bold;letter-spacing:.8px;text-transform:uppercase;text-align:center;margin-bottom:20px;}
-    .video-player-frame {display:flex;justify-content:center;align-items:center;background:var(--gray-panel);border-radius:10px;border:1.1px solid var(--border-card);overflow:hidden;width:100%;max-width:550px;margin:0 auto;}
-    .video-title {color:var(--roland-cyan);font-size:1rem;margin:13px 0 10px 0;text-align:center;}
-    .miniaturenav{display:flex;justify-content:center;margin:5px 0;}
-    .video-thumbs{display:flex;gap:8px;}
-    .video-thumb{width:35px;height:21px;border-radius:3.5px;border:1px solid var(--grid-gray);overflow:hidden;cursor:pointer;transition:border-color .11s,box-shadow .10s;opacity:.82;}
-    .video-thumb.active{border-color:var(--roland-orange);opacity:1;box-shadow:0 1.2px 6px #ff8d37b0;}
-    .video-thumb img{width:100%;height:100%;object-fit:cover;display:block;}
+    /* SERVICIOS (HORIZONTAL EN DESKTOP) */
+    .services-title {
+      font-family: var(--font-panel); color: var(--roland-orange);
+      font-size:1.16rem;font-weight:900;letter-spacing:.2em;text-transform:uppercase;margin-bottom:24px;
+      text-align:center;
+    }
+    .services-grid {
+      display:grid;grid-template-columns:repeat(3,1fr);gap:30px;width:100%;
+    }
+    @media (max-width:950px){.services-grid{grid-template-columns:1fr;}}
+    .service-card {
+      background:var(--panel-darker);border:2px solid var(--panel-border);border-radius:7px;
+      padding:39px 18px 27px 18px;
+      text-align:center;display:flex;flex-direction:column;align-items:center;gap:13px;height:100%;box-shadow:0 1.2px 9px #1818192b;transition:box-shadow .12s;border-bottom:4px solid var(--roland-orange);
+    }
+    .service-icon {font-size:2.45rem;color:var(--roland-orange);}
+    .service-name {font-family:var(--font-panel);font-size:1.07rem;font-weight:900;letter-spacing:.17em;color:var(--white-soft);text-transform:uppercase;}
+    .service-desc {color:var(--gray-soft);font-size:1.02rem;font-family:var(--font-panel);text-transform:uppercase;letter-spacing:.03em;font-weight:bold;opacity:0.89;}
+    /* VIDEO SECTIONS */
+    .videos-title {
+      font-family:var(--font-panel);color:var(--roland-orange);font-size:1.13rem;
+      font-weight:bold;letter-spacing:.21em;text-transform:uppercase;text-align:center;margin-bottom:22px;
+    }
+    .videos-block {display:flex;flex-direction:column;align-items:center;width:100%;}
+    .video-player-frame {width:100%;max-width:741px;height:340px;display:flex;justify-content:center;align-items:center;background:var(--panel-darker);border-radius:10px;border:2px solid var(--panel-divider);overflow:hidden;}
+    .video-title {color:var(--roland-orange);font-size:1.03rem;margin:13px 0 8px 0;text-align:center;font-family:var(--font-panel);}
+    .miniaturenav {display:flex;justify-content:center;margin:9px 0;}
+    .video-thumbs {display:flex;gap:9px;}
+    .video-thumb {width:53px;height:31px;border-radius:3.5px;border:1.8px solid var(--panel-border);overflow:hidden;cursor:pointer;transition:border-color .11s,box-shadow .09s;opacity:.84;}
+    .video-thumb.active {border-color:var(--roland-orange);opacity:1;box-shadow:0 1.9px 7px #ff66008c;}
+    .video-thumb img {width:100%;height:100%;object-fit:cover;display:block;}
     .video-dots{display:flex;gap:4px;}
-    .video-dot{width:9px;height:9px;border-radius:50%;background:var(--grid-gray);border:1px solid var(--korg-blue);cursor:pointer;}
-    .video-dot.active{background:var(--roland-orange);border-color:var(--roland-core);}
+    .video-dot{width:11px;height:11px;border-radius:50%;background:var(--panel-border);border:1.2px solid var(--roland-orange);cursor:pointer;}
+    .video-dot.active{background:var(--roland-orange);}
     /* CONTACTO */
-    .contact-title{color:var(--roland-cyan);font-size:1.09rem;font-weight:bold;text-align:center;margin-bottom:26px;text-transform:uppercase;letter-spacing:.8px;}
-    .contact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;width:100%;}
-    .contact-port{padding:17px;border-radius:7px;background:var(--gray-panel);border:1px solid var(--border-card);color:var(--korg-blue);text-align:center;text-decoration:none;font-weight:bold;font-size:1em;transition:.11s;}
-    .contact-port:hover{border-color:var(--roland-orange);color:var(--roland-orange);}
-    .port-primary{background:var(--roland-orange);color:white;}
-    .footer{margin-top:16px;text-align:center;color:#8fa8c7;font-size:.98em;}
-    .whatsapp-float{position:fixed;bottom:19px;right:20px;background:#25D366;color:white;width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;z-index:1000;}
+    .contact-title {font-family:var(--font-panel);color:var(--roland-orange);font-size:1.09rem;font-weight:900;text-align:center;letter-spacing:.21em;text-transform:uppercase;margin-bottom:19px;}
+    .contact-grid {display:grid;grid-template-columns:repeat(3,1fr);gap:21px;width:100%;}
+    .contact-port {padding:22px;border-radius:7px;background:var(--panel-darker);border:1.7px solid var(--panel-border);color:var(--roland-orange);text-align:center;text-decoration:none;font-family:var(--font-panel);font-weight:900;font-size:1.03em;text-transform:uppercase;letter-spacing:.09em;transition:all .1s;}
+    .contact-port:hover {background:var(--roland-orange);color:#fff;}
+    .port-primary {background:var(--roland-orange);color:#fff;}
+    .footer {margin-top:14px;text-align:center;color:#a9adb0;letter-spacing:.09em;font-size:1em;}
+    .whatsapp-float {position:fixed;bottom:23px;right:32px;background:var(--roland-orange);color:#fff;width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:1111;}
+    .whatsapp-float:hover {background:var(--white-soft);color:var(--roland-orange);}
+    /* PLAY ANIMATION */
+    @keyframes spin {0%{transform:rotate(0deg);}100%{transform:rotate(360deg);}}
   </style>
 </head>
 <body>
   <div class="main-wrap">
-    <!-- TITULO -->
-    <section class="area">
-      <h1 class="main-title">EDUARDO MEJÍA // SISTEMA NERVIOSO MUSICAL</h1>
-      <div class="subtitle">CLUB · BOOKING · SYNTH · DATASOUL</div>
-      <div class="description">
-        Fusión Roland × Korg. Estrategia y booking global con alma de hardware, groove y data.
-      </div>
-      <div class="deck-flex">
-        <div class="turntable" id="turntable"><div class="vinyl" id="vinyl"><img src="logo.svg" class="vinyl-logo"></div></div>
-        <div class="deck-controls">
-          <canvas id="eqCanvas" width="200" height="38"></canvas>
+    <!-- HERO / DECK -->
+    <section class="area" style="padding-bottom:32px;">
+      <div class="hero-flex">
+        <div class="hero-text">
+          <div class="main-title">EDUARDO MEJÍA // SISTEMA NERVIOSO MUSICAL</div>
+          <div class="subtitle">ESTRATEGIA · ANALÓGICO · CLUB · DATASOUL</div>
+          <div class="description">
+            PORTFOLIO PANEL – BOOKING, CLUB, ARQUITECTURA DIGITAL Y SONIDO.  
+            COORDINACIÓN, SERVICIO Y CLUB FUSIÓN CON EL FLOW DE UN SINTETIZADOR.<br>
+            ROLAND × KORG, TODA LA PIEL DEL HARDWARE, NADA DE NEÓN NI PLANTILLA.
+          </div>
+        </div>
+        <div class="deck-controls-wrap">
+          <div class="turntable" id="turntable"><div class="vinyl" id="vinyl"><img src="logo.svg" class="vinyl-logo"></div></div>
+          <canvas id="eqCanvas" width="260" height="34"></canvas>
           <div class="player-controls">
             <button class="control-btn" id="playBtn">PLAY</button>
             <button class="control-btn" id="stopBtn">STOP</button>
           </div>
           <audio id="localAudio"><source src="micancion.mp3" type="audio/mpeg"></audio>
-          <iframe style="margin-top:18px;border-radius:7px;" src="https://open.spotify.com/embed/playlist/26qaG2E3bW6ZNIk5mvPpjr?utm_source=generator" width="100%" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+          <div class="deck-stream">
+            <iframe src="https://open.spotify.com/embed/playlist/26qaG2E3bW6ZNIk5mvPpjr?utm_source=generator" width="340" height="81" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+          </div>
         </div>
       </div>
     </section>
+    <hr class="panel-divider">
     <!-- SERVICIOS -->
     <section class="area">
-      <div class="services-title">Servicios</div>
+      <div class="services-title">SERVICIOS</div>
       <div class="services-grid">
         <div class="service-card">
-          <span class="service-icon"><i class="fas fa-route"></i></span>
+          <div class="service-icon"><i class="fas fa-route"></i></div>
           <div class="service-name">BOOKING & TOURS</div>
-          <div class="service-desc">Giras, club, booking digital y circuitos creativos.</div>
+          <div class="service-desc">GIRAS · CIRCUITOS · CLUB · TOURING COORD· BOOKING DIRECTO</div>
         </div>
         <div class="service-card">
-          <span class="service-icon"><i class="fas fa-sliders-h"></i></span>
+          <div class="service-icon"><i class="fas fa-sliders-h"></i></div>
           <div class="service-name">DIGITAL FLOW</div>
-          <div class="service-desc">Performance & estrategia multiplataforma, data & management.</div>
+          <div class="service-desc">PERFORMANCE · MULTIPLATAFORMA · DATA · ESTRATEGIA SONORA</div>
         </div>
         <div class="service-card">
-          <span class="service-icon"><i class="fas fa-wave-square"></i></span>
+          <div class="service-icon"><i class="fas fa-wave-square"></i></div>
           <div class="service-name">SYNTH STRATEGY</div>
-          <div class="service-desc">Frameworks híbridos, sonido club y acción global.</div>
+          <div class="service-desc">FRAMEWORKS ANALÓGICOS Y DIGITALES · ARTIST DEVELOPMENT</div>
         </div>
       </div>
     </section>
+    <hr class="panel-divider">
     <!-- VIDEOS -->
     <section class="area">
-      <div class="videos-title">Videos</div>
-      <div class="video-player-frame"><iframe id="singleVideo" width="100%" height="260" src="https://www.youtube.com/embed/ZGxSXchZNfo?modestbranding=1&rel=0"></iframe></div>
-      <div id="videoTitle" class="video-title"></div>
-      <div class="miniaturenav"><div id="videoThumbs" class="video-thumbs"></div></div>
-      <div id="videoDots" class="video-dots"></div>
+      <div class="videos-title">VIDEOS</div>
+      <div class="videos-block">
+        <div class="video-player-frame">
+          <iframe id="singleVideo" width="100%" height="340" src="https://www.youtube.com/embed/ZGxSXchZNfo?modestbranding=1&rel=0"></iframe>
+        </div>
+        <div id="videoTitle" class="video-title"></div>
+        <div class="miniaturenav"><div id="videoThumbs" class="video-thumbs"></div></div>
+        <div id="videoDots" class="video-dots"></div>
+      </div>
     </section>
+    <hr class="panel-divider">
     <!-- CONTACTO -->
     <section class="area">
-      <div class="contact-title">Conectemos</div>
+      <div class="contact-title">CONECTEMOS</div>
       <div class="contact-grid">
         <a href="mailto:emc121091@me.com?subject=PROYECTO%20MUSICAL" class="contact-port port-primary">START PROJECT</a>
         <a href="https://edumecar.github.io/Book/" target="_blank" class="contact-port">BOOKING PLANS</a>
         <a href="https://www.linkedin.com/in/edumecar" target="_blank" class="contact-port">LINKEDIN</a>
       </div>
     </section>
-    <div class="footer">Portfolio de Eduardo Mejía – Estrategia analógica, booking, club y synth.</div>
+    <div class="footer">PORTFOLIO ANALÓGICO: SIN NEÓN, SÓLO MÚSICA, PANELES Y DATASOUL. ©EDUARDO MEJÍA</div>
   </div>
   <a href="https://wa.me/525512478139" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp" style="font-size:1.7rem;"></i></a>
 <script>
@@ -212,7 +250,7 @@ function drawEQ() {
   analyser.getByteFrequencyData(dataArray);
   const barWidth=12; let x=0;
   for(let i=0;i<dataArray.length;i++){
-    let barHeight=Math.max(4,dataArray[i]/2.2); eqCtx.fillStyle='#1DC9FF';
+    let barHeight=Math.max(3,dataArray[i]/2.7); eqCtx.fillStyle= '#ff6600';
     eqCtx.fillRect(x,eqCanvas.height-barHeight,barWidth,barHeight); x+=barWidth+3;
   }
   requestAnimationFrame(drawEQ);
@@ -220,9 +258,9 @@ function drawEQ() {
 playBtn.onclick=()=>{ if(!audioCtx)setupEQ(); audio.play();vinyl.style.animationPlayState="running";drawEQ();}
 stopBtn.onclick=()=>{audio.pause();audio.currentTime=0;vinyl.style.animationPlayState="paused";};
 const videos = [
-  { id:"ZGxSXchZNfo", title:"Performance Live 001" },
-  { id:"kXYiU_JCYtU", title:"Sound Design Session" },
-  { id:"ktvTqknDobU", title:"Cloud Flow Architecture" }
+  { id:"ZGxSXchZNfo", title:"PERFORMANCE LIVE 001" },
+  { id:"kXYiU_JCYtU", title:"SOUND DESIGN SESSION" },
+  { id:"ktvTqknDobU", title:"CLOUD FLOW ARCHITECTURE" }
 ];
 const videoEl=document.getElementById("singleVideo");
 const thumbs=document.getElementById("videoThumbs");
