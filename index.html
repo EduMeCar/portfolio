@@ -103,14 +103,65 @@
   /* HERO */
   .hero {
     min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 60px 8vw;
+    gap: 60px;
+  }
+  
+  .hero-left { }
+  
+  .hero-right {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    gap: 30px;
+  }
+  
+  /* CARACOL ANIMADO */
+  .caracol-wrap {
+    width: 280px;
+    height: 280px;
+    display: flex;
+    align-items: center;
     justify-content: center;
-    padding: 60px 8vw;
     position: relative;
   }
   
-  .hero-content { max-width: 800px; position: relative; z-index: 1; }
+  .caracol-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    animation: breathe 4s ease-in-out infinite;
+    filter: drop-shadow(0 0 0 transparent);
+  }
+  
+  @keyframes breathe {
+    0%, 100% { 
+      transform: scale(1) translateY(0); 
+      filter: drop-shadow(0 10px 30px rgba(0,0,0,0.4));
+    }
+    50% { 
+      transform: scale(1.03) translateY(-8px); 
+      filter: drop-shadow(0 20px 50px rgba(0,0,0,0.3)) drop-shadow(0 0 30px rgba(255,102,0,0.15));
+    }
+  }
+  
+  /* SPOTIFY EN HERO */
+  .hero-spotify {
+    width: 100%;
+    max-width: 350px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+  }
+  
+  .hero-spotify iframe {
+    width: 100%;
+    height: 152px;
+    border: none;
+  }
   
   .greeting { 
     font-family: var(--mono); 
@@ -164,6 +215,23 @@
   @keyframes float { 
     0%, 100% { transform: translateX(-50%) translateY(0); } 
     50% { transform: translateX(-50%) translateY(8px); } 
+  }
+  
+  @media (max-width: 900px) {
+    .hero {
+      grid-template-columns: 1fr;
+      text-align: center;
+      padding-top: 100px;
+      padding-bottom: 60px;
+      min-height: auto;
+    }
+    .hero-right {
+      order: -1;
+    }
+    .caracol-wrap {
+      width: 200px;
+      height: 200px;
+    }
   }
 
   /* SECTION LABEL */
@@ -451,35 +519,27 @@
 </head>
 <body>
 
-  <!-- WAVE LINE -->
-  <div class="wave-line">
-    <svg viewBox="0 0 1200 60" preserveAspectRatio="none">
-      <path d="M0,30 Q75,10 150,30 T300,30 T450,30 T600,30 T750,30 T900,30 T1050,30 T1200,30 T1350,30 T1500,30 T1650,30 T1800,30 T1950,30 T2100,30 T2250,30 T2400,30" />
-    </svg>
-  </div>
-
-  <!-- NOISE -->
-  <div class="noise"></div>
+  
 
   <!-- HERO -->
   <section class="hero">
-    <div class="hero-content section-content">
+    <div class="hero-left section-content">
       <p class="greeting">ARQUITECTURA MUSICAL</p>
       <h1 class="hero-name">Eduardo<br><span>Mejía</span></h1>
       <p class="hero-location">BARCELONA · <strong>CIUDAD DE MÉXICO</strong></p>
     </div>
-    <div class="scroll-hint"><span>SCROLL</span><i class="fas fa-chevron-down"></i></div>
-  </section>
-
-  <!-- SPOTIFY -->
-  <section class="spotify-section">
-    <div class="spotify-wrap section-content">
-      <div class="section-label">Escucha</div>
-      <div class="spotify-frame">
+    <div class="hero-right">
+      <div class="caracol-wrap">
+        <img src="logo.svg" alt="TurboBoyz">
+      </div>
+      <div class="hero-spotify">
         <iframe src="https://open.spotify.com/embed/playlist/26qaG2E3bW6ZNIk5mvPpjr?utm_source=generator&theme=0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
       </div>
     </div>
+    <div class="scroll-hint"><span>SCROLL</span><i class="fas fa-chevron-down"></i></div>
   </section>
+
+  
 
   <!-- SERVICIOS -->
   <section class="services">
