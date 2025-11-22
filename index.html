@@ -432,14 +432,22 @@
     grid-template-columns: repeat(3, 1fr); 
     gap: 2px; 
     margin-top: 60px;
-    background: rgba(255,102,0,0.1);
+    background: rgba(255,102,0,0.05);
   }
   
   .service-card {
     padding: 48px 36px;
     background: var(--black);
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  
+  .service-card.revealed {
+    opacity: 1;
+    transform: translateY(0);
   }
 
   .service-card::before {
@@ -448,23 +456,41 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: 2px;
-    background: var(--orange);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    height: 100%;
+    background: radial-gradient(circle at 50% 0%, rgba(255,102,0,0.15) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.6s ease;
   }
   
-  .service-card:hover::before { transform: scaleX(1); }
-  .service-card:hover { background: var(--gray); }
+  .service-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--orange), transparent);
+    transform: scaleX(0);
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .service-card:hover::before { opacity: 1; }
+  .service-card:hover::after { transform: scaleX(1); }
+  .service-card:hover { background: rgba(255,102,0,0.03); }
   
   .service-num { 
     font-family: var(--mono); 
-    font-size: 32px; 
+    font-size: 48px; 
     color: var(--orange); 
     margin-bottom: 24px; 
-    opacity: 0.3;
+    opacity: 0.15;
     font-weight: 700;
+    transition: all 0.4s ease;
+  }
+  
+  .service-card:hover .service-num {
+    opacity: 0.4;
+    text-shadow: 0 0 30px rgba(255,102,0,0.5);
   }
   
   .service-title { 
@@ -537,31 +563,84 @@
   .video-thumb:hover { opacity: 0.7; }
   .video-thumb.active { opacity: 1; border-color: var(--orange); }
 
-  /* CONTACTO */
+  /* CONTACTO - EL CLÍMAX */
   .contact { 
     padding: 180px 8vw; 
-    background: var(--black); 
-    text-align: center; 
+    background: linear-gradient(180deg, var(--black) 0%, #0d0502 50%, var(--black) 100%);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .contact::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(255,102,0,0.08) 0%, transparent 70%);
+    pointer-events: none;
   }
   
   .contact-title { 
-    font-size: clamp(2.5rem, 6vw, 4rem); 
+    font-size: clamp(3rem, 8vw, 6rem); 
     font-weight: 800; 
     margin-bottom: 60px; 
     letter-spacing: -0.03em;
-    color: var(--orange);
+    color: var(--light);
+    position: relative;
+    display: inline-block;
+  }
+  
+  .contact-title span {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .contact-title.revealed span {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .contact-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--orange);
+    transform: scaleX(0);
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.5s;
+  }
+  
+  .contact-title.revealed::after {
+    transform: scaleX(1);
   }
   
   .contact-links { 
     display: flex; 
     justify-content: center; 
-    gap: 12px; 
+    gap: 16px;
+    position: relative;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease 0.8s;
+  }
+  
+  .contact.revealed .contact-links {
+    opacity: 1;
+    transform: translateY(0);
   }
   
   .c-link {
-    padding: 18px 40px;
+    padding: 20px 44px;
     font-family: var(--mono);
-    font-size: 10px;
+    font-size: 11px;
     text-decoration: none;
     text-transform: uppercase;
     letter-spacing: 0.25em;
@@ -570,12 +649,27 @@
     border: 1px solid rgba(240,235,227,0.1);
     color: var(--light);
     background: transparent;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .c-link::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--orange);
+    transform: translateY(100%);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: -1;
+  }
+  
+  .c-link:hover::before {
+    transform: translateY(0);
   }
   
   .c-link:hover { 
     border-color: var(--orange); 
-    color: var(--orange);
-    box-shadow: 0 0 30px rgba(255,102,0,0.15);
+    color: var(--black);
   }
 
   .c-link.primary {
@@ -583,10 +677,13 @@
     border-color: var(--orange);
     color: var(--black);
   }
+  
+  .c-link.primary::before {
+    background: var(--light);
+  }
 
   .c-link.primary:hover {
-    background: var(--light);
-    border-color: var(--light);
+    color: var(--black);
   }
 
   /* FOOTER */
@@ -664,21 +761,11 @@
     <div class="intro-line"></div>
   </div>
 
-  <!-- GEOMETRIC LINES (se revelan con scroll) -->
-  <div class="geo-lines">
-    <div class="geo-line h1"></div>
-    <div class="geo-line h2"></div>
-    <div class="geo-line h3"></div>
-    <div class="geo-line v1"></div>
-    <div class="geo-line v2"></div>
-    <div class="geo-line v3"></div>
-    <div class="geo-line d1"></div>
-    <div class="geo-line d2"></div>
-  </div>
+  
 
   <!-- HERO -->
   <section class="hero" id="hero">
-    <div class="heartbeat"></div>
+    
     <div class="hero-left section-content">
       <p class="greeting">ARQUITECTURA MUSICAL</p>
       <h1 class="hero-name">Eduardo<br><span>Mejía</span></h1>
@@ -734,7 +821,7 @@
   <!-- CONTACTO -->
   <section class="contact">
     <div class="section-content">
-      <h2 class="contact-title">CONECTEMOS</h2>
+      <h2 class="contact-title" id="contactTitle"><span>C</span><span>O</span><span>N</span><span>E</span><span>C</span><span>T</span><span>E</span><span>M</span><span>O</span><span>S</span></h2>
       <div class="contact-links">
         <a href="mailto:emc121091@me.com?subject=Proyecto" class="c-link primary">Email</a>
         <a href="https://edumecar.github.io/Book/" target="_blank" rel="noopener" class="c-link">Booking</a>
@@ -798,6 +885,40 @@
   
   window.addEventListener('scroll', revealGeoLines);
   revealGeoLines();
+
+  // === SERVICES REVEAL ===
+  const serviceCards = document.querySelectorAll('.service-card');
+  
+  const serviceObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry, index) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('revealed');
+        }, index * 150);
+      }
+    });
+  }, { threshold: 0.2 });
+  
+  serviceCards.forEach(card => serviceObserver.observe(card));
+
+  // === CONTACT REVEAL ===
+  const contactSection = document.querySelector('.contact');
+  const contactTitle = document.getElementById('contactTitle');
+  const contactSpans = contactTitle.querySelectorAll('span');
+  
+  const contactObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        contactSection.classList.add('revealed');
+        contactTitle.classList.add('revealed');
+        contactSpans.forEach((span, i) => {
+          span.style.transitionDelay = `${i * 0.05}s`;
+        });
+      }
+    });
+  }, { threshold: 0.3 });
+  
+  contactObserver.observe(contactSection);
 
   // === VIDEO SELECTOR ===
   const videos = [
