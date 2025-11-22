@@ -423,7 +423,7 @@
 
   /* SERVICIOS */
   .services { 
-    padding: 140px 8vw; 
+    padding: 120px 8vw; 
     background: var(--black); 
   }
   
@@ -431,7 +431,7 @@
     display: grid; 
     grid-template-columns: repeat(3, 1fr); 
     gap: 2px; 
-    margin-top: 60px;
+    margin-top: 50px;
     background: rgba(255,102,0,0.05);
   }
   
@@ -509,13 +509,13 @@
 
   /* VIDEOS */
   .videos { 
-    padding: 140px 8vw; 
+    padding: 120px 8vw; 
     background: var(--dark); 
   }
   
   .video-showcase {
     max-width: 1000px;
-    margin: 60px auto 0;
+    margin: 50px auto 0;
   }
   
   .video-main {
@@ -565,7 +565,7 @@
 
   /* CONTACTO - EL CLÍMAX */
   .contact { 
-    padding: 180px 8vw; 
+    padding: 140px 8vw; 
     background: linear-gradient(180deg, var(--black) 0%, #0d0502 50%, var(--black) 100%);
     text-align: center;
     position: relative;
@@ -756,6 +756,12 @@
 
   
 
+  <!-- LANGUAGE TOGGLE -->
+  <div class="lang-toggle">
+    <button class="lang-btn active" data-lang="es">ES</button>
+    <button class="lang-btn" data-lang="en">EN</button>
+  </div>
+
   <!-- INTRO CINEMATOGRÁFICA -->
   <div class="intro-overlay" id="introOverlay">
     <div class="intro-line"></div>
@@ -767,9 +773,9 @@
   <section class="hero" id="hero">
     
     <div class="hero-left section-content">
-      <p class="greeting">ARQUITECTURA MUSICAL</p>
+      <p class="greeting" data-es="ARQUITECTURA MUSICAL" data-en="MUSICAL ARCHITECTURE">ARQUITECTURA MUSICAL</p>
       <h1 class="hero-name">Eduardo<br><span>Mejía</span></h1>
-      <p class="hero-location">BARCELONA · <strong>CIUDAD DE MÉXICO</strong></p>
+      <p class="hero-location" data-es="BARCELONA · <strong>CIUDAD DE MÉXICO</strong>" data-en="BARCELONA · <strong>MEXICO CITY</strong>">BARCELONA · <strong>CIUDAD DE MÉXICO</strong></p>
     </div>
     <div class="hero-right">
       <div class="hero-spotify">
@@ -784,22 +790,22 @@
   <!-- SERVICIOS -->
   <section class="services">
     <div class="section-content">
-      <div class="section-label">Servicios</div>
+      <div class="section-label" data-es="Servicios" data-en="Services">Servicios</div>
       <div class="services-grid">
         <article class="service-card">
           <div class="service-num">01</div>
-          <h3 class="service-title">Representación & Touring</h3>
-          <p class="service-desc">Giras nacionales e internacionales. Negociación de contratos, rutas, promotores.</p>
+          <h3 class="service-title" data-es="Representación & Touring" data-en="Representation & Touring">Representación & Touring</h3>
+          <p class="service-desc" data-es="Giras nacionales e internacionales. Negociación de contratos, rutas, promotores." data-en="National and international tours. Contract negotiation, routing, promoters.">Giras nacionales e internacionales. Negociación de contratos, rutas, promotores.</p>
         </article>
         <article class="service-card">
           <div class="service-num">02</div>
-          <h3 class="service-title">Distribución & Estrategia</h3>
-          <p class="service-desc">Tu música en todas las plataformas. Data, timing, playlists.</p>
+          <h3 class="service-title" data-es="Distribución & Estrategia" data-en="Distribution & Strategy">Distribución & Estrategia</h3>
+          <p class="service-desc" data-es="Tu música en todas las plataformas. Data, timing, playlists." data-en="Your music on all platforms. Data, timing, playlists.">Tu música en todas las plataformas. Data, timing, playlists.</p>
         </article>
         <article class="service-card">
           <div class="service-num">03</div>
-          <h3 class="service-title">Editorial & A&R</h3>
-          <p class="service-desc">Derechos de autor, licenciamiento, sync para cine y TV.</p>
+          <h3 class="service-title" data-es="Editorial & A&R" data-en="Publishing & A&R">Editorial & A&R</h3>
+          <p class="service-desc" data-es="Derechos de autor, licenciamiento, sync para cine y TV." data-en="Copyright, licensing, sync for film and TV.">Derechos de autor, licenciamiento, sync para cine y TV.</p>
         </article>
       </div>
     </div>
@@ -808,7 +814,7 @@
   <!-- VIDEOS -->
   <section class="videos">
     <div class="section-content">
-      <div class="section-label">En acción</div>
+      <div class="section-label" data-es="En acción" data-en="In action">En acción</div>
       <div class="video-showcase">
         <div class="video-main">
           <iframe id="videoFrame" src="https://www.youtube.com/embed/ZGxSXchZNfo?rel=0" title="Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -821,10 +827,10 @@
   <!-- CONTACTO -->
   <section class="contact">
     <div class="section-content">
-      <h2 class="contact-title" id="contactTitle"><span>C</span><span>O</span><span>N</span><span>E</span><span>C</span><span>T</span><span>E</span><span>M</span><span>O</span><span>S</span></h2>
+      <h2 class="contact-title" id="contactTitle" data-es="CONECTEMOS" data-en="LET'S CONNECT"><span>C</span><span>O</span><span>N</span><span>E</span><span>C</span><span>T</span><span>E</span><span>M</span><span>O</span><span>S</span></h2>
       <div class="contact-links">
-        <a href="mailto:emc121091@me.com?subject=Proyecto" class="c-link primary">Email</a>
-        <a href="https://edumecar.github.io/Book/" target="_blank" rel="noopener" class="c-link">Booking</a>
+        <a href="mailto:emc121091@me.com?subject=Proyecto" class="c-link primary" data-es="Email" data-en="Email">Email</a>
+        <a href="https://edumecar.github.io/Book/" target="_blank" rel="noopener" class="c-link" data-es="Booking" data-en="Booking">Booking</a>
         <a href="https://www.linkedin.com/in/edumecar" target="_blank" rel="noopener" class="c-link">LinkedIn</a>
       </div>
     </div>
@@ -843,6 +849,48 @@
   <a href="https://wa.me/525512478139" class="whatsapp" target="_blank"><i class="fab fa-whatsapp"></i></a>
 
   <script>
+  // === LANGUAGE TOGGLE ===
+  const langBtns = document.querySelectorAll('.lang-btn');
+  let currentLang = 'es';
+  
+  function setLanguage(lang) {
+    currentLang = lang;
+    
+    // Update buttons
+    langBtns.forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.lang === lang);
+    });
+    
+    // Update all translatable elements
+    document.querySelectorAll('[data-es]').forEach(el => {
+      const text = el.getAttribute(`data-${lang}`);
+      if (text) {
+        // Special handling for contact title (has spans)
+        if (el.id === 'contactTitle') {
+          const letters = text.split('');
+          el.innerHTML = letters.map(letter => `<span>${letter}</span>`).join('');
+          // Re-apply animation delays
+          el.querySelectorAll('span').forEach((span, i) => {
+            span.style.transitionDelay = `${i * 0.05}s`;
+            if (el.classList.contains('revealed')) {
+              span.style.opacity = '1';
+              span.style.transform = 'translateY(0)';
+            }
+          });
+        } else {
+          el.innerHTML = text;
+        }
+      }
+    });
+    
+    // Update html lang attribute
+    document.documentElement.lang = lang;
+  }
+  
+  langBtns.forEach(btn => {
+    btn.addEventListener('click', () => setLanguage(btn.dataset.lang));
+  });
+
   // === INTRO CINEMATOGRÁFICA ===
   const introOverlay = document.getElementById('introOverlay');
   const hero = document.getElementById('hero');
