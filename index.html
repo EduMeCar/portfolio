@@ -108,50 +108,83 @@
     align-items: center;
     padding: 60px 8vw;
     gap: 60px;
+    position: relative;
   }
   
-  .hero-left { }
+  /* HEARTBEAT LINE */
+  .heartbeat {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    height: 1px;
+    pointer-events: none;
+    z-index: 0;
+  }
+  
+  .heartbeat::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, 
+      transparent 0%, 
+      rgba(255,102,0,0.08) 20%, 
+      rgba(255,102,0,0.15) 50%, 
+      rgba(255,102,0,0.08) 80%, 
+      transparent 100%
+    );
+  }
+  
+  .heartbeat::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, 
+      transparent 0%, 
+      rgba(255,102,0,0) 20%, 
+      rgba(255,102,0,0.6) 50%, 
+      rgba(255,102,0,0) 80%, 
+      transparent 100%
+    );
+    animation: heartbeat 4s ease-in-out infinite;
+  }
+  
+  @keyframes heartbeat {
+    0%, 100% { 
+      opacity: 0;
+      transform: scaleY(1);
+    }
+    40% {
+      opacity: 0;
+    }
+    50% { 
+      opacity: 1;
+      transform: scaleY(2);
+    }
+    60% {
+      opacity: 0;
+    }
+  }
+  
+  .hero-left { position: relative; z-index: 1; }
   
   .hero-right {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 30px;
-  }
-  
-  /* CARACOL ANIMADO */
-  .caracol-wrap {
-    width: 280px;
-    height: 280px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     position: relative;
-  }
-  
-  .caracol-wrap img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    animation: breathe 4s ease-in-out infinite;
-    filter: drop-shadow(0 0 0 transparent);
-  }
-  
-  @keyframes breathe {
-    0%, 100% { 
-      transform: scale(1) translateY(0); 
-      filter: drop-shadow(0 10px 30px rgba(0,0,0,0.4));
-    }
-    50% { 
-      transform: scale(1.03) translateY(-8px); 
-      filter: drop-shadow(0 20px 50px rgba(0,0,0,0.3)) drop-shadow(0 0 30px rgba(255,102,0,0.15));
-    }
+    z-index: 1;
   }
   
   /* SPOTIFY EN HERO */
   .hero-spotify {
     width: 100%;
-    max-width: 350px;
+    max-width: 380px;
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 20px 60px rgba(0,0,0,0.4);
@@ -159,7 +192,7 @@
   
   .hero-spotify iframe {
     width: 100%;
-    height: 152px;
+    height: 352px;
     border: none;
   }
   
@@ -228,9 +261,8 @@
     .hero-right {
       order: -1;
     }
-    .caracol-wrap {
-      width: 200px;
-      height: 200px;
+    .heartbeat {
+      display: none;
     }
   }
 
@@ -523,15 +555,13 @@
 
   <!-- HERO -->
   <section class="hero">
+    <div class="heartbeat"></div>
     <div class="hero-left section-content">
       <p class="greeting">ARQUITECTURA MUSICAL</p>
       <h1 class="hero-name">Eduardo<br><span>Mejía</span></h1>
       <p class="hero-location">BARCELONA · <strong>CIUDAD DE MÉXICO</strong></p>
     </div>
     <div class="hero-right">
-      <div class="caracol-wrap">
-        <img src="logo.svg" alt="TurboBoyz">
-      </div>
       <div class="hero-spotify">
         <iframe src="https://open.spotify.com/embed/playlist/26qaG2E3bW6ZNIk5mvPpjr?utm_source=generator&theme=0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
       </div>
