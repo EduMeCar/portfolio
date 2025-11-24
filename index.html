@@ -814,7 +814,7 @@
   <!-- VIDEOS -->
   <section class="videos">
     <div class="section-content">
-      <div class="section-label" data-es="En acción" data-en="In action">PRODUCCIONES</div>
+      <div class="section-label" data-es="En acción" data-en="In action">En acción</div>
       <div class="video-showcase">
         <div class="video-main">
           <iframe id="videoFrame" src="https://www.youtube.com/embed/ZGxSXchZNfo?rel=0" title="Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -849,6 +849,39 @@
   <a href="https://wa.me/525512478139" class="whatsapp" target="_blank"><i class="fab fa-whatsapp"></i></a>
 
   <script>
+  // === MOBILE ENHANCEMENTS ===
+  const isMobile = window.innerWidth <= 900;
+  
+  if (isMobile) {
+    // Puzzle effect for hero name
+    setTimeout(() => {
+      const heroName = document.querySelector('.hero-name');
+      const spans = heroName.querySelectorAll('span');
+      heroName.classList.add('puzzle-active');
+      
+      // Animate each letter with delay
+      const text = heroName.textContent.trim();
+      const letters = text.split('');
+      heroName.innerHTML = letters.map((letter, i) => {
+        const delay = i * 0.05;
+        return letter === ' ' ? ' ' : `<span style="animation-delay: ${delay}s">${letter}</span>`;
+      }).join('');
+    }, 3000);
+    
+    // Parallax scroll effect
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const scrolled = window.scrollY;
+          document.documentElement.style.setProperty('--scroll', scrolled);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    });
+  }
+
   // === LANGUAGE TOGGLE ===
   const langBtns = document.querySelectorAll('.lang-btn');
   let currentLang = 'es';
@@ -971,12 +1004,10 @@
   // === VIDEO SELECTOR ===
   const videos = [
     { id: 'ZGxSXchZNfo' },
-    { id: 'dynmB6dCvKw' },
-    { id: 'XCW95zjBUK4' },
+    { id: 'oglT_tl7TkU' },
     { id: '2HmVZI4MfkM' },
     { id: 'lJE19BWmbGY' },
-    { id: 'YaHJZxjEC5A' },
-    { id: 'SD3T_Or_mvk' },
+    { id: 'DEjjE4Mv2yQ' }
   ];
 
   const videoFrame = document.getElementById('videoFrame');
