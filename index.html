@@ -659,7 +659,7 @@
     line-height: 1.8; 
   }
 
-  /* === VIDEOS CINEMATOGRÁFICOS === */
+  /* === VIDEOS MEJORADOS PARA MÓVIL === */
   .videos { 
     padding: 160px 8vw; 
     background: var(--dark);
@@ -711,13 +711,29 @@
   
   .video-selector {
     display: flex;
-    justify-content: center;
     gap: 15px;
-    flex-wrap: wrap;
+    overflow-x: auto;
+    padding: 10px 5px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--orange) transparent;
+  }
+
+  .video-selector::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  .video-selector::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .video-selector::-webkit-scrollbar-thumb {
+    background: var(--orange);
+    border-radius: 3px;
   }
   
   .video-thumb {
-    width: 120px;
+    flex: 0 0 auto;
+    width: 140px;
     aspect-ratio: 16/9;
     border-radius: 8px;
     overflow: hidden;
@@ -768,7 +784,7 @@
     transform: translateY(-5px);
   }
 
-  /* === CONTACTO ÉPICO === */
+  /* === CONTACTO FIXED PARA MÓVIL === */
   .contact { 
     padding: 180px 8vw; 
     background: linear-gradient(180deg, var(--dark) 0%, var(--black) 100%);
@@ -788,16 +804,18 @@
   }
   
   .contact-title { 
-    font-size: clamp(4rem, 12vw, 9rem); 
+    font-size: clamp(2.5rem, 10vw, 7rem); 
     font-weight: 900; 
-    margin-bottom: 100px; 
-    letter-spacing: -0.03em;
+    margin-bottom: 80px; 
+    letter-spacing: -0.02em;
     color: var(--light);
     position: relative;
     display: inline-block;
     opacity: 0;
     transform: translateY(40px);
     transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    word-break: keep-all;
+    overflow-wrap: normal;
   }
   
   .contact-title.revealed {
@@ -820,7 +838,7 @@
   .contact-links { 
     display: flex; 
     justify-content: center; 
-    gap: 25px;
+    gap: 20px;
     flex-wrap: wrap;
     position: relative;
     opacity: 0;
@@ -834,12 +852,12 @@
   }
   
   .c-link {
-    padding: 22px 48px;
+    padding: 18px 36px;
     font-family: var(--mono);
-    font-size: 12px;
+    font-size: 11px;
     text-decoration: none;
     text-transform: uppercase;
-    letter-spacing: 0.3em;
+    letter-spacing: 0.25em;
     border-radius: 50px;
     transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     border: 1px solid rgba(240,235,227,0.15);
@@ -847,6 +865,7 @@
     background: transparent;
     position: relative;
     overflow: hidden;
+    white-space: nowrap;
   }
   
   .c-link::before {
@@ -1011,7 +1030,7 @@
     }
     
     .video-thumb {
-      width: 100px;
+      width: 120px;
     }
     
     .audio-waves {
@@ -1025,11 +1044,13 @@
     .contact-links {
       flex-direction: column;
       width: 100%;
+      gap: 15px;
     }
     
     .c-link {
       width: 100%;
       text-align: center;
+      padding: 16px 32px;
     }
     
     .lang-toggle {
@@ -1057,7 +1078,7 @@
     }
     
     .video-thumb {
-      width: 80px;
+      width: 100px;
     }
     
     .audio-waves {
@@ -1075,6 +1096,11 @@
     
     .service-card {
       padding: 40px 25px;
+    }
+    
+    .contact-title {
+      font-size: clamp(2.2rem, 12vw, 4rem);
+      margin-bottom: 60px;
     }
   }
   </style>
@@ -1134,8 +1160,8 @@
     <div class="spotify-container">
       <div class="spotify-content">
         <span class="spotify-label" data-es="Selección Musical" data-en="Music Selection">Selección Musical</span>
-        <h2 class="spotify-title">Turbo<span>Boyz</span></h2>
-        <p class="spotify-description" data-es="Una selección cuidadosamente curada que representa el sonido y la energía que impulsamos. Desde ritmos vibrantes hasta melodías que definen momentos." data-en="A carefully curated selection representing the sound and energy we drive. From vibrant rhythms to melodies that define moments.">Una selección cuidadosamente curada que representa el sonido y la energía que impulsamos. Desde ritmos vibrantes hasta melodías que definen momentos.</p>
+        <h2 class="spotify-title">La Banda Sonora<br><span>del Éxito</span></h2>
+        <p class="spotify-description" data-es="Una selección que define la energía y visión que impulsamos. Cada canción cuenta una historia de crecimiento, innovación y resultados extraordinarios." data-en="A selection that defines the energy and vision we drive. Each song tells a story of growth, innovation, and extraordinary results.">Una selección que define la energía y visión que impulsamos. Cada canción cuenta una historia de crecimiento, innovación y resultados extraordinarios.</p>
       </div>
       
       <div class="spotify-player">
