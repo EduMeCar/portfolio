@@ -91,53 +91,6 @@
     100% { transform: translate(50px, 50px); }
   }
 
-  .floating-shapes {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-  }
-
-  .shape {
-    position: absolute;
-    border: 1px solid rgba(255, 102, 0, 0.1);
-    border-radius: 50%;
-    animation: shapeFloat 25s infinite linear;
-  }
-
-  .shape:nth-child(1) {
-    width: 400px;
-    height: 400px;
-    top: -200px;
-    left: -200px;
-    animation-delay: 0s;
-  }
-
-  .shape:nth-child(2) {
-    width: 300px;
-    height: 300px;
-    bottom: -150px;
-    right: 10%;
-    animation-delay: -5s;
-    animation-duration: 30s;
-  }
-
-  .shape:nth-child(3) {
-    width: 200px;
-    height: 200px;
-    top: 20%;
-    right: -100px;
-    animation-delay: -10s;
-    animation-duration: 20s;
-  }
-
-  @keyframes shapeFloat {
-    0% { transform: rotate(0deg) translate(0, 0); }
-    25% { transform: rotate(90deg) translate(20px, 40px); }
-    50% { transform: rotate(180deg) translate(0, 80px); }
-    75% { transform: rotate(270deg) translate(-20px, 40px); }
-    100% { transform: rotate(360deg) translate(0, 0); }
-  }
-
   .noise-overlay {
     position: absolute;
     top: 0;
@@ -228,7 +181,7 @@
     color: var(--light);
   }
 
-  /* === HERO SECTION CINEMATOGRÁFICO === */
+  /* === HERO SECTION REDISEÑADO - SIN SPOTIFY === */
   .hero {
     min-height: 100vh;
     display: flex;
@@ -439,46 +392,6 @@
     }
   }
 
-  .hero-spotify {
-    width: 100%;
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 
-      0 25px 80px rgba(0,0,0,0.6), 
-      0 0 0 1px rgba(255,102,0,0.15),
-      0 0 60px rgba(255,102,0,0.1);
-    transform: perspective(1000px) rotateX(5deg) translateY(20px);
-    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    position: relative;
-  }
-
-  .hero-spotify::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    border: 1px solid rgba(255,102,0,0.2);
-    border-radius: 20px;
-    pointer-events: none;
-    z-index: 2;
-  }
-
-  .hero-spotify:hover {
-    transform: perspective(1000px) rotateX(0deg) translateY(0);
-    box-shadow: 
-      0 35px 100px rgba(0,0,0,0.8), 
-      0 0 0 1px rgba(255,102,0,0.3),
-      0 0 80px rgba(255,102,0,0.2);
-  }
-
-  .hero-spotify iframe {
-    width: 100%;
-    height: 352px;
-    border: none;
-  }
-
   .scroll-hint { 
     position: absolute; 
     bottom: 50px; 
@@ -512,6 +425,104 @@
   @keyframes scanLine {
     0%, 100% { opacity: 0; }
     50% { opacity: 1; }
+  }
+
+  /* === SECCIÓN SPOTIFY DEDICADA - NUEVA ESTRUCTURA === */
+  .spotify-section {
+    padding: 120px 8vw;
+    background: linear-gradient(180deg, var(--black) 0%, var(--dark) 100%);
+    position: relative;
+  }
+
+  .spotify-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--orange), transparent);
+  }
+
+  .spotify-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+
+  .spotify-content {
+    text-align: left;
+  }
+
+  .spotify-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--orange);
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    display: block;
+  }
+
+  .spotify-title {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 30px;
+    color: var(--light);
+  }
+
+  .spotify-title span {
+    color: var(--orange);
+  }
+
+  .spotify-description {
+    font-size: 1.1rem;
+    color: rgba(240, 235, 227, 0.7);
+    line-height: 1.7;
+    margin-bottom: 40px;
+  }
+
+  .spotify-player {
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 
+      0 25px 80px rgba(0,0,0,0.6), 
+      0 0 0 1px rgba(255,102,0,0.15),
+      0 0 60px rgba(255,102,0,0.1);
+    transform: perspective(1000px) rotateY(-5deg);
+    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    position: relative;
+  }
+
+  .spotify-player::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 1px solid rgba(255,102,0,0.2);
+    border-radius: 20px;
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  .spotify-player:hover {
+    transform: perspective(1000px) rotateY(0deg);
+    box-shadow: 
+      0 35px 100px rgba(0,0,0,0.8), 
+      0 0 0 1px rgba(255,102,0,0.3),
+      0 0 80px rgba(255,102,0,0.2);
+  }
+
+  .spotify-player iframe {
+    width: 100%;
+    height: 380px;
+    border: none;
   }
 
   /* === SERVICIOS PREMIUM === */
@@ -956,6 +967,20 @@
       font-size: clamp(3.5rem, 14vw, 8rem);
     }
     
+    .spotify-container {
+      grid-template-columns: 1fr;
+      gap: 40px;
+      text-align: center;
+    }
+    
+    .spotify-content {
+      text-align: center;
+    }
+    
+    .spotify-player {
+      transform: perspective(1000px) rotateY(0deg);
+    }
+    
     .services-grid {
       grid-template-columns: 1fr;
       gap: 30px;
@@ -977,7 +1002,7 @@
       line-height: 0.85;
     }
     
-    .services, .videos, .contact { 
+    .spotify-section, .services, .videos, .contact { 
       padding: 120px 6vw; 
     }
     
@@ -1059,11 +1084,6 @@
   <div class="cinematic-bg">
     <div class="gradient-orbs"></div>
     <div class="dynamic-grid"></div>
-    <div class="floating-shapes">
-      <div class="shape"></div>
-      <div class="shape"></div>
-      <div class="shape"></div>
-    </div>
     <div class="noise-overlay"></div>
   </div>
 
@@ -1073,7 +1093,7 @@
     <button class="lang-btn" data-lang="en">EN</button>
   </div>
 
-  <!-- HERO CINEMATOGRÁFICO -->
+  <!-- HERO CINEMATOGRÁFICO - SIN SPOTIFY -->
   <section class="hero" id="hero">
     <div class="hero-spacer"></div>
     
@@ -1103,14 +1123,25 @@
           <div class="wave-bar"></div>
           <div class="wave-bar"></div>
         </div>
-        
-        <div class="hero-spotify">
-          <iframe src="https://open.spotify.com/embed/playlist/26qaG2E3bW6ZNIk5mvPpjr?utm_source=generator&theme=0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-        </div>
       </div>
     </div>
     
     <div class="scroll-hint"><span>SCROLL</span></div>
+  </section>
+
+  <!-- SECCIÓN SPOTIFY DEDICADA - SEPARADA DEL HERO -->
+  <section class="spotify-section">
+    <div class="spotify-container">
+      <div class="spotify-content">
+        <span class="spotify-label" data-es="Selección Musical" data-en="Music Selection">Selección Musical</span>
+        <h2 class="spotify-title">Turbo<span>Boyz</span></h2>
+        <p class="spotify-description" data-es="Una selección cuidadosamente curada que representa el sonido y la energía que impulsamos. Desde ritmos vibrantes hasta melodías que definen momentos." data-en="A carefully curated selection representing the sound and energy we drive. From vibrant rhythms to melodies that define moments.">Una selección cuidadosamente curada que representa el sonido y la energía que impulsamos. Desde ritmos vibrantes hasta melodías que definen momentos.</p>
+      </div>
+      
+      <div class="spotify-player">
+        <iframe src="https://open.spotify.com/embed/playlist/26qaG2E3bW6ZNIk5mvPpjr?utm_source=generator&theme=0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+      </div>
+    </div>
   </section>
 
   <!-- SERVICIOS -->
