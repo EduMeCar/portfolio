@@ -176,11 +176,10 @@
   }
 
   .hero-content {
-    max-width: 1200px;
-    width: 100%;
+    width: 100%; /* Cambiado de max-width a width */
     position: relative;
     z-index: 10;
-    margin-top: 60px; /* Respiración adicional */
+    margin-top: 60px;
   }
 
   .hero-name {
@@ -241,7 +240,7 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 30px;
-    max-width: 800px;
+    width: 100%; /* Cambiado de max-width a width */
     margin: 80px auto 0;
   }
 
@@ -348,6 +347,7 @@
     color: inherit;
     text-transform: uppercase;
     letter-spacing: -0.02em;
+    width: 100%; /* Añadido para asegurar ancho completo */
   }
 
   .section-title span {
@@ -359,7 +359,7 @@
     color: inherit;
     line-height: 1.5;
     margin-bottom: 80px;
-    max-width: 700px;
+    width: 100%; /* Añadido para asegurar ancho completo */
     font-weight: 800;
     border-left: 6px solid currentColor;
     padding-left: 25px;
@@ -371,6 +371,7 @@
     display: grid; 
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); 
     gap: 50px; 
+    width: 100%; /* Añadido para asegurar ancho completo */
   }
   
   .service-card {
@@ -421,6 +422,7 @@
     margin-top: 80px;
     border: 4px solid currentColor;
     background: inherit;
+    width: 100%; /* Añadido para asegurar ancho completo */
   }
 
   .brand-item {
@@ -465,8 +467,7 @@
 
   /* === SPOTIFY BRUTALISTA MEJORADO === */
   .spotify-container {
-    max-width: 1000px;
-    margin: 0 auto;
+    width: 100%; /* Cambiado de max-width a width */
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 80px;
@@ -499,7 +500,7 @@
 
   /* === VIDEOS BRUTALISTAS MEJORADOS === */
   .video-showcase {
-    max-width: 1100px;
+    width: 100%; /* Cambiado de max-width a width */
     margin: 80px auto 0;
   }
   
@@ -586,6 +587,7 @@
     position: relative;
     display: inline-block;
     text-transform: uppercase;
+    width: 100%; /* Añadido para asegurar ancho completo */
   }
   
   .contact-links { 
@@ -594,6 +596,7 @@
     gap: 40px;
     flex-wrap: wrap;
     position: relative;
+    width: 100%; /* Añadido para asegurar ancho completo */
   }
   
   .c-link {
@@ -631,13 +634,14 @@
     padding: 100px 8vw 60px; 
     border-top: 6px solid var(--white);
     display: flex; 
-    justify-content: center; /* Cambiado de space-between a center */
+    justify-content: center;
     align-items: center; 
     flex-wrap: wrap; 
     gap: 40px; 
     background: var(--black);
     color: var(--white);
-    text-align: center; /* Añadido para centrar el texto */
+    text-align: center;
+    width: 100%; /* Añadido para asegurar ancho completo */
   }
   
   .footer-copy { 
@@ -730,7 +734,6 @@
 
     .hero-stats {
       grid-template-columns: 1fr;
-      max-width: 400px;
     }
 
     .brand-item:nth-child(3n) {
@@ -823,7 +826,7 @@
     }
     
     .hero-content {
-      margin-top: 40px; /* Menos espacio en móvil */
+      margin-top: 40px;
     }
     
     .video-thumb {
