@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+  
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>EDUARDO MEJÍA | MANAGEMENT BRUTAL</title>
@@ -111,11 +112,11 @@
     100% { transform: translateY(4px); }
   }
 
-  /* === BOTONES DE IDIOMA MÁS BRUTALISTAS === */
+  /* === BOTONES DE IDIOMA MEJORADOS === */
   .lang-toggle {
     position: fixed;
-    top: 30px;
-    right: 30px;
+    top: 40px;
+    right: 40px;
     z-index: 1000;
     display: flex;
     background: var(--black);
@@ -179,6 +180,7 @@
     width: 100%;
     position: relative;
     z-index: 10;
+    margin-top: 60px; /* Respiración adicional */
   }
 
   .hero-name {
@@ -564,7 +566,7 @@
     transform: translate(6px, 6px);
   }
 
-  /* === CONTACTO BRUTALISTA MEJORADO === */
+  /* === CONTACTO SIMPLIFICADO === */
   .contact-section {
     background: var(--white);
     color: var(--black);
@@ -572,6 +574,7 @@
     position: relative;
     overflow: hidden;
     border-bottom: 6px solid var(--black);
+    padding: 140px 8vw;
   }
   
   .contact-title { 
@@ -623,7 +626,7 @@
     border-color: var(--black);
   }
 
-  /* === FOOTER BRUTALISTA MEJORADO === */
+  /* === FOOTER SIMPLIFICADO === */
   footer { 
     padding: 100px 8vw 60px; 
     border-top: 6px solid var(--white);
@@ -842,6 +845,10 @@
       font-size: clamp(2.8rem, 16vw, 6rem);
     }
     
+    .hero-content {
+      margin-top: 40px; /* Menos espacio en móvil */
+    }
+    
     .video-thumb {
       width: 140px;
     }
@@ -877,6 +884,11 @@
 
     .stat {
       padding: 40px 20px;
+    }
+
+    .lang-toggle {
+      top: 20px;
+      right: 20px;
     }
   }
   </style>
@@ -962,23 +974,24 @@
     <p class="section-subtitle" data-es="Colaboraciones estratégicas con marcas líderes" data-en="Strategic collaborations with leading brands">Colaboraciones estratégicas con marcas líderes</p>
     
     <div class="brands-grid">
+      <!-- Cambia estos src por tus imágenes locales -->
       <div class="brand-item">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Netflix">
+        <img src="netflix-logo.png" alt="Netflix">
       </div>
       <div class="brand-item">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/0/0f/PepsiCo_logo.svg" alt="PepsiCo">
+        <img src="pepsi-logo.png" alt="PepsiCo">
       </div>
       <div class="brand-item">
-        <img src="https://i.scdn.co/image/ab6761610000e5eb8b5b0dbf48e75c0b537f0f89" alt="Ballena Records">
+        <img src="ballena-records-logo.png" alt="Ballena Records">
       </div>
       <div class="brand-item">
-        <img src="https://assets-global.website-files.com/625ac93c99e5ee6a28b43b0f/625ac93c99e5ee04beb43b8a_OneRPM-Logo-Black.svg" alt="OneRPM">
+        <img src="onerpm-logo.png" alt="OneRPM">
       </div>
       <div class="brand-item">
-        <img src="https://symphonicdistribution.com/wp-content/uploads/2023/01/SD_Logo-1.png" alt="Symphonic">
+        <img src="symphonic-logo.png" alt="Symphonic">
       </div>
       <div class="brand-item">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/8/8c/Warner_Chappell_Music_logo.svg" alt="Warner Chappell">
+        <img src="warner-chappell-logo.png" alt="Warner Chappell">
       </div>
     </div>
   </section>
@@ -1007,15 +1020,15 @@
     
     <div class="video-showcase">
       <div class="video-main">
-        <iframe id="videoFrame" src="https://www.youtube.com/embed/ZGxSXchZNfo?rel=0" title="Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe id="videoFrame" src="https://www.youtube.com/embed/oglT_tl7TkU?rel=0" title="Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
       <div class="video-selector" id="videoSelector"></div>
     </div>
   </section>
 
-  <!-- CONTACTO - SECCIÓN BLANCA -->
+  <!-- CONTACTO SIMPLIFICADO -->
   <section class="contact-section">
-    <h2 class="contact-title" data-es="CONEXIÓN" data-en="CONNECTION">CONEXIÓN</h2>
+    <h2 class="contact-title" data-es="CONECTEMOS" data-en="LET'S CONNECT">CONECTEMOS</h2>
     <p class="section-subtitle" data-es="Conversación directa. Sin burocracia." data-en="Direct conversation. No bureaucracy.">Conversación directa. Sin burocracia.</p>
     
     <div class="contact-links">
@@ -1031,7 +1044,7 @@
     </div>
   </section>
 
-  <!-- FOOTER -->
+  <!-- FOOTER SIMPLIFICADO -->
   <footer>
     <p class="footer-copy" data-es="© 2024 EDUARDO MEJÍA — GESTIÓN MUSICAL DIRECTA" data-en="© 2024 EDUARDO MEJÍA — DIRECT MUSIC MANAGEMENT">© 2024 EDUARDO MEJÍA — GESTIÓN MUSICAL DIRECTA</p>
     <div class="footer-links">
@@ -1076,13 +1089,15 @@
     btn.addEventListener('click', () => setLanguage(btn.dataset.lang));
   });
 
-  // === SELECTOR DE VIDEOS BRUTALISTA ===
+  // === SELECTOR DE VIDEOS ACTUALIZADO ===
   const videos = [
-    { id: 'ZGxSXchZNfo', title: 'Boiler Room Set', desc: 'DJ Damb Dam - Live Performance' },
-    { id: 'dynmB6dCvKw', title: 'EDC México', desc: 'Main Stage Live Set' },
-    { id: 'oglT_tl7TkU', title: 'Coca Cola Flow Fest', desc: 'Festival Performance' },
-    { id: 'XCW95zjBUK4', title: 'Wonderland', desc: 'Live Performance' },
-    { id: '2HmVZI4MfkM', title: 'Underground Set', desc: 'Exclusive Performance' },
+    { id: "oglT_tl7TkU" },
+    { id: "2HmVZI4MfkM" },
+    { id: "lJE19BWmbGY" },
+    { id: "DEjjE4Mv2yQ" },
+    { id: "ZGxSXchZNfo" },
+    { id: "kXYiU_JCYtU" },
+    { id: "ktvTqknDobU" }
   ];
 
   const videoFrame = document.getElementById('videoFrame');
@@ -1091,7 +1106,7 @@
   videos.forEach((v, i) => {
     const thumb = document.createElement('div');
     thumb.className = `video-thumb${i === 0 ? ' active' : ''}`;
-    thumb.innerHTML = `<img src="https://img.youtube.com/vi/${v.id}/mqdefault.jpg" alt="${v.title}">`;
+    thumb.innerHTML = `<img src="https://img.youtube.com/vi/${v.id}/mqdefault.jpg" alt="Video ${i + 1}">`;
     thumb.addEventListener('click', () => {
       videoFrame.src = `https://www.youtube.com/embed/${v.id}?rel=0&autoplay=1`;
       document.querySelectorAll('.video-thumb').forEach(t => t.classList.remove('active'));
