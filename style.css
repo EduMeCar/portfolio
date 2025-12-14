@@ -408,15 +408,13 @@ body {
   opacity: 0.9;
 }
 /* ===================================
-   MARCAS/ALIANZAS - LAYOUT 3x2 REFINADO
-   =================================== */
+   MARCAS/ALIANZAS — LAYOUT 6x1 HORIZONTAL   =================================== */
 
 .brands-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 40px;
-    max-width: 900px;
-    margin: 60px auto;
+       grid-template-columns: repeat(6, 1fr);
+       gap: 30px;
+    max-width: 1400px;    margin: 60px auto;
     padding: 0 30px;
 }
 
