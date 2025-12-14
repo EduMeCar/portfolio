@@ -444,9 +444,7 @@ body {
 }
 
 .brand-item img {
-  max-width: 95%;
-  max-height: 95%;
-  width: auto;
+    max-height: 80px;  width: auto;
   height: auto;
   object-fit: contain;
   filter: grayscale(70%) brightness(0.4);
