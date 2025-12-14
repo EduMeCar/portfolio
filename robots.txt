@@ -1,0 +1,11 @@
+# Robots.txt para Eduardo Mejía Portfolio
+# https://edumecar.github.io/portfolio/
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://edumecar.github.io/portfolio/sitemap.xml
+
+# Crawl-delay
+Crawl-delay: 1
