@@ -516,15 +516,18 @@ body {
   font-weight: 700;
   opacity: 0.9;
 }
-/* === MARCAS BRUTALISTAS === */
+/* === MARCAS BRUTALISTAS (5 LOGOS) === */
 .brands-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 0;
   margin-top: 80px;
   border: 4px solid currentColor;
   background: inherit;
   width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .brand-item {
@@ -537,14 +540,23 @@ body {
   background: inherit;
   transition: all 0.2s ease;
   position: relative;
+  min-height: 180px;
 }
 
-.brand-item:nth-child(3n) {
-  border-right: none;
-}
-
-.brand-item:nth-last-child(-n+3) {
-  border-bottom: none;
+/* Para desktop: 3 columnas, entonces el 3ro y 5to no tienen borde derecho */
+@media (min-width: 769px) {
+  .brands-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .brand-item:nth-child(3n) {
+    border-right: none;
+  }
+  
+  /* Los últimos 2 items (fila incompleta) no tienen borde inferior */
+  .brand-item:nth-last-child(-n+2) {
+    border-bottom: none;
+  }
 }
 
 .brand-item:hover {
@@ -566,6 +578,45 @@ body {
 .brand-item:hover img {
   filter: brightness(0) invert(0);
 }
+
+/* Responsive para tablet */
+@media (max-width: 768px) {
+  .brands-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .brand-item:nth-child(3n) {
+    border-right: 4px solid currentColor;
+  }
+
+  .brand-item:nth-child(2n) {
+    border-right: none;
+  }
+
+  .brand-item:nth-last-child(-n+1) {
+    border-bottom: none;
+  }
+}
+
+/* Responsive para móvil */
+@media (max-width: 480px) {
+  .brands-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .brand-item {
+    border-right: none !important;
+  }
+
+  .brand-item:not(:last-child) {
+    border-bottom: 4px solid currentColor;
+  }
+  
+  .brand-item:last-child {
+    border-bottom: none;
+  }
+}
+
 
 /* === SPOTIFY BRUTALISTA === */
 .spotify-container {
