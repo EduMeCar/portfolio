@@ -413,7 +413,7 @@ body {
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 0;
   margin-top: 80px;
-  margin-bottom: 80px;  /* ← NUEVO: Espacio inferior */
+  margin-bottom: 80px;
   border: 4px solid currentColor;
   background: inherit;
 }
@@ -443,8 +443,8 @@ body {
 }
 
 .brand-item img {
-  width: 90%;  /* ← CAMBIADO de 70% a 90% */
-  height: 90%;  /* ← CAMBIADO de 70% a 90% */
+  width: 95%;
+  height: 95%;
   object-fit: contain;
   filter: brightness(0) invert(0);
   transition: all 0.2s ease;
@@ -458,56 +458,35 @@ body {
   filter: brightness(0) invert(0);
 }
 
-.brand-item:hover {
-  transform: translateY(-3px);
-  background: #fff;
-  border-color: #ff4500;
-  box-shadow: 0 6px 16px rgba(255,69,0,0.2);
-}
-
-.brand-item:not(:last-child) {
-  border-bottom: 4px solid currentColor;
-}
-
-.brand-item img {
-    max-height: 80px;  width: auto;
-  height: auto;
-  object-fit: contain;
-  filter: grayscale(70%) brightness(0.4);
-  transition: all 0.3s ease;
-}
-
-.brand-item:hover img {
-  filter: grayscale(0%) brightness(1);
-  transform: scale(1.08);
-}
-
-/* Responsive: en móviles cambia a 2 columnas */
+/* === RESPONSIVE MÓVIL === */
 @media (max-width: 768px) {
-    .brands-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 25px;
-        max-width: 500px;
-        padding: 0 20px;
-    }
-    
-    .brand-item {
-        padding: 20px;
-        min-height: 100px;
-    }
-    
-    .brand-item img {
-        max-height: 60px;
-    }
+  .brands-grid {
+    grid-template-columns: repeat(2, 1fr); /* ← 2 columnas en móvil */
+  }
+
+  .brand-item:nth-child(3n) {
+    border-right: 4px solid currentColor; /* ← Restaurar borde */
+  }
+
+  .brand-item:nth-child(2n) {
+    border-right: none; /* ← Quitar borde cada 2 */
+  }
+
+  .brand-item:nth-last-child(-n+3) {
+    border-bottom: 4px solid currentColor; /* ← Restaurar borde */
+  }
+
+  .brand-item:nth-last-child(-n+2) {
+    border-bottom: none; /* ← Quitar borde últimos 2 */
+  }
 }
 
-/* Responsive: en móviles pequeños cambia a 1 columna */
 @media (max-width: 480px) {
-    .brands-grid {
-        grid-template-columns: 1fr;
-        gap: 20px;
-    }
+  .brands-grid {
+    grid-template-columns: repeat(2, 1fr); /* ← Mantener 2 columnas en móvil pequeño */
+  }
 }
+
 
 /* === SPOTIFY BRUTALISTA === */
 .spotify-container {
