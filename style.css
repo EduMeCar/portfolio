@@ -1,6 +1,6 @@
 /* ========================================
    EDUARDO MEJÍA - PORTFOLIO BRUTALISTA
-   style.css - Parte 1: Variables y Reset
+   style.css - Versión Final Corregida
    ======================================== */
 
 :root {
@@ -40,7 +40,7 @@ body {
   font-weight: 800;
 }
 
-/* === FONDO BRUTALISTA MEJORADO === */
+/* === FONDO BRUTALISTA === */
 .brutal-bg {
   position: fixed;
   top: 0;
@@ -101,7 +101,8 @@ body {
   0% { transform: translateY(0); }
   100% { transform: translateY(4px); }
 }
-/* === BOTONES DE IDIOMA MEJORADOS === */
+
+/* === BOTONES DE IDIOMA === */
 .lang-toggle {
   position: fixed;
   top: 40px;
@@ -149,7 +150,7 @@ body {
   background: var(--gray-dark);
 }
 
-/* === HERO BRUTALISTA MEJORADO === */
+/* === HERO === */
 .hero {
   min-height: 100vh;
   display: flex;
@@ -183,10 +184,6 @@ body {
   transition: all 0.3s ease;
 }
 
-.hero-name:hover {
-  transform: translate(2px, 2px);
-}
-
 .hero-name span {
   display: inline-block;
   color: var(--white);
@@ -209,11 +206,6 @@ body {
   transition: all 0.2s ease;
 }
 
-.hero-subtitle:hover {
-  transform: translate(6px, 6px);
-  box-shadow: 4px 4px 0 var(--white);
-}
-
 .hero-location {
   font-family: var(--mono);
   font-size: clamp(0.9rem, 3vw, 1.2rem);
@@ -223,7 +215,7 @@ body {
   text-transform: uppercase;
   font-weight: 800;
 }
-/* === ESTADÍSTICAS BRUTALISTAS === */
+
 .hero-stats {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -239,11 +231,6 @@ body {
   transition: all 0.2s ease;
   position: relative;
   box-shadow: 10px 10px 0 var(--white);
-}
-
-.stat:hover {
-  transform: translate(6px, 6px);
-  box-shadow: 4px 4px 0 var(--white);
 }
 
 .stat-number {
@@ -297,7 +284,7 @@ body {
   0%, 100% { opacity: 0; }
   50% { opacity: 1; }
 }
-/* === SECCIONES ALTERNADAS BLANCO/NEGRO === */
+/* === SECCIONES === */
 .section {
   padding: 140px 0;
   position: relative;
@@ -360,7 +347,7 @@ body {
   opacity: 0.9;
 }
 
-/* === SERVICIOS BRUTALISTAS === */
+/* === SERVICIOS === */
 .services-grid { 
   display: grid; 
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); 
@@ -375,11 +362,6 @@ body {
   position: relative;
   border: 4px solid currentColor;
   box-shadow: 12px 12px 0 currentColor;
-}
-
-.service-card:hover { 
-  transform: translate(8px, 8px);
-  box-shadow: 4px 4px 0 currentColor;
 }
 
 .service-num { 
@@ -407,10 +389,11 @@ body {
   font-weight: 700;
   opacity: 0.9;
 }
-/* === MARCAS BRUTALISTAS MEJORADAS === */
+
+/* === MARCAS === */
 .brands-grid {
   display: grid;
-  grid-template-columns: repeat(6, 1fr); /* ← DESKTOP: 6 columnas (1 fila) */
+  grid-template-columns: repeat(6, 1fr);
   gap: 0;
   margin-top: 80px;
   margin-bottom: 80px;
@@ -431,11 +414,11 @@ body {
 }
 
 .brand-item:nth-child(6n) {
-  border-right: none; /* ← Quitar borde derecho cada 6 items */
+  border-right: none;
 }
 
 .brand-item:nth-last-child(-n+6) {
-  border-bottom: none; /* ← Quitar borde inferior últimos 6 */
+  border-bottom: none;
 }
 
 .brand-item:hover {
@@ -449,54 +432,15 @@ body {
   transition: all 0.2s ease;
 }
 
-/* Desktop: Logos blancos siempre visibles */
 .section.dark .brand-item img {
   filter: brightness(0) invert(1);
 }
 
-/* Desktop: Al hover, logos negros con fondo naranja */
 .brand-item:hover img {
   filter: brightness(0) invert(0);
 }
 
-/* === RESPONSIVE MÓVIL === */
-@media (max-width: 768px) {
-  .brands-grid {
-    grid-template-columns: repeat(2, 1fr) !important; /* ← MÓVIL: 2 columnas (3 filas) */
-  }
-
-  .brand-item img {
-    width: 85%;
-    height: 85%;
-  }
-
-  /* Resetear bordes de desktop (6 columnas) */
-  .brand-item:nth-child(6n) {
-    border-right: 4px solid currentColor;
-  }
-
-  .brand-item:nth-last-child(-n+6) {
-    border-bottom: 4px solid currentColor;
-  }
-
-  /* Aplicar bordes para 2 columnas */
-  .brand-item:nth-child(2n) {
-    border-right: none;
-  }
-
-  .brand-item:nth-last-child(-n+2) {
-    border-bottom: none;
-  }
-}
-
-@media (max-width: 480px) {
-  .brand-item img {
-    width: 80%;
-    height: 80%;
-  }
-}
-
-/* === SPOTIFY BRUTALISTA === */
+/* === SPOTIFY === */
 .spotify-container {
   width: 100%;
   display: grid;
@@ -529,7 +473,7 @@ body {
   border: none;
 }
 
-/* === VIDEOS BRUTALISTAS === */
+/* === VIDEOS === */
 .video-showcase {
   width: 100%;
   margin: 80px auto 0;
@@ -597,7 +541,8 @@ body {
   box-shadow: 6px 6px 0 currentColor;
   transform: translate(6px, 6px);
 }
-/* === CONTACTO SIMPLIFICADO === */
+
+/* === CONTACTO === */
 .contact-section {
   background: var(--white);
   color: var(--black);
@@ -654,19 +599,13 @@ body {
   gap: 15px;
 }
 
-.c-link:hover { 
-  transform: translate(8px, 8px);
-  box-shadow: 2px 2px 0 var(--black);
-  color: var(--black);
-}
-
 .c-link.primary {
   background: var(--orange);
   color: var(--black);
   border-color: var(--black);
 }
 
-/* === FOOTER SIMPLIFICADO === */
+/* === FOOTER === */
 footer { 
   padding: 100px 0 60px; 
   border-top: 6px solid var(--white);
@@ -696,7 +635,7 @@ footer {
   text-transform: uppercase;
 }
 
-/* === WHATSAPP BRUTALISTA === */
+/* === WHATSAPP === */
 .whatsapp { 
   position: fixed; 
   bottom: 40px; 
@@ -753,7 +692,7 @@ footer {
   transform: translate(8px, 8px);
   box-shadow: 2px 2px 0 var(--black);
 }
-/* === RESPONSIVE BRUTALISTA === */
+/* === RESPONSIVE === */
 @media (max-width: 1024px) {
   .hero-name {
     font-size: clamp(3.5rem, 14vw, 10rem);
@@ -776,18 +715,6 @@ footer {
 
   .hero-stats {
     grid-template-columns: 1fr;
-  }
-
-  .brand-item:nth-child(3n) {
-    border-right: 4px solid currentColor;
-  }
-
-  .brand-item:nth-child(2n) {
-    border-right: none;
-  }
-
-  .brand-item:nth-last-child(-n+2) {
-    border-bottom: none;
   }
 }
 
@@ -861,6 +788,14 @@ footer {
     grid-template-columns: repeat(2, 1fr);
   }
 
+  .brand-item:nth-child(6n) {
+    border-right: 4px solid currentColor;
+  }
+
+  .brand-item:nth-last-child(-n+6) {
+    border-bottom: 4px solid currentColor;
+  }
+
   .brand-item:nth-child(2n) {
     border-right: none;
   }
@@ -869,29 +804,14 @@ footer {
     border-bottom: none;
   }
 
+  .brand-item img {
+    width: 85%;
+    height: 85%;
+  }
+
   .contact-container {
     padding: 0 6vw;
   }
-}
-/* === SVG ICONS OPTIMIZATION === */
-.c-link svg,
-.whatsapp svg {
-  flex-shrink: 0;
-  transition: transform 0.2s ease;
-}
-
-.c-link:hover svg {
-  transform: scale(1.1);
-}
-
-.whatsapp:hover svg {
-  transform: scale(1.15) rotate(5deg);
-}
-
-/* Asegurar que los SVG se vean bien en todos los tamaños */
-svg {
-  display: inline-block;
-  vertical-align: middle;
 }
 
 @media (max-width: 480px) {
@@ -932,6 +852,11 @@ svg {
     border-bottom: 4px solid currentColor;
   }
 
+  .brand-item img {
+    width: 80%;
+    height: 80%;
+  }
+
   .hero-stats {
     gap: 20px;
   }
@@ -950,14 +875,34 @@ svg {
   .contact-container {
     padding: 0 5vw;
   }
+}
+
+/* === SVG ICONS === */
+.c-link svg,
+.whatsapp svg {
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+.c-link:hover svg {
+  transform: scale(1.1);
+}
+
+.whatsapp:hover svg {
+  transform: scale(1.15) rotate(5deg);
+}
+
+svg {
+  display: inline-block;
+  vertical-align: middle;
+}
+
 /* === AJUSTE MÓVIL: IDIOMAS ABAJO-IZQUIERDA === */
 @media (max-width: 768px) {
-  /* Ocultar flecha scroll-top en móvil */
   .scroll-top {
     display: none;
   }
 
-  /* Mover botón idiomas abajo-izquierda */
   .lang-toggle {
     position: fixed;
     top: auto;
@@ -976,8 +921,6 @@ svg {
 }
 
 /* === ANIMACIONES MOTION === */
-
-/* 1. FADE-IN AL SCROLL */
 .section,
 .service-card,
 .stat,
@@ -997,7 +940,6 @@ svg {
   }
 }
 
-/* Delays escalonados para efecto cascada */
 .service-card:nth-child(1) { animation-delay: 0.1s; }
 .service-card:nth-child(2) { animation-delay: 0.2s; }
 .service-card:nth-child(3) { animation-delay: 0.3s; }
@@ -1013,7 +955,6 @@ svg {
 .brand-item:nth-child(5) { animation-delay: 0.3s; }
 .brand-item:nth-child(6) { animation-delay: 0.35s; }
 
-/* 2. HOVER MICRO-INTERACCIONES MEJORADAS */
 .service-card:hover {
   transform: translate(8px, 8px) scale(1.02);
 }
@@ -1030,11 +971,6 @@ svg {
   transform: translate(6px, 6px) rotate(-1deg);
 }
 
-/* 3. GLITCH SUTIL EN NOMBRE */
-.hero-name {
-  position: relative;
-}
-
 .hero-name:hover {
   animation: glitch 0.3s ease;
 }
@@ -1048,11 +984,6 @@ svg {
   100% { transform: translate(0); }
 }
 
-/* 4. ANIMACIÓN SUTIL EN LOGOS (hover) */
-.brand-item {
-  transform-origin: center;
-}
-
 .brand-item:hover {
   animation: logoFloat 0.6s ease;
 }
@@ -1062,7 +993,6 @@ svg {
   50% { transform: scale(1.05); }
 }
 
-/* 5. PULSE EN WHATSAPP BUTTON */
 .whatsapp {
   animation: pulse 2s ease-in-out infinite;
 }
@@ -1072,12 +1002,6 @@ svg {
   50% { transform: scale(1.05); box-shadow: 12px 12px 0 var(--black); }
 }
 
-/* 6. SMOOTH SCROLL MEJORADO */
-html {
-  scroll-behavior: smooth;
-}
-
-/* Reducir animaciones para usuarios con preferencias de movimiento reducido */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -1087,4 +1011,3 @@ html {
     transition-duration: 0.01ms !important;
   }
 }
-.
