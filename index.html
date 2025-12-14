@@ -1,931 +1,67 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EDUARDO MEJÍA | MANAGEMENT</title>
-  <meta name="description" content="Gestión musical directa. Barcelona. Ciudad de México.">
   
+  <!-- SEO Meta Tags -->
+  <title>Eduardo Mejía | Music Management - Barcelona & Mexico City</title>
+  <meta name="description" content="Gestión musical directa. Representación, estrategia y desarrollo de artistas. Barcelona y Ciudad de México. 7 años de experiencia, +300 shows, 6 países.">
+  <meta name="keywords" content="music management, gestión musical, booking agent, artist development, Barcelona, Mexico City, reggaeton, perreo, underground music">
+  <meta name="author" content="Eduardo Mejía">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://edumecar.github.io/portfolio/">
+  <meta property="og:title" content="Eduardo Mejía | Music Management">
+  <meta property="og:description" content="Gestión musical directa. Barcelona × Ciudad de México. 7 años | +300 shows | 6 países">
+  <meta property="og:image" content="https://edumecar.github.io/portfolio/icon-512x512.png">
+  
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://edumecar.github.io/portfolio/">
+  <meta property="twitter:title" content="Eduardo Mejía | Music Management">
+  <meta property="twitter:description" content="Gestión musical directa. Barcelona × Ciudad de México.">
+  <meta property="twitter:image" content="https://edumecar.github.io/portfolio/icon-512x512.png">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="icon" type="image/png" sizes="192x192" href="icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="icon-512x512.png">
+  <link rel="apple-touch-icon" href="icon-192x192.png">
+  
+  <!-- PWA Manifest -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#000000">
+  
+  <!-- Preconnect para optimizar carga de fuentes -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+  <!-- Fuentes optimizadas -->
   <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@700;800;900&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
-  <style>
-  :root {
-    --black: #000000;
-    --white: #ffffff;
-    --gray-dark: #1a1a1a;
-    --gray-medium: #333333;
-    --gray-light: #666666;
-    --orange: #ff3300;
-    --mono: 'Space Mono', monospace;
-    --sans: 'Inter', -apple-system, sans-serif;
-  }
-  
-  * { 
-    margin: 0; 
-    padding: 0; 
-    box-sizing: border-box; 
-  }
-  
-  ::selection { 
-    background: var(--orange); 
-    color: var(--black); 
-  }
-  
-  html { 
-    scroll-behavior: smooth; 
-    overflow-x: hidden; 
-  }
-  
-  body { 
-    background: var(--black); 
-    color: var(--white); 
-    font-family: var(--sans); 
-    line-height: 1.3; 
-    overflow-x: hidden;
-    cursor: default;
-    font-weight: 800;
-  }
-
-  /* === FONDO BRUTALISTA MEJORADO === */
-  .brutal-bg {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -3;
-    overflow: hidden;
-    background: var(--black);
-  }
-
-  .brutal-grid {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: 
-      linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
-    background-size: 50px 50px;
-    animation: gridMove 120s linear infinite;
-    opacity: 0.3;
-  }
-
-  .scan-lines {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-      to bottom,
-      transparent 50%,
-      rgba(255, 255, 255, 0.02) 50%
-    );
-    background-size: 100% 4px;
-    pointer-events: none;
-    animation: scanMove 0.8s linear infinite;
-  }
-
-  .texture-noise {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
-    pointer-events: none;
-  }
-
-  @keyframes gridMove {
-    0% { transform: translate(0, 0); }
-    100% { transform: translate(50px, 50px); }
-  }
-
-  @keyframes scanMove {
-    0% { transform: translateY(0); }
-    100% { transform: translateY(4px); }
-  }
-
-  /* === BOTONES DE IDIOMA MEJORADOS === */
-  .lang-toggle {
-    position: fixed;
-    top: 40px;
-    right: 40px;
-    z-index: 1000;
-    display: flex;
-    background: var(--black);
-    border: 4px solid var(--white);
-    padding: 0;
-    box-shadow: 8px 8px 0 var(--white);
-    transition: all 0.2s ease;
-  }
-
-  .lang-toggle:hover {
-    transform: translate(4px, 4px);
-    box-shadow: 4px 4px 0 var(--white);
-  }
-
-  .lang-btn {
-    background: transparent;
-    border: none;
-    color: var(--white);
-    padding: 12px 20px;
-    font-family: var(--mono);
-    font-size: 11px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    position: relative;
-    border-right: 4px solid var(--white);
-    font-weight: 800;
-  }
-
-  .lang-btn:last-child {
-    border-right: none;
-  }
-
-  .lang-btn.active {
-    background: var(--white);
-    color: var(--black);
-  }
-
-  .lang-btn:hover:not(.active) {
-    background: var(--gray-dark);
-  }
-
-  /* === HERO BRUTALISTA MEJORADO === */
-  .hero {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 0 8vw;
-    position: relative;
-    text-align: center;
-    overflow: hidden;
-    border-bottom: 6px solid var(--white);
-    background: var(--black);
-  }
-
-  .hero-content {
-    width: 100%;
-    position: relative;
-    z-index: 10;
-    margin-top: 60px;
-  }
-
-  .hero-name {
-    font-size: clamp(4rem, 15vw, 12rem);
-    font-weight: 900;
-    line-height: 0.8;
-    letter-spacing: -0.03em;
-    color: var(--white);
-    margin-bottom: 40px;
-    position: relative;
-    text-transform: uppercase;
-    transition: all 0.3s ease;
-  }
-
-  .hero-name:hover {
-    transform: translate(2px, 2px);
-  }
-
-  .hero-name span {
-    display: inline-block;
-    color: var(--white);
-  }
-
-  .hero-subtitle {
-    font-family: var(--mono);
-    font-size: clamp(1rem, 4vw, 1.5rem);
-    color: var(--white);
-    letter-spacing: 0.5em;
-    text-transform: uppercase;
-    margin-bottom: 30px;
-    position: relative;
-    border: 5px solid var(--white);
-    padding: 20px 40px;
-    display: inline-block;
-    background: var(--black);
-    box-shadow: 10px 10px 0 var(--white);
-    font-weight: 800;
-    transition: all 0.2s ease;
-  }
-
-  .hero-subtitle:hover {
-    transform: translate(6px, 6px);
-    box-shadow: 4px 4px 0 var(--white);
-  }
-
-  .hero-location {
-    font-family: var(--mono);
-    font-size: clamp(0.9rem, 3vw, 1.2rem);
-    color: var(--white);
-    letter-spacing: 0.3em;
-    margin-bottom: 80px;
-    text-transform: uppercase;
-    font-weight: 800;
-  }
-
-  /* Estadísticas más brutales */
-  .hero-stats {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
-    width: 100%;
-    margin: 80px auto 0;
-  }
-
-  .stat {
-    padding: 50px 30px;
-    background: var(--black);
-    border: 4px solid var(--white);
-    transition: all 0.2s ease;
-    position: relative;
-    box-shadow: 10px 10px 0 var(--white);
-  }
-
-  .stat:hover {
-    transform: translate(6px, 6px);
-    box-shadow: 4px 4px 0 var(--white);
-  }
-
-  .stat-number {
-    font-family: var(--mono);
-    font-size: clamp(3rem, 6vw, 4.5rem);
-    color: var(--orange);
-    display: block;
-    margin-bottom: 15px;
-    font-weight: 900;
-  }
-
-  .stat-label {
-    font-size: 0.8rem;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 0.3em;
-    color: var(--white);
-  }
-
-  .scroll-hint { 
-    position: absolute; 
-    bottom: 50px; 
-    left: 50%; 
-    transform: translateX(-50%); 
-    display: flex; 
-    flex-direction: column; 
-    align-items: center; 
-    gap: 15px; 
-    font-family: var(--mono); 
-    font-size: 9px; 
-    color: var(--white); 
-    letter-spacing: 0.4em; 
-    animation: float 2s ease-in-out infinite;
-    font-weight: 800;
-  }
-  
-  @keyframes float { 
-    0%, 100% { transform: translateX(-50%) translateY(0); } 
-    50% { transform: translateX(-50%) translateY(10px); } 
-  }
-
-  .scroll-hint::after {
-    content: '';
-    width: 3px;
-    height: 50px;
-    background: var(--white);
-    animation: scanLine 2s ease-in-out infinite;
-  }
-
-  @keyframes scanLine {
-    0%, 100% { opacity: 0; }
-    50% { opacity: 1; }
-  }
-
-  /* === SECCIONES ALTERNADAS BLANCO/NEGRO === */
-  .section {
-    padding: 140px 0;
-    position: relative;
-    border-bottom: 6px solid var(--white);
-    width: 100%;
-  }
-
-  .section-container {
-    max-width: 100%;
-    margin: 0 auto;
-    padding: 0 8vw;
-  }
-
-  .section.dark {
-    background: var(--black);
-    color: var(--white);
-  }
-
-  .section.light {
-    background: var(--white);
-    color: var(--black);
-    border-bottom: 6px solid var(--black);
-  }
-
-  .section-label { 
-    font-family: var(--mono); 
-    font-size: 9px; 
-    color: inherit; 
-    letter-spacing: 0.6em; 
-    text-transform: uppercase; 
-    margin-bottom: 50px;
-    display: block;
-    font-weight: 900;
-  }
-
-  .section-title {
-    font-size: clamp(3rem, 10vw, 6rem);
-    font-weight: 900;
-    line-height: 0.9;
-    margin-bottom: 50px;
-    color: inherit;
-    text-transform: uppercase;
-    letter-spacing: -0.02em;
-    width: 100%;
-  }
-
-  .section-title span {
-    color: var(--orange);
-  }
-
-  .section-subtitle {
-    font-size: 1.1rem;
-    color: inherit;
-    line-height: 1.5;
-    margin-bottom: 80px;
-    width: 100%;
-    font-weight: 800;
-    border-left: 6px solid currentColor;
-    padding-left: 25px;
-    opacity: 0.9;
-  }
-
-  /* === SERVICIOS MÁS BRUTALISTAS === */
-  .services-grid { 
-    display: grid; 
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); 
-    gap: 50px; 
-    width: 100%;
-  }
-  
-  .service-card {
-    padding: 70px 50px;
-    background: inherit;
-    transition: all 0.2s ease;
-    position: relative;
-    border: 4px solid currentColor;
-    box-shadow: 12px 12px 0 currentColor;
-  }
-  
-  .service-card:hover { 
-    transform: translate(8px, 8px);
-    box-shadow: 4px 4px 0 currentColor;
-  }
-  
-  .service-num { 
-    font-family: var(--mono); 
-    font-size: 5rem; 
-    color: var(--orange); 
-    margin-bottom: 40px; 
-    font-weight: 900;
-    line-height: 1;
-  }
-  
-  .service-title { 
-    font-size: 1.8rem; 
-    font-weight: 900; 
-    margin-bottom: 30px; 
-    color: inherit; 
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-  }
-  
-  .service-desc { 
-    font-size: 1.1rem; 
-    color: inherit; 
-    line-height: 1.6; 
-    font-weight: 700;
-    opacity: 0.9;
-  }
-
-  /* === MARCAS BRUTALISTAS MEJORADAS === */
-  .brands-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 0;
-    margin-top: 80px;
-    border: 4px solid currentColor;
-    background: inherit;
-    width: 100%;
-  }
-
-  .brand-item {
-    aspect-ratio: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-right: 4px solid currentColor;
-    border-bottom: 4px solid currentColor;
-    background: inherit;
-    transition: all 0.2s ease;
-    position: relative;
-  }
-
-  .brand-item:nth-child(3n) {
-    border-right: none;
-  }
-
-  .brand-item:nth-last-child(-n+3) {
-    border-bottom: none;
-  }
-
-  .brand-item:hover {
-    background: var(--orange);
-  }
-
-  .brand-item img {
-    width: 70%;
-    height: 70%;
-    object-fit: contain;
-    filter: brightness(0) invert(0);
-    transition: all 0.2s ease;
-  }
-
-  .section.dark .brand-item img {
-    filter: brightness(0) invert(1);
-  }
-
-  .brand-item:hover img {
-    filter: brightness(0) invert(0);
-  }
-
-  /* === SPOTIFY BRUTALISTA MEJORADO === */
-  .spotify-container {
-    width: 100%;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    align-items: center;
-  }
-
-  .spotify-content {
-    text-align: left;
-  }
-
-  .spotify-player {
-    border: 4px solid currentColor;
-    overflow: hidden;
-    box-shadow: 12px 12px 0 currentColor;
-    transition: all 0.2s ease;
-    position: relative;
-    background: inherit;
-  }
-
-  .spotify-player:hover {
-    transform: translate(8px, 8px);
-    box-shadow: 4px 4px 0 currentColor;
-  }
-
-  .spotify-player iframe {
-    width: 100%;
-    height: 380px;
-    border: none;
-  }
-
-  /* === VIDEOS BRUTALISTAS MEJORADOS === */
-  .video-showcase {
-    width: 100%;
-    margin: 80px auto 0;
-  }
-  
-  .video-main {
-    width: 100%;
-    aspect-ratio: 16/9;
-    background: #000;
-    border: 4px solid currentColor;
-    box-shadow: 12px 12px 0 currentColor;
-    margin-bottom: 50px;
-    position: relative;
-    transition: all 0.2s ease;
-  }
-
-  .video-main:hover {
-    transform: translate(8px, 8px);
-    box-shadow: 4px 4px 0 currentColor;
-  }
-  
-  .video-main iframe { 
-    width: 100%; 
-    height: 100%; 
-    border: none; 
-  }
-  
-  .video-selector {
-    display: flex;
-    gap: 20px;
-    overflow-x: auto;
-    padding: 15px 10px;
-    scrollbar-width: none;
-  }
-
-  .video-selector::-webkit-scrollbar {
-    display: none;
-  }
-  
-  .video-thumb {
-    flex: 0 0 auto;
-    width: 180px;
-    aspect-ratio: 16/9;
-    cursor: pointer;
-    position: relative;
-    opacity: 0.7;
-    transition: all 0.2s ease;
-    border: 4px solid currentColor;
-    background: #000;
-  }
-  
-  .video-thumb img { 
-    width: 100%; 
-    height: 100%; 
-    object-fit: cover; 
-  }
-
-  .video-thumb:hover {
-    opacity: 1;
-    transform: translate(4px, 4px);
-  }
-  
-  .video-thumb.active { 
-    opacity: 1; 
-    box-shadow: 6px 6px 0 currentColor;
-    transform: translate(6px, 6px);
-  }
-
-  /* === CONTACTO SIMPLIFICADO === */
-  .contact-section {
-    background: var(--white);
-    color: var(--black);
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-    border-bottom: 6px solid var(--black);
-    padding: 140px 0;
-    width: 100%;
-  }
-
-  .contact-container {
-    max-width: 100%;
-    margin: 0 auto;
-    padding: 0 8vw;
-  }
-  
-  .contact-title { 
-    font-size: clamp(3rem, 12vw, 8rem); 
-    font-weight: 900; 
-    margin-bottom: 100px; 
-    letter-spacing: -0.02em;
-    color: var(--black);
-    position: relative;
-    display: inline-block;
-    text-transform: uppercase;
-    width: 100%;
-  }
-  
-  .contact-links { 
-    display: flex; 
-    justify-content: center; 
-    gap: 40px;
-    flex-wrap: wrap;
-    position: relative;
-    width: 100%;
-  }
-  
-  .c-link {
-    padding: 25px 50px;
-    font-family: var(--mono);
-    font-size: 11px;
-    text-decoration: none;
-    text-transform: uppercase;
-    letter-spacing: 0.3em;
-    transition: all 0.2s ease;
-    border: 4px solid var(--black);
-    color: var(--black);
-    background: var(--white);
-    font-weight: 900;
-    box-shadow: 10px 10px 0 var(--black);
-    display: flex;
-    align-items: center;
-    gap: 15px;
-  }
-  
-  .c-link:hover { 
-    transform: translate(8px, 8px);
-    box-shadow: 2px 2px 0 var(--black);
-    color: var(--black);
-  }
-
-  .c-link.primary {
-    background: var(--orange);
-    color: var(--black);
-    border-color: var(--black);
-  }
-
-  /* === FOOTER SIMPLIFICADO === */
-  footer { 
-    padding: 100px 0 60px; 
-    border-top: 6px solid var(--white);
-    display: flex; 
-    justify-content: center;
-    align-items: center; 
-    flex-wrap: wrap; 
-    gap: 40px; 
-    background: var(--black);
-    color: var(--white);
-    text-align: center;
-    width: 100%;
-  }
-
-  .footer-container {
-    max-width: 100%;
-    margin: 0 auto;
-    padding: 0 8vw;
-  }
-  
-  .footer-copy { 
-    font-family: var(--mono); 
-    font-size: 9px; 
-    color: var(--white); 
-    letter-spacing: 0.3em; 
-    font-weight: 900;
-    text-transform: uppercase;
-  }
-  
-  /* === WHATSAPP BRUTALISTA MEJORADO === */
-  .whatsapp { 
-    position: fixed; 
-    bottom: 40px; 
-    right: 40px; 
-    width: 80px; 
-    height: 80px; 
-    background: var(--orange); 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    color: var(--black); 
-    font-size: 2rem; 
-    text-decoration: none; 
-    transition: all 0.2s ease; 
-    z-index: 100; 
-    border: 4px solid var(--black);
-    box-shadow: 10px 10px 0 var(--black);
-    font-weight: 900;
-  }
-  
-  .whatsapp:hover { 
-    transform: translate(8px, 8px);
-    box-shadow: 2px 2px 0 var(--black);
-  }
-
-  /* === SCROLL TO TOP BRUTALISTA MEJORADO === */
-  .scroll-top {
-    position: fixed;
-    bottom: 40px;
-    left: 40px;
-    width: 70px;
-    height: 70px;
-    background: var(--white);
-    color: var(--black);
-    border: none;
-    font-size: 1.8rem;
-    cursor: pointer;
-    opacity: 0;
-    transition: all 0.2s ease;
-    z-index: 1000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 4px solid var(--black);
-    box-shadow: 10px 10px 0 var(--black);
-    font-weight: 900;
-  }
-
-  .scroll-top.visible {
-    opacity: 1;
-  }
-
-  .scroll-top:hover {
-    transform: translate(8px, 8px);
-    box-shadow: 2px 2px 0 var(--black);
-  }
-
-  /* === RESPONSIVE BRUTALISTA MEJORADO === */
-  @media (max-width: 1024px) {
-    .hero-name {
-      font-size: clamp(3.5rem, 14vw, 10rem);
-    }
-    
-    .spotify-container {
-      grid-template-columns: 1fr;
-      gap: 60px;
-      text-align: center;
-    }
-    
-    .spotify-content {
-      text-align: center;
-    }
-    
-    .services-grid {
-      grid-template-columns: 1fr;
-      gap: 40px;
-    }
-
-    .hero-stats {
-      grid-template-columns: 1fr;
-    }
-
-    .brand-item:nth-child(3n) {
-      border-right: 4px solid currentColor;
-    }
-
-    .brand-item:nth-child(2n) {
-      border-right: none;
-    }
-
-    .brand-item:nth-last-child(-n+2) {
-      border-bottom: none;
-    }
-  }
-
-  @media (max-width: 768px) {
-    .hero {
-      padding: 0 6vw;
-      min-height: 100vh;
-    }
-    
-    .hero-name {
-      font-size: clamp(3rem, 15vw, 8rem);
-      line-height: 0.85;
-    }
-    
-    .section {
-      padding: 100px 0;
-    }
-
-    .section-container {
-      padding: 0 6vw;
-    }
-    
-    .service-card {
-      padding: 60px 40px;
-    }
-    
-    .video-thumb {
-      width: 160px;
-    }
-    
-    .contact-links {
-      flex-direction: column;
-      width: 100%;
-      gap: 30px;
-    }
-    
-    .c-link {
-      width: 100%;
-      text-align: center;
-      justify-content: center;
-    }
-    
-    .lang-toggle {
-      top: 25px;
-      right: 25px;
-    }
-    
-    footer {
-      flex-direction: column;
-      text-align: center;
-      padding: 80px 0 50px;
-    }
-
-    .footer-container {
-      padding: 0 6vw;
-    }
-    
-    .whatsapp {
-      bottom: 25px;
-      right: 25px;
-      width: 70px;
-      height: 70px;
-    }
-
-    .scroll-top {
-      left: 25px;
-      bottom: 25px;
-    }
-
-    .brands-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-
-    .brand-item:nth-child(2n) {
-      border-right: none;
-    }
-
-    .brand-item:nth-last-child(-n+2) {
-      border-bottom: none;
-    }
-
-    .contact-container {
-      padding: 0 6vw;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .hero-name {
-      font-size: clamp(2.8rem, 16vw, 6rem);
-    }
-    
-    .hero-content {
-      margin-top: 40px;
-    }
-    
-    .video-thumb {
-      width: 140px;
-    }
-    
-    .services-grid {
-      gap: 30px;
-    }
-    
-    .service-card {
-      padding: 50px 30px;
-    }
-    
-    .contact-title {
-      font-size: clamp(2.5rem, 12vw, 5rem);
-      margin-bottom: 80px;
-    }
-
-    .brands-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .brand-item {
-      border-right: none !important;
-    }
-
-    .brand-item:not(:last-child) {
-      border-bottom: 4px solid currentColor;
-    }
-
-    .hero-stats {
-      gap: 20px;
-    }
-
-    .stat {
-      padding: 40px 20px;
-    }
-
-    .lang-toggle {
-      top: 20px;
-      right: 20px;
-    }
-
-    .section-container,
-    .footer-container,
-    .contact-container {
-      padding: 0 5vw;
-    }
-  }
-  </style>
+  <!-- CSS Externo -->
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- FONDO BRUTALISTA MEJORADO -->
+  <!-- FONDO BRUTALISTA -->
   <div class="brutal-bg">
     <div class="brutal-grid"></div>
     <div class="scan-lines"></div>
     <div class="texture-noise"></div>
   </div>
 
-  <!-- BOTONES DE IDIOMA MÁS BRUTALISTAS -->
+  <!-- BOTONES DE IDIOMA -->
   <div class="lang-toggle">
     <button class="lang-btn active" data-lang="es">ES</button>
     <button class="lang-btn" data-lang="en">EN</button>
   </div>
 
-  <!-- HERO BRUTALISTA MEJORADO -->
+  <!-- HERO SECTION -->
   <section class="hero" id="hero">
     <div class="hero-content">
       <h1 class="hero-name">
@@ -956,7 +92,7 @@
     <div class="scroll-hint"><span data-es="DESPLAZAR" data-en="SCROLL">DESPLAZAR</span></div>
   </section>
 
-  <!-- SERVICIOS - SECCIÓN BLANCA -->
+  <!-- SERVICIOS -->
   <section class="section light services">
     <div class="section-container">
       <span class="section-label" data-es="SERVICIOS" data-en="SERVICES">SERVICIOS</span>
@@ -971,8 +107,8 @@
             REPRESENTACIÓN
           </h3>
           <p class="service-desc"
-             data-es="Gestión de bookings y giras para que la música llegue a los lugares donde conecta. Colaboración con festivales, marcas y espacios clave dentro de la escena."
-             data-en="Bookings and touring that take music where the scene is alive. Working with festivals, brands and venues that matter.">
+            data-es="Gestión de bookings y giras para que la música llegue a los lugares donde conecta. Colaboración con festivales, marcas y espacios clave dentro de la escena."
+            data-en="Bookings and touring that take music where the scene is alive. Working with festivals, brands and venues that matter.">
             Gestión de bookings y giras para que la música llegue a los lugares donde conecta. Colaboración con festivales, marcas y espacios clave dentro de la escena.
           </p>
         </article>
@@ -983,8 +119,8 @@
             ESTRATEGIA
           </h3>
           <p class="service-desc"
-             data-es="Estrategias guiadas por datos para entender audiencias y lanzar en el momento preciso. Distribución y sincronizaciones que generan tracción real."
-             data-en="Data-led strategies to read the audience and release at the right time. Distribution and syncs that build real traction.">
+            data-es="Estrategias guiadas por datos para entender audiencias y lanzar en el momento preciso. Distribución y sincronizaciones que generan tracción real."
+            data-en="Data-led strategies to read the audience and release at the right time. Distribution and syncs that build real traction.">
             Estrategias guiadas por datos para entender audiencias y lanzar en el momento preciso. Distribución y sincronizaciones que generan tracción real.
           </p>
         </article>
@@ -995,8 +131,8 @@
             DESARROLLO
           </h3>
           <p class="service-desc"
-             data-es="Construcción de identidad, catálogo y comunidad sin perder la esencia. Pasos claros que abren camino y futuro."
-             data-en="Identity, catalogue and community built without losing the roots. Clear steps that open the path ahead.">
+            data-es="Construcción de identidad, catálogo y comunidad sin perder la esencia. Pasos claros que abren camino y futuro."
+            data-en="Identity, catalogue and community built without losing the roots. Clear steps that open the path ahead.">
             Construcción de identidad, catálogo y comunidad sin perder la esencia. Pasos claros que abren camino y futuro.
           </p>
         </article>
@@ -1004,7 +140,7 @@
     </div>
   </section>
 
-  <!-- MARCAS - SECCIÓN NEGRA -->
+  <!-- MARCAS -->
   <section class="section dark brands-section">
     <div class="section-container">
       <span class="section-label" data-es="COLABORACIONES" data-en="COLLABORATIONS">COLABORACIONES</span>
@@ -1013,7 +149,6 @@
       <p class="section-subtitle" data-es="Colaboraciones estratégicas con marcas líderes" data-en="Strategic collaborations with leading brands">Colaboraciones estratégicas con marcas líderes</p>
       
       <div class="brands-grid">
-        <!-- Cambia estos src por tus imágenes locales -->
         <div class="brand-item">
           <img src="netflix-logo.png" alt="Netflix">
         </div>
@@ -1035,8 +170,7 @@
       </div>
     </div>
   </section>
-
-  <!-- SPOTIFY - SECCIÓN BLANCA -->
+    <!-- SPOTIFY -->
   <section class="section light spotify-section">
     <div class="section-container">
       <div class="spotify-container">
@@ -1053,7 +187,7 @@
     </div>
   </section>
 
-  <!-- VIDEOS - SECCIÓN NEGRA -->
+  <!-- VIDEOS -->
   <section class="section dark videos-section">
     <div class="section-container">
       <span class="section-label" data-es="VISUAL" data-en="VISUALS">VISUAL</span>
@@ -1070,7 +204,7 @@
     </div>
   </section>
 
-  <!-- CONTACTO SIMPLIFICADO -->
+  <!-- CONTACTO -->
   <section class="contact-section">
     <div class="contact-container">
       <h2 class="contact-title" data-es="CONECTEMOS" data-en="LET'S CONNECT">CONECTEMOS</h2>
@@ -1090,131 +224,21 @@
     </div>
   </section>
 
-  <!-- FOOTER SIMPLIFICADO -->
+  <!-- FOOTER -->
   <footer>
     <div class="footer-container">
-      <p class="footer-copy" data-es="© 2024 EDUARDO MEJÍA — GESTIÓN MUSICAL DIRECTA" data-en="© 2024 EDUARDO MEJÍA — DIRECT MUSIC MANAGEMENT">© 2025 EDUARDO MEJÍA — GESTIÓN MUSICAL DIRECTA</p>
+      <p class="footer-copy" data-es="© 2025 EDUARDO MEJÍA — GESTIÓN MUSICAL DIRECTA" data-en="© 2025 EDUARDO MEJÍA — DIRECT MUSIC MANAGEMENT">© 2025 EDUARDO MEJÍA — GESTIÓN MUSICAL DIRECTA</p>
     </div>
   </footer>
 
-  <!-- WHATSAPP -->
+  <!-- WHATSAPP FLOTANTE -->
   <a href="https://wa.me/525512478139" class="whatsapp" target="_blank"><i class="fab fa-whatsapp"></i></a>
 
   <!-- SCROLL TO TOP -->
   <button class="scroll-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</button>
 
-  <script>
-  // === SISTEMA DE IDIOMAS BRUTALISTA ===
-  const langBtns = document.querySelectorAll('.lang-btn');
-  let currentLang = 'es';
-  
-  function setLanguage(lang) {
-    currentLang = lang;
-    
-    // Actualizar botones
-    langBtns.forEach(btn => {
-      btn.classList.toggle('active', btn.dataset.lang === lang);
-    });
-    
-    // Actualizar elementos traducibles
-    document.querySelectorAll('[data-es]').forEach(el => {
-      const text = el.getAttribute(`data-${lang}`);
-      if (text) {
-        el.innerHTML = text;
-      }
-    });
-    
-    // Actualizar atributo lang del html
-    document.documentElement.lang = lang;
-  }
-  
-  langBtns.forEach(btn => {
-    btn.addEventListener('click', () => setLanguage(btn.dataset.lang));
-  });
-
-  // === SELECTOR DE VIDEOS ACTUALIZADO ===
-  const videos = [
-    { id: "oglT_tl7TkU" },
-    { id: "2HmVZI4MfkM" },
-    { id: "lJE19BWmbGY" },
-    { id: "DEjjE4Mv2yQ" },
-    { id: "ZGxSXchZNfo" },
-    { id: "kXYiU_JCYtU" },
-    { id: "ktvTqknDobU" }
-  ];
-
-  const videoFrame = document.getElementById('videoFrame');
-  const videoSelector = document.getElementById('videoSelector');
-
-  videos.forEach((v, i) => {
-    const thumb = document.createElement('div');
-    thumb.className = `video-thumb${i === 0 ? ' active' : ''}`;
-    thumb.innerHTML = `<img src="https://img.youtube.com/vi/${v.id}/mqdefault.jpg" alt="Video ${i + 1}">`;
-    thumb.addEventListener('click', () => {
-      videoFrame.src = `https://www.youtube.com/embed/${v.id}?rel=0&autoplay=1`;
-      document.querySelectorAll('.video-thumb').forEach(t => t.classList.remove('active'));
-      thumb.classList.add('active');
-    });
-    videoSelector.appendChild(thumb);
-  });
-
-  // === SCROLL TO TOP BUTTON ===
-  const scrollBtn = document.querySelector('.scroll-top');
-  
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 500) {
-      scrollBtn.classList.add('visible');
-    } else {
-      scrollBtn.classList.remove('visible');
-    }
-  });
-
-  // === GLITCH EFFECT EN HERO ===
-  const heroName = document.querySelector('.hero-name');
-  
-  heroName.addEventListener('mouseenter', () => {
-    heroName.style.transform = 'translate(2px, 2px)';
-    setTimeout(() => {
-      heroName.style.transform = 'translate(0, 0)';
-    }, 100);
-    setTimeout(() => {
-      heroName.style.transform = 'translate(-1px, 1px)';
-    }, 150);
-    setTimeout(() => {
-      heroName.style.transform = 'translate(0, 0)';
-    }, 200);
-  });
-
-  // === EFECTO DE SOMBRAS AL SCROLL MEJORADO ===
-  let ticking = false;
-  
-  function updateShadows() {
-    const scrolled = window.pageYOffset;
-    const rate = scrolled * 0.01;
-    
-    document.querySelectorAll('.service-card, .stat, .spotify-player, .video-main, .c-link, .hero-subtitle').forEach(el => {
-      const rect = el.getBoundingClientRect();
-      const isInViewport = rect.top < window.innerHeight && rect.bottom > 0;
-      
-      if (isInViewport) {
-        const shadowOffset = Math.max(4, 12 - (rate * 0.5));
-        const currentColor = getComputedStyle(el).color;
-        el.style.boxShadow = `${shadowOffset}px ${shadowOffset}px 0 ${currentColor}`;
-      }
-    });
-    
-    ticking = false;
-  }
-  
-  window.addEventListener('scroll', () => {
-    if (!ticking) {
-      requestAnimationFrame(updateShadows);
-      ticking = true;
-    }
-  });
-
-  // Inicializar sombras
-  updateShadows();
-  </script>
+  <!-- JavaScript Externo -->
+  <script src="script.js"></script>
 </body>
 </html>
+
