@@ -227,7 +227,7 @@ body {
 .hero-stats {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
+  gap: 12px;
   width: 100%;
   margin: 80px auto 0;
 }
@@ -413,7 +413,7 @@ body {
 .brands-grid {
     display: grid;
        grid-template-columns: repeat(6, 1fr);
-       gap: 30px;
+       gap: 12px;
     max-width: 1400px;    margin: 60px auto;
     padding: 0 30px;
 }
@@ -807,7 +807,7 @@ footer {
   .contact-links {
     flex-direction: column;
     width: 100%;
-    gap: 30px;
+    gap: 12px;
   }
   
   .c-link {
@@ -894,7 +894,7 @@ svg {
   }
   
   .services-grid {
-    gap: 30px;
+    gap: 12px;
   }
   
   .service-card {
