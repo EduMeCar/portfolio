@@ -814,8 +814,7 @@ footer {
   }
 }
 
-@media (max-width: 480px) {
-  .hero-name {
+@media (max-width: 389px) {  .hero-name {
     font-size: clamp(2.8rem, 16vw, 6rem);
   }
   
