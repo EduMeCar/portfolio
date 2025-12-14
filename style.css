@@ -407,15 +407,13 @@ body {
   font-weight: 700;
   opacity: 0.9;
 }
-/* ===================================
-   MARCAS/ALIANZAS — LAYOUT 6x1 HORIZONTAL   =================================== */
-
 /* === MARCAS BRUTALISTAS MEJORADAS === */
 .brands-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 0;
   margin-top: 80px;
+  margin-bottom: 80px;  /* ← NUEVO: Espacio inferior */
   border: 4px solid currentColor;
   background: inherit;
 }
@@ -445,8 +443,8 @@ body {
 }
 
 .brand-item img {
-  width: 70%;
-  height: 70%;
+  width: 90%;  /* ← CAMBIADO de 70% a 90% */
+  height: 90%;  /* ← CAMBIADO de 70% a 90% */
   object-fit: contain;
   filter: brightness(0) invert(0);
   transition: all 0.2s ease;
