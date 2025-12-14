@@ -407,16 +407,16 @@ body {
   font-weight: 700;
   opacity: 0.9;
 }
-/* === MARCAS BRUTALISTAS (5 LOGOS) === */
+/* === MARCAS BRUTALISTAS (6 LOGOS - PROPORCIÓN PERFECTA) === */
 .brands-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 0;
-  margin-top: 80px;
+  margin-top: 60px; /* Menos espacio arriba */
   border: 4px solid currentColor;
   background: inherit;
   width: 100%;
-  max-width: 1200px;
+  max-width: 900px; /* Más compacto (era 1200px) */
   margin-left: auto;
   margin-right: auto;
 }
@@ -429,37 +429,33 @@ body {
   border-right: 4px solid currentColor;
   border-bottom: 4px solid currentColor;
   background: inherit;
-  transition: all 0.2s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
-  min-height: 180px;
+  height: 100px; /* Altura fija y compacta */
 }
 
-/* Para desktop: 3 columnas, entonces el 3ro y 5to no tienen borde derecho */
-@media (min-width: 769px) {
-  .brands-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-  
-  .brand-item:nth-child(3n) {
-    border-right: none;
-  }
-  
-  /* Los últimos 2 items (fila incompleta) no tienen borde inferior */
-  .brand-item:nth-last-child(-n+2) {
-    border-bottom: none;
-  }
+/* Eliminar bordes de la última columna */
+.brand-item:nth-child(3n) {
+  border-right: none;
+}
+
+/* Eliminar bordes de la última fila */
+.brand-item:nth-last-child(-n+3) {
+  border-bottom: none;
 }
 
 .brand-item:hover {
   background: var(--orange);
+  transform: translateY(-2px); /* Sube ligeramente */
+  z-index: 1;
 }
 
 .brand-item img {
-  width: 70%;
-  height: 70%;
+  width: 60%; /* Logos más proporcionados */
+  height: 60%;
   object-fit: contain;
   filter: brightness(0) invert(0);
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
 }
 
 .section.dark .brand-item img {
@@ -468,12 +464,18 @@ body {
 
 .brand-item:hover img {
   filter: brightness(0) invert(0);
+  transform: scale(1.15); /* Crece sutilmente */
 }
 
-/* Responsive para tablet */
+/* Responsive para tablet (2 columnas) */
 @media (max-width: 768px) {
   .brands-grid {
     grid-template-columns: repeat(2, 1fr);
+    max-width: 600px;
+  }
+
+  .brand-item {
+    height: 90px;
   }
 
   .brand-item:nth-child(3n) {
@@ -484,19 +486,25 @@ body {
     border-right: none;
   }
 
-  .brand-item:nth-last-child(-n+1) {
+  .brand-item:nth-last-child(-n+3) {
+    border-bottom: 4px solid currentColor;
+  }
+
+  .brand-item:nth-last-child(-n+2) {
     border-bottom: none;
   }
 }
 
-/* Responsive para móvil */
+/* Responsive para móvil pequeño (1 columna) */
 @media (max-width: 480px) {
   .brands-grid {
     grid-template-columns: 1fr;
+    max-width: 300px;
   }
 
   .brand-item {
     border-right: none !important;
+    height: 80px;
   }
 
   .brand-item:not(:last-child) {
@@ -507,7 +515,6 @@ body {
     border-bottom: none;
   }
 }
-
 
 /* === SPOTIFY BRUTALISTA === */
 .spotify-container {
