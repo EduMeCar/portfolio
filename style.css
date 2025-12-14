@@ -407,113 +407,81 @@ body {
   font-weight: 700;
   opacity: 0.9;
 }
-/* === MARCAS BRUTALISTAS (6 LOGOS - PROPORCIÓN PERFECTA) === */
+/* ===================================
+   MARCAS/ALIANZAS - LAYOUT 3x2 REFINADO
+   =================================== */
+
 .brands-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0;
-  margin-top: 60px; /* Menos espacio arriba */
-  border: 4px solid currentColor;
-  background: inherit;
-  width: 100%;
-  max-width: 900px; /* Más compacto (era 1200px) */
-  margin-left: auto;
-  margin-right: auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    max-width: 900px;
+    margin: 60px auto;
+    padding: 0 30px;
 }
 
 .brand-item {
-  aspect-ratio: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-right: 4px solid currentColor;
-  border-bottom: 4px solid currentColor;
-  background: inherit;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
-  height: 100px; /* Altura fija y compacta */
-}
-
-/* Eliminar bordes de la última columna */
-.brand-item:nth-child(3n) {
-  border-right: none;
-}
-
-/* Eliminar bordes de la última fila */
-.brand-item:nth-last-child(-n+3) {
-  border-bottom: none;
+    background: white;
+    padding: 30px;
+    border: 3px solid #000;
+    border-right: none;
+    border-bottom: 4px solid currentColor;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 140px;
+    transition: transform 0.3s ease, border-color 0.3s ease;
 }
 
 .brand-item:hover {
-  background: var(--orange);
-  transform: translateY(-2px); /* Sube ligeramente */
-  z-index: 1;
+    transform: translateY(-5px);
+    border-color: #ff4500;
+}
+
+.brand-item:not(:last-child) {
+    border-bottom: 4px solid currentColor;
 }
 
 .brand-item img {
-  width: 60%; /* Logos más proporcionados */
-  height: 60%;
-  object-fit: contain;
-  filter: brightness(0) invert(0);
-  transition: all 0.3s ease;
-}
-
-.section.dark .brand-item img {
-  filter: brightness(0) invert(1);
+    max-width: 100%;
+    height: auto;
+    max-height: 80px;
+    object-fit: contain;
+    filter: grayscale(100%);
+    opacity: 0.8;
+    transition: all 0.3s ease;
 }
 
 .brand-item:hover img {
-  filter: brightness(0) invert(0);
-  transform: scale(1.15); /* Crece sutilmente */
+    filter: grayscale(0%);
+    opacity: 1;
 }
 
-/* Responsive para tablet (2 columnas) */
+/* Responsive: en móviles cambia a 2 columnas */
 @media (max-width: 768px) {
-  .brands-grid {
-    grid-template-columns: repeat(2, 1fr);
-    max-width: 600px;
-  }
-
-  .brand-item {
-    height: 90px;
-  }
-
-  .brand-item:nth-child(3n) {
-    border-right: 4px solid currentColor;
-  }
-
-  .brand-item:nth-child(2n) {
-    border-right: none;
-  }
-
-  .brand-item:nth-last-child(-n+3) {
-    border-bottom: 4px solid currentColor;
-  }
-
-  .brand-item:nth-last-child(-n+2) {
-    border-bottom: none;
-  }
+    .brands-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+        max-width: 500px;
+        padding: 0 20px;
+    }
+    
+    .brand-item {
+        padding: 20px;
+        min-height: 100px;
+    }
+    
+    .brand-item img {
+        max-height: 60px;
+    }
 }
 
-/* Responsive para móvil pequeño (1 columna) */
+/* Responsive: en móviles pequeños cambia a 1 columna */
 @media (max-width: 480px) {
-  .brands-grid {
-    grid-template-columns: 1fr;
-    max-width: 300px;
-  }
-
-  .brand-item {
-    border-right: none !important;
-    height: 80px;
-  }
-
-  .brand-item:not(:last-child) {
-    border-bottom: 4px solid currentColor;
-  }
-  
-  .brand-item:last-child {
-    border-bottom: none;
-  }
+    .brands-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
 }
 
 /* === SPOTIFY BRUTALISTA === */
