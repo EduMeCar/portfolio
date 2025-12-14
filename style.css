@@ -410,7 +410,7 @@ body {
 /* === MARCAS BRUTALISTAS MEJORADAS === */
 .brands-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-template-columns: repeat(6, 1fr); /* ← DESKTOP: 6 columnas (1 fila) */
   gap: 0;
   margin-top: 80px;
   margin-bottom: 80px;
@@ -430,12 +430,12 @@ body {
   position: relative;
 }
 
-.brand-item:nth-child(3n) {
-  border-right: none;
+.brand-item:nth-child(6n) {
+  border-right: none; /* ← Quitar borde derecho cada 6 items */
 }
 
-.brand-item:nth-last-child(-n+3) {
-  border-bottom: none;
+.brand-item:nth-last-child(-n+6) {
+  border-bottom: none; /* ← Quitar borde inferior últimos 6 */
 }
 
 .brand-item:hover {
@@ -443,17 +443,18 @@ body {
 }
 
 .brand-item img {
-  width: 95%;
-  height: 95%;
+  width: 90%;
+  height: 90%;
   object-fit: contain;
-  filter: brightness(0) invert(0);
   transition: all 0.2s ease;
 }
 
+/* Desktop: Logos blancos siempre visibles */
 .section.dark .brand-item img {
   filter: brightness(0) invert(1);
 }
 
+/* Desktop: Al hover, logos negros con fondo naranja */
 .brand-item:hover img {
   filter: brightness(0) invert(0);
 }
@@ -461,32 +462,39 @@ body {
 /* === RESPONSIVE MÓVIL === */
 @media (max-width: 768px) {
   .brands-grid {
-    grid-template-columns: repeat(2, 1fr); /* ← 2 columnas en móvil */
+    grid-template-columns: repeat(2, 1fr) !important; /* ← MÓVIL: 2 columnas (3 filas) */
   }
 
-  .brand-item:nth-child(3n) {
-    border-right: 4px solid currentColor; /* ← Restaurar borde */
+  .brand-item img {
+    width: 85%;
+    height: 85%;
   }
 
+  /* Resetear bordes de desktop (6 columnas) */
+  .brand-item:nth-child(6n) {
+    border-right: 4px solid currentColor;
+  }
+
+  .brand-item:nth-last-child(-n+6) {
+    border-bottom: 4px solid currentColor;
+  }
+
+  /* Aplicar bordes para 2 columnas */
   .brand-item:nth-child(2n) {
-    border-right: none; /* ← Quitar borde cada 2 */
-  }
-
-  .brand-item:nth-last-child(-n+3) {
-    border-bottom: 4px solid currentColor; /* ← Restaurar borde */
+    border-right: none;
   }
 
   .brand-item:nth-last-child(-n+2) {
-    border-bottom: none; /* ← Quitar borde últimos 2 */
+    border-bottom: none;
   }
 }
 
 @media (max-width: 480px) {
-  .brands-grid {
-    grid-template-columns: repeat(2, 1fr); /* ← Mantener 2 columnas en móvil pequeño */
+  .brand-item img {
+    width: 80%;
+    height: 80%;
   }
 }
-
 
 /* === SPOTIFY BRUTALISTA === */
 .spotify-container {
