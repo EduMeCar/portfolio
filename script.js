@@ -33,7 +33,7 @@ langBtns.forEach(btn => {
 
 // === SELECTOR DE VIDEOS ACTUALIZADO ===
 const videos = [
-  { id: "ZGxSXchZNfo" },//BOILERROOM
+  { id: "SD3T_Or_mvk" },//TRA TRA TRA
   { id: "2HmVZI4MfkM" },//MUNDODIFERENTE
   { id: "XCW95zjBUK4" },//HABITOS
   { id: "DEjjE4Mv2yQ" },//EDC
