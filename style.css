@@ -437,7 +437,7 @@ body {
 }
 
 .brand-item:hover img {
-  filter: brightness(0) invert(0);
+  filter: none; 
 }
 
 /* === SPOTIFY === */
