@@ -33,13 +33,14 @@ langBtns.forEach(btn => {
 
 // === SELECTOR DE VIDEOS ACTUALIZADO ===
 const videos = [
-  { id: "oglT_tl7TkU" },
-  { id: "2HmVZI4MfkM" },
-  { id: "lJE19BWmbGY" },
-  { id: "DEjjE4Mv2yQ" },
-  { id: "ZGxSXchZNfo" },
-  { id: "kXYiU_JCYtU" },
-  { id: "ktvTqknDobU" }
+  { id: "ZGxSXchZNfo" },//BOILERROOM
+  { id: "2HmVZI4MfkM" },//MUNDODIFERENTE
+  { id: "XCW95zjBUK4" },//HABITOS
+  { id: "DEjjE4Mv2yQ" },//EDC
+  { id: "lJE19BWmbGY" },//JALA
+  { id: "dynmB6dCvKw" },//AGAVE
+  { id: "oglT_tl7TkU" }//VIBRAS
+   
 ];
 
 const videoFrame = document.getElementById('videoFrame');
