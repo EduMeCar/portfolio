@@ -174,12 +174,7 @@ const spotifyObserver = new IntersectionObserver((entries) => {
 
 const spotifyContainer = document.querySelector('.spotify-player');
 if (spotifyContainer) {
-  const iframe = spotifyContainer.querySelector('iframe');
-  if (iframe) {
-    iframe.dataset.src = iframe.src;
-    iframe.src = '';
-    spotifyObserver.observe(spotifyContainer);
-  }
+  spotifyObserver.observe(spotifyContainer);
 }
 
 // ===== ANALYTICS (Si decides implementar) =====
