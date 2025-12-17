@@ -1,7 +1,7 @@
 {
   "name": "Eduardo Mejía | Music Management",
   "short_name": "Eduardo Mejía",
-  "description": "Gestión musical directa. Representación, estrategia y desarrollo de artistas. Barcelona × Ciudad de México.",
+  "description": "Gestión musical directa. Representación, estrategia y desarrollo de artistas. Barcelona × Ciudad de México. Especializado en reggaetón y perreo underground.",
   "start_url": "/portfolio/",
   "scope": "/portfolio/",
   "display": "standalone",
@@ -27,13 +27,35 @@
   "categories": [
     "entertainment",
     "music",
-    "business"
+    "business",
+    "lifestyle"
   ],
   "screenshots": [
     {
       "src": "icon-512x512.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "label": "Vista previa del portfolio de Eduardo Mejía"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Booking Plans",
+      "short_name": "Booking",
+      "description": "Ver planes de booking disponibles",
+      "url": "/Book",
+      "icons": [
+        {
+          "src": "icon-192x192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Contacto",
+      "short_name": "Contacto",
+      "description": "Contactar por email",
+      "url": "mailto:emc121091@me.com"
     }
   ]
 }
