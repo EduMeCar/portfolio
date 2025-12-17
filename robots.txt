@@ -1,11 +1,27 @@
 # Robots.txt para Eduardo Mejía Portfolio
 # https://edumecar.github.io/portfolio/
 
+# Permitir todos los crawlers
 User-agent: *
 Allow: /
+
+# Disallow archivos innecesarios
+Disallow: /service-worker.js
+Disallow: /*.min.js$
+Disallow: /*.min.css$
 
 # Sitemap
 Sitemap: https://edumecar.github.io/portfolio/sitemap.xml
 
-# Crawl-delay
+# Crawl-delay (evitar sobrecarga)
+Crawl-delay: 1
+
+# Google Bot específico
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+# Bing Bot específico
+User-agent: Bingbot
+Allow: /
 Crawl-delay: 1
