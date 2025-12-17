@@ -9,6 +9,8 @@
   <meta name="description" content="Gestión musical directa. Representación, estrategia y desarrollo de artistas. Barcelona y Ciudad de México. 7 años de experiencia, +300 shows, 6 países.">
   <meta name="keywords" content="music management, gestión musical, booking agent, artist development, Barcelona, Mexico City, reggaeton, perreo, underground music">
   <meta name="author" content="Eduardo Mejía">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <link rel="canonical" href="https://edumecar.github.io/portfolio/">
   
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
@@ -38,13 +40,84 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   
-  <!-- Fuentes optimizadas -->
+  <!-- Fuentes optimizadas con preload -->
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@700;800;900&display=swap" as="style">
   <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@700;800;900&display=swap" rel="stylesheet">
   
   <!-- CSS Externo -->
   <link rel="stylesheet" href="style.min.css">
+  
+  <!-- Structured Data JSON-LD para SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Eduardo Mejía",
+    "jobTitle": "Music Manager & Booking Agent",
+    "description": "Gestión musical directa. Representación, estrategia y desarrollo de artistas. Especializado en reggaetón y perreo underground.",
+    "url": "https://edumecar.github.io/portfolio/",
+    "sameAs": [
+      "https://www.linkedin.com/in/edumecar",
+      "https://wa.me/525512478139"
+    ],
+    "address": [
+      {
+        "@type": "PostalAddress",
+        "addressLocality": "Barcelona",
+        "addressRegion": "Cataluña",
+        "addressCountry": "ES"
+      },
+      {
+        "@type": "PostalAddress",
+        "addressLocality": "Ciudad de México",
+        "addressCountry": "MX"
+      }
+    ],
+    "worksFor": {
+      "@type": "Organization",
+      "name": "Eduardo Mejía Music Management"
+    },
+    "knowsAbout": ["Music Management", "Booking Agent", "Artist Development", "Reggaeton", "Underground Music", "Music Strategy"]
+  }
+  </script>
+  
+  <!-- Google Analytics 4 - REEMPLAZA G-XXXXXXXXXX con tu ID real -->
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+  -->
+  
+  <style>
+    /* Skip link para accesibilidad */
+    .skip-link {
+      position: absolute;
+      top: -40px;
+      left: 0;
+      background: var(--orange);
+      color: var(--black);
+      padding: 8px 16px;
+      text-decoration: none;
+      font-family: var(--mono);
+      font-weight: 900;
+      z-index: 10000;
+      border: 4px solid var(--black);
+      font-size: 14px;
+    }
+    .skip-link:focus {
+      top: 10px;
+      left: 10px;
+    }
+  </style>
 </head>
 <body>
+  <!-- Skip to main content para accesibilidad -->
+  <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+  
   <!-- FONDO BRUTALISTA -->
   <div class="brutal-bg">
     <div class="brutal-grid"></div>
@@ -52,8 +125,8 @@
     <div class="texture-noise"></div>
   </div>
 
-  <!-- BOTONES DE IDIOMA -->
-  <div class="lang-toggle role="navigation" aria-label="Selector de idioma"">
+  <!-- BOTONES DE IDIOMA - CORREGIDO -->
+  <div class="lang-toggle" role="navigation" aria-label="Selector de idioma">
     <button class="lang-btn active" data-lang="es" aria-label="Cambiar a español" aria-pressed="true">ES</button>
     <button class="lang-btn" data-lang="en" aria-label="Switch to English" aria-pressed="false">EN</button>
   </div>
@@ -90,7 +163,7 @@
   </section>
 
   <!-- SERVICIOS -->
-  <section class="section light services">
+  <section id="main-content" class="section light services">
     <div class="section-container">
       <span class="section-label" data-es="SERVICIOS" data-en="SERVICES">SERVICIOS</span>
       
@@ -99,7 +172,7 @@
          data-es="Gestión directa sin intermediarios. Resultados medibles. Estrategia y bookings para artistas, sellos y marcas: decisiones basadas en datos y en sonido."
          data-en="Direct management without intermediaries. Measurable results. Strategy and bookings for artists, labels, and brands: decisions driven by data and sound.">
         Gestión directa sin intermediarios. Resultados medibles.<br>
-        Estrategia y bookings para artistas, sellos y marcas: decisiones con datos y sonido.
+        Estrategia y bookings para artistas, sellos y marcas: decisiones basadas en datos y en sonido.
       </p>
       
       <div class="services-grid">
@@ -142,48 +215,64 @@
     </div>
   </section>
 
-      <!-- Sección Marcas -->
-<section id="marcas" class="section dark brands">
+  <!-- MARCAS -->
+  <section id="marcas" class="section dark brands">
     <div class="section-container">
-        <p class="section-label" data-es="COLABORACIONES" data-en="COLLABORATIONS">COLABORACIONES</p>
-        <h2 class="section-title" data-es="ALIANZAS" data-en="PARTNERSHIPS">ALIANZAS</h2>
-        <div class="section-divider"></div>
-        <p class="section-description"
-           data-es="Colaboraciones estratégicas con marcas líderes"
-           data-en="Strategic collaborations with leading brands">
-          Colaboraciones estratégicas con marcas líderes
-        </p>
-        
-        <div class="brands-grid">
-            <div class="brand-item">
-            <img src="img/onerpm-logo.png" alt="Onerpm" loading="lazy">            </div>
-            <div class="brand-item">
-            <img src="img/warner-chapell-logo.png" alt="Warner Chapell" loading="lazy">            </div>
-            <div class="brand-item">
-            <img src="img/suburbio-logo.png" alt="Suburbio Inc" loading="lazy">            </div>
-            <div class="brand-item">
-            <img src="img/symphonic-logo.png" alt="Symphonic" loading="lazy">            </div>
-            <div class="brand-item">
-            <img src="img/redmango-logo.png" alt="Red Mango" loading="lazy">            </div>
-            <div class="brand-item">
-            <img src="img/bookingplans-logo.png" alt="Booking Plans" loading="lazy">            </div>
+      <p class="section-label" data-es="COLABORACIONES" data-en="COLLABORATIONS">COLABORACIONES</p>
+      <h2 class="section-title" data-es="ALIANZAS" data-en="PARTNERSHIPS">ALIANZAS</h2>
+      <div class="section-divider"></div>
+      <p class="section-description"
+         data-es="Colaboraciones estratégicas con marcas líderes en la industria musical"
+         data-en="Strategic collaborations with leading brands in the music industry">
+        Colaboraciones estratégicas con marcas líderes en la industria musical
+      </p>
+      
+      <div class="brands-grid">
+        <div class="brand-item">
+          <img src="img/onerpm-logo.png" alt="OneRPM - Distribución digital" loading="lazy" width="200" height="80" decoding="async">
         </div>
+        <div class="brand-item">
+          <img src="img/warner-chapell-logo.png" alt="Warner Chappell Music" loading="lazy" width="200" height="80" decoding="async">
+        </div>
+        <div class="brand-item">
+          <img src="img/suburbio-logo.png" alt="Suburbio Inc" loading="lazy" width="200" height="80" decoding="async">
+        </div>
+        <div class="brand-item">
+          <img src="img/symphonic-logo.png" alt="Symphonic Distribution" loading="lazy" width="200" height="80" decoding="async">
+        </div>
+        <div class="brand-item">
+          <img src="img/redmango-logo.png" alt="Red Mango Records" loading="lazy" width="200" height="80" decoding="async">
+        </div>
+        <div class="brand-item">
+          <img src="img/bookingplans-logo.png" alt="Booking Plans" loading="lazy" width="200" height="80" decoding="async">
+        </div>
+      </div>
     </div>
-</section>
+  </section>
 
-  
-    <!-- SPOTIFY -->
+  <!-- SPOTIFY -->
   <section class="section light spotify-section">
     <div class="section-container">
       <div class="spotify-container">
         <div class="spotify-content">
           <span class="section-label" data-es="SONIDO" data-en="SOUND">SONIDO</span>
           <h2 class="section-title" data-es="FRECUENCIA" data-en="FREQUENCY">FRECUENCIA</h2>
-          <p class="section-subtitle" data-es="La esencia del perreo y reggaetón underground" data-en="The essence of underground perreo and reggaeton">La esencia del perreo y reggaetón underground</p>
+          <p class="section-subtitle" 
+             data-es="La esencia del perreo y reggaetón underground" 
+             data-en="The essence of underground perreo and reggaeton">
+            La esencia del perreo y reggaetón underground
+          </p>
         </div>
         
         <div class="spotify-player">
-          <iframe src="https://open.spotify.com/embed/playlist/26qaG2E3bW6ZNIk5mvPpjr?utm_source=generator&theme=0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+          <iframe 
+            data-src="https://open.spotify.com/embed/playlist/26qaG2E3bW6ZNIk5mvPpjr?utm_source=generator&theme=0" 
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+            loading="lazy"
+            title="Playlist de Spotify - Frecuencia Underground"
+            width="100%"
+            height="380">
+          </iframe>
         </div>
       </div>
     </div>
@@ -195,40 +284,72 @@
       <span class="section-label" data-es="VISUAL" data-en="VISUALS">VISUAL</span>
       
       <h2 class="section-title" data-es="EN VIVO & VISUALES" data-en="LIVE & VISUALS">EN VIVO & VISUALES</h2>
-      <p class="section-subtitle" data-es="Archivo audiovisual: videoclips, festivales y shows en directo." data-en="Audiovisual archive: music videos, festivals & live shows.">Archivo audiovisual: videoclips, festivales y shows en directo.</p>
+      <p class="section-subtitle" 
+         data-es="Archivo audiovisual: videoclips, festivales y shows en directo." 
+         data-en="Audiovisual archive: music videos, festivals & live shows.">
+        Archivo audiovisual: videoclips, festivales y shows en directo.
+      </p>
       
       <div class="video-showcase">
         <div class="video-main">
-          <iframe id="videoFrame" src="https://www.youtube.com/embed/ZGxSXchZNfo?rel=0" title="Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe 
+            id="videoFrame" 
+            src="https://www.youtube.com/embed/SD3T_Or_mvk?rel=0" 
+            title="Video destacado" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen
+            loading="lazy"
+            width="100%"
+            height="100%">
+          </iframe>
         </div>
-        <div class="video-selector" id="videoSelector"></div>
+        <div class="video-selector" id="videoSelector" role="menu" aria-label="Selector de videos"></div>
       </div>
     </div>
   </section>
 
-    <!-- CONTACTO CON SVG OPTIMIZADO -->
+  <!-- CONTACTO -->
   <section class="contact-section">
     <div class="contact-container">
       <h2 class="contact-title" data-es="CONECTEMOS" data-en="LET'S CONNECT">CONECTEMOS</h2>
-      <p class="section-subtitle" data-es="Conversación directa. Sin burocracia." data-en="Direct conversation. No bureaucracy.">Conversación directa. Sin burocracia.</p>
+      <p class="section-subtitle" 
+         data-es="Conversación directa. Sin burocracia." 
+         data-en="Direct conversation. No bureaucracy.">
+        Conversación directa. Sin burocracia.
+      </p>
 
-                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                    <path d="M19 4h-1V2h-2v2H8V2H"6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11zM7 11h5v5H7z" fill="currentColor"/>
-                </svg>
       <div class="contact-links">
-        <a href="https://edumecar.github.io/Book" class="c-link primary" data-es="BOOKING" data-en="BOOKING" aria-label="Ver planes de booking"
+        <a href="https://edumecar.github.io/Book" 
+           class="c-link primary" 
+           data-es="BOOKING" 
+           data-en="BOOKING" 
+           aria-label="Ver planes de booking"
+           rel="noopener noreferrer"
+           target="_blank">
           <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+            <path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11zM7 11h5v5H7z"/>
           </svg>
           <span>BOOKING PLANS</span>
         </a>
-        <a href="mailto:emc121091@me.com" class="c-link" data-es="EMAIL" data-en="EMAIL" aria-label="Enviar correo electrónico">
+        
+        <a href="mailto:emc121091@me.com" 
+           class="c-link" 
+           data-es="EMAIL" 
+           data-en="EMAIL" 
+           aria-label="Enviar correo electrónico">
           <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
           </svg>
           <span>EMAIL</span>
         </a>
-        <a href="https://www.linkedin.com/in/edumecar" class="c-link" data-es="LINKEDIN" data-en="LINKEDIN" aria-label="Ver perfil de LinkedIn">
+        
+        <a href="https://www.linkedin.com/in/edumecar" 
+           class="c-link" 
+           data-es="LINKEDIN" 
+           data-en="LINKEDIN" 
+           aria-label="Ver perfil de LinkedIn"
+           target="_blank"
+           rel="noopener noreferrer">
           <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
           </svg>
@@ -241,22 +362,48 @@
   <!-- FOOTER -->
   <footer>
     <div class="footer-container">
-      <p class="footer-copy" data-es="© 2025 EDUARDO MEJÍA — GESTIÓN MUSICAL DIRECTA" data-en="© 2025 EDUARDO MEJÍA — DIRECT MUSIC MANAGEMENT">© 2025 EDUARDO MEJÍA — GESTIÓN MUSICAL DIRECTA</p>
+      <p class="footer-copy" 
+         data-es="© 2025 EDUARDO MEJÍA — GESTIÓN MUSICAL DIRECTA" 
+         data-en="© 2025 EDUARDO MEJÍA — DIRECT MUSIC MANAGEMENT">
+        © 2025 EDUARDO MEJÍA — GESTIÓN MUSICAL DIRECTA
+      </p>
     </div>
   </footer>
 
-  <!-- WHATSAPP FLOTANTE CON SVG -->
-  <a href="https://wa.me/525512478139" class="whatsapp" target="_blank" aria-label="Contactar por WhatsApp">
+  <!-- WHATSAPP FLOTANTE -->
+  <a href="https://wa.me/525512478139" 
+     class="whatsapp" 
+     target="_blank" 
+     rel="noopener noreferrer"
+     aria-label="Contactar por WhatsApp">
     <svg width="32" height="32" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
       <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
     </svg>
   </a>
 
   <!-- SCROLL TO TOP -->
-  <button class="scroll-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</button>
+  <button class="scroll-top" 
+          onclick="window.scrollTo({top: 0, behavior: 'smooth'})"
+          aria-label="Volver arriba">
+    ↑
+  </button>
 
   <!-- JavaScript Externo -->
   <script src="script.min.js"></script>
+  
+  <!-- Registro del Service Worker -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/portfolio/service-worker.js')
+          .then(registration => {
+            console.log('✅ Service Worker registrado:', registration.scope);
+          })
+          .catch(error => {
+            console.log('❌ Error al registrar Service Worker:', error);
+          });
+      });
+    }
+  </script>
 </body>
 </html>
-
