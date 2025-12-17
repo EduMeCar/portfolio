@@ -458,6 +458,7 @@ body {
 
 .spotify-player {
   border: 4px solid currentColor;
+  min-height: 380px;
   background: inherit;
   overflow: hidden;
   box-shadow: 12px 12px 0 currentColor;
