@@ -1,39 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <!-- Página principal - Español -->
   <url>
     <loc>https://edumecar.github.io/portfolio/</loc>
-    <lastmod>2025-12-14</lastmod>
+    <lastmod>2025-01-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
+    <xhtml:link 
+      rel="alternate" 
+      hreflang="es" 
+      href="https://edumecar.github.io/portfolio/?lang=es"/>
+    <xhtml:link 
+      rel="alternate" 
+      hreflang="en" 
+      href="https://edumecar.github.io/portfolio/?lang=en"/>
+    <xhtml:link 
+      rel="alternate" 
+      hreflang="x-default" 
+      href="https://edumecar.github.io/portfolio/"/>
   </url>
+  
+  <!-- Página de Booking Plans (si existe) -->
   <url>
-    <loc>https://edumecar.github.io/portfolio/#servicios</loc>
-    <lastmod>2025-12-14</lastmod>
+    <loc>https://edumecar.github.io/Book</loc>
+    <lastmod>2025-01-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+  
+  <!-- Manifest para PWA -->
   <url>
-    <loc>https://edumecar.github.io/portfolio/#marcas</loc>
-    <lastmod>2025-12-14</lastmod>
+    <loc>https://edumecar.github.io/portfolio/manifest.json</loc>
+    <lastmod>2025-01-15</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.5</priority>
   </url>
-  <url>
-    <loc>https://edumecar.github.io/portfolio/#sonido</loc>
-    <lastmod>2025-12-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://edumecar.github.io/portfolio/#visual</loc>
-    <lastmod>2025-12-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://edumecar.github.io/portfolio/#contacto</loc>
-    <lastmod>2025-12-14</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.9</priority>
-  </url>
+
 </urlset>
