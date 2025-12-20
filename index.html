@@ -141,8 +141,14 @@
       
       <p class="hero-subtitle" data-es="MANAGEMENT" data-en="MANAGEMENT">MANAGEMENT</p>
       
-      <p class="hero-location" data-es="BARCELONA × CIUDAD DE MÉXICO" data-en="BARCELONA × MEXICO CITY">BARCELONA × CIUDAD DE MÉXICO</p>
-      
+    <p class="hero-location"><span class="location-desktop" data-es="BARCELONA × CIUDAD DE MÉXICO" data-en="BARCELONA × MEXICO CITY">BARCELONA × CIUDAD DE MÉXICO</span><span class="location-mobile" data-es="BARCELONA × CDMX" data-en="BARCELONA × CDMX">BARCELONA × CDMX</span></p>
+
+    <!-- Selector de idioma en hero (solo móvil) -->
+    <div class="lang-toggle-hero" role="navigation" aria-label="Selector de idioma">
+      <button class="lang-btn-hero active" data-lang="es" aria-label="Cambiar a español" aria-pressed="true">ES</button>
+      <span class="lang-separator">·</span>
+      <button class="lang-btn-hero" data-lang="en" aria-label="Switch to English" aria-pressed="false">EN</button>
+    </div>      
       <div class="hero-stats">
         <div class="stat">
           <span class="stat-number">007</span>
