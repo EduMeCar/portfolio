@@ -1079,10 +1079,6 @@ svg {
   font-weight: 800;
 }
 
-  /* Mostrar selector de idioma en hero (móvil) */
-  .lang-toggle-hero {
-    display: flex;
-  }
 
   /* Cambiar ubicación a versión corta en móvil */
   .location-desktop {
@@ -1090,5 +1086,21 @@ svg {
   }
 
   .location-mobile {
-    display: inline;
+   
+     
+       /* Ajustar selector idioma: ocultar el fijo (top-right), mover debajo de ubicación en móvil */
+  .lang-toggle {
+    position: static;
+    top: auto;
+    right: auto;
+    margin: 16px auto 0;
+    justify-content: center;
+  }
+
+  /* Reducir tamaño del botón scroll-up para que no compita con WhatsApp */
+  .scroll-top {
+    width: 48px;
+    height: 48px;
+    font-size: 1.4rem;
+  }display: inline;
   }
