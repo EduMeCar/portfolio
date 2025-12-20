@@ -878,8 +878,13 @@ footer {
     top: 25px;
     right: 25px;
   }
-       display: none; /* Oculto en móvil, se usa lang-toggle-hero */
-  
+    position: static !important;
+    top: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    margin: 20px auto 0 !important;
+    display: flex !important;
+  }  
   footer {
     flex-direction: column;
     padding: 80px 0 50px;
@@ -896,6 +901,9 @@ footer {
   .scroll-top {
     display: flex; /* Visible en móvil */
     opacity: 1;  }
+    width: 48px;
+    height: 48px;
+    font-size: 1.4rem;
   
   .brands-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -1080,26 +1088,6 @@ svg {
 }
 
 
-  /* Cambiar ubicación a versión corta en móvil */
-  .location-desktop {
-    display: none;
-  }
-
-  .location-mobile {
-   
-     
-       /* Ajustar selector idioma: ocultar el fijo (top-right), mover debajo de ubicación en móvil */
-  .lang-toggle {
-    position: static;
-    top: auto;
-    right: auto;
-    margin: 16px auto 0;
-    justify-content: center;
-  }
-
-  /* Reducir tamaño del botón scroll-up para que no compita con WhatsApp */
-  .scroll-top {
-    width: 48px;
     height: 48px;
     font-size: 1.4rem;
   }display: inline;
