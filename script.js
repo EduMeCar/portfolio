@@ -1,5 +1,5 @@
 // ===== SISTEMA DE IDIOMAS =====
-const langBtns = document.querySelectorAll(".lang-btn");
+const langBtns = document.querySelectorAll(".lang-btn, .lang-btn-hero");
 let currentLang = "es";
 
 function setLanguage(lang) {
