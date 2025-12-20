@@ -149,37 +149,7 @@ body {
   outline-offset: 2px;
 }
 
-/* === SELECTOR DE IDIOMA EN HERO (SOLO MÓVIL) === */
-.lang-toggle-mobile {
-  display: none; /* Oculto por defecto en desktop */
-  margin-top: 20px;
-  gap: 16px;
-  justify-content: center;
-  align-items: center;
-}
-
-.lang-toggle-mobile .lang-btn {
-  background: var(--black);
-  border: 3px solid var(--white);
-  padding: 10px 20px;
-  color: var(--white);
-  font-family: var(--mono);
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: .2em;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: .2s;
-}
-
-.lang-toggle-mobile .lang-btn.active {
-  background: var(--white);
-  color: var(--black);
-}
-
-.lang-toggle-mobile .lang-btn:hover:not(.active) {
-  background: var(--gray-dark);
-}/* === HERO SECTION === */
+/* === HERO SECTION === */
 .hero {
   min-height: 100vh;
   display: flex;
@@ -908,21 +878,7 @@ footer {
     top: 25px;
     right: 25px;
   }
-display: none !important; /* Ocultar selector flotante en móvil */
-  }
-
-  /* Mostrar selector de idioma dentro del hero en móvil */
-  .lang-toggle-mobile {
-    display: flex !important;  }
-
-  /* Ocultar ubicación desktop y mostrar version móvil */
-  .location-desktop {
-    display: none !important;
-  }
   
-  .location-mobile {
-    display: inline !important;
-  }
   footer {
     flex-direction: column;
     padding: 80px 0 50px;
@@ -937,12 +893,9 @@ display: none !important; /* Ocultar selector flotante en móvil */
   }
   
   .scroll-top {
-    display: flex; /* Visible en móvil */
-    opacity: 1;
-         width: 48px;
-    height: 48px;
-    font-size: 1.4rem;
-}  
+    display: none; /* Oculto en móvil */
+  }
+  
   .brands-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -1072,57 +1025,3 @@ svg {
   white-space: nowrap;
   border-width: 0;
 }
-
-
-/* === UBICACIÓN RESPONSIVE === */
-.location-mobile {
-  display: none;
-}
-
-.location-desktop {
-  display: inline;
-}
-
-/* === SELECTOR DE IDIOMA EN HERO (SOLO MÓVIL) === */
-.lang-toggle-hero {
-  display: none; /* Oculto por defecto (desktop) */
-  margin-top: 30px;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-}
-
-.lang-btn-hero {
-  background: transparent;
-  border: none;
-  color: var(--white);
-  font-family: var(--mono);
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: .3em;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: .2s;
-  padding: 0;
-}
-
-.lang-btn-hero.active {
-  color: var(--orange);
-}
-
-.lang-btn-hero:hover:not(.active) {
-  color: var(--gray-light);
-}
-
-.lang-btn-hero:focus {
-  outline: 2px solid var(--orange);
-  outline-offset: 4px;
-}
-
-.lang-separator {
-  color: var(--white);
-  font-size: 14px;
-  font-weight: 800;
-}
-
-
