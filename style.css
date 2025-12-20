@@ -159,8 +159,8 @@ body {
 }
 
 .lang-toggle-mobile .lang-btn {
-  background: transparent;
-  border: 2px solid var(--white);
+  background: var(--black);
+  border: 3px solid var(--white);
   padding: 10px 20px;
   color: var(--white);
   font-family: var(--mono);
@@ -179,9 +179,7 @@ body {
 
 .lang-toggle-mobile .lang-btn:hover:not(.active) {
   background: var(--gray-dark);
-}
-
-/* === HERO SECTION === */
+}/* === HERO SECTION === */
 .hero {
   min-height: 100vh;
   display: flex;
@@ -915,7 +913,16 @@ display: none !important; /* Ocultar selector flotante en móvil */
 
   /* Mostrar selector de idioma dentro del hero en móvil */
   .lang-toggle-mobile {
-    display: flex !important;  }  
+    display: flex !important;  }
+
+  /* Ocultar ubicación desktop y mostrar version móvil */
+  .location-desktop {
+    display: none !important;
+  }
+  
+  .location-mobile {
+    display: inline !important;
+  }
   footer {
     flex-direction: column;
     padding: 80px 0 50px;
