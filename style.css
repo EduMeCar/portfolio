@@ -878,6 +878,7 @@ footer {
     top: 25px;
     right: 25px;
   }
+       display: none; /* Oculto en móvil, se usa lang-toggle-hero */
   
   footer {
     flex-direction: column;
@@ -893,8 +894,8 @@ footer {
   }
   
   .scroll-top {
-    display: none; /* Oculto en móvil */
-  }
+    display: flex; /* Visible en móvil */
+    opacity: 1;  }
   
   .brands-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -1025,3 +1026,69 @@ svg {
   white-space: nowrap;
   border-width: 0;
 }
+
+
+/* === UBICACIÓN RESPONSIVE === */
+.location-mobile {
+  display: none;
+}
+
+.location-desktop {
+  display: inline;
+}
+
+/* === SELECTOR DE IDIOMA EN HERO (SOLO MÓVIL) === */
+.lang-toggle-hero {
+  display: none; /* Oculto por defecto (desktop) */
+  margin-top: 30px;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.lang-btn-hero {
+  background: transparent;
+  border: none;
+  color: var(--white);
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .3em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: .2s;
+  padding: 0;
+}
+
+.lang-btn-hero.active {
+  color: var(--orange);
+}
+
+.lang-btn-hero:hover:not(.active) {
+  color: var(--gray-light);
+}
+
+.lang-btn-hero:focus {
+  outline: 2px solid var(--orange);
+  outline-offset: 4px;
+}
+
+.lang-separator {
+  color: var(--white);
+  font-size: 14px;
+  font-weight: 800;
+}
+
+  /* Mostrar selector de idioma en hero (móvil) */
+  .lang-toggle-hero {
+    display: flex;
+  }
+
+  /* Cambiar ubicación a versión corta en móvil */
+  .location-desktop {
+    display: none;
+  }
+
+  .location-mobile {
+    display: inline;
+  }
