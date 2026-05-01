@@ -173,7 +173,8 @@ body {
   margin-top: 60px;
 }
 
-.hero-name {
+400
+{
   font-size: clamp(4rem, 15vw, 12rem);
   font-weight: 900;
   line-height: .8;
@@ -1027,3 +1028,10 @@ svg {
   white-space: nowrap;
   border-width: 0;
 }
+
+/* === RESPONSIVE - HERO NAME MOBILE === */
+@media (max-width: 768px) {
+     .hero-name span {
+            font-size: clamp(2.5rem, 8vw, 3.5rem);
+          }
+   }
