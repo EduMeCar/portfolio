@@ -28,6 +28,28 @@
   color: var(--black);
 }
 
+/* === GROOVER WIDGET === */
+.groover-section {
+     padding: 60px 0;
+   }
+
+.groover-section iframe {
+     border-radius: 8px;
+     border: 2px solid var(--white);
+     transition: all 0.3s ease;
+   }
+
+.groover-section iframe:hover {
+     border-color: var(--orange);
+     box-shadow: 0 0 20px rgba(255, 51, 0, 0.2);
+   }
+
+@media (max-width: 768px) {
+     .groover-section {
+            padding: 40px 0;
+          }
+   }
+
 /* === BASE === */
 html {
   scroll-behavior: smooth;
