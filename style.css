@@ -1035,3 +1035,10 @@ svg {
             font-size: clamp(2.5rem, 8vw, 3.5rem);
           }
    }
+
+@media (max-width: 768px) {
+     .hero-subtitle {
+            white-space: nowrap;
+            font-size: clamp(0.9rem, 3vw, 1.2rem);
+          }
+   }
